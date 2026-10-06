@@ -1,0 +1,218 @@
+<noinclude>
+{{#cargo_declare:_table=Languages|name=String|script=String|image=File|caption=String|othernames=List (,) of String|family=Page|parent=Page|writing=String|speakers=List (,) of Page|region=List (,) of Page|era=List (,) of Page|sample=Text|sample_script=String|sample_meaning=String|canon=String}}
+'''Infobox language''' — Eine Sprache oder Schrift der Welt.
+
+Neue Seiten entstehen mit [[Form:Language]] (oder über [[Westernis:Create]]). Die Felder landen in der Cargo-Tabelle [[Special:CargoTables/Languages|Languages]]. Die Darstellung steckt in [[Template:Infobox language/core]], das Aussehen in [[MediaWiki:Common.css]] (<code>.pi-theme-language</code>).
+
+<templatedata>
+{
+ "description": {
+  "en": "A tongue or script of the world.",
+  "de": "Eine Sprache oder Schrift der Welt."
+ },
+ "format": "{{_\n| ___ = _\n}}",
+ "params": {
+  "name": {
+   "label": {
+    "en": "Name",
+    "de": "Name"
+   },
+   "description": "Display name (defaults to the page name)",
+   "type": "string",
+   "suggested": true
+  },
+  "script": {
+   "label": {
+    "en": "Tengwar",
+    "de": "Tengwar"
+   },
+   "description": "Name in Tengwar or another script (rendered with the Tengwar font)",
+   "type": "string",
+   "suggested": true
+  },
+  "image": {
+   "label": {
+    "en": "Image",
+    "de": "Bild"
+   },
+   "description": "Main image (file name without the File: prefix)",
+   "type": "wiki-file-name",
+   "suggested": true
+  },
+  "caption": {
+   "label": {
+    "en": "Caption",
+    "de": "Bildunterschrift"
+   },
+   "description": "Image caption",
+   "type": "string",
+   "suggested": true
+  },
+  "othernames": {
+   "label": {
+    "en": "Other names",
+    "de": "Weitere Namen"
+   },
+   "description": "Comma-separated alternative names",
+   "type": "string",
+   "suggested": true
+  },
+  "family": {
+   "label": {
+    "en": "Family",
+    "de": "Sprachstamm"
+   },
+   "description": "Language family",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "parent": {
+   "label": {
+    "en": "Derived from",
+    "de": "Abgeleitet von"
+   },
+   "description": "Parent language",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "writing": {
+   "label": {
+    "en": "Writing system",
+    "de": "Schrift"
+   },
+   "description": "Script used (e.g. Tengwar, Cirth)",
+   "type": "string",
+   "suggested": true
+  },
+  "speakers": {
+   "label": {
+    "en": "Spoken by",
+    "de": "Gesprochen von"
+   },
+   "description": "Peoples speaking it",
+   "type": "string",
+   "suggested": true
+  },
+  "region": {
+   "label": {
+    "en": "Regions",
+    "de": "Verbreitung"
+   },
+   "description": "Where it is spoken",
+   "type": "string",
+   "suggested": true
+  },
+  "era": {
+   "label": {
+    "en": "Eras",
+    "de": "Zeitalter"
+   },
+   "description": "Eras in use",
+   "type": "string",
+   "suggested": true
+  },
+  "sample": {
+   "label": {
+    "en": "Sample",
+    "de": "Probe"
+   },
+   "description": "A phrase in the language",
+   "type": "content",
+   "suggested": true
+  },
+  "sample_script": {
+   "label": {
+    "en": "Sample (script)",
+    "de": "Probe (Schrift)"
+   },
+   "description": "The same phrase in Tengwar characters",
+   "type": "string",
+   "suggested": true
+  },
+  "sample_meaning": {
+   "label": {
+    "en": "Meaning",
+    "de": "Bedeutung"
+   },
+   "description": "Translation of the sample",
+   "type": "string",
+   "suggested": true
+  },
+  "short": {
+   "label": {
+    "en": "Short description",
+    "de": "Kurzbeschreibung"
+   },
+   "description": "One line shown under the title and in search results",
+   "type": "string",
+   "suggested": false
+  },
+  "canon": {
+   "label": {
+    "en": "Canon",
+    "de": "Kanon"
+   },
+   "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+   "type": "string",
+   "suggestedvalues": [
+    "Tolkien",
+    "Westernis",
+    "Draft"
+   ],
+   "default": "Westernis",
+   "suggested": false
+  },
+  "accent": {
+   "label": {
+    "en": "Accent colour",
+    "de": "Akzentfarbe"
+   },
+   "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)",
+   "type": "string",
+   "suggested": false
+  }
+ },
+ "paramOrder": [
+  "name",
+  "script",
+  "image",
+  "caption",
+  "othernames",
+  "family",
+  "parent",
+  "writing",
+  "speakers",
+  "region",
+  "era",
+  "sample",
+  "sample_script",
+  "sample_meaning",
+  "short",
+  "canon",
+  "accent"
+ ]
+}
+</templatedata>
+[[Category:Infobox templates]]
+</noinclude><includeonly>{{#cargo_store:_table=Languages|name={{{name|{{PAGENAME}}}}}|script={{{script|}}}|image={{{image|}}}|caption={{{caption|}}}|othernames={{{othernames|}}}|family={{{family|}}}|parent={{{parent|}}}|writing={{{writing|}}}|speakers={{{speakers|}}}|region={{{region|}}}|era={{{era|}}}|sample={{{sample|}}}|sample_script={{{sample_script|}}}|sample_meaning={{{sample_meaning|}}}|canon={{{canon|Westernis}}}}}<!--
+-->{{#if:{{{short|}}}|{{SHORTDESC:{{{short}}}}}}}<!--
+-->{{Infobox language/core
+|name={{{name|}}}
+|script={{{script|}}}
+|image={{{image|}}}
+|caption={{{caption|}}}
+|othernames={{{othernames|}}}
+|family={{#if:{{{family|}}}|[[{{{family}}}]]}}
+|parent={{#if:{{{parent|}}}|[[{{{parent}}}]]}}
+|writing={{{writing|}}}
+|speakers={{#invoke:Westernis|list|{{{speakers|}}}}}
+|region={{#invoke:Westernis|list|{{{region|}}}}}
+|era={{#invoke:Westernis|list|{{{era|}}}}}
+|sample={{{sample|}}}
+|sample_script={{{sample_script|}}}
+|sample_meaning={{{sample_meaning|}}}
+|canon={{{canon|Westernis}}}
+|accent={{{accent|}}}
+|pagename={{PAGENAME}}
+}}<!--
+-->[[Category:Languages]]{{#if:{{{family|}}}|[[Category:Sprachfamilie {{{family}}}]]}}{{#switch:{{{canon|Westernis}}}|Tolkien=[[Category:Tolkien canon]]|Draft=[[Category:Draft articles]]|#default=[[Category:Westernis canon]]}}{{#if:{{{image|}}}||[[Category:Articles without an image]]}}</includeonly>

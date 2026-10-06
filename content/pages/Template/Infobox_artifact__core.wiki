@@ -1,0 +1,34 @@
+<noinclude>
+Darstellungsvorlage für [[Template:Infobox artifact]]. Nicht direkt verwenden.
+[[Category:Infobox templates]]
+</noinclude><includeonly><infobox theme="artifact" accent-color-source="accent">
+  <title source="name"><default>{{{pagename}}}</default></title>
+  <data source="script"><format><div class="wst-tengwar wst-tengwar-title">{{{script}}}</div></format></data>
+  <image source="image"><caption source="caption"/></image>
+  <data source="othernames"><label>Weitere Namen</label></data>
+  <group>
+    <header>Beschreibung</header>
+    <data source="type"><label>Art</label></data>
+    <data source="appearance"><label>Aussehen</label><format><div class="wst-pi-long">{{{appearance}}}</div></format></data>
+    <data source="powers"><label>Kräfte</label><format><div class="wst-pi-long">{{{powers}}}</div></format></data>
+  </group>
+  <group>
+    <header>Entstehung</header>
+    <data source="creator"><label>Schöpfer</label></data>
+    <data source="created"><label>Geschaffen</label></data>
+    <data source="created_location"><label>Geschaffen in</label></data>
+  </group>
+  <group>
+    <header>Geschichte</header>
+    <data source="owner"><label>Träger</label></data>
+    <data source="location"><label>Verbleib</label></data>
+    <data source="destroyer"><label>Zerstört von</label></data>
+    <data source="destroyed"><label>Zerstört</label></data>
+    <data source="destroyed_location"><label>Zerstört in</label></data>
+  </group>
+  <group>
+    <header>Überblick</header>
+    <data source="notablefor"><label>Bedeutung</label><format><div class="wst-pi-long">{{{notablefor}}}</div></format></data>
+  </group>
+  <navigation><span class="wst-pi-nav">{{#invoke:Westernis|canon|{{{canon|}}}}} <span class="wst-pi-type">Artefakt</span> <span class="wst-pi-edit">[[Special:FormEdit/Artifact/{{FULLPAGENAME}}|bearbeiten]]</span></span></navigation>
+</infobox></includeonly>

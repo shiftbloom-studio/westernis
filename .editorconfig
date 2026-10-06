@@ -1,0 +1,38 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+[*.{php,lua}]
+indent_style = tab
+indent_size = 4
+
+[content/pages/MediaWiki/*.{css,js}]
+indent_style = tab
+indent_size = 4
+
+# Seed pages are imported verbatim, and MediaWiki trims them on save
+[content/pages/**.wiki]
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+
+[*.md]
+trim_trailing_whitespace = false
+
+# Licence texts are kept exactly as published
+[{*.txt,LICENSE*}]
+trim_trailing_whitespace = unset
+insert_final_newline = unset
+
+[*.{png,jpg,jpeg,gif,webp,avif,ico,woff,woff2,ttf,otf,pdf,zip,gz}]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+indent_style = unset
+indent_size = unset

@@ -1,0 +1,25 @@
+<noinclude>
+Gerüst für neue Einträge der Art „Sprache“, vorgeladen von [[Form:Language]]. Frei bearbeitbar; die Reihenfolge der Abschnitte bitte im ganzen Wiki gleich halten.
+[[Category:Skeleton templates]]
+</noinclude>'''{{PAGENAME}}''' war die Sprache der … <!-- Einleitung -->
+
+== Geschichte ==
+<!-- Geschichte: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Lautlehre und Grammatik ==
+<!-- Lautlehre und Grammatik: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Wortschatz ==
+<!-- Wortschatz: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Schrift ==
+<!-- Schrift: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Sprachproben ==
+<!-- Sprachproben: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Siehe auch ==
+<!-- Siehe auch: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Anmerkungen ==
+<references />

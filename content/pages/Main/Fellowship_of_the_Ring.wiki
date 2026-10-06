@@ -1,0 +1,23 @@
+{{DISPLAYTITLE:Gemeinschaft des Rings}}
+{{Infobox faction
+| name = Gemeinschaft des Rings
+| type = Fellowship
+| othernames = Die Neun Gefährten
+| founder = Elrond
+| founded = 25. Dezember
+| founded_year = 3018
+| founded_era = Third Age
+| leader = Gandalf
+| seat = Rivendell
+| members = Gandalf, Aragorn II, Frodo Baggins, Samwise Gamgee, Legolas, Gimli, Boromir, Meriadoc Brandybuck, Peregrin Took
+| race = Men, Elves, Maiar
+| rivalry = Mordor
+| disbanded = Am Parth Galen zerbrochen, 26. Februar D.Z. 3019
+| purpose = Den Einen Ring zum Orodruin zu tragen und dort zu vernichten.
+| short = Die Neun Gefährten, in Bruchtal erwählt
+| canon = Tolkien
+}}
+Die '''Gemeinschaft des Rings''' war die Schar von neun Gefährten, die bei [[Council of Elrond|Elronds Rat]] erwählt wurde, um den Ringträger zu begleiten. Sie brach am 25. Dezember D.Z. 3018 von [[Rivendell|Bruchtal]] auf und zerbrach zwei Monate später am Parth Galen.
+
+== Mitglieder ==
+{{Relationships}}

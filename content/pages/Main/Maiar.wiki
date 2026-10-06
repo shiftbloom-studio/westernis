@@ -1,0 +1,10 @@
+{{Infobox people
+| othernames = Die geringeren Ainur
+| origin = Geister, die zu Anbeginn mit den Valar in die Welt eintraten.
+| notable_members = Gandalf
+| lifespan = Unsterblich
+| distinctions = Diener und Helfer der [[Valar]]; manche nahmen die Gestalt der Kinder Ilúvatars an.
+| short = Geringere Geister im Dienst der Valar
+| canon = Tolkien
+}}
+Die '''Maiar''' waren Geister vom selben Stand wie die [[Valar]], doch von geringerer Macht. Zu ihnen gehörten die Istari, die Zauberer, die im [[Third Age|Dritten Zeitalter]] nach Mittelerde gesandt wurden.

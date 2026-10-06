@@ -1,0 +1,23 @@
+{{SHORTDESC:Der Rundgang in fünf Minuten}}
+== Einen Eintrag anlegen ==
+# Öffne [[Westernis:Create|Einen Eintrag beginnen]] und wähle eine Art – oder geh zu einer der Hauptkategorien (etwa [[:Category:Characters|Gestalten]]) und nutze dort das Feld '''Anlegen'''.
+# Fülle das Formular aus. Felder mit Listen (Eltern, Mitglieder, Orte) werden durch Kommata getrennt und von selbst verlinkt.
+# Der Text des Eintrags ist mit einem Gerüst vorbefüllt; ersetze die Kommentare.
+# Speichere. Infobox, Kategorien, Zeittafel, Stammbaum und die Liste der „Auftritte in den Chroniken“ aktualisieren sich von selbst.
+
+== Bearbeiten ==
+* '''Bearbeiten''' öffnet wieder das Formular (sein Textfeld trägt die Wiki-Werkzeugleiste); '''Quelltext bearbeiten''' öffnet den vollständigen Wikitext-Editor mit Syntaxhervorhebung, der Schnipselleiste darunter und dem Hochladen von Bildern per Ziehen und Ablegen (MsUpload). Der visuelle Editor steht auf jeder Seite bereit.
+* Mit [[Special:BatchUpload|Mehrfach-Hochladen]] lädst du viele Dateien auf einmal hoch, mit [[Special:Upload|Hochladen]] eine einzelne.
+* Drücke <kbd>/</kbd>, um die Befehlspalette zu öffnen und zu jeder Seite zu springen.
+
+== Nützliche Vorlagen ==
+* <code><nowiki>{{Quote|Text|Wer|Werk}}</nowiki></code> – illuminiertes Zitat
+* <code><nowiki>{{Secret|title=…|text=…}}</nowiki></code> – verborgene Kunde
+* <code><nowiki>{{Drop cap|G}}</nowiki></code> – illuminierte Initiale
+* <code><nowiki>{{Timeline|era=Third Age}}</nowiki></code> – Zeittafel eines Zeitalters, eines Ortes oder einer Person
+* <code><nowiki>{{Family tree}}</nowiki></code>, <code><nowiki>{{Relationships}}</nowiki></code>, <code><nowiki>{{Appearances}}</nowiki></code> – Stammbaum, Beziehungen, Auftritte in den Chroniken
+* <code><nowiki>{{Divider}}</nowiki></code> – Zierlinie
+* <code><nowiki>{{Map:Westernis}}</nowiki></code> – die Weltkarte
+
+== Karten ==
+Karten sind JSON-Seiten im Namensraum <code>Map:</code> (Erweiterung DataMaps). Die Markierungen werden auf der Kartenseite selbst festgelegt: Öffne [[Map:Westernis]], klicke auf den Stift und füge einen Eintrag mit <code>x</code>/<code>y</code> (0–100), <code>name</code> und <code>article</code> hinzu. Die Felder <code>map</code>, <code>map_x</code> und <code>map_y</code> eines Ortes sind nur Merkhilfen, damit die Koordinaten auch beim Eintrag vermerkt bleiben.

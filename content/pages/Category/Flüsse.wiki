@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Flüsse}}{{Category header|type=location|kicker=Orte|title=Flüsse|description=Alle Einträge der Art „Fluss“.|form=Location|table=Locations|placeholder=Neuer Ort …}}
+[[Category:Locations|Flüsse]]

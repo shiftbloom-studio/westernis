@@ -1,0 +1,38 @@
+<noinclude>
+Darstellungsvorlage für [[Template:Infobox people]]. Nicht direkt verwenden.
+[[Category:Infobox templates]]
+</noinclude><includeonly><infobox theme="people" accent-color-source="accent">
+  <title source="name"><default>{{{pagename}}}</default></title>
+  <data source="script"><format><div class="wst-tengwar wst-tengwar-title">{{{script}}}</div></format></data>
+  <image source="image"><caption source="caption"/></image>
+  <data source="othernames"><label>Weitere Namen</label></data>
+  <group>
+    <header>Ursprung</header>
+    <data source="origin"><label>Ursprung</label><format><div class="wst-pi-long">{{{origin}}}</div></format></data>
+    <data source="homeland"><label>Heimatlande</label></data>
+    <data source="parent"><label>Teil von</label></data>
+    <data source="subgroups"><label>Stämme</label></data>
+    <data source="language"><label>Sprachen</label></data>
+    <data source="lifespan"><label>Lebensspanne</label></data>
+  </group>
+  <group>
+    <header>Beziehungen</header>
+    <data source="affiliation"><label>Verbündete</label></data>
+    <data source="rivalry"><label>Feinde</label></data>
+    <data source="notable_members"><label>Namhafte Mitglieder</label></data>
+  </group>
+  <group collapse="closed">
+    <header>Erscheinung</header>
+    <data source="height"><label>Größe</label></data>
+    <data source="hair"><label>Haar</label></data>
+    <data source="skin"><label>Haut</label></data>
+    <data source="eyes"><label>Augen</label></data>
+    <data source="clothing"><label>Gewandung</label></data>
+    <data source="weapons"><label>Waffen</label></data>
+  </group>
+  <group>
+    <header>Überblick</header>
+    <data source="distinctions"><label>Eigenheiten</label><format><div class="wst-pi-long">{{{distinctions}}}</div></format></data>
+  </group>
+  <navigation><span class="wst-pi-nav">{{#invoke:Westernis|canon|{{{canon|}}}}} <span class="wst-pi-type">Volk</span> <span class="wst-pi-edit">[[Special:FormEdit/People/{{FULLPAGENAME}}|bearbeiten]]</span></span></navigation>
+</infobox></includeonly>

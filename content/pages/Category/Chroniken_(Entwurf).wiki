@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Chroniken (Entwurf)}}{{Category header|type=chronicle|kicker=Chroniken|title=Chroniken (Entwurf)|description=Alle Einträge der Art „Entwurf“.|form=Chronicle|table=Chronicles|namespace=Chronicle|placeholder=Neue Chronik …}}
+[[Category:Chronicles|Chroniken (Entwurf)]]

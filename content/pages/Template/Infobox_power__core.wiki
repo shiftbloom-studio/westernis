@@ -1,0 +1,29 @@
+<noinclude>
+Darstellungsvorlage für [[Template:Infobox power]]. Nicht direkt verwenden.
+[[Category:Infobox templates]]
+</noinclude><includeonly><infobox theme="power" accent-color-source="accent">
+  <title source="name"><default>{{{pagename}}}</default></title>
+  <data source="script"><format><div class="wst-tengwar wst-tengwar-title">{{{script}}}</div></format></data>
+  <image source="image"><caption source="caption"/></image>
+  <data source="othernames"><label>Weitere Namen</label></data>
+  <group>
+    <header>Wesen und Rang</header>
+    <data source="titles"><label>Titel</label></data>
+    <data source="pantheon"><label>Stand</label></data>
+    <data source="domain"><label>Walten</label></data>
+    <data source="rank"><label>Rang</label></data>
+    <data source="allegiance"><label>Treue</label></data>
+    <data source="dwelling"><label>Wohnstatt</label></data>
+    <data source="symbols"><label>Sinnbilder</label></data>
+  </group>
+  <group>
+    <header>Beziehungen</header>
+    <data source="followers"><label>Gefolge</label></data>
+    <data source="relatives"><label>Sippe</label></data>
+  </group>
+  <group>
+    <header>Überblick</header>
+    <data source="notablefor"><label>Bedeutung</label><format><div class="wst-pi-long">{{{notablefor}}}</div></format></data>
+  </group>
+  <navigation><span class="wst-pi-nav">{{#invoke:Westernis|canon|{{{canon|}}}}} <span class="wst-pi-type">Macht</span> <span class="wst-pi-edit">[[Special:FormEdit/Power/{{FULLPAGENAME}}|bearbeiten]]</span></span></navigation>
+</infobox></includeonly>

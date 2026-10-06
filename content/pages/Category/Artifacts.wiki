@@ -1,0 +1,3 @@
+{{#default_form:Artifact}}{{DISPLAYTITLE:Artefakte}}
+{{Category header|type=artifact|title=Artefakte|singular=Artefakt|placeholder=Neues Artefakt …|form=Artifact|table=Artifacts|description=Waffen, Ringe, Reliquien, Juwelen, Gefäße, Schriften und andere Dinge von Rang.}}
+[[Category:Westernis|Artefakte]]

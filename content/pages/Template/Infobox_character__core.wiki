@@ -1,0 +1,49 @@
+<noinclude>
+Darstellungsvorlage für [[Template:Infobox character]]. Nicht direkt verwenden.
+[[Category:Infobox templates]]
+</noinclude><includeonly><infobox theme="character" accent-color-source="accent">
+  <title source="name"><default>{{{pagename}}}</default></title>
+  <data source="script"><format><div class="wst-tengwar wst-tengwar-title">{{{script}}}</div></format></data>
+  <image source="image"><caption source="caption"/></image>
+  <data source="othernames"><label>Weitere Namen</label></data>
+  <group>
+    <header>Lebensdaten</header>
+    <data source="titles"><label>Titel</label></data>
+    <data source="race"><label>Volk</label></data>
+    <data source="culture"><label>Kultur</label></data>
+    <data source="gender"><label>Geschlecht</label></data>
+    <data source="house"><label>Haus</label></data>
+    <data source="affiliation"><label>Bündnisse</label></data>
+    <data source="position"><label>Stellung</label></data>
+    <data source="realm"><label>Reich</label></data>
+    <data source="location"><label>Aufenthalt</label></data>
+    <data source="birth"><label>Geburt</label></data>
+    <data source="birthplace"><label>Geburtsort</label></data>
+    <data source="death"><label>Tod</label></data>
+    <data source="deathplace"><label>Sterbeort</label></data>
+    <data source="age"><label>Alter</label></data>
+    <data source="rule"><label>Herrschaft</label></data>
+  </group>
+  <group>
+    <header>Sippe</header>
+    <data source="parentage"><label>Eltern</label></data>
+    <data source="siblings"><label>Geschwister</label></data>
+    <data source="spouse"><label>Gemahl(in)</label></data>
+    <data source="children"><label>Kinder</label></data>
+  </group>
+  <group collapse="closed">
+    <header>Erscheinung</header>
+    <data source="height"><label>Größe</label></data>
+    <data source="hair"><label>Haar</label></data>
+    <data source="eyes"><label>Augen</label></data>
+    <data source="clothing"><label>Gewandung</label></data>
+    <data source="weapons"><label>Waffen</label></data>
+    <data source="steed"><label>Ross</label></data>
+    <data source="language"><label>Sprachen</label></data>
+  </group>
+  <group>
+    <header>Überblick</header>
+    <data source="notablefor"><label>Bedeutung</label><format><div class="wst-pi-long">{{{notablefor}}}</div></format></data>
+  </group>
+  <navigation><span class="wst-pi-nav">{{#invoke:Westernis|canon|{{{canon|}}}}} <span class="wst-pi-type">Gestalt</span> <span class="wst-pi-edit">[[Special:FormEdit/Character/{{FULLPAGENAME}}|bearbeiten]]</span></span></navigation>
+</infobox></includeonly>

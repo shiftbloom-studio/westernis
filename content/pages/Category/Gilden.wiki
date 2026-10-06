@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Gilden}}{{Category header|type=faction|kicker=Bünde|title=Gilden|description=Alle Einträge der Art „Gilde“.|form=Faction|table=Factions|placeholder=Neuer Bund …}}
+[[Category:Factions|Gilden]]

@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Der Eine Ring}}
+{{Infobox artifact
+| name = Der Eine Ring
+| othernames = Der Herrscherring, Isildurs Fluch, der Schatz
+| type = Ring
+| appearance = Ein schlichter Reif aus Gold, der in der Glut feurige Buchstaben in der Schwarzen Sprache zeigte.
+| powers = Gebot über die anderen Ringe der Macht; machte sterbliche Träger unsichtbar und dehnte ihr Leben.
+| creator = Sauron
+| created_year = 1600
+| created_era = Second Age
+| created_location = Mordor
+| owner = Sauron, Isildur, Gollum, Bilbo Baggins, Frodo Baggins
+| destroyed = 25. März D.Z. 3019
+| destroyed_location = Mordor
+| notablefor = Der Herrscherring, mit dessen Vernichtung der Ringkrieg endete.
+| short = Saurons Herrscherring
+| canon = Tolkien
+}}
+Der '''Eine Ring''' wurde von Sauron in den Feuern des Orodruin geschmiedet, um die anderen Ringe der Macht zu beherrschen. Ein Zeitalter lang verschollen, gelangte er an Gollum, dann an Bilbo und Frodo Beutlin und wurde schließlich in demselben Feuer vernichtet, in dem er geschaffen worden war.
+
+== Geschichte ==
+{{Timeline|participant=One Ring}}

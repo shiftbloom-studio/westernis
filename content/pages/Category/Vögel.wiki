@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Vögel}}{{Category header|type=creature|kicker=Geschöpfe|title=Vögel|description=Alle Einträge der Art „Vogel“.|form=Creature|table=Creatures|placeholder=Neues Geschöpf …}}
+[[Category:Creatures|Vögel]]

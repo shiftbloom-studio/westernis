@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Reliquien}}{{Category header|type=artifact|kicker=Artefakte|title=Reliquien|description=Alle Einträge der Art „Reliquie“.|form=Artifact|table=Artifacts|placeholder=Neues Artefakt …}}
+[[Category:Artifacts|Reliquien]]

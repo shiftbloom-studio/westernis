@@ -1,0 +1,96 @@
+<noinclude>
+Dies ist das Formular „Macht“. Gib unten einen Seitennamen ein, um einen neuen Eintrag anzulegen, oder öffne einen bestehenden, um ihn mit diesem Formular zu bearbeiten.
+
+{{#forminput:form=Power|autocomplete on category=Powers|placeholder=Name der Macht|button text=Anlegen / bearbeiten|no autofocus}}
+
+[[Category:Forms]]
+</noinclude><includeonly>
+<div class="wst-form wst-form-power">
+{{{info|page name=<Infobox power[name]>|create title=Eine Macht anlegen|edit title=Macht bearbeiten}}}
+{{{for template|Infobox power|label=Macht}}}
+{| class="formtable wst-formtable"
+|+ Name & Bild
+|-
+! Name:
+| {{{field|name|input type=text|placeholder=Anzeigename (sonst der Seitenname)}}}
+|-
+! Tengwar:
+| {{{field|script|input type=text|placeholder=Tengwar-Text (in Tengwar-Schrift dargestellt)}}}
+|-
+! Bild:
+| {{{field|image|input type=text|uploadable|placeholder=Beispiel.jpg}}}
+|-
+! Bildunterschrift:
+| {{{field|caption|input type=text|placeholder=Bildunterschrift}}}
+|-
+! Weitere Namen:
+| {{{field|othernames|input type=tokens|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Wesen und Rang
+|-
+! Titel:
+| {{{field|titles|input type=tokens|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Stand:
+| {{{field|pantheon|input type=combobox|values from category=Peoples}}}
+|-
+! Walten:
+| {{{field|domain|input type=tokens|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Rang:
+| {{{field|rank|input type=text}}}
+|-
+! Treue:
+| {{{field|allegiance|input type=text}}}
+|-
+! Wohnstatt:
+| {{{field|dwelling|input type=combobox|values from category=Locations}}}
+|-
+! Sinnbilder:
+| {{{field|symbols|input type=text}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Beziehungen
+|-
+! Gefolge:
+| {{{field|followers|input type=tokens|values from category=Characters|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Sippe:
+| {{{field|relatives|input type=tokens|values from category=Characters|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Einzelheiten
+|-
+! Bedeutung:
+| {{{field|notablefor|input type=textarea|rows=3|autogrow}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Angaben zum Eintrag
+|-
+! Kurzbeschreibung:
+| {{{field|short|input type=text|placeholder=Eine Zeile unter dem Titel und in Suchergebnissen}}}
+|-
+! Kanon:
+| {{{field|canon|input type=radiobutton|values=Tolkien,Westernis,Draft|mapping template=Wst label|default=Westernis}}}
+|-
+! Akzentfarbe:
+| {{{field|accent|input type=text|placeholder=#7a1f2b (optionale Hex-Farbe)}}}
+|-
+|}
+{{{end template}}}
+
+<div class="wst-form-text">'''Text des Eintrags''' <small>(das Gerüst ist für neue Seiten vorbefüllt; ersetze die Kommentare)</small></div>
+{{{standard input|free text|rows=28|editor=wikieditor|preload=Template:Skeleton/Power}}}
+
+{{{standard input|summary}}}
+
+{{{standard input|minor edit}}} {{{standard input|watch}}}
+
+{{{standard input|save}}} {{{standard input|preview}}} {{{standard input|changes}}} {{{standard input|cancel}}}
+</div>
+</includeonly>

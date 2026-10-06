@@ -1,0 +1,10 @@
+{{SHORTDESC:Drei Schichten der Wahrheit}}
+Westernis kennt drei Schichten des Kanons; welche für einen Eintrag gilt, steht im Feld <code>canon</code> seiner Infobox:
+
+* '''Tolkien''' – das veröffentlichte Legendarium, stets in eigenen Worten zusammengefasst.
+* '''Westernis''' – der eigene Kanon: neue Reiche, Häuser und Geschichten und alles, worin diese Welt von ihrer Vorlage abweicht.
+* '''Draft''' (angezeigt als „Entwurf“) – alles Ungeprüfte. Seiten, die Claude Code anlegt, beginnen hier; freigegeben werden sie, indem man das Feld auf Tolkien oder Westernis setzt.
+
+Kategorien: [[:Category:Tolkien canon|Tolkien-Kanon]] · [[:Category:Westernis canon|Westernis-Kanon]] · [[:Category:Draft articles|Entwürfe]].
+
+Geheimnisse, überraschende Wendungen und Notizen allein für die Spielleitung gehören in <code><nowiki>{{Secret|title=…|text=…}}</nowiki></code>-Blöcke, die zunächst eingeklappt sind.

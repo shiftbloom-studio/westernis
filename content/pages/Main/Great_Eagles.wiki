@@ -1,0 +1,16 @@
+{{DISPLAYTITLE:Große Adler}}
+{{Infobox creature
+| name = Große Adler
+| othernames = Adler Manwës
+| type = Bird
+| origin = Manwë
+| habitat = Misty Mountains
+| alignment = Frei
+| size = Gewaltig; die ältesten maßen dreißig Klafter von Schwinge zu Schwinge
+| abilities = Sprache, große Schnelligkeit und Stärke; scharfe Augen.
+| notable_individuals = Gwaihir, Thorondor
+| first_era = First Age
+| short = Die Boten Manwës
+| canon = Tolkien
+}}
+Die '''Großen Adler''' waren die Boten [[Manwë]]s, die größten aller Vögel. Im [[War of the Ring|Ringkrieg]] trug Gwaihir, der Herr der Winde, [[Gandalf]] von Orthanc und vom Gipfel des Zirakzigil davon.

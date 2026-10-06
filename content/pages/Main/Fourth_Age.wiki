@@ -1,0 +1,16 @@
+{{DISPLAYTITLE:Viertes Zeitalter}}
+{{Infobox era
+| name = Viertes Zeitalter
+| othernames = Zeitalter der Menschen
+| sequence = 4
+| year_start = 1
+| prefix = V.Z.
+| preceded_by = Third Age
+| description = Das Zeitalter, das mit dem Fortgang der Ringträger begann; die Zeit der Herrschaft der Menschen.
+| short = Das Zeitalter der Menschen
+| canon = Tolkien
+}}
+Das '''Vierte Zeitalter''' begann, als die letzten der Ringträger in den Westen segelten. Im ersten Jahrhundert dieses Zeitalters herrschte [[Aragorn II|Aragorn]] über das Wiedervereinigte Königreich.
+
+== Zeittafel ==
+{{Timeline|era=Fourth Age}}

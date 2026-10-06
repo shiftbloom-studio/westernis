@@ -1,0 +1,32 @@
+<noinclude>
+Darstellungsvorlage für [[Template:Infobox chronicle]]. Nicht direkt verwenden.
+[[Category:Infobox templates]]
+</noinclude><includeonly><infobox theme="chronicle" accent-color-source="accent">
+  <title source="title"><default>{{{pagename}}}</default></title>
+  <data source="script"><format><div class="wst-tengwar wst-tengwar-title">{{{script}}}</div></format></data>
+  <image source="image"><caption source="caption"/></image>
+  <data source="othernames"><label>Weitere Namen</label></data>
+    <data source="years"><label>Zeit der Handlung</label></data>
+  <group>
+    <header>Chronik</header>
+    <data source="status"><label>Stand</label></data>
+    <data source="era"><label>Zeitalter</label></data>
+    <data source="year_start"><label>Von Jahr</label></data>
+    <data source="year_end"><label>Bis Jahr</label></data>
+    <data source="sequence"><label>Reihenfolge</label></data>
+    <data source="part_of"><label>Teil von</label></data>
+    <data source="wordcount"><label>Wortzahl</label></data>
+  </group>
+  <group>
+    <header>Gestalten & Schauplätze</header>
+    <data source="pov"><label>Erzählblick</label></data>
+    <data source="characters"><label>Gestalten</label></data>
+    <data source="locations"><label>Schauplätze</label></data>
+    <data source="events"><label>Begebenheiten</label></data>
+  </group>
+  <group>
+    <header>Überblick</header>
+    <data source="summary"><label>Abriss</label><format><div class="wst-pi-long">{{{summary}}}</div></format></data>
+  </group>
+  <navigation><span class="wst-pi-nav">{{#invoke:Westernis|canon|{{{canon|}}}}} <span class="wst-pi-type">Chronik</span> <span class="wst-pi-edit">[[Special:FormEdit/Chronicle/{{FULLPAGENAME}}|bearbeiten]]</span></span></navigation>
+</infobox></includeonly>

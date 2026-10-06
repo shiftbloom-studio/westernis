@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "westernis-forge": {
+      "command": "node",
+      "args": ["tools/forge-mcp/src/index.js"]
+    }
+  }
+}

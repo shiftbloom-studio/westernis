@@ -1,0 +1,1 @@
+<noinclude>Zeilenvorlage für [[Template:Appearances]].</noinclude><includeonly><li>[[{{{Chronicle}}}|{{{Label|{{#titleparts:{{{Chronicle}}}|1|-1}}}}}]]{{#if:{{{Status|}}}|<span class="wst-muted">&#32;— {{#invoke:Westernis|label|{{{Status}}}}}</span>}}{{#if:{{{Era|}}}|<span class="wst-muted">&#32;({{{Era}}})</span>}}</li></includeonly>

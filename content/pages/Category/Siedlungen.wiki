@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Siedlungen}}{{Category header|type=location|kicker=Orte|title=Siedlungen|description=Alle Einträge der Art „Siedlung“.|form=Location|table=Locations|placeholder=Neuer Ort …}}
+[[Category:Locations|Siedlungen]]

@@ -1,0 +1,14 @@
+{{Infobox artifact
+| othernames = Flamme des Westens, Narsil (vor der Neuschmiedung)
+| type = Weapon
+| appearance = Ein Langschwert, dessen Klinge aus den Bruchstücken Narsils neu geschmiedet und mit sieben Sternen, einer Mondsichel und einer strahlenden Sonne verziert war.
+| creator = Telchar
+| created_era = First Age
+| created_location = Nogrod
+| owner = Elendil, Isildur, Aragorn II
+| location = Gondor
+| notablefor = Das zerbrochene Schwert, das in Bruchtal für den Erben Isildurs neu geschmiedet wurde.
+| short = Das für den König neu geschmiedete Schwert
+| canon = Tolkien
+}}
+'''Andúril''' war das Schwert [[Aragorn II|Aragorns]], in [[Rivendell|Bruchtal]] aus den Bruchstücken Narsils neu geschmiedet – jener Klinge, mit der Isildur Sauron den [[One Ring|Einen Ring]] von der Hand geschnitten hatte.

@@ -1,0 +1,19 @@
+{{DISPLAYTITLE:Waldläufer des Nordens}}
+{{Infobox faction
+| name = Waldläufer des Nordens
+| type = Order
+| othernames = Dúnedain von Arnor
+| leader = Aragorn II
+| members = Aragorn II
+| race = Dúnedain
+| affiliation = Fellowship of the Ring
+| language = Westron, Sindarin
+| colours = Grau und Grün
+| purpose = Bewachten nach dem Fall Arnors im Verborgenen Eriador und das Auenland.
+| short = Die verborgenen Hüter des Nordens
+| canon = Tolkien
+}}
+Die '''Waldläufer des Nordens''' waren der Rest der [[Dúnedain]] von Arnor: grau gewandete, umherziehende Hüter [[Eriador]]s, geführt von den Häuptlingen aus Isildurs Geschlecht.
+
+== Mitglieder ==
+{{Relationships}}

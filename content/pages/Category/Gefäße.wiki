@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Gefäße}}{{Category header|type=artifact|kicker=Artefakte|title=Gefäße|description=Alle Einträge der Art „Gefäß“.|form=Artifact|table=Artifacts|placeholder=Neues Artefakt …}}
+[[Category:Artifacts|Gefäße]]

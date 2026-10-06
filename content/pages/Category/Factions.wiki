@@ -1,0 +1,3 @@
+{{#default_form:Faction}}{{DISPLAYTITLE:Bünde}}
+{{Category header|type=faction|title=Bünde|singular=Bund|placeholder=Neuer Bund …|form=Faction|table=Factions|description=Ein Haus, Orden, Königreich, eine Gilde, Gemeinschaft oder ein anderer Bund.}}
+[[Category:Westernis|Bünde]]

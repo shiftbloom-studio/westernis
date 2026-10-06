@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Unglücke}}{{Category header|type=event|kicker=Begebenheiten|title=Unglücke|description=Alle Einträge der Art „Unheil“.|form=Event|table=Events|placeholder=Neue Begebenheit …}}
+[[Category:Events|Unglücke]]

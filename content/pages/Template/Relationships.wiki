@@ -1,0 +1,26 @@
+<noinclude>
+Connections of the current page gathered from the Cargo tables: factions it belongs to, places it rules, artifacts it held, allies and rivals. Place under <code>== Relationships ==</code> (or <code>== Connections ==</code>).
+
+Optional: <code>|page=Other title</code>.
+[[Category:Query templates]]
+</noinclude><includeonly><div class="wst-relations">{{#cargo_query:tables=Factions|fields=_pageName=Target,_pageTitle=Label,type=Kind
+|where=members HOLDS "{{{page|{{PAGENAME}}}}}" OR leader="{{{page|{{PAGENAME}}}}}" OR founder="{{{page|{{PAGENAME}}}}}"
+|format=template|template=Relationships/row|named args=yes
+|intro=<div class="wst-relations-group"><span class="wst-relations-label">Bünde</span>|outro=</div>|default=}}{{#cargo_query:tables=Locations|fields=_pageName=Target,_pageTitle=Label,type=Kind
+|where=ruler="{{{page|{{PAGENAME}}}}}"
+|format=template|template=Relationships/row|named args=yes
+|intro=<div class="wst-relations-group"><span class="wst-relations-label">Herrscht über</span>|outro=</div>|default=}}{{#cargo_query:tables=Artifacts|fields=_pageName=Target,_pageTitle=Label,type=Kind
+|where=owner HOLDS "{{{page|{{PAGENAME}}}}}" OR creator="{{{page|{{PAGENAME}}}}}"
+|format=template|template=Relationships/row|named args=yes
+|intro=<div class="wst-relations-group"><span class="wst-relations-label">Artefakte</span>|outro=</div>|default=}}{{#cargo_query:tables=Characters|fields=_pageName=Target,_pageTitle=Label,position=Kind
+|where=affiliation HOLDS "{{{page|{{PAGENAME}}}}}" OR house="{{{page|{{PAGENAME}}}}}" OR realm="{{{page|{{PAGENAME}}}}}" OR culture="{{{page|{{PAGENAME}}}}}" OR race="{{{page|{{PAGENAME}}}}}"
+|order by=_pageName|limit=60
+|format=template|template=Relationships/row|named args=yes
+|intro=<div class="wst-relations-group"><span class="wst-relations-label">Gestalten</span>|outro=</div>|default=}}{{#cargo_query:tables=Locations|fields=_pageName=Target,_pageTitle=Label,type=Kind
+|where=parent="{{{page|{{PAGENAME}}}}}" OR realm="{{{page|{{PAGENAME}}}}}" OR inhabitants HOLDS "{{{page|{{PAGENAME}}}}}"
+|order by=_pageName|limit=60
+|format=template|template=Relationships/row|named args=yes
+|intro=<div class="wst-relations-group"><span class="wst-relations-label">Orte</span>|outro=</div>|default=}}{{#cargo_query:tables=Factions|fields=_pageName=Target,_pageTitle=Label,type=Kind
+|where=affiliation HOLDS "{{{page|{{PAGENAME}}}}}" OR rivalry HOLDS "{{{page|{{PAGENAME}}}}}" OR realm="{{{page|{{PAGENAME}}}}}" OR seat="{{{page|{{PAGENAME}}}}}"
+|format=template|template=Relationships/row|named args=yes
+|intro=<div class="wst-relations-group"><span class="wst-relations-label">Verbündete &amp; Widersacher</span>|outro=</div>|default=}}</div></includeonly>

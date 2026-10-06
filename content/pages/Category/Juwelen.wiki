@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Juwelen}}{{Category header|type=artifact|kicker=Artefakte|title=Juwelen|description=Alle Einträge der Art „Juwel“.|form=Artifact|table=Artifacts|placeholder=Neues Artefakt …}}
+[[Category:Artifacts|Juwelen]]

@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Schlachten}}{{Category header|type=event|kicker=Begebenheiten|title=Schlachten|description=Alle Einträge der Art „Schlacht“.|form=Event|table=Events|placeholder=Neue Begebenheit …}}
+[[Category:Events|Schlachten]]

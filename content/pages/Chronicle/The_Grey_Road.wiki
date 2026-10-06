@@ -1,0 +1,17 @@
+{{Infobox chronicle
+| status = idea
+| era = Third Age
+| year_start = 3017
+| pov = Aragorn II
+| locations = Eriador
+| summary = Die winterliche Wanderung eines Waldläufers des Nordens von Bree zu den Ruinen von Fornost – eine Platzhalter-Chronik, die zeigt, wie Geschichten verzeichnet werden.
+| short = Eine Platzhalter-Chronik
+| canon = Draft
+}}
+{{Stub|needs=ein Verfasser; diese Chronik zeigt nur, wie Geschichten verzeichnet werden}}
+
+== Abriss ==
+Ersetze diesen Abriss durch deine eigene Geschichte. Chroniken haben einen eigenen Namensraum, werden unter [[:Category:Chronicles|Chroniken]] geführt und erscheinen von selbst im Abschnitt ''Auftritte in den Chroniken'' jeder Gestalt, jedes Ortes und jeder Begebenheit, die in ihrer Infobox genannt sind.
+
+== Die Chronik ==
+{{Drop cap|G}}rau war die Straße, und tief lag der Schnee …

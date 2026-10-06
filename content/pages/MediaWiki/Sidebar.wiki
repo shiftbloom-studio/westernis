@@ -1,0 +1,34 @@
+* navigation
+** mainpage|mainpage-description
+** Westernis|Westernis
+** Weltkarte|Weltkarte
+** Westernis:Create|Eintrag anlegen
+** Special:RecentChanges|recentchanges
+** Special:Random|randompage
+* Der Kodex
+** :Category:Characters|Gestalten
+** :Category:Locations|Orte
+** :Category:Factions|Bünde
+** :Category:Peoples|Völker
+** :Category:Creatures|Geschöpfe
+** :Category:Artifacts|Artefakte
+** :Category:Events|Begebenheiten
+** :Category:Eras|Zeitalter
+** :Category:Languages|Sprachen
+** :Category:Powers|Mächte
+** :Category:Chronicles|Chroniken
+** Glossary|Glossar
+* Schreibstube
+** Special:WantedPages|Gesuchte Seiten
+** Special:Drilldown|Daten durchstöbern
+** Special:Network|Geflecht der Verweise
+** Special:CargoTables|Datentafeln
+** Map:Westernis|Kartendaten
+** Special:BatchUpload|Viele Dateien hochladen
+** Special:ListFiles|Dateien
+** Westernis:Manual of Style|Stilhandbuch
+** Westernis:AI workflow|Arbeit mit der KI
+** Help:Editing|Hilfe
+* SEARCH
+* TOOLBOX
+* LANGUAGES

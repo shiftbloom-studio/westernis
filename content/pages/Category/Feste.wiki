@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Feste}}{{Category header|type=event|kicker=Begebenheiten|title=Feste|description=Alle Einträge der Art „Fest“.|form=Event|table=Events|placeholder=Neue Begebenheit …}}
+[[Category:Events|Feste]]

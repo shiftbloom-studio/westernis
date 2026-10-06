@@ -1,0 +1,133 @@
+{
+  "$schema": "/extensions/DataMaps/schemas/v17.4.json",
+  "coordinates": {
+    "origin": "topLeft",
+    "order": "xy"
+  },
+  "background": {
+    "image": "Westernis map.webp",
+    "at": [
+      [
+        -40,
+        0
+      ],
+      [
+        100,
+        70
+      ]
+    ]
+  },
+  "settings": {
+    "showCoordinates": false,
+    "enableSearch": true,
+    "allowFullscreen": false,
+    "backdropColor": "#2a2116",
+    "zoom": {
+      "min": 0.3,
+      "max": 4
+    },
+    "hideLegend": "collapsed",
+    "enableTooltipPopups": true,
+    "leaflet": {
+      "zoomControl": false,
+      "attributionControl": false
+    }
+  },
+  "groups": {
+    "realms": {
+      "name": "Reiche",
+      "icon": "Marker realm.svg",
+      "size": [
+        40,
+        40
+      ],
+      "canSearchFor": true,
+      "description": "Königreiche und große Lande"
+    },
+    "cities": {
+      "name": "Städte",
+      "icon": "Marker city.svg",
+      "size": [
+        32,
+        32
+      ],
+      "canSearchFor": true,
+      "description": "Siedlungen, Festungen und Zufluchten"
+    },
+    "regions": {
+      "name": "Landstriche",
+      "pinColor": "#2f6b4f",
+      "size": 26,
+      "canSearchFor": true,
+      "description": "Länder und Wildnisse"
+    },
+    "battles": {
+      "name": "Schlachten",
+      "icon": "Marker battle.svg",
+      "size": [
+        28,
+        28
+      ],
+      "canSearchFor": true,
+      "description": "Wo Geschichte entschieden wurde"
+    }
+  },
+  "markers": {
+    "realms": [
+      {
+        "x": 33,
+        "y": 55,
+        "name": "Gondor",
+        "article": "Gondor",
+        "description": "Das Südkönigreich der Dúnedain",
+        "id": "gondor"
+      },
+      {
+        "x": 76,
+        "y": 49,
+        "name": "Mordor",
+        "article": "Mordor",
+        "description": "Das Schwarze Land Saurons",
+        "id": "mordor"
+      }
+    ],
+    "cities": [
+      {
+        "x": 60,
+        "y": 49,
+        "name": "Minas Tirith",
+        "article": "Minas Tirith",
+        "description": "Die Weiße Stadt, Hauptstadt Gondors",
+        "id": "minas-tirith"
+      },
+      {
+        "x": 44,
+        "y": 23.1,
+        "name": "Bruchtal",
+        "article": "Rivendell",
+        "description": "Elronds verborgene Zuflucht",
+        "id": "rivendell"
+      }
+    ],
+    "regions": [
+      {
+        "x": 32,
+        "y": 25.2,
+        "name": "Eriador",
+        "article": "Eriador",
+        "description": "Die Lande westlich des Nebelgebirges",
+        "id": "eriador"
+      }
+    ],
+    "battles": [
+      {
+        "x": 61,
+        "y": 50.4,
+        "name": "Schlacht auf den Pelennor-Feldern",
+        "article": "Battle of the Pelennor Fields",
+        "description": "15. März, D.Z. 3019",
+        "id": "pelennor"
+      }
+    ]
+  }
+}

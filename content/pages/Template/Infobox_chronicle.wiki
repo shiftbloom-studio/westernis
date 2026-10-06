@@ -1,0 +1,237 @@
+<noinclude>
+{{#cargo_declare:_table=Chronicles|title=String|image=File|caption=String|status=String|era=Page|year_start=Integer|year_end=Integer|sequence=Integer|part_of=Page|wordcount=Integer|pov=List (,) of Page|characters=List (,) of Page|locations=List (,) of Page|events=List (,) of Page|summary=Text|canon=String}}
+'''Infobox chronicle''' — Eigene Geschichten und Erzählungen aus Westernis (im Namensraum Chronicle).
+
+Neue Seiten entstehen mit [[Form:Chronicle]] (oder über [[Westernis:Create]]). Die Felder landen in der Cargo-Tabelle [[Special:CargoTables/Chronicles|Chronicles]]. Die Darstellung steckt in [[Template:Infobox chronicle/core]], das Aussehen in [[MediaWiki:Common.css]] (<code>.pi-theme-chronicle</code>).
+
+<templatedata>
+{
+ "description": {
+  "en": "Your own stories and narratives set in Westernis (lives in the Chronicle: namespace).",
+  "de": "Eigene Geschichten und Erzählungen aus Westernis (im Namensraum Chronicle)."
+ },
+ "format": "{{_\n| ___ = _\n}}",
+ "params": {
+  "title": {
+   "label": {
+    "en": "Title",
+    "de": "Titel"
+   },
+   "description": "Display name (defaults to the page name)",
+   "type": "string",
+   "suggested": true
+  },
+  "image": {
+   "label": {
+    "en": "Image",
+    "de": "Bild"
+   },
+   "description": "Main image (file name without the File: prefix)",
+   "type": "wiki-file-name",
+   "suggested": true
+  },
+  "caption": {
+   "label": {
+    "en": "Caption",
+    "de": "Bildunterschrift"
+   },
+   "description": "Image caption",
+   "type": "string",
+   "suggested": true
+  },
+  "status": {
+   "label": {
+    "en": "Status",
+    "de": "Stand"
+   },
+   "description": "idea, draft, revised, final",
+   "type": "string",
+   "suggestedvalues": [
+    "idea",
+    "draft",
+    "revised",
+    "final"
+   ],
+   "suggested": true
+  },
+  "era": {
+   "label": {
+    "en": "Era",
+    "de": "Zeitalter"
+   },
+   "description": "Era the story is set in",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "year_start": {
+   "label": {
+    "en": "From year",
+    "de": "Von Jahr"
+   },
+   "description": "First year covered",
+   "type": "number",
+   "suggested": true
+  },
+  "year_end": {
+   "label": {
+    "en": "To year",
+    "de": "Bis Jahr"
+   },
+   "description": "Last year covered",
+   "type": "number",
+   "suggested": true
+  },
+  "sequence": {
+   "label": {
+    "en": "Sequence",
+    "de": "Reihenfolge"
+   },
+   "description": "Order within the larger work",
+   "type": "number",
+   "suggested": true
+  },
+  "part_of": {
+   "label": {
+    "en": "Part of",
+    "de": "Teil von"
+   },
+   "description": "Larger work or series",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "wordcount": {
+   "label": {
+    "en": "Word count",
+    "de": "Wortzahl"
+   },
+   "description": "Approximate length",
+   "type": "number",
+   "suggested": true
+  },
+  "pov": {
+   "label": {
+    "en": "Point of view",
+    "de": "Erzählblick"
+   },
+   "description": "POV characters",
+   "type": "string",
+   "suggested": true
+  },
+  "characters": {
+   "label": {
+    "en": "Characters",
+    "de": "Gestalten"
+   },
+   "description": "Characters appearing",
+   "type": "string",
+   "suggested": true
+  },
+  "locations": {
+   "label": {
+    "en": "Locations",
+    "de": "Schauplätze"
+   },
+   "description": "Places appearing",
+   "type": "string",
+   "suggested": true
+  },
+  "events": {
+   "label": {
+    "en": "Events",
+    "de": "Begebenheiten"
+   },
+   "description": "Events depicted",
+   "type": "string",
+   "suggested": true
+  },
+  "summary": {
+   "label": {
+    "en": "Summary",
+    "de": "Abriss"
+   },
+   "description": "One-paragraph synopsis",
+   "type": "content",
+   "suggested": true
+  },
+  "short": {
+   "label": {
+    "en": "Short description",
+    "de": "Kurzbeschreibung"
+   },
+   "description": "One line shown under the title and in search results",
+   "type": "string",
+   "suggested": false
+  },
+  "canon": {
+   "label": {
+    "en": "Canon",
+    "de": "Kanon"
+   },
+   "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+   "type": "string",
+   "suggestedvalues": [
+    "Tolkien",
+    "Westernis",
+    "Draft"
+   ],
+   "default": "Westernis",
+   "suggested": false
+  },
+  "accent": {
+   "label": {
+    "en": "Accent colour",
+    "de": "Akzentfarbe"
+   },
+   "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)",
+   "type": "string",
+   "suggested": false
+  }
+ },
+ "paramOrder": [
+  "title",
+  "image",
+  "caption",
+  "status",
+  "era",
+  "year_start",
+  "year_end",
+  "sequence",
+  "part_of",
+  "wordcount",
+  "pov",
+  "characters",
+  "locations",
+  "events",
+  "summary",
+  "short",
+  "canon",
+  "accent"
+ ]
+}
+</templatedata>
+[[Category:Infobox templates]]
+</noinclude><includeonly>{{#cargo_store:_table=Chronicles|title={{{title|{{PAGENAME}}}}}|image={{{image|}}}|caption={{{caption|}}}|status={{{status|}}}|era={{{era|}}}|year_start={{{year_start|}}}|year_end={{{year_end|}}}|sequence={{{sequence|}}}|part_of={{{part_of|}}}|wordcount={{{wordcount|}}}|pov={{{pov|}}}|characters={{{characters|}}}|locations={{{locations|}}}|events={{{events|}}}|summary={{{summary|}}}|canon={{{canon|Westernis}}}}}<!--
+-->{{#if:{{{short|}}}|{{SHORTDESC:{{{short}}}}}}}<!--
+-->{{DISPLAYTITLE:{{{title|{{PAGENAME}}}}}}}<!--
+-->{{Infobox chronicle/core
+|title={{{title|}}}
+|image={{{image|}}}
+|caption={{{caption|}}}
+|status={{#invoke:Westernis|label|{{{status|}}}}}
+|era={{#if:{{{era|}}}|[[{{{era}}}]]}}
+|year_start={{{year_start|}}}
+|year_end={{{year_end|}}}
+|sequence={{{sequence|}}}
+|part_of={{#if:{{{part_of|}}}|[[{{{part_of}}}]]}}
+|wordcount={{{wordcount|}}}
+|pov={{#invoke:Westernis|list|{{{pov|}}}}}
+|characters={{#invoke:Westernis|list|{{{characters|}}}}}
+|locations={{#invoke:Westernis|list|{{{locations|}}}}}
+|events={{#invoke:Westernis|list|{{{events|}}}}}
+|summary={{{summary|}}}
+|years={{#invoke:Westernis|years|{{{year_start|}}}|{{{year_end|}}}|{{{era|}}}}}
+|canon={{{canon|Westernis}}}
+|accent={{{accent|}}}
+|pagename={{PAGENAME}}
+}}<!--
+-->[[Category:Chronicles]]{{#switch:{{{status|}}}|idea=[[Category:Chroniken (Einfall)]]|draft=[[Category:Chroniken (Entwurf)]]|revised=[[Category:Chroniken (überarbeitet)]]|final=[[Category:Chroniken (vollendet)]]|#default=}}{{#if:{{{era|}}}|[[Category:Chroniken im Zeitalter {{{era}}}]]}}{{#switch:{{{canon|Westernis}}}|Tolkien=[[Category:Tolkien canon]]|Draft=[[Category:Draft articles]]|#default=[[Category:Westernis canon]]}}{{#if:{{{image|}}}||[[Category:Articles without an image]]}}</includeonly>

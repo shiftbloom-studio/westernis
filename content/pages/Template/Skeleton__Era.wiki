@@ -1,0 +1,22 @@
+<noinclude>
+Gerüst für neue Einträge der Art „Zeitalter“, vorgeladen von [[Form:Era]]. Frei bearbeitbar; die Reihenfolge der Abschnitte bitte im ganzen Wiki gleich halten.
+[[Category:Skeleton templates]]
+</noinclude>Das '''{{PAGENAME}}''' war … <!-- Einleitung -->
+
+== Überblick ==
+<!-- Überblick: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Geschichte ==
+<!-- Geschichte: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Zeittafel ==
+{{Timeline|era={{PAGENAME}}}}
+
+== Völker und Reiche ==
+<!-- Völker und Reiche: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Siehe auch ==
+<!-- Siehe auch: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Anmerkungen ==
+<references />

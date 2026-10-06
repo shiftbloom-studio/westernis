@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Wahrzeichen}}{{Category header|type=location|kicker=Orte|title=Wahrzeichen|description=Alle Einträge der Art „Wahrzeichen“.|form=Location|table=Locations|placeholder=Neuer Ort …}}
+[[Category:Locations|Wahrzeichen]]

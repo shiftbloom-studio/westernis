@@ -1,0 +1,15 @@
+{
+  "preferences": {
+    "skin-theme": {
+      "default": "night",
+      "options": [
+        { "value": "night", "labelMsg": "citizen-theme-night-label" },
+        { "value": "day", "labelMsg": "citizen-theme-day-label" },
+        { "value": "os", "labelMsg": "citizen-theme-os-label" }
+      ]
+    },
+    "citizen-feature-performance-mode": {
+      "default": "0"
+    }
+  }
+}

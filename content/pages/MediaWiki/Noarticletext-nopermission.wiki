@@ -1,0 +1,1 @@
+<div class="wst-empty"><div class="wst-empty-title">Dieses Blatt der Chronik ist noch ungeschrieben.</div><div class="wst-empty-text">[[Special:Search/{{PAGENAME}}|Nach „{{PAGENAME}}“ suchen]] · [[Special:WhatLinksHere/{{FULLPAGENAME}}|Wer verweist hierher?]]</div></div>

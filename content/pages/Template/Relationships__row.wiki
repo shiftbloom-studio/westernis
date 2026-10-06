@@ -1,0 +1,1 @@
+<noinclude>Zeilenvorlage für [[Template:Relationships]].</noinclude><includeonly><span class="wst-chip">[[{{{Target}}}|{{{Label|{{#titleparts:{{{Target}}}|1|-1}}}}}]]{{#if:{{{Kind|}}}|<span class="wst-chip-kind">{{#invoke:Westernis|label|{{{Kind}}}}}</span>}}</span> </includeonly>

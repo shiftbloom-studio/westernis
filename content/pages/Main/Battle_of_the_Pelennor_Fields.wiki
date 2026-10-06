@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Schlacht auf den Pelennor-Feldern}}
+{{Infobox event
+| name = Schlacht auf den Pelennor-Feldern
+| type = Battle
+| date = 15. März
+| year_start = 3019
+| era = Third Age
+| location = Minas Tirith, Gondor
+| participants = Aragorn II, Gandalf
+| factions = Fellowship of the Ring
+| part_of = War of the Ring
+| preceded_by = Council of Elrond
+| side1 = Gondor
+| side2 = Mordor
+| commanders1 = Aragorn II, Gandalf
+| commanders2 = Witch-king of Angmar
+| forces1 = Menschen Gondors, die Rohirrim, die Graue Schar
+| forces2 = Orks, Haradrim, Ostlinge, Mûmakil
+| result = Entscheidender Sieg Gondors und Rohans; Tod Théodens und des Hexenkönigs.
+| description = Die größte Schlacht des Ringkriegs, geschlagen vor den Mauern von Minas Tirith.
+| short = Die große Schlacht vor Minas Tirith
+| canon = Tolkien
+}}
+Die '''Schlacht auf den Pelennor-Feldern''' wurde am 15. März D.Z. 3019 vor den Mauern von [[Minas Tirith]] geschlagen. Den Belagerungsring brachen zuerst die Rohirrim, die im Morgengrauen heranritten, und danach [[Aragorn II|Aragorn]], der mit den schwarzen Schiffen von Süden kam.

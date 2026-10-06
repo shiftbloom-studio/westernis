@@ -1,0 +1,284 @@
+<noinclude>
+{{#cargo_declare:_table=Artifacts|name=String|script=String|image=File|caption=String|othernames=List (,) of String|type=String|appearance=Text|powers=Text|creator=Page|created=String|created_year=Integer|created_era=Page|created_location=Page|owner=List (,) of Page|location=Page|destroyer=Page|destroyed=String|destroyed_location=Page|notablefor=Text|canon=String}}
+'''Infobox artifact''' — Waffen, Ringe, Reliquien, Juwelen, Gefäße, Schriften und andere Dinge von Rang.
+
+Neue Seiten entstehen mit [[Form:Artifact]] (oder über [[Westernis:Create]]). Die Felder landen in der Cargo-Tabelle [[Special:CargoTables/Artifacts|Artifacts]]. Die Darstellung steckt in [[Template:Infobox artifact/core]], das Aussehen in [[MediaWiki:Common.css]] (<code>.pi-theme-artifact</code>).
+
+<templatedata>
+{
+ "description": {
+  "en": "Weapons, rings, relics, jewels, vessels, texts and other objects of note.",
+  "de": "Waffen, Ringe, Reliquien, Juwelen, Gefäße, Schriften und andere Dinge von Rang."
+ },
+ "format": "{{_\n| ___ = _\n}}",
+ "params": {
+  "name": {
+   "label": {
+    "en": "Name",
+    "de": "Name"
+   },
+   "description": "Display name (defaults to the page name)",
+   "type": "string",
+   "suggested": true
+  },
+  "script": {
+   "label": {
+    "en": "Tengwar",
+    "de": "Tengwar"
+   },
+   "description": "Name in Tengwar or another script (rendered with the Tengwar font)",
+   "type": "string",
+   "suggested": true
+  },
+  "image": {
+   "label": {
+    "en": "Image",
+    "de": "Bild"
+   },
+   "description": "Main image (file name without the File: prefix)",
+   "type": "wiki-file-name",
+   "suggested": true
+  },
+  "caption": {
+   "label": {
+    "en": "Caption",
+    "de": "Bildunterschrift"
+   },
+   "description": "Image caption",
+   "type": "string",
+   "suggested": true
+  },
+  "othernames": {
+   "label": {
+    "en": "Other names",
+    "de": "Weitere Namen"
+   },
+   "description": "Comma-separated alternative names",
+   "type": "string",
+   "suggested": true
+  },
+  "type": {
+   "label": {
+    "en": "Type",
+    "de": "Art"
+   },
+   "description": "Weapon, Ring, Jewel, Relic, Vessel, Text, Armour, Instrument",
+   "type": "string",
+   "suggestedvalues": [
+    "Weapon",
+    "Ring",
+    "Jewel",
+    "Relic",
+    "Vessel",
+    "Text",
+    "Armour",
+    "Instrument",
+    "Other"
+   ],
+   "suggested": true
+  },
+  "appearance": {
+   "label": {
+    "en": "Appearance",
+    "de": "Aussehen"
+   },
+   "description": "What it looks like",
+   "type": "content",
+   "suggested": true
+  },
+  "powers": {
+   "label": {
+    "en": "Powers",
+    "de": "Kräfte"
+   },
+   "description": "Powers and properties",
+   "type": "content",
+   "suggested": true
+  },
+  "creator": {
+   "label": {
+    "en": "Creator",
+    "de": "Schöpfer"
+   },
+   "description": "Maker",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "created": {
+   "label": {
+    "en": "Created",
+    "de": "Geschaffen"
+   },
+   "description": "Date of making",
+   "type": "string",
+   "suggested": true
+  },
+  "created_year": {
+   "label": {
+    "en": "Created year",
+    "de": "Jahr der Erschaffung"
+   },
+   "description": "Year within the era",
+   "type": "number",
+   "suggested": false
+  },
+  "created_era": {
+   "label": {
+    "en": "Created era",
+    "de": "Zeitalter der Erschaffung"
+   },
+   "description": "Era of making",
+   "type": "wiki-page-name",
+   "suggested": false
+  },
+  "created_location": {
+   "label": {
+    "en": "Made in",
+    "de": "Geschaffen in"
+   },
+   "description": "Place of making",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "owner": {
+   "label": {
+    "en": "Owners",
+    "de": "Träger"
+   },
+   "description": "Owners in order",
+   "type": "string",
+   "suggested": true
+  },
+  "location": {
+   "label": {
+    "en": "Location",
+    "de": "Verbleib"
+   },
+   "description": "Current or last location",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "destroyer": {
+   "label": {
+    "en": "Destroyed by",
+    "de": "Zerstört von"
+   },
+   "description": "Who destroyed it",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "destroyed": {
+   "label": {
+    "en": "Destroyed",
+    "de": "Zerstört"
+   },
+   "description": "When it was destroyed or lost",
+   "type": "string",
+   "suggested": true
+  },
+  "destroyed_location": {
+   "label": {
+    "en": "Destroyed at",
+    "de": "Zerstört in"
+   },
+   "description": "Where it was destroyed",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "notablefor": {
+   "label": {
+    "en": "Notable for",
+    "de": "Bedeutung"
+   },
+   "description": "Why it matters",
+   "type": "content",
+   "suggested": true
+  },
+  "short": {
+   "label": {
+    "en": "Short description",
+    "de": "Kurzbeschreibung"
+   },
+   "description": "One line shown under the title and in search results",
+   "type": "string",
+   "suggested": false
+  },
+  "canon": {
+   "label": {
+    "en": "Canon",
+    "de": "Kanon"
+   },
+   "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+   "type": "string",
+   "suggestedvalues": [
+    "Tolkien",
+    "Westernis",
+    "Draft"
+   ],
+   "default": "Westernis",
+   "suggested": false
+  },
+  "accent": {
+   "label": {
+    "en": "Accent colour",
+    "de": "Akzentfarbe"
+   },
+   "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)",
+   "type": "string",
+   "suggested": false
+  }
+ },
+ "paramOrder": [
+  "name",
+  "script",
+  "image",
+  "caption",
+  "othernames",
+  "type",
+  "appearance",
+  "powers",
+  "creator",
+  "created",
+  "created_year",
+  "created_era",
+  "created_location",
+  "owner",
+  "location",
+  "destroyer",
+  "destroyed",
+  "destroyed_location",
+  "notablefor",
+  "short",
+  "canon",
+  "accent"
+ ]
+}
+</templatedata>
+[[Category:Infobox templates]]
+</noinclude><includeonly>{{#cargo_store:_table=Artifacts|name={{{name|{{PAGENAME}}}}}|script={{{script|}}}|image={{{image|}}}|caption={{{caption|}}}|othernames={{{othernames|}}}|type={{{type|}}}|appearance={{{appearance|}}}|powers={{{powers|}}}|creator={{{creator|}}}|created={{{created|}}}|created_year={{{created_year|}}}|created_era={{{created_era|}}}|created_location={{{created_location|}}}|owner={{{owner|}}}|location={{{location|}}}|destroyer={{{destroyer|}}}|destroyed={{{destroyed|}}}|destroyed_location={{{destroyed_location|}}}|notablefor={{{notablefor|}}}|canon={{{canon|Westernis}}}}}<!--
+-->{{#if:{{{short|}}}|{{SHORTDESC:{{{short}}}}}}}<!--
+-->{{Infobox artifact/core
+|name={{{name|}}}
+|script={{{script|}}}
+|image={{{image|}}}
+|caption={{{caption|}}}
+|othernames={{{othernames|}}}
+|type={{#invoke:Westernis|label|{{{type|}}}}}
+|appearance={{{appearance|}}}
+|powers={{{powers|}}}
+|creator={{#if:{{{creator|}}}|[[{{{creator}}}]]}}
+|created={{#invoke:Westernis|date|{{{created|}}}|{{{created_year|}}}|{{{created_era|}}}}}
+|created_year={{{created_year|}}}
+|created_era={{#if:{{{created_era|}}}|[[{{{created_era}}}]]}}
+|created_location={{#if:{{{created_location|}}}|[[{{{created_location}}}]]}}
+|owner={{#invoke:Westernis|list|{{{owner|}}}}}
+|location={{#if:{{{location|}}}|[[{{{location}}}]]}}
+|destroyer={{#if:{{{destroyer|}}}|[[{{{destroyer}}}]]}}
+|destroyed={{{destroyed|}}}
+|destroyed_location={{#if:{{{destroyed_location|}}}|[[{{{destroyed_location}}}]]}}
+|notablefor={{{notablefor|}}}
+|canon={{{canon|Westernis}}}
+|accent={{{accent|}}}
+|pagename={{PAGENAME}}
+}}<!--
+-->[[Category:Artifacts]]{{#switch:{{{type|}}}|Weapon=[[Category:Waffen]]|Ring=[[Category:Ringe]]|Jewel=[[Category:Juwelen]]|Relic=[[Category:Reliquien]]|Vessel=[[Category:Gefäße]]|Text=[[Category:Schriften]]|Armour=[[Category:Rüstungen]]|Instrument=[[Category:Instrumente]]|#default=}}{{#switch:{{{canon|Westernis}}}|Tolkien=[[Category:Tolkien canon]]|Draft=[[Category:Draft articles]]|#default=[[Category:Westernis canon]]}}{{#if:{{{image|}}}||[[Category:Articles without an image]]}}</includeonly>

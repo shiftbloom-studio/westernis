@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/shiftbloom-studio/westernis/security/advisories/new
+    about: Please report security issues privately, not in a public issue (see SECURITY.md).
+  - name: MediaWiki, skin and extension bugs
+    url: https://www.mediawiki.org/wiki/How_to_report_a_bug
+    about: Problems in MediaWiki itself, the Citizen skin or an extension belong to their upstream projects.

@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Ringe}}{{Category header|type=artifact|kicker=Artefakte|title=Ringe|description=Alle Einträge der Art „Ring“.|form=Artifact|table=Artifacts|placeholder=Neues Artefakt …}}
+[[Category:Artifacts|Ringe]]

@@ -1,0 +1,374 @@
+<noinclude>
+{{#cargo_declare:_table=Locations|name=String|script=String|image=File|caption=String|othernames=List (,) of String|type=String|parent=Page|realm=Page|regions=List (,) of Page|settlements=List (,) of Page|capital=Page|population=String|inhabitants=List (,) of Page|language=List (,) of Page|ruler=Page|factions=List (,) of Page|founded=String|founded_year=Integer|founded_era=Page|destroyed=String|destroyed_year=Integer|destroyed_era=Page|events=List (,) of Page|map=Page|map_x=Float|map_y=Float|description=Text|canon=String}}
+'''Infobox location''' — Ein Ort: Reich, Landstrich, Siedlung, Festung, Wahrzeichen, Fluss, Wald, Meer.
+
+Neue Seiten entstehen mit [[Form:Location]] (oder über [[Westernis:Create]]). Die Felder landen in der Cargo-Tabelle [[Special:CargoTables/Locations|Locations]]. Die Darstellung steckt in [[Template:Infobox location/core]], das Aussehen in [[MediaWiki:Common.css]] (<code>.pi-theme-location</code>).
+
+<templatedata>
+{
+ "description": {
+  "en": "A place: realm, region, settlement, fortress, landmark, river, forest, sea.",
+  "de": "Ein Ort: Reich, Landstrich, Siedlung, Festung, Wahrzeichen, Fluss, Wald, Meer."
+ },
+ "format": "{{_\n| ___ = _\n}}",
+ "params": {
+  "name": {
+   "label": {
+    "en": "Name",
+    "de": "Name"
+   },
+   "description": "Display name (defaults to the page name)",
+   "type": "string",
+   "suggested": true
+  },
+  "script": {
+   "label": {
+    "en": "Tengwar",
+    "de": "Tengwar"
+   },
+   "description": "Name in Tengwar or another script (rendered with the Tengwar font)",
+   "type": "string",
+   "suggested": true
+  },
+  "image": {
+   "label": {
+    "en": "Image",
+    "de": "Bild"
+   },
+   "description": "Main image (file name without the File: prefix)",
+   "type": "wiki-file-name",
+   "suggested": true
+  },
+  "caption": {
+   "label": {
+    "en": "Caption",
+    "de": "Bildunterschrift"
+   },
+   "description": "Image caption",
+   "type": "string",
+   "suggested": true
+  },
+  "othernames": {
+   "label": {
+    "en": "Other names",
+    "de": "Weitere Namen"
+   },
+   "description": "Comma-separated alternative names",
+   "type": "string",
+   "suggested": true
+  },
+  "type": {
+   "label": {
+    "en": "Type",
+    "de": "Art"
+   },
+   "description": "Realm, Region, Settlement, Fortress, Landmark, Mountain, River, Forest, Sea, Island",
+   "type": "string",
+   "suggestedvalues": [
+    "Realm",
+    "Region",
+    "Settlement",
+    "Fortress",
+    "Landmark",
+    "Mountain",
+    "River",
+    "Forest",
+    "Sea",
+    "Island",
+    "Other"
+   ],
+   "suggested": true
+  },
+  "parent": {
+   "label": {
+    "en": "Part of",
+    "de": "Teil von"
+   },
+   "description": "Parent region or realm",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "realm": {
+   "label": {
+    "en": "Realm",
+    "de": "Reich"
+   },
+   "description": "Realm the place belongs to",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "regions": {
+   "label": {
+    "en": "Regions",
+    "de": "Landstriche"
+   },
+   "description": "Sub-regions",
+   "type": "string",
+   "suggested": true
+  },
+  "settlements": {
+   "label": {
+    "en": "Settlements",
+    "de": "Siedlungen"
+   },
+   "description": "Notable settlements",
+   "type": "string",
+   "suggested": true
+  },
+  "capital": {
+   "label": {
+    "en": "Capital",
+    "de": "Hauptstadt"
+   },
+   "description": "Capital (for realms)",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "population": {
+   "label": {
+    "en": "Population",
+    "de": "Bevölkerung"
+   },
+   "description": "Population or inhabitants count",
+   "type": "string",
+   "suggested": true
+  },
+  "inhabitants": {
+   "label": {
+    "en": "Inhabitants",
+    "de": "Bewohner"
+   },
+   "description": "Peoples living here",
+   "type": "string",
+   "suggested": true
+  },
+  "language": {
+   "label": {
+    "en": "Languages",
+    "de": "Sprachen"
+   },
+   "description": "Languages spoken",
+   "type": "string",
+   "suggested": true
+  },
+  "ruler": {
+   "label": {
+    "en": "Ruler",
+    "de": "Herrscher"
+   },
+   "description": "Ruler or steward",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "factions": {
+   "label": {
+    "en": "Factions",
+    "de": "Bünde"
+   },
+   "description": "Houses, orders and kingdoms based here",
+   "type": "string",
+   "suggested": true
+  },
+  "founded": {
+   "label": {
+    "en": "Founded",
+    "de": "Gegründet"
+   },
+   "description": "Founding date text",
+   "type": "string",
+   "suggested": true
+  },
+  "founded_year": {
+   "label": {
+    "en": "Founded year",
+    "de": "Gründungsjahr"
+   },
+   "description": "Year within the era",
+   "type": "number",
+   "suggested": false
+  },
+  "founded_era": {
+   "label": {
+    "en": "Founded era",
+    "de": "Zeitalter der Gründung"
+   },
+   "description": "Era of founding",
+   "type": "wiki-page-name",
+   "suggested": false
+  },
+  "destroyed": {
+   "label": {
+    "en": "Destroyed",
+    "de": "Zerstört"
+   },
+   "description": "Date of destruction or abandonment",
+   "type": "string",
+   "suggested": true
+  },
+  "destroyed_year": {
+   "label": {
+    "en": "Destroyed year",
+    "de": "Jahr der Zerstörung"
+   },
+   "description": "Year within the era",
+   "type": "number",
+   "suggested": false
+  },
+  "destroyed_era": {
+   "label": {
+    "en": "Destroyed era",
+    "de": "Zeitalter der Zerstörung"
+   },
+   "description": "Era of destruction",
+   "type": "wiki-page-name",
+   "suggested": false
+  },
+  "events": {
+   "label": {
+    "en": "Events",
+    "de": "Begebenheiten"
+   },
+   "description": "Notable events here",
+   "type": "string",
+   "suggested": true
+  },
+  "map": {
+   "label": {
+    "en": "Map",
+    "de": "Karte"
+   },
+   "description": "Reference only: the map page this place appears on (markers themselves are edited on Map:Westernis)",
+   "type": "wiki-page-name",
+   "suggested": false
+  },
+  "map_x": {
+   "label": {
+    "en": "Map X",
+    "de": "Karte X"
+   },
+   "description": "Reference X coordinate (0–100) for the marker on Map:Westernis",
+   "type": "number",
+   "suggested": false
+  },
+  "map_y": {
+   "label": {
+    "en": "Map Y",
+    "de": "Karte Y"
+   },
+   "description": "Reference Y coordinate (0–100) for the marker on Map:Westernis",
+   "type": "number",
+   "suggested": false
+  },
+  "description": {
+   "label": {
+    "en": "Description",
+    "de": "Beschreibung"
+   },
+   "description": "One or two sentences describing the place",
+   "type": "content",
+   "suggested": true
+  },
+  "short": {
+   "label": {
+    "en": "Short description",
+    "de": "Kurzbeschreibung"
+   },
+   "description": "One line shown under the title and in search results",
+   "type": "string",
+   "suggested": false
+  },
+  "canon": {
+   "label": {
+    "en": "Canon",
+    "de": "Kanon"
+   },
+   "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+   "type": "string",
+   "suggestedvalues": [
+    "Tolkien",
+    "Westernis",
+    "Draft"
+   ],
+   "default": "Westernis",
+   "suggested": false
+  },
+  "accent": {
+   "label": {
+    "en": "Accent colour",
+    "de": "Akzentfarbe"
+   },
+   "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)",
+   "type": "string",
+   "suggested": false
+  }
+ },
+ "paramOrder": [
+  "name",
+  "script",
+  "image",
+  "caption",
+  "othernames",
+  "type",
+  "parent",
+  "realm",
+  "regions",
+  "settlements",
+  "capital",
+  "population",
+  "inhabitants",
+  "language",
+  "ruler",
+  "factions",
+  "founded",
+  "founded_year",
+  "founded_era",
+  "destroyed",
+  "destroyed_year",
+  "destroyed_era",
+  "events",
+  "map",
+  "map_x",
+  "map_y",
+  "description",
+  "short",
+  "canon",
+  "accent"
+ ]
+}
+</templatedata>
+[[Category:Infobox templates]]
+</noinclude><includeonly>{{#cargo_store:_table=Locations|name={{{name|{{PAGENAME}}}}}|script={{{script|}}}|image={{{image|}}}|caption={{{caption|}}}|othernames={{{othernames|}}}|type={{{type|}}}|parent={{{parent|}}}|realm={{{realm|}}}|regions={{{regions|}}}|settlements={{{settlements|}}}|capital={{{capital|}}}|population={{{population|}}}|inhabitants={{{inhabitants|}}}|language={{{language|}}}|ruler={{{ruler|}}}|factions={{{factions|}}}|founded={{{founded|}}}|founded_year={{{founded_year|}}}|founded_era={{{founded_era|}}}|destroyed={{{destroyed|}}}|destroyed_year={{{destroyed_year|}}}|destroyed_era={{{destroyed_era|}}}|events={{{events|}}}|map={{{map|}}}|map_x={{{map_x|}}}|map_y={{{map_y|}}}|description={{{description|}}}|canon={{{canon|Westernis}}}}}<!--
+-->{{#if:{{{short|}}}|{{SHORTDESC:{{{short}}}}}}}<!--
+-->{{Infobox location/core
+|name={{{name|}}}
+|script={{{script|}}}
+|image={{{image|}}}
+|caption={{{caption|}}}
+|othernames={{{othernames|}}}
+|type={{#invoke:Westernis|label|{{{type|}}}}}
+|parent={{#if:{{{parent|}}}|[[{{{parent}}}]]}}
+|realm={{#if:{{{realm|}}}|[[{{{realm}}}]]}}
+|regions={{#invoke:Westernis|list|{{{regions|}}}}}
+|settlements={{#invoke:Westernis|list|{{{settlements|}}}}}
+|capital={{#if:{{{capital|}}}|[[{{{capital}}}]]}}
+|population={{{population|}}}
+|inhabitants={{#invoke:Westernis|list|{{{inhabitants|}}}}}
+|language={{#invoke:Westernis|list|{{{language|}}}}}
+|ruler={{#if:{{{ruler|}}}|[[{{{ruler}}}]]}}
+|factions={{#invoke:Westernis|list|{{{factions|}}}}}
+|founded={{#invoke:Westernis|date|{{{founded|}}}|{{{founded_year|}}}|{{{founded_era|}}}}}
+|founded_year={{{founded_year|}}}
+|founded_era={{#if:{{{founded_era|}}}|[[{{{founded_era}}}]]}}
+|destroyed={{#invoke:Westernis|date|{{{destroyed|}}}|{{{destroyed_year|}}}|{{{destroyed_era|}}}}}
+|destroyed_year={{{destroyed_year|}}}
+|destroyed_era={{#if:{{{destroyed_era|}}}|[[{{{destroyed_era}}}]]}}
+|events={{#invoke:Westernis|list|{{{events|}}}}}
+|map={{#if:{{{map|}}}|[[{{{map}}}]]}}
+|map_x={{{map_x|}}}
+|map_y={{{map_y|}}}
+|description={{{description|}}}
+|canon={{{canon|Westernis}}}
+|accent={{{accent|}}}
+|pagename={{PAGENAME}}
+}}<!--
+-->[[Category:Locations]]{{#switch:{{{type|}}}|Realm=[[Category:Reiche]]|Region=[[Category:Landstriche]]|Settlement=[[Category:Siedlungen]]|Fortress=[[Category:Festungen]]|Landmark=[[Category:Wahrzeichen]]|Mountain=[[Category:Berge]]|River=[[Category:Flüsse]]|Forest=[[Category:Wälder]]|Sea=[[Category:Meere]]|Island=[[Category:Inseln]]|#default=}}{{#if:{{{realm|}}}|[[Category:Orte in {{{realm}}}]]}}{{#if:{{{parent|}}}|[[Category:Orte in {{{parent}}}]]}}{{#switch:{{{canon|Westernis}}}|Tolkien=[[Category:Tolkien canon]]|Draft=[[Category:Draft articles]]|#default=[[Category:Westernis canon]]}}{{#if:{{{image|}}}||[[Category:Articles without an image]]}}</includeonly>

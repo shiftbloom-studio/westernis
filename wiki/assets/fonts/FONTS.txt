@@ -1,0 +1,67 @@
+Fonts bundled with Westernis
+============================
+
+These fonts are third-party works under their own licences. They are NOT
+covered by the project's AGPL-3.0-or-later or CC BY-SA 4.0 licences.
+Each licence file starts with the font's own copyright notice and is copied
+verbatim from the upstream repository (google/fonts for the OFL families).
+
+All WOFF2 files are lossless wawoff2 conversions of the upstream TTFs; the
+font data is unchanged (no subsetting, no renaming, so the Reserved Font
+Names may stay; see OFL-FAQ 2.2). After decompression every table is
+byte-identical to the upstream TTF, except glyf, loca and head, which the
+WOFF2 glyph transform re-encodes, and the empty DSIG signature table, which
+WOFF2 encoders drop. The variable fonts keep all their weights.
+
+File                              Family              Version  Licence   Licence file
+--------------------------------  ------------------  -------  --------  -----------------------------
+Cinzel.woff2 (variable)           Cinzel              2.000    OFL-1.1   OFL-Cinzel.txt
+CinzelDecorative-Regular.woff2    Cinzel Decorative   1.002    OFL-1.1   OFL-CinzelDecorative.txt
+CinzelDecorative-Bold.woff2       Cinzel Decorative   1.002    OFL-1.1   OFL-CinzelDecorative.txt
+CormorantGaramond.woff2 (var.)    Cormorant Garamond  4.001    OFL-1.1   OFL-CormorantGaramond.txt
+CormorantGaramond-Italic.woff2    Cormorant Garamond  4.001    OFL-1.1   OFL-CormorantGaramond.txt
+EBGaramond.woff2 (variable)       EB Garamond         1.003    OFL-1.1   OFL-EBGaramond.txt
+EBGaramond-Italic.woff2 (var.)    EB Garamond         1.003    OFL-1.1   OFL-EBGaramond.txt
+IMFellEnglish-Regular.woff2       IM FELL English     3.00     OFL-1.1   OFL-IMFellEnglish.txt
+IMFellEnglish-Italic.woff2        IM FELL English     3.00     OFL-1.1   OFL-IMFellEnglish.txt
+TengwarTelcontar.woff2            Tengwar Telcontar   0.08     GPL (*)   COPYING-TengwarTelcontar.txt
+TengwarTelcontar-Bold.woff2       Tengwar Telcontar   0.08     GPL (*)   COPYING-TengwarTelcontar.txt
+
+(*) GPL-3.0-or-later WITH Font-exception-2.0 (the GPL font embedding exception).
+
+OFL.txt is the Cinzel licence under its original file name (same content as
+OFL-Cinzel.txt).
+
+Copyright notices
+-----------------
+Cinzel              Copyright 2020 The Cinzel Project Authors (https://github.com/NDISCOVER/Cinzel)
+Cinzel Decorative   Copyright (c) 2012 Natanael Gama (info@ndiscovered.com), with Reserved Font Name 'Cinzel'
+Cormorant Garamond  Copyright 2015 The Cormorant Project Authors (github.com/CatharsisFonts/Cormorant)
+EB Garamond         Copyright 2017 The EB Garamond Project Authors (https://github.com/octaviopardo/EBGaramond12)
+IM FELL English     Copyright (c) 2010, Igino Marini (mail@iginomarini.com)
+                    In-font notices: "(c) 2007 Igino Marini (www.iginomarini.com) With Reserved
+                    Font Name IM FELL English Roman" / "... IM FELL English Italic"
+Tengwar Telcontar   Copyright (C) 2005-2009 Johan Winge (Free Tengwar Font Project)
+
+Upstream sources
+----------------
+Cinzel              https://github.com/google/fonts/tree/main/ofl/cinzel
+Cinzel Decorative   https://github.com/google/fonts/tree/main/ofl/cinzeldecorative
+Cormorant Garamond  https://github.com/google/fonts/tree/main/ofl/cormorantgaramond
+EB Garamond         https://github.com/google/fonts/tree/main/ofl/ebgaramond
+IM FELL English     https://github.com/google/fonts/tree/main/ofl/imfellenglish
+Tengwar Telcontar   https://freetengwar.sourceforge.net/tengtelc.html (TengwarTelcontar.008.zip);
+                    the original TTFs are kept in third_party/fonts/TengwarTelcontar/
+
+Other uses of these fonts in the repository
+-------------------------------------------
+- tools/brand/fonts/Cinzel[wght].ttf is the upstream Cinzel TTF (OFL-1.1, licence
+  next to it), the input of tools/brand/make-wordmark.js.
+- content/files/Westernis_map.svg embeds glyph subsets of Cinzel, Cinzel Decorative
+  Bold and IM FELL English Roman/Italic under the family names WstMapCaps,
+  WstMapTitle, WstMapRoman and WstMapHand. Embedding in a document is allowed by
+  OFL-FAQ 1.12-1.13; the subsets keep their copyright and licence metadata.
+- The logo, wordmark and tagline SVGs in wiki/assets/brand contain Cinzel outlines
+  converted to paths (artwork, OFL-FAQ 1.1 and 1.13).
+
+The SIL Open Font License 1.1 and its FAQ: https://openfontlicense.org

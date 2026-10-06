@@ -1,0 +1,19 @@
+{
+  "name": "westernis-brand-tools",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Generators for the Westernis theme art (hero, ornaments, icons, wordmark, world map)",
+  "license": "AGPL-3.0-or-later",
+  "scripts": {
+    "svg": "node make-hero.js && node make-icons.js && node make-ornaments.js && node make-wordmark.js && node make-map.js",
+    "raster": "node raster-map.js",
+    "all": "npm run svg && npm run raster"
+  },
+  "engines": { "node": ">=22" },
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "fonteditor-core": "^2.6.3",
+    "sharp": "^0.35.5",
+    "wawoff2": "^2.0.1"
+  }
+}

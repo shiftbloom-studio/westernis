@@ -1,0 +1,33 @@
+{{Infobox character
+| othernames = Elrond Halbelb, Elrond Peredhel
+| titles = Herr von Bruchtal, Meister von Imladris
+| race = Elves
+| culture = Half-elven
+| gender = männlich
+| affiliation = Fellowship of the Ring
+| position = Herr von Bruchtal
+| realm = Rivendell
+| location = Rivendell
+| birth_year = 532
+| birth_era = First Age
+| parentage = Eärendil, Elwing
+| siblings = Elros
+| spouse = Celebrían
+| children = Elladan, Elrohir, Arwen
+| hair = Dunkel
+| eyes = Grau
+| language = Sindarin, Quenya, Westron
+| notablefor = Gründer und Herr von Bruchtal; berief den Rat ein, der die Gemeinschaft erwählte.
+| short = Herr von Bruchtal
+| canon = Tolkien
+}}
+'''Elrond''' war der Herr von [[Rivendell|Bruchtal]], Sohn Eärendils und Elwings, der wählte, zu den [[Elves|Elben]] gezählt zu werden. Er trug einen der Drei Ringe und berief den [[Council of Elrond|Rat]] ein, der seinen Namen trägt.
+
+== Stammbaum ==
+{{Family tree}}
+
+== Beziehungen ==
+{{Relationships}}
+
+== Auftritte in den Chroniken ==
+{{Appearances}}

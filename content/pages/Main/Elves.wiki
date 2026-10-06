@@ -1,0 +1,14 @@
+{{DISPLAYTITLE:Elben}}
+{{Infobox people
+| name = Elben
+| othernames = Quendi, die Erstgeborenen, Eldar
+| origin = Erwachten unter den Sternen an den Wassern von Cuiviénen.
+| homeland = Rivendell, Lothlórien, Mirkwood
+| language = Sindarin, Quenya
+| lifespan = Unsterblich innerhalb der Kreise der Welt
+| notable_members = Elrond, Arwen
+| distinctions = An die Welt gebunden, solange sie währt; scharfsichtig, unermüdlich und geschickter als alle anderen Völker.
+| short = Die erstgeborenen Kinder Ilúvatars
+| canon = Tolkien
+}}
+Die '''Elben''' waren die Erstgeborenen unter den Kindern Ilúvatars. Unsterblich innerhalb der Welt, war ihnen doch bestimmt zu schwinden, als das Zeitalter der [[Men|Menschen]] heraufzog.

@@ -1,0 +1,16 @@
+{{Infobox language
+| othernames = Grauelbisch
+| family = Eldarin
+| writing = Tengwar, Cirth
+| speakers = Elves, Dúnedain
+| region = Gondor, Rivendell
+| era = Second Age, Third Age
+| sample = Mae govannen
+| sample_meaning = Wohl getroffen
+| short = Die Sprache der Grauelben
+| canon = Tolkien
+}}
+'''Sindarin''' war die Sprache der Grauelben von Beleriand und in späteren Zeitaltern die gebräuchliche Elbensprache Mittelerdes. Die [[Dúnedain]] von [[Gondor]] pflegten sie als Sprache der Kunde und der höfischen Rede.
+
+== Sprachproben ==
+{{Quote|''Mae govannen!''|Glorfindel zu Aragorn|''Die Gefährten'', Buch I, Kap. 12}}

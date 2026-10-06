@@ -1,0 +1,124 @@
+<noinclude>
+Dies ist das Formular „Ort“. Gib unten einen Seitennamen ein, um einen neuen Eintrag anzulegen, oder öffne einen bestehenden, um ihn mit diesem Formular zu bearbeiten.
+
+{{#forminput:form=Location|autocomplete on category=Locations|placeholder=Name des Ortes|button text=Anlegen / bearbeiten|no autofocus}}
+
+[[Category:Forms]]
+</noinclude><includeonly>
+<div class="wst-form wst-form-location">
+{{{info|page name=<Infobox location[name]>|create title=Einen Ort anlegen|edit title=Ort bearbeiten}}}
+{{{for template|Infobox location|label=Ort}}}
+{| class="formtable wst-formtable"
+|+ Name & Bild
+|-
+! Name:
+| {{{field|name|input type=text|placeholder=Anzeigename (sonst der Seitenname)}}}
+|-
+! Tengwar:
+| {{{field|script|input type=text|placeholder=Tengwar-Text (in Tengwar-Schrift dargestellt)}}}
+|-
+! Bild:
+| {{{field|image|input type=text|uploadable|placeholder=Beispiel.jpg}}}
+|-
+! Bildunterschrift:
+| {{{field|caption|input type=text|placeholder=Bildunterschrift}}}
+|-
+! Weitere Namen:
+| {{{field|othernames|input type=tokens|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Landeskunde
+|-
+! Art:
+| {{{field|type|input type=dropdown|values=Realm,Region,Settlement,Fortress,Landmark,Mountain,River,Forest,Sea,Island,Other|mapping template=Wst label}}}
+|-
+! Teil von:
+| {{{field|parent|input type=combobox|values from category=Locations}}}
+|-
+! Reich:
+| {{{field|realm|input type=combobox|values from category=Locations}}}
+|-
+! Landstriche:
+| {{{field|regions|input type=tokens|values from category=Locations|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Siedlungen:
+| {{{field|settlements|input type=tokens|values from category=Locations|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Hauptstadt:
+| {{{field|capital|input type=combobox|values from category=Locations}}}
+|-
+! Bevölkerung:
+| {{{field|population|input type=text}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Bewohner
+|-
+! Bewohner:
+| {{{field|inhabitants|input type=tokens|values from category=Peoples|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Sprachen:
+| {{{field|language|input type=tokens|values from category=Languages|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Herrscher:
+| {{{field|ruler|input type=combobox|values from category=Characters}}}
+|-
+! Bünde:
+| {{{field|factions|input type=tokens|values from category=Factions|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Geschichte
+|-
+! Gegründet:
+| {{{field|founded|input type=text}}} <span class="wst-form-inline">Jahr {{{field|founded_year|input type=text|size=6}}} Zeitalter {{{field|founded_era|input type=combobox|values from category=Eras}}}</span>
+|-
+! Zerstört:
+| {{{field|destroyed|input type=text}}} <span class="wst-form-inline">Jahr {{{field|destroyed_year|input type=text|size=6}}} Zeitalter {{{field|destroyed_era|input type=combobox|values from category=Eras}}}</span>
+|-
+! Begebenheiten:
+| {{{field|events|input type=tokens|values from category=Events|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Einzelheiten
+|-
+! Karte:
+| {{{field|map|input type=text|placeholder=Map:Westernis (reference only)}}}
+|-
+! Karte X:
+| {{{field|map_x|input type=text|placeholder=0–100, reference only}}}
+|-
+! Karte Y:
+| {{{field|map_y|input type=text|placeholder=0–100, reference only}}}
+|-
+! Beschreibung:
+| {{{field|description|input type=textarea|rows=3|autogrow}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Angaben zum Eintrag
+|-
+! Kurzbeschreibung:
+| {{{field|short|input type=text|placeholder=Eine Zeile unter dem Titel und in Suchergebnissen}}}
+|-
+! Kanon:
+| {{{field|canon|input type=radiobutton|values=Tolkien,Westernis,Draft|mapping template=Wst label|default=Westernis}}}
+|-
+! Akzentfarbe:
+| {{{field|accent|input type=text|placeholder=#7a1f2b (optionale Hex-Farbe)}}}
+|-
+|}
+{{{end template}}}
+
+<div class="wst-form-text">'''Text des Eintrags''' <small>(das Gerüst ist für neue Seiten vorbefüllt; ersetze die Kommentare)</small></div>
+{{{standard input|free text|rows=28|editor=wikieditor|preload=Template:Skeleton/Location}}}
+
+{{{standard input|summary}}}
+
+{{{standard input|minor edit}}} {{{standard input|watch}}}
+
+{{{standard input|save}}} {{{standard input|preview}}} {{{standard input|changes}}} {{{standard input|cancel}}}
+</div>
+</includeonly>

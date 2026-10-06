@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Häuser}}{{Category header|type=faction|kicker=Bünde|title=Häuser|description=Alle Einträge der Art „Haus“.|form=Faction|table=Factions|placeholder=Neuer Bund …}}
+[[Category:Factions|Häuser]]

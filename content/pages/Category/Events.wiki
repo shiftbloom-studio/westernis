@@ -1,0 +1,3 @@
+{{#default_form:Event}}{{DISPLAYTITLE:Begebenheiten}}
+{{Category header|type=event|title=Begebenheiten|singular=Begebenheit|placeholder=Neue Begebenheit …|form=Event|table=Events|description=Schlachten, Ratsversammlungen, Gründungen, Eide, Fahrten, Unheil und Feste.}}
+[[Category:Westernis|Begebenheiten]]

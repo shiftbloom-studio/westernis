@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Schriften}}{{Category header|type=artifact|kicker=Artefakte|title=Schriften|description=Alle Einträge der Art „Schrift“.|form=Artifact|table=Artifacts|placeholder=Neues Artefakt …}}
+[[Category:Artifacts|Schriften]]

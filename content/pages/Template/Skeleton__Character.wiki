@@ -1,0 +1,35 @@
+<noinclude>
+Gerüst für neue Einträge der Art „Gestalt“, vorgeladen von [[Form:Character]]. Frei bearbeitbar; die Reihenfolge der Abschnitte bitte im ganzen Wiki gleich halten.
+[[Category:Skeleton templates]]
+</noinclude>'''{{PAGENAME}}''' war … <!-- Einleitung in 1–3 Absätzen: wer, wann, warum von Bedeutung -->
+
+== Geschichte ==
+<!-- Geschichte: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Vermächtnis ==
+<!-- Vermächtnis: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Namenskunde ==
+<!-- Namenskunde: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Weitere Namen ==
+<!-- Weitere Namen: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Stammbaum ==
+{{Family tree}}
+
+== Beziehungen ==
+{{Relationships}}
+
+== Auftritte in den Chroniken ==
+{{Appearances}}
+
+== Bildnisse ==
+<gallery mode="packed-hover">
+</gallery>
+
+== Siehe auch ==
+<!-- Siehe auch: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Anmerkungen ==
+<references />

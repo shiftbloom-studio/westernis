@@ -1,0 +1,25 @@
+{{DISPLAYTITLE:Drittes Zeitalter}}
+{{Infobox era
+| name = Drittes Zeitalter
+| othernames = Zeitalter des Rings, Zeitalter des Schwindens
+| sequence = 3
+| year_start = 1
+| year_end = 3021
+| prefix = D.Z.
+| preceded_by = Second Age
+| followed_by = Fourth Age
+| defining_events = Council of Elrond, War of the Ring, Battle of the Pelennor Fields
+| description = Das lange Zeitalter zwischen Saurons Sturz durch das Letzte Bündnis und seiner endgültigen Niederlage im Ringkrieg.
+| short = Das Zeitalter des Ringkriegs
+| canon = Tolkien
+}}
+Das '''Dritte Zeitalter''' währte 3021 Jahre, von Saurons Niederlage gegen das Letzte Bündnis bis zur Ausfahrt der Ringträger über das Meer. In diesen Jahren schwanden die Elben, [[Gondor]] sank langsam herab und erstand neu, und zuletzt entbrannte der [[War of the Ring|Ringkrieg]].
+
+== Überblick ==
+Jahreszahlen dieses Zeitalters tragen das Kürzel '''D.Z.''' – die Infobox-Vorlagen setzen es von selbst vor das Jahr, sobald ein Zeitalter angegeben ist.
+
+== Zeittafel ==
+{{Timeline|era=Third Age}}
+
+== Völker und Reiche ==
+<div class="wst-relations">{{#cargo_query:tables=Locations|fields=_pageName=Target,_pageTitle=Label,type=Kind|where=type="Realm"|order by=_pageName|format=template|template=Relationships/row|named args=yes|intro=<div class="wst-relations-group">|outro=</div>|default=''Noch keine Reiche verzeichnet.''}}</div>

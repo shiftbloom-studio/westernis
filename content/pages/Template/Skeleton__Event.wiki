@@ -1,0 +1,29 @@
+<noinclude>
+Gerüst für neue Einträge der Art „Begebenheit“, vorgeladen von [[Form:Event]]. Frei bearbeitbar; die Reihenfolge der Abschnitte bitte im ganzen Wiki gleich halten.
+[[Category:Skeleton templates]]
+</noinclude>Die '''{{PAGENAME}}''' war … <!-- Einleitung -->
+
+== Vorgeschichte ==
+<!-- Vorgeschichte: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Verlauf ==
+<!-- Verlauf: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Nachwirkungen ==
+<!-- Nachwirkungen: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Beteiligte ==
+<!-- Beteiligte: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Namenskunde ==
+<!-- Namenskunde: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Bildnisse ==
+<gallery mode="packed-hover">
+</gallery>
+
+== Siehe auch ==
+<!-- Siehe auch: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Anmerkungen ==
+<references />

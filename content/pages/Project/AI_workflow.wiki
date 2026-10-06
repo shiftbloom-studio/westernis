@@ -1,0 +1,22 @@
+{{SHORTDESC:Kunde sammeln und weiterspinnen mit Claude Code}}
+Der MCP-Server '''Forge''' (im Projektordner unter <code>tools/forge-mcp</code>) erlaubt Claude Code, dieses Wiki unmittelbar zu lesen und zu beschreiben. Öffne den Projektordner in Claude Code und bitte zum Beispiel:
+
+* „Sammle alles, was wir über Gondor wissen, und entwirf einen Eintrag über Ithilien.“
+* „Lege mit der Vorlage für Gestalten eine Seite über Halbarad an und markiere sie als Entwurf.“
+* „Suche die roten Links zum Zweiten Zeitalter und schlage vor, welche zuerst geschrieben werden sollen.“
+* „Prüfe Aragorn II auf fehlende Abschnitte und widersprüchliche Daten.“
+
+== Was die Werkzeuge tun ==
+* '''wiki_lore_context''' – holt die Seiten, Infobox-Daten und Suchtreffer zu einem Thema, damit neuer Text zu dem passt, was schon besteht.
+* '''wiki_entity_schema''' – die Felder und Abschnitte jeder Eintragsart (dieselben Definitionen, die auch die Formulare nutzen).
+* '''wiki_create_entity''' – schreibt aus Feldwerten und Fließtext einen richtig gegliederten Eintrag.
+* '''wiki_suggest_links''' – findet bestehende Seiten, die ein Text erwähnt, und schlägt <nowiki>[[Links]]</nowiki> vor.
+* '''wiki_wanted_pages''' – der Vorrat an roten Links, also die nächsten Einträge, die geschrieben werden wollen.
+* '''wiki_lint_article''' – prüft Aufbau, Kanon-Feld, Kurzbeschreibung, rote Links und fehlende Abschnitte.
+* dazu Suchen, Lesen, Speichern, das Bearbeiten einzelner Abschnitte (<code>wiki_edit_section</code>, Unterabschnitte bleiben erhalten), Vorschau, letzte Änderungen, Kategorien, Cargo-Abfragen und Uploads.
+
+== Regeln, denen die Skills folgen ==
+# Erst lesen, dann schreiben: Bestehende Seiten haben Vorrang vor Erfundenem.
+# Neue Seiten beginnen mit <code>canon=Draft</code>, sofern nichts anderes verlangt ist.
+# Verlinkt wird nur auf Seiten, die bestehen oder bestehen sollten; bewusst gesetzte rote Links bleiben als Arbeitsvorrat stehen.
+# Infobox-Felder und Abschnittsfolge der Eintragsart werden eingehalten; Fließtext und Abschnittstitel sind deutsch.

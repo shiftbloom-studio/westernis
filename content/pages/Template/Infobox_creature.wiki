@@ -1,0 +1,217 @@
+<noinclude>
+{{#cargo_declare:_table=Creatures|name=String|script=String|image=File|caption=String|othernames=List (,) of String|type=String|origin=Page|habitat=List (,) of Page|alignment=String|size=String|first_era=Page|notable_individuals=List (,) of Page|abilities=Text|canon=String}}
+'''Infobox creature''' — Tiere, Ungeheuer und andere Geschöpfe: Drachen, Adler, Warge, Geister.
+
+Neue Seiten entstehen mit [[Form:Creature]] (oder über [[Westernis:Create]]). Die Felder landen in der Cargo-Tabelle [[Special:CargoTables/Creatures|Creatures]]. Die Darstellung steckt in [[Template:Infobox creature/core]], das Aussehen in [[MediaWiki:Common.css]] (<code>.pi-theme-creature</code>).
+
+<templatedata>
+{
+ "description": {
+  "en": "Beasts, monsters and other creatures: dragons, eagles, wargs, spirits.",
+  "de": "Tiere, Ungeheuer und andere Geschöpfe: Drachen, Adler, Warge, Geister."
+ },
+ "format": "{{_\n| ___ = _\n}}",
+ "params": {
+  "name": {
+   "label": {
+    "en": "Name",
+    "de": "Name"
+   },
+   "description": "Display name (defaults to the page name)",
+   "type": "string",
+   "suggested": true
+  },
+  "script": {
+   "label": {
+    "en": "Tengwar",
+    "de": "Tengwar"
+   },
+   "description": "Name in Tengwar or another script (rendered with the Tengwar font)",
+   "type": "string",
+   "suggested": true
+  },
+  "image": {
+   "label": {
+    "en": "Image",
+    "de": "Bild"
+   },
+   "description": "Main image (file name without the File: prefix)",
+   "type": "wiki-file-name",
+   "suggested": true
+  },
+  "caption": {
+   "label": {
+    "en": "Caption",
+    "de": "Bildunterschrift"
+   },
+   "description": "Image caption",
+   "type": "string",
+   "suggested": true
+  },
+  "othernames": {
+   "label": {
+    "en": "Other names",
+    "de": "Weitere Namen"
+   },
+   "description": "Comma-separated alternative names",
+   "type": "string",
+   "suggested": true
+  },
+  "type": {
+   "label": {
+    "en": "Type",
+    "de": "Art"
+   },
+   "description": "Beast, Dragon, Spirit, Undead, Construct, Bird, Plant",
+   "type": "string",
+   "suggestedvalues": [
+    "Beast",
+    "Dragon",
+    "Spirit",
+    "Undead",
+    "Construct",
+    "Bird",
+    "Plant",
+    "Other"
+   ],
+   "suggested": true
+  },
+  "origin": {
+   "label": {
+    "en": "Origin",
+    "de": "Ursprung"
+   },
+   "description": "Creator or origin",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "habitat": {
+   "label": {
+    "en": "Habitat",
+    "de": "Lebensraum"
+   },
+   "description": "Where it is found",
+   "type": "string",
+   "suggested": true
+  },
+  "alignment": {
+   "label": {
+    "en": "Alignment",
+    "de": "Gesinnung"
+   },
+   "description": "Free, Servant of the Shadow, Wild",
+   "type": "string",
+   "suggested": true
+  },
+  "size": {
+   "label": {
+    "en": "Size",
+    "de": "Größe"
+   },
+   "description": "Size",
+   "type": "string",
+   "suggested": true
+  },
+  "first_era": {
+   "label": {
+    "en": "First appeared",
+    "de": "Erstmals bezeugt"
+   },
+   "description": "Era first recorded",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "notable_individuals": {
+   "label": {
+    "en": "Notable individuals",
+    "de": "Namhafte Vertreter"
+   },
+   "description": "Named creatures of this kind",
+   "type": "string",
+   "suggested": true
+  },
+  "abilities": {
+   "label": {
+    "en": "Abilities",
+    "de": "Fähigkeiten"
+   },
+   "description": "Powers and traits",
+   "type": "content",
+   "suggested": true
+  },
+  "short": {
+   "label": {
+    "en": "Short description",
+    "de": "Kurzbeschreibung"
+   },
+   "description": "One line shown under the title and in search results",
+   "type": "string",
+   "suggested": false
+  },
+  "canon": {
+   "label": {
+    "en": "Canon",
+    "de": "Kanon"
+   },
+   "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+   "type": "string",
+   "suggestedvalues": [
+    "Tolkien",
+    "Westernis",
+    "Draft"
+   ],
+   "default": "Westernis",
+   "suggested": false
+  },
+  "accent": {
+   "label": {
+    "en": "Accent colour",
+    "de": "Akzentfarbe"
+   },
+   "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)",
+   "type": "string",
+   "suggested": false
+  }
+ },
+ "paramOrder": [
+  "name",
+  "script",
+  "image",
+  "caption",
+  "othernames",
+  "type",
+  "origin",
+  "habitat",
+  "alignment",
+  "size",
+  "first_era",
+  "notable_individuals",
+  "abilities",
+  "short",
+  "canon",
+  "accent"
+ ]
+}
+</templatedata>
+[[Category:Infobox templates]]
+</noinclude><includeonly>{{#cargo_store:_table=Creatures|name={{{name|{{PAGENAME}}}}}|script={{{script|}}}|image={{{image|}}}|caption={{{caption|}}}|othernames={{{othernames|}}}|type={{{type|}}}|origin={{{origin|}}}|habitat={{{habitat|}}}|alignment={{{alignment|}}}|size={{{size|}}}|first_era={{{first_era|}}}|notable_individuals={{{notable_individuals|}}}|abilities={{{abilities|}}}|canon={{{canon|Westernis}}}}}<!--
+-->{{#if:{{{short|}}}|{{SHORTDESC:{{{short}}}}}}}<!--
+-->{{Infobox creature/core
+|name={{{name|}}}
+|script={{{script|}}}
+|image={{{image|}}}
+|caption={{{caption|}}}
+|othernames={{{othernames|}}}
+|type={{#invoke:Westernis|label|{{{type|}}}}}
+|origin={{#if:{{{origin|}}}|[[{{{origin}}}]]}}
+|habitat={{#invoke:Westernis|list|{{{habitat|}}}}}
+|alignment={{{alignment|}}}
+|size={{{size|}}}
+|first_era={{#if:{{{first_era|}}}|[[{{{first_era}}}]]}}
+|notable_individuals={{#invoke:Westernis|list|{{{notable_individuals|}}}}}
+|abilities={{{abilities|}}}
+|canon={{{canon|Westernis}}}
+|accent={{{accent|}}}
+|pagename={{PAGENAME}}
+}}<!--
+-->[[Category:Creatures]]{{#switch:{{{type|}}}|Beast=[[Category:Tiere]]|Dragon=[[Category:Drachen]]|Spirit=[[Category:Geister]]|Undead=[[Category:Untote]]|Construct=[[Category:Gebilde]]|Bird=[[Category:Vögel]]|Plant=[[Category:Pflanzen]]|#default=}}{{#switch:{{{canon|Westernis}}}|Tolkien=[[Category:Tolkien canon]]|Draft=[[Category:Draft articles]]|#default=[[Category:Westernis canon]]}}{{#if:{{{image|}}}||[[Category:Articles without an image]]}}</includeonly>

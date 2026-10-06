@@ -1,0 +1,96 @@
+<noinclude>
+Dies ist das Formular „Chronik“. Gib unten einen Seitennamen ein, um einen neuen Eintrag anzulegen, oder öffne einen bestehenden, um ihn mit diesem Formular zu bearbeiten.
+
+{{#forminput:form=Chronicle|autocomplete on category=Chronicles|namespace=Chronicle|placeholder=Titel der Chronik|button text=Anlegen / bearbeiten|no autofocus}}
+
+[[Category:Forms]]
+</noinclude><includeonly>
+<div class="wst-form wst-form-chronicle">
+{{{info|page name=<Infobox chronicle[title]>|create title=Eine Chronik beginnen|edit title=Chronik bearbeiten}}}
+{{{for template|Infobox chronicle|label=Chronik}}}
+{| class="formtable wst-formtable"
+|+ Name & Bild
+|-
+! Titel:
+| {{{field|title|input type=text|placeholder=Anzeigename (sonst der Seitenname)}}}
+|-
+! Bild:
+| {{{field|image|input type=text|uploadable|placeholder=Beispiel.jpg}}}
+|-
+! Bildunterschrift:
+| {{{field|caption|input type=text|placeholder=Bildunterschrift}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Chronik
+|-
+! Stand:
+| {{{field|status|input type=dropdown|values=idea,draft,revised,final|mapping template=Wst label}}}
+|-
+! Zeitalter:
+| {{{field|era|input type=combobox|values from category=Eras}}}
+|-
+! Von Jahr:
+| {{{field|year_start|input type=text}}}
+|-
+! Bis Jahr:
+| {{{field|year_end|input type=text}}}
+|-
+! Reihenfolge:
+| {{{field|sequence|input type=text}}}
+|-
+! Teil von:
+| {{{field|part_of|input type=combobox|values from category=Chronicles}}}
+|-
+! Wortzahl:
+| {{{field|wordcount|input type=text}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Gestalten & Schauplätze
+|-
+! Erzählblick:
+| {{{field|pov|input type=tokens|values from category=Characters|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Gestalten:
+| {{{field|characters|input type=tokens|values from category=Characters|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Schauplätze:
+| {{{field|locations|input type=tokens|values from category=Locations|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Begebenheiten:
+| {{{field|events|input type=tokens|values from category=Events|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Einzelheiten
+|-
+! Abriss:
+| {{{field|summary|input type=textarea|rows=3|autogrow}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Angaben zum Eintrag
+|-
+! Kurzbeschreibung:
+| {{{field|short|input type=text|placeholder=Eine Zeile unter dem Titel und in Suchergebnissen}}}
+|-
+! Kanon:
+| {{{field|canon|input type=radiobutton|values=Tolkien,Westernis,Draft|mapping template=Wst label|default=Westernis}}}
+|-
+! Akzentfarbe:
+| {{{field|accent|input type=text|placeholder=#7a1f2b (optionale Hex-Farbe)}}}
+|-
+|}
+{{{end template}}}
+
+<div class="wst-form-text">'''Text des Eintrags''' <small>(das Gerüst ist für neue Seiten vorbefüllt; ersetze die Kommentare)</small></div>
+{{{standard input|free text|rows=28|editor=wikieditor|preload=Template:Skeleton/Chronicle}}}
+
+{{{standard input|summary}}}
+
+{{{standard input|minor edit}}} {{{standard input|watch}}}
+
+{{{standard input|save}}} {{{standard input|preview}}} {{{standard input|changes}}} {{{standard input|cancel}}}
+</div>
+</includeonly>

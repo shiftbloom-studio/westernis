@@ -1,0 +1,295 @@
+<noinclude>
+{{#cargo_declare:_table=Peoples|name=String|script=String|image=File|caption=String|othernames=List (,) of String|origin=Text|homeland=List (,) of Page|parent=Page|subgroups=List (,) of Page|language=List (,) of Page|lifespan=String|affiliation=List (,) of Page|rivalry=List (,) of Page|notable_members=List (,) of Page|height=String|hair=String|skin=String|eyes=String|clothing=String|weapons=List (,) of Page|distinctions=Text|canon=String}}
+'''Infobox people''' — Ein Volk: Elben, Menschen, Zwerge, Hobbits und die Sippen in ihnen.
+
+Neue Seiten entstehen mit [[Form:People]] (oder über [[Westernis:Create]]). Die Felder landen in der Cargo-Tabelle [[Special:CargoTables/Peoples|Peoples]]. Die Darstellung steckt in [[Template:Infobox people/core]], das Aussehen in [[MediaWiki:Common.css]] (<code>.pi-theme-people</code>).
+
+<templatedata>
+{
+ "description": {
+  "en": "A race or people: Elves, Men, Dwarves, Hobbits, and the cultures within them.",
+  "de": "Ein Volk: Elben, Menschen, Zwerge, Hobbits und die Sippen in ihnen."
+ },
+ "format": "{{_\n| ___ = _\n}}",
+ "params": {
+  "name": {
+   "label": {
+    "en": "Name",
+    "de": "Name"
+   },
+   "description": "Display name (defaults to the page name)",
+   "type": "string",
+   "suggested": true
+  },
+  "script": {
+   "label": {
+    "en": "Tengwar",
+    "de": "Tengwar"
+   },
+   "description": "Name in Tengwar or another script (rendered with the Tengwar font)",
+   "type": "string",
+   "suggested": true
+  },
+  "image": {
+   "label": {
+    "en": "Image",
+    "de": "Bild"
+   },
+   "description": "Main image (file name without the File: prefix)",
+   "type": "wiki-file-name",
+   "suggested": true
+  },
+  "caption": {
+   "label": {
+    "en": "Caption",
+    "de": "Bildunterschrift"
+   },
+   "description": "Image caption",
+   "type": "string",
+   "suggested": true
+  },
+  "othernames": {
+   "label": {
+    "en": "Other names",
+    "de": "Weitere Namen"
+   },
+   "description": "Comma-separated alternative names",
+   "type": "string",
+   "suggested": true
+  },
+  "origin": {
+   "label": {
+    "en": "Origin",
+    "de": "Ursprung"
+   },
+   "description": "How the people came to be",
+   "type": "content",
+   "suggested": true
+  },
+  "homeland": {
+   "label": {
+    "en": "Homelands",
+    "de": "Heimatlande"
+   },
+   "description": "Homelands",
+   "type": "string",
+   "suggested": true
+  },
+  "parent": {
+   "label": {
+    "en": "Part of",
+    "de": "Teil von"
+   },
+   "description": "Parent race (for cultures/folk)",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "subgroups": {
+   "label": {
+    "en": "Subgroups",
+    "de": "Stämme"
+   },
+   "description": "Folk, houses or kindreds",
+   "type": "string",
+   "suggested": true
+  },
+  "language": {
+   "label": {
+    "en": "Languages",
+    "de": "Sprachen"
+   },
+   "description": "Languages",
+   "type": "string",
+   "suggested": true
+  },
+  "lifespan": {
+   "label": {
+    "en": "Lifespan",
+    "de": "Lebensspanne"
+   },
+   "description": "Typical lifespan",
+   "type": "string",
+   "suggested": true
+  },
+  "affiliation": {
+   "label": {
+    "en": "Allies",
+    "de": "Verbündete"
+   },
+   "description": "Allied peoples and factions",
+   "type": "string",
+   "suggested": true
+  },
+  "rivalry": {
+   "label": {
+    "en": "Enemies",
+    "de": "Feinde"
+   },
+   "description": "Enemies",
+   "type": "string",
+   "suggested": true
+  },
+  "notable_members": {
+   "label": {
+    "en": "Notable members",
+    "de": "Namhafte Mitglieder"
+   },
+   "description": "Notable individuals",
+   "type": "string",
+   "suggested": true
+  },
+  "height": {
+   "label": {
+    "en": "Height",
+    "de": "Größe"
+   },
+   "description": "Typical height",
+   "type": "string",
+   "suggested": true
+  },
+  "hair": {
+   "label": {
+    "en": "Hair",
+    "de": "Haar"
+   },
+   "description": "Hair",
+   "type": "string",
+   "suggested": true
+  },
+  "skin": {
+   "label": {
+    "en": "Skin",
+    "de": "Haut"
+   },
+   "description": "Skin",
+   "type": "string",
+   "suggested": true
+  },
+  "eyes": {
+   "label": {
+    "en": "Eyes",
+    "de": "Augen"
+   },
+   "description": "Eyes",
+   "type": "string",
+   "suggested": true
+  },
+  "clothing": {
+   "label": {
+    "en": "Clothing",
+    "de": "Gewandung"
+   },
+   "description": "Typical garb",
+   "type": "string",
+   "suggested": true
+  },
+  "weapons": {
+   "label": {
+    "en": "Weapons",
+    "de": "Waffen"
+   },
+   "description": "Typical arms",
+   "type": "string",
+   "suggested": true
+  },
+  "distinctions": {
+   "label": {
+    "en": "Distinctions",
+    "de": "Eigenheiten"
+   },
+   "description": "What sets this people apart",
+   "type": "content",
+   "suggested": true
+  },
+  "short": {
+   "label": {
+    "en": "Short description",
+    "de": "Kurzbeschreibung"
+   },
+   "description": "One line shown under the title and in search results",
+   "type": "string",
+   "suggested": false
+  },
+  "canon": {
+   "label": {
+    "en": "Canon",
+    "de": "Kanon"
+   },
+   "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+   "type": "string",
+   "suggestedvalues": [
+    "Tolkien",
+    "Westernis",
+    "Draft"
+   ],
+   "default": "Westernis",
+   "suggested": false
+  },
+  "accent": {
+   "label": {
+    "en": "Accent colour",
+    "de": "Akzentfarbe"
+   },
+   "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)",
+   "type": "string",
+   "suggested": false
+  }
+ },
+ "paramOrder": [
+  "name",
+  "script",
+  "image",
+  "caption",
+  "othernames",
+  "origin",
+  "homeland",
+  "parent",
+  "subgroups",
+  "language",
+  "lifespan",
+  "affiliation",
+  "rivalry",
+  "notable_members",
+  "height",
+  "hair",
+  "skin",
+  "eyes",
+  "clothing",
+  "weapons",
+  "distinctions",
+  "short",
+  "canon",
+  "accent"
+ ]
+}
+</templatedata>
+[[Category:Infobox templates]]
+</noinclude><includeonly>{{#cargo_store:_table=Peoples|name={{{name|{{PAGENAME}}}}}|script={{{script|}}}|image={{{image|}}}|caption={{{caption|}}}|othernames={{{othernames|}}}|origin={{{origin|}}}|homeland={{{homeland|}}}|parent={{{parent|}}}|subgroups={{{subgroups|}}}|language={{{language|}}}|lifespan={{{lifespan|}}}|affiliation={{{affiliation|}}}|rivalry={{{rivalry|}}}|notable_members={{{notable_members|}}}|height={{{height|}}}|hair={{{hair|}}}|skin={{{skin|}}}|eyes={{{eyes|}}}|clothing={{{clothing|}}}|weapons={{{weapons|}}}|distinctions={{{distinctions|}}}|canon={{{canon|Westernis}}}}}<!--
+-->{{#if:{{{short|}}}|{{SHORTDESC:{{{short}}}}}}}<!--
+-->{{Infobox people/core
+|name={{{name|}}}
+|script={{{script|}}}
+|image={{{image|}}}
+|caption={{{caption|}}}
+|othernames={{{othernames|}}}
+|origin={{{origin|}}}
+|homeland={{#invoke:Westernis|list|{{{homeland|}}}}}
+|parent={{#if:{{{parent|}}}|[[{{{parent}}}]]}}
+|subgroups={{#invoke:Westernis|list|{{{subgroups|}}}}}
+|language={{#invoke:Westernis|list|{{{language|}}}}}
+|lifespan={{{lifespan|}}}
+|affiliation={{#invoke:Westernis|list|{{{affiliation|}}}}}
+|rivalry={{#invoke:Westernis|list|{{{rivalry|}}}}}
+|notable_members={{#invoke:Westernis|list|{{{notable_members|}}}}}
+|height={{{height|}}}
+|hair={{{hair|}}}
+|skin={{{skin|}}}
+|eyes={{{eyes|}}}
+|clothing={{{clothing|}}}
+|weapons={{#invoke:Westernis|list|{{{weapons|}}}}}
+|distinctions={{{distinctions|}}}
+|canon={{{canon|Westernis}}}
+|accent={{{accent|}}}
+|pagename={{PAGENAME}}
+}}<!--
+-->[[Category:Peoples]]{{#if:{{{parent|}}}|[[Category:{{{parent}}}]]}}{{#switch:{{{canon|Westernis}}}|Tolkien=[[Category:Tolkien canon]]|Draft=[[Category:Draft articles]]|#default=[[Category:Westernis canon]]}}{{#if:{{{image|}}}||[[Category:Articles without an image]]}}</includeonly>

@@ -1,0 +1,72 @@
+name: Bug report
+description: Something in the wiki setup, theme, generators, scripts or MCP server does not work.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a problem.
+        **Security issues do not belong here:** please report them privately (see SECURITY.md).
+        Never paste passwords, the secret key or other values from your `.env`.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. pwsh ./scripts/wiki.ps1 up
+        2. Open http://localhost:8088/...
+        3. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Wiki configuration (LocalSettings, extensions)
+        - Docker image / Compose
+        - Control script (wiki.ps1) or seed scripts
+        - Theme (CSS, JS, artwork)
+        - Entity types, templates, forms (tools/gen-entities)
+        - Art generators (tools/brand)
+        - MCP server (tools/forge-mcp)
+        - Seed content (sample pages, help pages)
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: status
+    attributes:
+      label: Output of `pwsh ./scripts/wiki.ps1 status` and relevant log lines
+      description: "`pwsh ./scripts/wiki.ps1 logs` shows the container logs. Remove anything secret first."
+      render: shell
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system, Docker and Compose versions, browser if it is a display problem
+      placeholder: "Windows 11, Docker Desktop 4.x, Compose v2.x, Firefox 1xx"
+    validations:
+      required: true
+  - type: textarea
+    id: config
+    attributes:
+      label: Settings you changed
+      description: Names of the `.env` keys you changed from `.env.example` (names only, no values), and any other local changes.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before you submit
+      options:
+        - label: I removed passwords, keys and other secrets from everything I pasted.
+          required: true
+        - label: I searched the existing issues.
+          required: true

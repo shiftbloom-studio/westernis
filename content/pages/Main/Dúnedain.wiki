@@ -1,0 +1,14 @@
+{{Infobox people
+| othernames = Menschen des Westens, Númenórer im Exil
+| parent = Men
+| origin = Nachfahren der Edain, die mit der Insel Númenor belohnt wurden; nach deren Untergang gründeten die Getreuen Arnor und Gondor.
+| homeland = Gondor, Eriador
+| affiliation = Rangers of the North
+| language = Westron, Sindarin
+| notable_members = Aragorn II
+| lifespan = In den frühen Tagen dreimal so lang wie bei geringeren Menschen
+| distinctions = Hochgewachsen, grauäugig und langlebig; Hüter der Kunde von Númenor.
+| short = Die Menschen des Westens, Erben Númenors
+| canon = Tolkien
+}}
+Die '''Dúnedain''' waren die Menschen númenórischer Abstammung, die nach dem Untergang in Mittelerde wohnten. Im Norden zerfiel ihr Reich Arnor, und sie wurden zu den [[Rangers of the North|Waldläufern des Nordens]]; im Süden hielten sie [[Gondor]].

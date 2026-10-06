@@ -1,0 +1,127 @@
+<noinclude>
+Dies ist das Formular „Begebenheit“. Gib unten einen Seitennamen ein, um einen neuen Eintrag anzulegen, oder öffne einen bestehenden, um ihn mit diesem Formular zu bearbeiten.
+
+{{#forminput:form=Event|autocomplete on category=Events|placeholder=Name der Begebenheit|button text=Anlegen / bearbeiten|no autofocus}}
+
+[[Category:Forms]]
+</noinclude><includeonly>
+<div class="wst-form wst-form-event">
+{{{info|page name=<Infobox event[name]>|create title=Eine Begebenheit anlegen|edit title=Begebenheit bearbeiten}}}
+{{{for template|Infobox event|label=Begebenheit}}}
+{| class="formtable wst-formtable"
+|+ Name & Bild
+|-
+! Name:
+| {{{field|name|input type=text|placeholder=Anzeigename (sonst der Seitenname)}}}
+|-
+! Tengwar:
+| {{{field|script|input type=text|placeholder=Tengwar-Text (in Tengwar-Schrift dargestellt)}}}
+|-
+! Bild:
+| {{{field|image|input type=text|uploadable|placeholder=Beispiel.jpg}}}
+|-
+! Bildunterschrift:
+| {{{field|caption|input type=text|placeholder=Bildunterschrift}}}
+|-
+! Weitere Namen:
+| {{{field|othernames|input type=tokens|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Begebenheit
+|-
+! Art:
+| {{{field|type|input type=dropdown|values=Battle,War,Siege,Council,Founding,Oath,Journey,Disaster,Festival,Birth,Death,Other|mapping template=Wst label}}}
+|-
+! Datum:
+| {{{field|date|input type=text}}} <span class="wst-form-inline">Jahr {{{field|year_start|input type=text|size=6}}} Zeitalter {{{field|era|input type=combobox|values from category=Eras}}}</span>
+|-
+! Endjahr:
+| {{{field|year_end|input type=text}}}
+|-
+! Schauplatz:
+| {{{field|location|input type=tokens|values from category=Locations|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Teil von:
+| {{{field|part_of|input type=combobox|values from category=Events}}}
+|-
+! Vorgänger:
+| {{{field|preceded_by|input type=combobox|values from category=Events}}}
+|-
+! Nachfolger:
+| {{{field|followed_by|input type=combobox|values from category=Events}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Beteiligte
+|-
+! Beteiligte:
+| {{{field|participants|input type=tokens|values from category=Characters|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Bünde:
+| {{{field|factions|input type=tokens|values from category=Factions|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Ausgang:
+| {{{field|result|input type=textarea|rows=3|autogrow}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Kriegsparteien
+|-
+! Erste Partei:
+| {{{field|side1|input type=tokens|values from category=Factions|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Zweite Partei:
+| {{{field|side2|input type=tokens|values from category=Factions|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Heerführer (erste):
+| {{{field|commanders1|input type=tokens|values from category=Characters|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Heerführer (zweite):
+| {{{field|commanders2|input type=tokens|values from category=Characters|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Streitmacht (erste):
+| {{{field|forces1|input type=text}}}
+|-
+! Streitmacht (zweite):
+| {{{field|forces2|input type=text}}}
+|-
+! Verluste (erste):
+| {{{field|casualties1|input type=text}}}
+|-
+! Verluste (zweite):
+| {{{field|casualties2|input type=text}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Einzelheiten
+|-
+! Beschreibung:
+| {{{field|description|input type=textarea|rows=3|autogrow}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Angaben zum Eintrag
+|-
+! Kurzbeschreibung:
+| {{{field|short|input type=text|placeholder=Eine Zeile unter dem Titel und in Suchergebnissen}}}
+|-
+! Kanon:
+| {{{field|canon|input type=radiobutton|values=Tolkien,Westernis,Draft|mapping template=Wst label|default=Westernis}}}
+|-
+! Akzentfarbe:
+| {{{field|accent|input type=text|placeholder=#7a1f2b (optionale Hex-Farbe)}}}
+|-
+|}
+{{{end template}}}
+
+<div class="wst-form-text">'''Text des Eintrags''' <small>(das Gerüst ist für neue Seiten vorbefüllt; ersetze die Kommentare)</small></div>
+{{{standard input|free text|rows=28|editor=wikieditor|preload=Template:Skeleton/Event}}}
+
+{{{standard input|summary}}}
+
+{{{standard input|minor edit}}} {{{standard input|watch}}}
+
+{{{standard input|save}}} {{{standard input|preview}}} {{{standard input|changes}}} {{{standard input|cancel}}}
+</div>
+</includeonly>

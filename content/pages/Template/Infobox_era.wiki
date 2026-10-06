@@ -1,0 +1,208 @@
+<noinclude>
+{{#cargo_declare:_table=Eras|name=String|script=String|image=File|caption=String|othernames=List (,) of String|sequence=Integer|year_start=Integer|year_end=Integer|prefix=String|preceded_by=Page|followed_by=Page|defining_events=List (,) of Page|description=Text|canon=String}}
+'''Infobox era''' — Ein Zeitalter der Welt, das den Jahren ihren Rahmen gibt (mit Kürzel wie D.Z.).
+
+Neue Seiten entstehen mit [[Form:Era]] (oder über [[Westernis:Create]]). Die Felder landen in der Cargo-Tabelle [[Special:CargoTables/Eras|Eras]]. Die Darstellung steckt in [[Template:Infobox era/core]], das Aussehen in [[MediaWiki:Common.css]] (<code>.pi-theme-era</code>).
+
+<templatedata>
+{
+ "description": {
+  "en": "An age or era of the world, giving years their frame (prefix like T.A.).",
+  "de": "Ein Zeitalter der Welt, das den Jahren ihren Rahmen gibt (mit Kürzel wie D.Z.)."
+ },
+ "format": "{{_\n| ___ = _\n}}",
+ "params": {
+  "name": {
+   "label": {
+    "en": "Name",
+    "de": "Name"
+   },
+   "description": "Display name (defaults to the page name)",
+   "type": "string",
+   "suggested": true
+  },
+  "script": {
+   "label": {
+    "en": "Tengwar",
+    "de": "Tengwar"
+   },
+   "description": "Name in Tengwar or another script (rendered with the Tengwar font)",
+   "type": "string",
+   "suggested": true
+  },
+  "image": {
+   "label": {
+    "en": "Image",
+    "de": "Bild"
+   },
+   "description": "Main image (file name without the File: prefix)",
+   "type": "wiki-file-name",
+   "suggested": true
+  },
+  "caption": {
+   "label": {
+    "en": "Caption",
+    "de": "Bildunterschrift"
+   },
+   "description": "Image caption",
+   "type": "string",
+   "suggested": true
+  },
+  "othernames": {
+   "label": {
+    "en": "Other names",
+    "de": "Weitere Namen"
+   },
+   "description": "Comma-separated alternative names",
+   "type": "string",
+   "suggested": true
+  },
+  "sequence": {
+   "label": {
+    "en": "Sequence",
+    "de": "Reihenfolge"
+   },
+   "description": "Order of this era (1, 2, 3…) for timelines",
+   "type": "number",
+   "suggested": true
+  },
+  "year_start": {
+   "label": {
+    "en": "First year",
+    "de": "Erstes Jahr"
+   },
+   "description": "First year of the era",
+   "type": "number",
+   "suggested": true
+  },
+  "year_end": {
+   "label": {
+    "en": "Last year",
+    "de": "Letztes Jahr"
+   },
+   "description": "Last year of the era",
+   "type": "number",
+   "suggested": true
+  },
+  "prefix": {
+   "label": {
+    "en": "Prefix",
+    "de": "Kürzel"
+   },
+   "description": "Year prefix used in dates (e.g. T.A.)",
+   "type": "string",
+   "suggested": true
+  },
+  "preceded_by": {
+   "label": {
+    "en": "Preceded by",
+    "de": "Vorgänger"
+   },
+   "description": "Previous era",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "followed_by": {
+   "label": {
+    "en": "Followed by",
+    "de": "Nachfolger"
+   },
+   "description": "Next era",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "defining_events": {
+   "label": {
+    "en": "Defining events",
+    "de": "Prägende Begebenheiten"
+   },
+   "description": "Events that frame the era",
+   "type": "string",
+   "suggested": true
+  },
+  "description": {
+   "label": {
+    "en": "Description",
+    "de": "Beschreibung"
+   },
+   "description": "Summary of the era",
+   "type": "content",
+   "suggested": true
+  },
+  "short": {
+   "label": {
+    "en": "Short description",
+    "de": "Kurzbeschreibung"
+   },
+   "description": "One line shown under the title and in search results",
+   "type": "string",
+   "suggested": false
+  },
+  "canon": {
+   "label": {
+    "en": "Canon",
+    "de": "Kanon"
+   },
+   "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+   "type": "string",
+   "suggestedvalues": [
+    "Tolkien",
+    "Westernis",
+    "Draft"
+   ],
+   "default": "Westernis",
+   "suggested": false
+  },
+  "accent": {
+   "label": {
+    "en": "Accent colour",
+    "de": "Akzentfarbe"
+   },
+   "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)",
+   "type": "string",
+   "suggested": false
+  }
+ },
+ "paramOrder": [
+  "name",
+  "script",
+  "image",
+  "caption",
+  "othernames",
+  "sequence",
+  "year_start",
+  "year_end",
+  "prefix",
+  "preceded_by",
+  "followed_by",
+  "defining_events",
+  "description",
+  "short",
+  "canon",
+  "accent"
+ ]
+}
+</templatedata>
+[[Category:Infobox templates]]
+</noinclude><includeonly>{{#cargo_store:_table=Eras|name={{{name|{{PAGENAME}}}}}|script={{{script|}}}|image={{{image|}}}|caption={{{caption|}}}|othernames={{{othernames|}}}|sequence={{{sequence|}}}|year_start={{{year_start|}}}|year_end={{{year_end|}}}|prefix={{{prefix|}}}|preceded_by={{{preceded_by|}}}|followed_by={{{followed_by|}}}|defining_events={{{defining_events|}}}|description={{{description|}}}|canon={{{canon|Westernis}}}}}<!--
+-->{{#if:{{{short|}}}|{{SHORTDESC:{{{short}}}}}}}<!--
+-->{{Infobox era/core
+|name={{{name|}}}
+|script={{{script|}}}
+|image={{{image|}}}
+|caption={{{caption|}}}
+|othernames={{{othernames|}}}
+|sequence={{{sequence|}}}
+|year_start={{{year_start|}}}
+|year_end={{{year_end|}}}
+|prefix={{{prefix|}}}
+|preceded_by={{#if:{{{preceded_by|}}}|[[{{{preceded_by}}}]]}}
+|followed_by={{#if:{{{followed_by|}}}|[[{{{followed_by}}}]]}}
+|defining_events={{#invoke:Westernis|list|{{{defining_events|}}}}}
+|description={{{description|}}}
+|span={{#if:{{{year_start|}}}|{{{year_start}}}{{#if:{{{year_end|}}}|&#8239;–&#8239;{{{year_end}}}}}}}
+|canon={{{canon|Westernis}}}
+|accent={{{accent|}}}
+|pagename={{PAGENAME}}
+}}<!--
+-->[[Category:Eras]]{{#switch:{{{canon|Westernis}}}|Tolkien=[[Category:Tolkien canon]]|Draft=[[Category:Draft articles]]|#default=[[Category:Westernis canon]]}}{{#if:{{{image|}}}||[[Category:Articles without an image]]}}</includeonly>

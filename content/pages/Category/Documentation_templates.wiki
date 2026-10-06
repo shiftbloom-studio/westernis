@@ -1,0 +1,3 @@
+{{DISPLAYTITLE:Dokumentationsvorlagen}}__HIDDENCAT__
+Helfer für Vorlagendokumentationen.
+[[Category:Wartung]]

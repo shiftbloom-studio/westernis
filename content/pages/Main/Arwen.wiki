@@ -1,0 +1,32 @@
+{{Infobox character
+| othernames = Undómiel, Abendstern
+| titles = Königin des Wiedervereinigten Königreichs
+| race = Elves
+| culture = Half-elven
+| gender = weiblich
+| realm = Gondor
+| location = Minas Tirith
+| birth_year = 241
+| birth_era = Third Age
+| birthplace = Rivendell
+| death_year = 121
+| death_era = Fourth Age
+| deathplace = Lothlórien
+| parentage = Elrond, Celebrían
+| siblings = Elladan, Elrohir
+| spouse = Aragorn II
+| children = Eldarion
+| hair = Dunkel
+| eyes = Grau
+| language = Sindarin, Westron
+| notablefor = Wählte ein sterbliches Leben, um sich mit Aragorn zu vermählen, und wurde Königin von Gondor.
+| short = Abendstern ihres Volkes, Königin von Gondor
+| canon = Tolkien
+}}
+'''Arwen''' Undómiel war die Tochter [[Elrond]]s und Celebríans. Sie wählte das Geschick der [[Men|Menschen]], um sich mit [[Aragorn II|Aragorn]] zu vermählen, und herrschte an seiner Seite als Königin.
+
+== Stammbaum ==
+{{Family tree}}
+
+== Auftritte in den Chroniken ==
+{{Appearances}}

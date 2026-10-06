@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Pflanzen}}{{Category header|type=creature|kicker=Geschöpfe|title=Pflanzen|description=Alle Einträge der Art „Pflanze“.|form=Creature|table=Creatures|placeholder=Neues Geschöpf …}}
+[[Category:Creatures|Pflanzen]]

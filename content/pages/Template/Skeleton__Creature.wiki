@@ -1,0 +1,26 @@
+<noinclude>
+Gerüst für neue Einträge der Art „Geschöpf“, vorgeladen von [[Form:Creature]]. Frei bearbeitbar; die Reihenfolge der Abschnitte bitte im ganzen Wiki gleich halten.
+[[Category:Skeleton templates]]
+</noinclude>'''{{PAGENAME}}''' waren … <!-- Einleitung -->
+
+== Beschreibung ==
+<!-- Beschreibung: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Geschichte ==
+<!-- Geschichte: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Namhafte Vertreter ==
+<!-- Namhafte Vertreter: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Namenskunde ==
+<!-- Namenskunde: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Bildnisse ==
+<gallery mode="packed-hover">
+</gallery>
+
+== Siehe auch ==
+<!-- Siehe auch: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Anmerkungen ==
+<references />

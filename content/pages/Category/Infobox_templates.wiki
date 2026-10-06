@@ -1,0 +1,3 @@
+{{DISPLAYTITLE:Infobox-Vorlagen}}__HIDDENCAT__
+Die Infobox-Vorlagen der Eintragsarten (erzeugt aus tools/gen-entities/entities.js).
+[[Category:Wartung]]

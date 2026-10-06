@@ -1,0 +1,21 @@
+{{Infobox location
+| type = Settlement
+| othernames = Minas Anor, Turm der Wacht, die Weiße Stadt
+| parent = Gondor
+| realm = Gondor
+| founded_year = 3320
+| founded_era = Second Age
+| ruler = Aragorn II
+| inhabitants = Dúnedain, Men
+| events = Battle of the Pelennor Fields
+| description = Die siebenfach gestufte Hauptstadt Gondors, an die Knie des Berges Mindolluin gelehnt.
+| map = Map:Westernis
+| map_x = 60
+| map_y = 70
+| short = Die Weiße Stadt, Hauptstadt Gondors
+| canon = Tolkien
+}}
+'''Minas Tirith''' war die Hauptstadt [[Gondor]]s, eine Stadt aus sieben Mauerringen, die den Hang des Mindolluin hinaufstieg. Im [[Second Age|Zweiten Zeitalter]] als Minas Anor erbaut, erhielt sie den Namen „Turm der Wacht“, als Minas Ithil an den Feind fiel.
+
+== Geschichte ==
+{{Timeline|location=Minas Tirith}}

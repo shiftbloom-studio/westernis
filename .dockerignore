@@ -1,0 +1,28 @@
+# Build context = project root (see docker-compose.yml). The image needs only
+# docker/mediawiki/, scripts/*.sh, content/ and wiki/ (LocalSettings*.php, assets/).
+.git
+.github
+.gitignore
+.gitattributes
+.editorconfig
+.dockerignore
+.mcp.json
+.env
+.env.*
+.dev.vars*
+.claude/
+.wrangler/
+backups/
+docs/
+tools/
+third_party/
+LICENSES/
+node_modules/
+**/node_modules/
+scratch/
+*.md
+**/*.log
+out.html
+scripts/*.ps1
+**/.DS_Store
+**/Thumbs.db

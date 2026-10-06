@@ -1,0 +1,6 @@
+<noinclude>
+Illuminated initial for the first letter of a chronicle or lead paragraph.
+
+<code><nowiki>{{Drop cap|G}}rau war die Straße, und tief lag der Schnee …</nowiki></code>
+[[Category:Layout templates]]
+</noinclude><includeonly><span class="wst-dropcap">{{{1}}}</span></includeonly>

@@ -1,0 +1,6 @@
+<noinclude>
+Illuminated quotation.
+
+<code><nowiki>{{Quote|Grau war die Straße, und tief lag der Schnee.|Ein Waldläufer des Nordens|''Die graue Straße''}}</nowiki></code>
+[[Category:Layout templates]]
+</noinclude><includeonly><div class="wst-quote"><blockquote class="wst-quote-text">{{{1|{{{text|}}}}}}</blockquote>{{#if:{{{2|{{{source|}}}}}}|<div class="wst-quote-source">— {{{2|{{{source|}}}}}}{{#if:{{{3|{{{work|}}}}}}|, {{{3|{{{work|}}}}}}}}</div>}}</div></includeonly>

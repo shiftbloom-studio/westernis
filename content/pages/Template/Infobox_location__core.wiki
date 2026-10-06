@@ -1,0 +1,37 @@
+<noinclude>
+Darstellungsvorlage für [[Template:Infobox location]]. Nicht direkt verwenden.
+[[Category:Infobox templates]]
+</noinclude><includeonly><infobox theme="location" accent-color-source="accent">
+  <title source="name"><default>{{{pagename}}}</default></title>
+  <data source="script"><format><div class="wst-tengwar wst-tengwar-title">{{{script}}}</div></format></data>
+  <image source="image"><caption source="caption"/></image>
+  <data source="othernames"><label>Weitere Namen</label></data>
+  <group>
+    <header>Landeskunde</header>
+    <data source="type"><label>Art</label></data>
+    <data source="parent"><label>Teil von</label></data>
+    <data source="realm"><label>Reich</label></data>
+    <data source="regions"><label>Landstriche</label></data>
+    <data source="settlements"><label>Siedlungen</label></data>
+    <data source="capital"><label>Hauptstadt</label></data>
+    <data source="population"><label>Bevölkerung</label></data>
+  </group>
+  <group>
+    <header>Bewohner</header>
+    <data source="inhabitants"><label>Bewohner</label></data>
+    <data source="language"><label>Sprachen</label></data>
+    <data source="ruler"><label>Herrscher</label></data>
+    <data source="factions"><label>Bünde</label></data>
+  </group>
+  <group>
+    <header>Geschichte</header>
+    <data source="founded"><label>Gegründet</label></data>
+    <data source="destroyed"><label>Zerstört</label></data>
+    <data source="events"><label>Begebenheiten</label></data>
+  </group>
+  <group>
+    <header>Überblick</header>
+    <data source="description"><label>Beschreibung</label><format><div class="wst-pi-long">{{{description}}}</div></format></data>
+  </group>
+  <navigation><span class="wst-pi-nav">{{#invoke:Westernis|canon|{{{canon|}}}}} <span class="wst-pi-type">Ort</span> <span class="wst-pi-edit">[[Special:FormEdit/Location/{{FULLPAGENAME}}|bearbeiten]]</span></span></navigation>
+</infobox></includeonly>

@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Kriege}}{{Category header|type=event|kicker=Begebenheiten|title=Kriege|description=Alle Einträge der Art „Krieg“.|form=Event|table=Events|placeholder=Neue Begebenheit …}}
+[[Category:Events|Kriege]]

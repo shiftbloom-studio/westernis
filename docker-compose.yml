@@ -1,0 +1,89 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-FileCopyrightText: Fabian Zimber / shiftbloom studio
+name: westernis
+
+services:
+  db:
+    image: mariadb:lts
+    container_name: westernis-db
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_AUTO_UPGRADE: "1"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --innodb-buffer-pool-size=512M
+      - --max-allowed-packet=64M
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  cache:
+    image: memcached:1.6-alpine
+    container_name: westernis-cache
+    restart: unless-stopped
+    command: ["memcached", "-m", "128", "-I", "4m"]
+
+  wiki:
+    build:
+      context: .
+      dockerfile: docker/mediawiki/Dockerfile
+    image: westernis/mediawiki:1.46
+    container_name: westernis-wiki
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      cache:
+        condition: service_started
+    ports:
+      - "${WIKI_HOST_PORT:-8088}:80"
+    env_file: .env
+    volumes:
+      - wiki_images:/var/www/html/images
+      - wiki_cache:/var/www/html/cache
+    # LocalSettings.php, /assets, /scripts and /content are baked into the image
+    # (see Dockerfile; no bind mounts), so the stack also runs where the project
+    # folder is not shared with the Docker daemon (e.g. Docker Desktop on Windows).
+    # Use `pwsh scripts/wiki.ps1 sync` after editing them, or
+    # `pwsh scripts/wiki.ps1 up` to rebuild (only the last, tiny layers change).
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS -o /dev/null 'http://localhost/api.php?action=query&meta=siteinfo&format=json' || exit 1"]
+      interval: 20s
+      timeout: 10s
+      retries: 6
+      start_period: 40s
+
+  jobrunner:
+    image: westernis/mediawiki:1.46
+    container_name: westernis-jobrunner
+    restart: unless-stopped
+    depends_on:
+      wiki:
+        condition: service_started   # the loop below simply retries until the schema exists
+      cache:
+        condition: service_started
+    env_file: .env
+    user: www-data            # files it creates in images/ must stay writable for Apache
+    volumes:
+      - wiki_images:/var/www/html/images
+      - wiki_cache:/var/www/html/cache
+    command: >
+      sh -c 'while true; do
+        php maintenance/run.php runJobs --maxjobs 100 --maxtime 50 --wait 2>&1 || sleep 10;
+        sleep 5;
+      done'
+
+volumes:
+  db_data:
+  wiki_images:
+  wiki_cache:

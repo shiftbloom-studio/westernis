@@ -1,0 +1,349 @@
+<noinclude>
+{{#cargo_declare:_table=Factions|name=String|script=String|image=File|caption=String|othernames=List (,) of String|type=String|founder=Page|founded=String|founded_year=Integer|founded_era=Page|leader=Page|seat=Page|realm=Page|disbanded=String|members=List (,) of Page|race=List (,) of Page|affiliation=List (,) of Page|rivalry=List (,) of Page|heirlooms=List (,) of Page|language=Page|colours=String|motto=String|preceded_by=Page|followed_by=Page|purpose=Text|canon=String}}
+'''Infobox faction''' — Ein Haus, Orden, Königreich, eine Gilde, Gemeinschaft oder ein anderer Bund.
+
+Neue Seiten entstehen mit [[Form:Faction]] (oder über [[Westernis:Create]]). Die Felder landen in der Cargo-Tabelle [[Special:CargoTables/Factions|Factions]]. Die Darstellung steckt in [[Template:Infobox faction/core]], das Aussehen in [[MediaWiki:Common.css]] (<code>.pi-theme-faction</code>).
+
+<templatedata>
+{
+ "description": {
+  "en": "A house, order, kingdom, guild, fellowship or other organisation.",
+  "de": "Ein Haus, Orden, Königreich, eine Gilde, Gemeinschaft oder ein anderer Bund."
+ },
+ "format": "{{_\n| ___ = _\n}}",
+ "params": {
+  "name": {
+   "label": {
+    "en": "Name",
+    "de": "Name"
+   },
+   "description": "Display name (defaults to the page name)",
+   "type": "string",
+   "suggested": true
+  },
+  "script": {
+   "label": {
+    "en": "Tengwar",
+    "de": "Tengwar"
+   },
+   "description": "Name in Tengwar or another script (rendered with the Tengwar font)",
+   "type": "string",
+   "suggested": true
+  },
+  "image": {
+   "label": {
+    "en": "Image",
+    "de": "Bild"
+   },
+   "description": "Main image (file name without the File: prefix)",
+   "type": "wiki-file-name",
+   "suggested": true
+  },
+  "caption": {
+   "label": {
+    "en": "Caption",
+    "de": "Bildunterschrift"
+   },
+   "description": "Image caption",
+   "type": "string",
+   "suggested": true
+  },
+  "othernames": {
+   "label": {
+    "en": "Other names",
+    "de": "Weitere Namen"
+   },
+   "description": "Comma-separated alternative names",
+   "type": "string",
+   "suggested": true
+  },
+  "type": {
+   "label": {
+    "en": "Type",
+    "de": "Art"
+   },
+   "description": "House, Order, Kingdom, Guild, Fellowship, Host, Council",
+   "type": "string",
+   "suggestedvalues": [
+    "House",
+    "Order",
+    "Kingdom",
+    "Guild",
+    "Fellowship",
+    "Host",
+    "Council",
+    "Other"
+   ],
+   "suggested": true
+  },
+  "founder": {
+   "label": {
+    "en": "Founder",
+    "de": "Gründer"
+   },
+   "description": "Founder",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "founded": {
+   "label": {
+    "en": "Founded",
+    "de": "Gegründet"
+   },
+   "description": "Founding date",
+   "type": "string",
+   "suggested": true
+  },
+  "founded_year": {
+   "label": {
+    "en": "Founded year",
+    "de": "Gründungsjahr"
+   },
+   "description": "Year within the era",
+   "type": "number",
+   "suggested": false
+  },
+  "founded_era": {
+   "label": {
+    "en": "Founded era",
+    "de": "Zeitalter der Gründung"
+   },
+   "description": "Era of founding",
+   "type": "wiki-page-name",
+   "suggested": false
+  },
+  "leader": {
+   "label": {
+    "en": "Leader",
+    "de": "Anführer"
+   },
+   "description": "Current or last leader",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "seat": {
+   "label": {
+    "en": "Seat",
+    "de": "Sitz"
+   },
+   "description": "Seat, capital or headquarters",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "realm": {
+   "label": {
+    "en": "Realm",
+    "de": "Reich"
+   },
+   "description": "Realm",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "disbanded": {
+   "label": {
+    "en": "Disbanded",
+    "de": "Aufgelöst"
+   },
+   "description": "End of the organisation",
+   "type": "string",
+   "suggested": true
+  },
+  "members": {
+   "label": {
+    "en": "Notable members",
+    "de": "Namhafte Mitglieder"
+   },
+   "description": "Notable members",
+   "type": "string",
+   "suggested": true
+  },
+  "race": {
+   "label": {
+    "en": "Peoples",
+    "de": "Völker"
+   },
+   "description": "Peoples that make up the faction",
+   "type": "string",
+   "suggested": true
+  },
+  "affiliation": {
+   "label": {
+    "en": "Allies",
+    "de": "Verbündete"
+   },
+   "description": "Allied factions",
+   "type": "string",
+   "suggested": true
+  },
+  "rivalry": {
+   "label": {
+    "en": "Rivals",
+    "de": "Widersacher"
+   },
+   "description": "Enemies and rivals",
+   "type": "string",
+   "suggested": true
+  },
+  "heirlooms": {
+   "label": {
+    "en": "Heirlooms",
+    "de": "Erbstücke"
+   },
+   "description": "Artifacts held by the faction",
+   "type": "string",
+   "suggested": true
+  },
+  "language": {
+   "label": {
+    "en": "Language",
+    "de": "Sprache"
+   },
+   "description": "Language",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "colours": {
+   "label": {
+    "en": "Colours",
+    "de": "Farben"
+   },
+   "description": "Heraldic colours",
+   "type": "string",
+   "suggested": true
+  },
+  "motto": {
+   "label": {
+    "en": "Motto",
+    "de": "Wahlspruch"
+   },
+   "description": "Motto or words",
+   "type": "string",
+   "suggested": true
+  },
+  "preceded_by": {
+   "label": {
+    "en": "Preceded by",
+    "de": "Vorgänger"
+   },
+   "description": "Predecessor organisation",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "followed_by": {
+   "label": {
+    "en": "Followed by",
+    "de": "Nachfolger"
+   },
+   "description": "Successor organisation",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "purpose": {
+   "label": {
+    "en": "Purpose",
+    "de": "Zweck"
+   },
+   "description": "What the faction is for",
+   "type": "content",
+   "suggested": true
+  },
+  "short": {
+   "label": {
+    "en": "Short description",
+    "de": "Kurzbeschreibung"
+   },
+   "description": "One line shown under the title and in search results",
+   "type": "string",
+   "suggested": false
+  },
+  "canon": {
+   "label": {
+    "en": "Canon",
+    "de": "Kanon"
+   },
+   "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+   "type": "string",
+   "suggestedvalues": [
+    "Tolkien",
+    "Westernis",
+    "Draft"
+   ],
+   "default": "Westernis",
+   "suggested": false
+  },
+  "accent": {
+   "label": {
+    "en": "Accent colour",
+    "de": "Akzentfarbe"
+   },
+   "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)",
+   "type": "string",
+   "suggested": false
+  }
+ },
+ "paramOrder": [
+  "name",
+  "script",
+  "image",
+  "caption",
+  "othernames",
+  "type",
+  "founder",
+  "founded",
+  "founded_year",
+  "founded_era",
+  "leader",
+  "seat",
+  "realm",
+  "disbanded",
+  "members",
+  "race",
+  "affiliation",
+  "rivalry",
+  "heirlooms",
+  "language",
+  "colours",
+  "motto",
+  "preceded_by",
+  "followed_by",
+  "purpose",
+  "short",
+  "canon",
+  "accent"
+ ]
+}
+</templatedata>
+[[Category:Infobox templates]]
+</noinclude><includeonly>{{#cargo_store:_table=Factions|name={{{name|{{PAGENAME}}}}}|script={{{script|}}}|image={{{image|}}}|caption={{{caption|}}}|othernames={{{othernames|}}}|type={{{type|}}}|founder={{{founder|}}}|founded={{{founded|}}}|founded_year={{{founded_year|}}}|founded_era={{{founded_era|}}}|leader={{{leader|}}}|seat={{{seat|}}}|realm={{{realm|}}}|disbanded={{{disbanded|}}}|members={{{members|}}}|race={{{race|}}}|affiliation={{{affiliation|}}}|rivalry={{{rivalry|}}}|heirlooms={{{heirlooms|}}}|language={{{language|}}}|colours={{{colours|}}}|motto={{{motto|}}}|preceded_by={{{preceded_by|}}}|followed_by={{{followed_by|}}}|purpose={{{purpose|}}}|canon={{{canon|Westernis}}}}}<!--
+-->{{#if:{{{short|}}}|{{SHORTDESC:{{{short}}}}}}}<!--
+-->{{Infobox faction/core
+|name={{{name|}}}
+|script={{{script|}}}
+|image={{{image|}}}
+|caption={{{caption|}}}
+|othernames={{{othernames|}}}
+|type={{#invoke:Westernis|label|{{{type|}}}}}
+|founder={{#if:{{{founder|}}}|[[{{{founder}}}]]}}
+|founded={{#invoke:Westernis|date|{{{founded|}}}|{{{founded_year|}}}|{{{founded_era|}}}}}
+|founded_year={{{founded_year|}}}
+|founded_era={{#if:{{{founded_era|}}}|[[{{{founded_era}}}]]}}
+|leader={{#if:{{{leader|}}}|[[{{{leader}}}]]}}
+|seat={{#if:{{{seat|}}}|[[{{{seat}}}]]}}
+|realm={{#if:{{{realm|}}}|[[{{{realm}}}]]}}
+|disbanded={{{disbanded|}}}
+|members={{#invoke:Westernis|list|{{{members|}}}}}
+|race={{#invoke:Westernis|list|{{{race|}}}}}
+|affiliation={{#invoke:Westernis|list|{{{affiliation|}}}}}
+|rivalry={{#invoke:Westernis|list|{{{rivalry|}}}}}
+|heirlooms={{#invoke:Westernis|list|{{{heirlooms|}}}}}
+|language={{#if:{{{language|}}}|[[{{{language}}}]]}}
+|colours={{{colours|}}}
+|motto={{{motto|}}}
+|preceded_by={{#if:{{{preceded_by|}}}|[[{{{preceded_by}}}]]}}
+|followed_by={{#if:{{{followed_by|}}}|[[{{{followed_by}}}]]}}
+|purpose={{{purpose|}}}
+|canon={{{canon|Westernis}}}
+|accent={{{accent|}}}
+|pagename={{PAGENAME}}
+}}<!--
+-->[[Category:Factions]]{{#switch:{{{type|}}}|House=[[Category:Häuser]]|Order=[[Category:Orden]]|Kingdom=[[Category:Königreiche]]|Guild=[[Category:Gilden]]|Fellowship=[[Category:Gemeinschaften]]|Host=[[Category:Heerscharen]]|Council=[[Category:Räte]]|#default=}}{{#if:{{{realm|}}}|[[Category:Bünde in {{{realm}}}]]}}{{#switch:{{{canon|Westernis}}}|Tolkien=[[Category:Tolkien canon]]|Draft=[[Category:Draft articles]]|#default=[[Category:Westernis canon]]}}{{#if:{{{image|}}}||[[Category:Articles without an image]]}}</includeonly>

@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Instrumente}}{{Category header|type=artifact|kicker=Artefakte|title=Instrumente|description=Alle Einträge der Art „Instrument“.|form=Artifact|table=Artifacts|placeholder=Neues Artefakt …}}
+[[Category:Artifacts|Instrumente]]

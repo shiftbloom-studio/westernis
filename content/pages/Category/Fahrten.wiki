@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Fahrten}}{{Category header|type=event|kicker=Begebenheiten|title=Fahrten|description=Alle Einträge der Art „Fahrt“.|form=Event|table=Events|placeholder=Neue Begebenheit …}}
+[[Category:Events|Fahrten]]

@@ -1,0 +1,4 @@
+<noinclude>
+Ornamental section divider. <code><nowiki>{{Divider}}</nowiki></code>, <code><nowiki>{{Divider|star}}</nowiki></code>, <code><nowiki>{{Divider|knot}}</nowiki></code>
+[[Category:Layout templates]]
+</noinclude><includeonly><div class="wst-divider wst-divider-{{{1|fleuron}}}" role="separator"></div></includeonly>

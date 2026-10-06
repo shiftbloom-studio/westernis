@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Belagerungen}}{{Category header|type=event|kicker=Begebenheiten|title=Belagerungen|description=Alle Einträge der Art „Belagerung“.|form=Event|table=Events|placeholder=Neue Begebenheit …}}
+[[Category:Events|Belagerungen]]

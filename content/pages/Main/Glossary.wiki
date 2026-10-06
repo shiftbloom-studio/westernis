@@ -1,0 +1,29 @@
+{{DISPLAYTITLE:Glossar}}
+{{SHORTDESC:Begriffe, die überall beim Darüberfahren erklärt werden}}
+Dieses '''Glossar''' versammelt die Worte der alten Tage, die in den Einträgen immer wiederkehren. Wo einer dieser Begriffe im Text steht, ist er unterstrichen; fährt man mit dem Zeiger darüber, erscheint seine Erklärung.
+
+<div class="wst-glossary">
+;Ainur
+:Die Heiligen, Geister, die Ilúvatar vor der Welt erschuf; zu ihnen zählten die Valar und die Maiar.
+;Dúnedain
+:Die Menschen des Westens, Nachfahren der Númenórer.
+;Eldar
+:Die Elben, die dem Ruf nach Valinor folgten, und ihre Nachkommen.
+;Istari
+:Die fünf Zauberer, die im Dritten Zeitalter nach Mittelerde gesandt wurden; Gandalf war einer von ihnen.
+;Maiar
+:Geister vom selben Stand wie die Valar, doch von geringerer Macht.
+;Mithril
+:Moria-Silber; das seltenste und kostbarste Metall der Zwerge, silbern schimmernd, leicht und doch überaus fest.
+;Palantír
+:Ein Sehender Stein aus Númenor; sieben wurden nach Mittelerde gebracht.
+;Tengwar
+:Die von Fëanor ersonnene Schrift, in der Quenya, Sindarin und viele andere Sprachen geschrieben wurden.
+;Valar
+:Die Mächte der Welt, die Größten unter den Ainur.
+;Westron
+:Die Gemeinsprache Mittelerdes im Dritten Zeitalter.
+</div>
+
+== Anmerkungen ==
+Neue Begriffe werden als Zeilenpaar eingetragen – <code>;Begriff</code>, darunter <code>:Erklärung</code> (Erweiterung Lingo). Der Begriff muss genau so geschrieben sein, wie er im Fließtext steht.

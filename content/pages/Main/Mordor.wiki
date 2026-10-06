@@ -1,0 +1,14 @@
+{{Infobox location
+| type = Realm
+| othernames = Das Schwarze Land, Land des Schattens
+| capital = Barad-dûr
+| ruler = Sauron
+| events = War of the Ring
+| description = Das von Gebirgen umwallte Reich Saurons im Südosten; in den Feuern des Orodruin wurde dort der Eine Ring geschmiedet.
+| map = Map:Westernis
+| map_x = 76
+| map_y = 70
+| short = Saurons Schwarzes Land
+| canon = Tolkien
+}}
+'''Mordor''' war das Reich Saurons, an drei Seiten von Gebirgen umwallt. Darin standen Barad-dûr und der Feuerberg Orodruin, wo der [[One Ring|Eine Ring]] geschaffen und wieder vernichtet wurde.

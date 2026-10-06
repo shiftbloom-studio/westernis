@@ -1,0 +1,27 @@
+{{Infobox location
+| type = Realm
+| othernames = Das Südkönigreich, Reich des Steinlandes
+| capital = Minas Tirith
+| regions = Ithilien, Anórien, Lebennin
+| settlements = Minas Tirith
+| inhabitants = Dúnedain, Men
+| language = Westron, Sindarin
+| ruler = Aragorn II
+| founded_year = 3320
+| founded_era = Second Age
+| events = War of the Ring, Battle of the Pelennor Fields
+| factions = Rangers of the North
+| description = Das südliche Reich der Dúnedain im Exil, nach dem Untergang Númenors von Elendil und seinen Söhnen gegründet.
+| map = Map:Westernis
+| map_x = 58
+| map_y = 72
+| short = Das Südkönigreich der Dúnedain
+| canon = Tolkien
+}}
+'''Gondor''' war das südliche Königreich der [[Dúnedain]], gegen Ende des [[Second Age|Zweiten Zeitalters]] von Elendil und seinen Söhnen Isildur und Anárion gegründet. Jahrhundertelang von Truchsessen regiert, erhielt es nach dem [[War of the Ring|Ringkrieg]] durch [[Aragorn II|Aragorn]] sein Königtum zurück.
+
+== Geschichte ==
+{{Timeline|location=Gondor}}
+
+== Bewohner ==
+{{Relationships}}

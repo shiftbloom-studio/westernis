@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Heerscharen}}{{Category header|type=faction|kicker=Bünde|title=Heerscharen|description=Alle Einträge der Art „Heerschar“.|form=Faction|table=Factions|placeholder=Neuer Bund …}}
+[[Category:Factions|Heerscharen]]

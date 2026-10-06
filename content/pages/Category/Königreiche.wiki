@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Königreiche}}{{Category header|type=faction|kicker=Bünde|title=Königreiche|description=Alle Einträge der Art „Königreich“.|form=Faction|table=Factions|placeholder=Neuer Bund …}}
+[[Category:Factions|Königreiche]]

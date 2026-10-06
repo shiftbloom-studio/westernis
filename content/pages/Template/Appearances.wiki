@@ -1,0 +1,22 @@
+<noinclude>
+Lists the chronicles and events in which the current page (character, place, artifact, faction) appears, from the Cargo tables. Place under <code>== Appearances ==</code>.
+
+Optional: <code>|page=Other title</code> to query for a different page.
+[[Category:Query templates]]
+</noinclude><includeonly><div class="wst-appearances">{{#cargo_query:tables=Chronicles
+|fields=_pageName=Chronicle,_pageTitle=Label,era=Era
+|where=characters HOLDS "{{{page|{{PAGENAME}}}}}" OR pov HOLDS "{{{page|{{PAGENAME}}}}}" OR locations HOLDS "{{{page|{{PAGENAME}}}}}" OR events HOLDS "{{{page|{{PAGENAME}}}}}"
+|order by=sequence,_pageName
+|format=template|template=Appearances/row|named args=yes
+|intro=<div class="wst-appearances-group"><div class="wst-appearances-label">Chroniken</div><ul class="wst-appearances-list">
+|outro=</ul></div>
+|default=
+}}{{#cargo_query:tables=Events
+|fields=_pageName=Chronicle,_pageTitle=Label,date=Status,era=Era
+|where=participants HOLDS "{{{page|{{PAGENAME}}}}}" OR location HOLDS "{{{page|{{PAGENAME}}}}}" OR factions HOLDS "{{{page|{{PAGENAME}}}}}" OR side1 HOLDS "{{{page|{{PAGENAME}}}}}" OR side2 HOLDS "{{{page|{{PAGENAME}}}}}" OR commanders1 HOLDS "{{{page|{{PAGENAME}}}}}" OR commanders2 HOLDS "{{{page|{{PAGENAME}}}}}"
+|order by=year_start,_pageName
+|format=template|template=Appearances/row|named args=yes
+|intro=<div class="wst-appearances-group"><div class="wst-appearances-label">Begebenheiten</div><ul class="wst-appearances-list">
+|outro=</ul></div>
+|default=
+}}</div></includeonly>

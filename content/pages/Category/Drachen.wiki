@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Drachen}}{{Category header|type=creature|kicker=Geschöpfe|title=Drachen|description=Alle Einträge der Art „Drache“.|form=Creature|table=Creatures|placeholder=Neues Geschöpf …}}
+[[Category:Creatures|Drachen]]

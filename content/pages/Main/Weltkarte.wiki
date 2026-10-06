@@ -1,0 +1,3 @@
+{{SHORTDESC:Die Lande von Westernis und Mittelerde}}__NOTOC__ __NOEDITSECTION__<div class="wst-mapview">{{Map:Westernis}}</div>
+<div class="wst-mapview-note">Ein Siegel anklicken, um seinen Eintrag aufzuschlagen · Strg + Mausrad vergrößert die Karte</div>
+<div class="wst-mapview-note wst-mapview-note-editor">Neue Siegel werden auf der [[Map:Westernis|Kartenseite]] eingetragen – dort über das Stift-Symbol auf der Karte.</div>

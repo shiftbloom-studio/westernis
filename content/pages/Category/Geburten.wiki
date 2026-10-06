@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Geburten}}{{Category header|type=event|kicker=Begebenheiten|title=Geburten|description=Alle Einträge der Art „Geburt“.|form=Event|table=Events|placeholder=Neue Begebenheit …}}
+[[Category:Events|Geburten]]

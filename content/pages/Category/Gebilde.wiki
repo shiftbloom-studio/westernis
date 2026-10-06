@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Gebilde}}{{Category header|type=creature|kicker=Geschöpfe|title=Gebilde|description=Alle Einträge der Art „Gebilde“.|form=Creature|table=Creatures|placeholder=Neues Geschöpf …}}
+[[Category:Creatures|Gebilde]]

@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Räte}}{{Category header|type=event|kicker=Begebenheiten|title=Räte|description=Alle Einträge der Art „Rat“.|form=Event|table=Events|placeholder=Neue Begebenheit …}}
+[[Category:Events|Räte]]

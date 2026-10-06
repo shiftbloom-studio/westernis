@@ -1,0 +1,8 @@
+<noinclude>
+Draws a three-generation family tree for the current character from the Characters Cargo table (parentage, spouse, siblings, children, plus reverse lookups). Place under <code>== Genealogy ==</code>.
+
+* <code>{{Family tree}}</code> — tree of the current page
+* <code>{{Family tree|page=Elrond}}</code> — tree of another character
+For larger, hand-drawn trees use <code><nowiki>{{#mermaid:graph TD; A-->B}}</nowiki></code>.
+[[Category:Query templates]]
+</noinclude><includeonly>{{#invoke:Family|tree|page={{{page|{{PAGENAME}}}}}}}</includeonly>

@@ -1,0 +1,45 @@
+# Secrets and per-machine settings (the real configuration lives in .env)
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+wiki/LocalSettings.local.php
+LocalSettings.local.php
+.claude/settings.local.json
+CLAUDE.local.md
+# Cloudflare deployment: rendered per install (account ID, hostnames, Access AUD); migration bundles hold password hashes
+cloud/wrangler.jsonc
+cloud/migrate/out/
+
+# Runtime data and local tool state (backups/ holds copies of .env and database dumps)
+backups/
+.wrangler/
+*.log
+
+# Dependencies and build output
+node_modules/
+tools/forge-mcp/dist/
+
+# Scratch
+scratch/
+tmp/
+out.html
+*.tmp
+*.bak
+
+# OS and editor junk
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+desktop.ini
+$RECYCLE.BIN/
+*~
+*.swp
+*.swo
+.idea/
+.vscode/*
+!.vscode/extensions.json

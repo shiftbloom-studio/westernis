@@ -1,0 +1,41 @@
+<noinclude>
+Darstellungsvorlage für [[Template:Infobox event]]. Nicht direkt verwenden.
+[[Category:Infobox templates]]
+</noinclude><includeonly><infobox theme="event" accent-color-source="accent">
+  <title source="name"><default>{{{pagename}}}</default></title>
+  <data source="script"><format><div class="wst-tengwar wst-tengwar-title">{{{script}}}</div></format></data>
+  <image source="image"><caption source="caption"/></image>
+  <data source="othernames"><label>Weitere Namen</label></data>
+    <data source="years"><label>Jahre</label></data>
+  <group>
+    <header>Begebenheit</header>
+    <data source="type"><label>Art</label></data>
+    <data source="date"><label>Datum</label></data>
+    <data source="location"><label>Schauplatz</label></data>
+    <data source="part_of"><label>Teil von</label></data>
+    <data source="preceded_by"><label>Vorgänger</label></data>
+    <data source="followed_by"><label>Nachfolger</label></data>
+  </group>
+  <group>
+    <header>Beteiligte</header>
+    <data source="participants"><label>Beteiligte</label></data>
+    <data source="factions"><label>Bünde</label></data>
+    <data source="result"><label>Ausgang</label><format><div class="wst-pi-long">{{{result}}}</div></format></data>
+  </group>
+  <group collapse="closed">
+    <header>Kriegsparteien</header>
+    <data source="side1"><label>Erste Partei</label></data>
+    <data source="side2"><label>Zweite Partei</label></data>
+    <data source="commanders1"><label>Heerführer (erste)</label></data>
+    <data source="commanders2"><label>Heerführer (zweite)</label></data>
+    <data source="forces1"><label>Streitmacht (erste)</label></data>
+    <data source="forces2"><label>Streitmacht (zweite)</label></data>
+    <data source="casualties1"><label>Verluste (erste)</label></data>
+    <data source="casualties2"><label>Verluste (zweite)</label></data>
+  </group>
+  <group>
+    <header>Überblick</header>
+    <data source="description"><label>Beschreibung</label><format><div class="wst-pi-long">{{{description}}}</div></format></data>
+  </group>
+  <navigation><span class="wst-pi-nav">{{#invoke:Westernis|canon|{{{canon|}}}}} <span class="wst-pi-type">Begebenheit</span> <span class="wst-pi-edit">[[Special:FormEdit/Event/{{FULLPAGENAME}}|bearbeiten]]</span></span></navigation>
+</infobox></includeonly>

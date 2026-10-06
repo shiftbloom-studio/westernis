@@ -1,0 +1,25 @@
+<noinclude>
+Darstellungsvorlage für [[Template:Infobox language]]. Nicht direkt verwenden.
+[[Category:Infobox templates]]
+</noinclude><includeonly><infobox theme="language" accent-color-source="accent">
+  <title source="name"><default>{{{pagename}}}</default></title>
+  <data source="script"><format><div class="wst-tengwar wst-tengwar-title">{{{script}}}</div></format></data>
+  <image source="image"><caption source="caption"/></image>
+  <data source="othernames"><label>Weitere Namen</label></data>
+  <group>
+    <header>Einordnung</header>
+    <data source="family"><label>Sprachstamm</label></data>
+    <data source="parent"><label>Abgeleitet von</label></data>
+    <data source="writing"><label>Schrift</label></data>
+    <data source="speakers"><label>Gesprochen von</label></data>
+    <data source="region"><label>Verbreitung</label></data>
+    <data source="era"><label>Zeitalter</label></data>
+  </group>
+  <group>
+    <header>Sprachprobe</header>
+    <data source="sample"><label>Probe</label><format><div class="wst-pi-long">{{{sample}}}</div></format></data>
+    <data source="sample_script"><label>Probe (Schrift)</label><format><span class="wst-tengwar">{{{sample_script}}}</span></format></data>
+    <data source="sample_meaning"><label>Bedeutung</label></data>
+  </group>
+  <navigation><span class="wst-pi-nav">{{#invoke:Westernis|canon|{{{canon|}}}}} <span class="wst-pi-type">Sprache</span> <span class="wst-pi-edit">[[Special:FormEdit/Language/{{FULLPAGENAME}}|bearbeiten]]</span></span></navigation>
+</infobox></includeonly>

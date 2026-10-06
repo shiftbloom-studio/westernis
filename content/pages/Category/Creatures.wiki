@@ -1,0 +1,3 @@
+{{#default_form:Creature}}{{DISPLAYTITLE:Geschöpfe}}
+{{Category header|type=creature|title=Geschöpfe|singular=Geschöpf|placeholder=Neues Geschöpf …|form=Creature|table=Creatures|description=Tiere, Ungeheuer und andere Geschöpfe: Drachen, Adler, Warge, Geister.}}
+[[Category:Westernis|Geschöpfe]]

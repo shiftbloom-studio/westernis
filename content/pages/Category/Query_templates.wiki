@@ -1,0 +1,3 @@
+{{DISPLAYTITLE:Abfragevorlagen}}__HIDDENCAT__
+Vorlagen, die ihren Inhalt aus den Cargo-Tabellen ziehen (Zeittafel, Stammbaum, Beziehungen, Auftritte).
+[[Category:Wartung]]

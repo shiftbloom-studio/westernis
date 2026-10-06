@@ -1,0 +1,27 @@
+<noinclude>
+Darstellungsvorlage für [[Template:Infobox creature]]. Nicht direkt verwenden.
+[[Category:Infobox templates]]
+</noinclude><includeonly><infobox theme="creature" accent-color-source="accent">
+  <title source="name"><default>{{{pagename}}}</default></title>
+  <data source="script"><format><div class="wst-tengwar wst-tengwar-title">{{{script}}}</div></format></data>
+  <image source="image"><caption source="caption"/></image>
+  <data source="othernames"><label>Weitere Namen</label></data>
+  <group>
+    <header>Wesen</header>
+    <data source="type"><label>Art</label></data>
+    <data source="origin"><label>Ursprung</label></data>
+    <data source="habitat"><label>Lebensraum</label></data>
+    <data source="alignment"><label>Gesinnung</label></data>
+    <data source="size"><label>Größe</label></data>
+    <data source="first_era"><label>Erstmals bezeugt</label></data>
+  </group>
+  <group>
+    <header>Namhafte Vertreter</header>
+    <data source="notable_individuals"></data>
+  </group>
+  <group>
+    <header>Überblick</header>
+    <data source="abilities"><label>Fähigkeiten</label><format><div class="wst-pi-long">{{{abilities}}}</div></format></data>
+  </group>
+  <navigation><span class="wst-pi-nav">{{#invoke:Westernis|canon|{{{canon|}}}}} <span class="wst-pi-type">Geschöpf</span> <span class="wst-pi-edit">[[Special:FormEdit/Creature/{{FULLPAGENAME}}|bearbeiten]]</span></span></navigation>
+</infobox></includeonly>

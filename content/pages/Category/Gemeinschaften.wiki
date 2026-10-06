@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Gemeinschaften}}{{Category header|type=faction|kicker=Bünde|title=Gemeinschaften|description=Alle Einträge der Art „Gemeinschaft“.|form=Faction|table=Factions|placeholder=Neuer Bund …}}
+[[Category:Factions|Gemeinschaften]]

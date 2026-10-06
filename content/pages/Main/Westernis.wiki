@@ -1,0 +1,13 @@
+{{SHORTDESC:Deine Welt – hier beginnt alles}}
+{{Stub|needs=alles; diese Seite ist dir zum Schreiben überlassen}}
+'''Westernis''' ist die Welt, deren Chronik dieses Wiki führt. Die Beispielseiten, die überall im Wiki verstreut liegen, fassen Tolkiens Legendarium zusammen, damit Vorlagen, Zeittafeln und Stammbäume etwas zu zeigen haben; dein eigener Kanon tritt neben sie oder legt sich über sie.
+
+== Erste Schritte ==
+* [[Westernis:Create|Einen Eintrag beginnen]] – Formulare für jede Art von Eintrag
+* [[Westernis:Manual of Style|Stilregeln]] – wie hier geschrieben wird
+* [[Westernis:Canon|Kanon]] – Tolkien-Kanon, Westernis-Kanon und Entwürfe
+* [[Westernis:AI workflow|Arbeiten mit Claude Code]] – Kunde sammeln und weiterspinnen
+* [[Map:Westernis|Weltkarte]] – die Karte der bekannten Lande
+
+== Die Zeitalter ==
+{{#cargo_query:tables=Eras|fields=_pageName=Zeitalter,prefix=Kürzel,year_start=Beginn,year_end=Ende,description=Beschreibung|order by=sequence|format=table}}

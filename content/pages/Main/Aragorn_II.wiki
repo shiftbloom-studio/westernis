@@ -1,0 +1,45 @@
+{{Infobox character
+| othernames = Streicher, Elessar, Estel, Thorongil
+| titles = König des Wiedervereinigten Königreichs, Häuptling der Dúnedain
+| race = Men
+| culture = Dúnedain
+| gender = männlich
+| affiliation = Rangers of the North, Fellowship of the Ring
+| position = König von Gondor und Arnor
+| realm = Gondor
+| location = Minas Tirith
+| birth = 1. März
+| birth_year = 2931
+| birth_era = Third Age
+| birthplace = Eriador
+| death = 1. März
+| death_year = 120
+| death_era = Fourth Age
+| deathplace = Minas Tirith
+| age = 210
+| rule = V.Z. 1 – 120
+| parentage = Arathorn II, Gilraen
+| spouse = Arwen
+| children = Eldarion
+| height = Hochgewachsen
+| hair = Dunkel
+| eyes = Grau
+| weapons = Andúril
+| language = Westron, Sindarin
+| notablefor = Erbe Isildurs, der nach dem Ringkrieg das Königtum von Gondor und Arnor erneuerte.
+| short = Erbe Isildurs, König Elessar
+| canon = Tolkien
+}}
+'''Aragorn II.''', genannt '''Elessar''', war der letzte Häuptling der [[Rangers of the North|Waldläufer des Nordens]] und der erste König des Wiedervereinigten Königreichs. In [[Rivendell|Bruchtal]] unter dem Namen Estel aufgewachsen, zog er viele Jahre als Streicher durch die Wildnis, ehe ihn der [[War of the Ring|Ringkrieg]] auf den Thron [[Gondor]]s führte.
+
+== Stammbaum ==
+{{Family tree}}
+
+== Beziehungen ==
+{{Relationships}}
+
+== Auftritte in den Chroniken ==
+{{Appearances}}
+
+== Anmerkungen ==
+<references />

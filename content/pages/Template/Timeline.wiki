@@ -1,0 +1,21 @@
+<noinclude>
+Vertical timeline of events from the Events Cargo table.
+
+* <code>{{Timeline|era=Third Age}}</code> — all events of an era, by year
+* <code>{{Timeline|era=Third Age|from=2941|to=3021}}</code> — a span of years
+* <code>{{Timeline|location=Gondor}}</code> — events at a place
+* <code>{{Timeline|participant=Aragorn II}}</code> — events of a person
+* <code>{{Timeline|type=Battle}}</code> — one kind of event
+* <code>{{Timeline}}</code> — everything, ordered by era sequence then year
+[[Category:Query templates]]
+</noinclude><includeonly><div class="wst-timeline">
+{{#cargo_query:tables=Events,Eras
+|join on=Events.era=Eras._pageName
+|fields=Events._pageName=Page,Events.type=Kind,Events.date=Date,Events.year_start=Year,Events.year_end=YearEnd,Events.era=Era,Eras.prefix=Prefix,Events.description=Description,Events.image=Image
+|where={{#if:{{{era|}}}|Events.era="{{{era}}}"|1=1}} {{#if:{{{from|}}}|AND Events.year_start>={{{from}}}}} {{#if:{{{to|}}}|AND Events.year_start<={{{to}}}}} {{#if:{{{location|}}}|AND Events.location HOLDS "{{{location}}}"}} {{#if:{{{participant|}}}|AND (Events.participants HOLDS "{{{participant}}}" OR Events.commanders1 HOLDS "{{{participant}}}" OR Events.commanders2 HOLDS "{{{participant}}}")}} {{#if:{{{type|}}}|AND Events.type="{{{type}}}"}}
+|order by=Eras.sequence,Events.year_start,Events._pageName
+|limit={{{limit|200}}}
+|format=template|template=Timeline/row|named args=yes
+|default=<div class="wst-timeline-empty">Noch keine Begebenheiten verzeichnet{{#if:{{{era|}}}|&#32;({{{era}}})}}.</div>
+}}
+</div></includeonly>

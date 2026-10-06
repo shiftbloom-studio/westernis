@@ -1,0 +1,460 @@
+<noinclude>
+{{#cargo_declare:_table=Characters|name=String|script=String|image=File|caption=String|othernames=List (,) of String|titles=List (,) of String|race=Page|culture=Page|gender=String|house=Page|affiliation=List (,) of Page|position=String|realm=Page|location=Page|birth=String|birth_year=Integer|birth_era=Page|birthplace=Page|death=String|death_year=Integer|death_era=Page|deathplace=Page|age=String|rule=String|parentage=List (,) of Page|siblings=List (,) of Page|spouse=List (,) of Page|children=List (,) of Page|height=String|hair=String|eyes=String|clothing=String|weapons=List (,) of Page|steed=Page|language=List (,) of Page|notablefor=Text|canon=String}}
+'''Infobox character''' — Eine Person aus Westernis oder Mittelerde: Könige, Wanderer, Gelehrte, Widersacher.
+
+Neue Seiten entstehen mit [[Form:Character]] (oder über [[Westernis:Create]]). Die Felder landen in der Cargo-Tabelle [[Special:CargoTables/Characters|Characters]]. Die Darstellung steckt in [[Template:Infobox character/core]], das Aussehen in [[MediaWiki:Common.css]] (<code>.pi-theme-character</code>).
+
+<templatedata>
+{
+ "description": {
+  "en": "A person of Westernis or Middle-earth: kings, wanderers, loremasters, villains.",
+  "de": "Eine Person aus Westernis oder Mittelerde: Könige, Wanderer, Gelehrte, Widersacher."
+ },
+ "format": "{{_\n| ___ = _\n}}",
+ "params": {
+  "name": {
+   "label": {
+    "en": "Name",
+    "de": "Name"
+   },
+   "description": "Display name (defaults to the page name)",
+   "type": "string",
+   "suggested": true
+  },
+  "script": {
+   "label": {
+    "en": "Tengwar",
+    "de": "Tengwar"
+   },
+   "description": "Name in Tengwar or another script (rendered with the Tengwar font)",
+   "type": "string",
+   "suggested": true
+  },
+  "image": {
+   "label": {
+    "en": "Image",
+    "de": "Bild"
+   },
+   "description": "Main image (file name without the File: prefix)",
+   "type": "wiki-file-name",
+   "suggested": true
+  },
+  "caption": {
+   "label": {
+    "en": "Caption",
+    "de": "Bildunterschrift"
+   },
+   "description": "Image caption",
+   "type": "string",
+   "suggested": true
+  },
+  "othernames": {
+   "label": {
+    "en": "Other names",
+    "de": "Weitere Namen"
+   },
+   "description": "Comma-separated alternative names",
+   "type": "string",
+   "suggested": true
+  },
+  "titles": {
+   "label": {
+    "en": "Titles",
+    "de": "Titel"
+   },
+   "description": "Titles and epithets",
+   "type": "string",
+   "suggested": true
+  },
+  "race": {
+   "label": {
+    "en": "Race",
+    "de": "Volk"
+   },
+   "description": "People or race (e.g. Men, Elves, Dwarves)",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "culture": {
+   "label": {
+    "en": "Culture",
+    "de": "Kultur"
+   },
+   "description": "Culture or folk within the race (e.g. Dúnedain, Noldor)",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "gender": {
+   "label": {
+    "en": "Gender",
+    "de": "Geschlecht"
+   },
+   "description": "Gender",
+   "type": "string",
+   "suggested": true
+  },
+  "house": {
+   "label": {
+    "en": "House",
+    "de": "Haus"
+   },
+   "description": "Noble house or family",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "affiliation": {
+   "label": {
+    "en": "Affiliation",
+    "de": "Bündnisse"
+   },
+   "description": "Factions, orders, fellowships",
+   "type": "string",
+   "suggested": true
+  },
+  "position": {
+   "label": {
+    "en": "Position",
+    "de": "Stellung"
+   },
+   "description": "Office or role (e.g. King of Gondor)",
+   "type": "string",
+   "suggested": true
+  },
+  "realm": {
+   "label": {
+    "en": "Realm",
+    "de": "Reich"
+   },
+   "description": "Realm most associated with",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "location": {
+   "label": {
+    "en": "Location",
+    "de": "Aufenthalt"
+   },
+   "description": "Current or last known location",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "birth": {
+   "label": {
+    "en": "Birth",
+    "de": "Geburt"
+   },
+   "description": "Day/month or free text (e.g. 1 March)",
+   "type": "string",
+   "suggested": true
+  },
+  "birth_year": {
+   "label": {
+    "en": "Birth year",
+    "de": "Geburtsjahr"
+   },
+   "description": "Year number within the era",
+   "type": "number",
+   "suggested": false
+  },
+  "birth_era": {
+   "label": {
+    "en": "Birth era",
+    "de": "Zeitalter der Geburt"
+   },
+   "description": "Era/Age of birth",
+   "type": "wiki-page-name",
+   "suggested": false
+  },
+  "birthplace": {
+   "label": {
+    "en": "Birthplace",
+    "de": "Geburtsort"
+   },
+   "description": "Place of birth",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "death": {
+   "label": {
+    "en": "Death",
+    "de": "Tod"
+   },
+   "description": "Day/month or free text",
+   "type": "string",
+   "suggested": true
+  },
+  "death_year": {
+   "label": {
+    "en": "Death year",
+    "de": "Todesjahr"
+   },
+   "description": "Year number within the era",
+   "type": "number",
+   "suggested": false
+  },
+  "death_era": {
+   "label": {
+    "en": "Death era",
+    "de": "Zeitalter des Todes"
+   },
+   "description": "Era/Age of death",
+   "type": "wiki-page-name",
+   "suggested": false
+  },
+  "deathplace": {
+   "label": {
+    "en": "Place of death",
+    "de": "Sterbeort"
+   },
+   "description": "Place of death",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "age": {
+   "label": {
+    "en": "Age",
+    "de": "Alter"
+   },
+   "description": "Age at death or current age",
+   "type": "string",
+   "suggested": true
+  },
+  "rule": {
+   "label": {
+    "en": "Rule",
+    "de": "Herrschaft"
+   },
+   "description": "Reign or period of office",
+   "type": "string",
+   "suggested": true
+  },
+  "parentage": {
+   "label": {
+    "en": "Parentage",
+    "de": "Eltern"
+   },
+   "description": "Parents",
+   "type": "string",
+   "suggested": true
+  },
+  "siblings": {
+   "label": {
+    "en": "Siblings",
+    "de": "Geschwister"
+   },
+   "description": "Siblings",
+   "type": "string",
+   "suggested": true
+  },
+  "spouse": {
+   "label": {
+    "en": "Spouse",
+    "de": "Gemahl(in)"
+   },
+   "description": "Spouse(s)",
+   "type": "string",
+   "suggested": true
+  },
+  "children": {
+   "label": {
+    "en": "Children",
+    "de": "Kinder"
+   },
+   "description": "Children",
+   "type": "string",
+   "suggested": true
+  },
+  "height": {
+   "label": {
+    "en": "Height",
+    "de": "Größe"
+   },
+   "description": "Height",
+   "type": "string",
+   "suggested": true
+  },
+  "hair": {
+   "label": {
+    "en": "Hair",
+    "de": "Haar"
+   },
+   "description": "Hair colour",
+   "type": "string",
+   "suggested": true
+  },
+  "eyes": {
+   "label": {
+    "en": "Eyes",
+    "de": "Augen"
+   },
+   "description": "Eye colour",
+   "type": "string",
+   "suggested": true
+  },
+  "clothing": {
+   "label": {
+    "en": "Clothing",
+    "de": "Gewandung"
+   },
+   "description": "Typical garb",
+   "type": "string",
+   "suggested": true
+  },
+  "weapons": {
+   "label": {
+    "en": "Weapons",
+    "de": "Waffen"
+   },
+   "description": "Weapons and artifacts carried",
+   "type": "string",
+   "suggested": true
+  },
+  "steed": {
+   "label": {
+    "en": "Steed",
+    "de": "Ross"
+   },
+   "description": "Mount",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "language": {
+   "label": {
+    "en": "Languages",
+    "de": "Sprachen"
+   },
+   "description": "Languages spoken",
+   "type": "string",
+   "suggested": true
+  },
+  "notablefor": {
+   "label": {
+    "en": "Notable for",
+    "de": "Bedeutung"
+   },
+   "description": "One or two sentences on why this character matters",
+   "type": "content",
+   "suggested": true
+  },
+  "short": {
+   "label": {
+    "en": "Short description",
+    "de": "Kurzbeschreibung"
+   },
+   "description": "One line shown under the title and in search results",
+   "type": "string",
+   "suggested": false
+  },
+  "canon": {
+   "label": {
+    "en": "Canon",
+    "de": "Kanon"
+   },
+   "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+   "type": "string",
+   "suggestedvalues": [
+    "Tolkien",
+    "Westernis",
+    "Draft"
+   ],
+   "default": "Westernis",
+   "suggested": false
+  },
+  "accent": {
+   "label": {
+    "en": "Accent colour",
+    "de": "Akzentfarbe"
+   },
+   "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)",
+   "type": "string",
+   "suggested": false
+  }
+ },
+ "paramOrder": [
+  "name",
+  "script",
+  "image",
+  "caption",
+  "othernames",
+  "titles",
+  "race",
+  "culture",
+  "gender",
+  "house",
+  "affiliation",
+  "position",
+  "realm",
+  "location",
+  "birth",
+  "birth_year",
+  "birth_era",
+  "birthplace",
+  "death",
+  "death_year",
+  "death_era",
+  "deathplace",
+  "age",
+  "rule",
+  "parentage",
+  "siblings",
+  "spouse",
+  "children",
+  "height",
+  "hair",
+  "eyes",
+  "clothing",
+  "weapons",
+  "steed",
+  "language",
+  "notablefor",
+  "short",
+  "canon",
+  "accent"
+ ]
+}
+</templatedata>
+[[Category:Infobox templates]]
+</noinclude><includeonly>{{#cargo_store:_table=Characters|name={{{name|{{PAGENAME}}}}}|script={{{script|}}}|image={{{image|}}}|caption={{{caption|}}}|othernames={{{othernames|}}}|titles={{{titles|}}}|race={{{race|}}}|culture={{{culture|}}}|gender={{{gender|}}}|house={{{house|}}}|affiliation={{{affiliation|}}}|position={{{position|}}}|realm={{{realm|}}}|location={{{location|}}}|birth={{{birth|}}}|birth_year={{{birth_year|}}}|birth_era={{{birth_era|}}}|birthplace={{{birthplace|}}}|death={{{death|}}}|death_year={{{death_year|}}}|death_era={{{death_era|}}}|deathplace={{{deathplace|}}}|age={{{age|}}}|rule={{{rule|}}}|parentage={{{parentage|}}}|siblings={{{siblings|}}}|spouse={{{spouse|}}}|children={{{children|}}}|height={{{height|}}}|hair={{{hair|}}}|eyes={{{eyes|}}}|clothing={{{clothing|}}}|weapons={{{weapons|}}}|steed={{{steed|}}}|language={{{language|}}}|notablefor={{{notablefor|}}}|canon={{{canon|Westernis}}}}}<!--
+-->{{#if:{{{short|}}}|{{SHORTDESC:{{{short}}}}}}}<!--
+-->{{Infobox character/core
+|name={{{name|}}}
+|script={{{script|}}}
+|image={{{image|}}}
+|caption={{{caption|}}}
+|othernames={{{othernames|}}}
+|titles={{{titles|}}}
+|race={{#if:{{{race|}}}|[[{{{race}}}]]}}
+|culture={{#if:{{{culture|}}}|[[{{{culture}}}]]}}
+|gender={{{gender|}}}
+|house={{#if:{{{house|}}}|[[{{{house}}}]]}}
+|affiliation={{#invoke:Westernis|list|{{{affiliation|}}}}}
+|position={{{position|}}}
+|realm={{#if:{{{realm|}}}|[[{{{realm}}}]]}}
+|location={{#if:{{{location|}}}|[[{{{location}}}]]}}
+|birth={{#invoke:Westernis|date|{{{birth|}}}|{{{birth_year|}}}|{{{birth_era|}}}}}
+|birth_year={{{birth_year|}}}
+|birth_era={{#if:{{{birth_era|}}}|[[{{{birth_era}}}]]}}
+|birthplace={{#if:{{{birthplace|}}}|[[{{{birthplace}}}]]}}
+|death={{#invoke:Westernis|date|{{{death|}}}|{{{death_year|}}}|{{{death_era|}}}}}
+|death_year={{{death_year|}}}
+|death_era={{#if:{{{death_era|}}}|[[{{{death_era}}}]]}}
+|deathplace={{#if:{{{deathplace|}}}|[[{{{deathplace}}}]]}}
+|age={{{age|}}}
+|rule={{{rule|}}}
+|parentage={{#invoke:Westernis|list|{{{parentage|}}}}}
+|siblings={{#invoke:Westernis|list|{{{siblings|}}}}}
+|spouse={{#invoke:Westernis|list|{{{spouse|}}}}}
+|children={{#invoke:Westernis|list|{{{children|}}}}}
+|height={{{height|}}}
+|hair={{{hair|}}}
+|eyes={{{eyes|}}}
+|clothing={{{clothing|}}}
+|weapons={{#invoke:Westernis|list|{{{weapons|}}}}}
+|steed={{#if:{{{steed|}}}|[[{{{steed}}}]]}}
+|language={{#invoke:Westernis|list|{{{language|}}}}}
+|notablefor={{{notablefor|}}}
+|canon={{{canon|Westernis}}}
+|accent={{{accent|}}}
+|pagename={{PAGENAME}}
+}}<!--
+-->[[Category:Characters]]{{#if:{{{race|}}}|[[Category:{{{race}}}]]}}{{#if:{{{realm|}}}|[[Category:Gestalten aus {{{realm}}}]]}}{{#if:{{{house|}}}|[[Category:Angehörige von {{{house}}}]]}}{{#switch:{{{canon|Westernis}}}|Tolkien=[[Category:Tolkien canon]]|Draft=[[Category:Draft articles]]|#default=[[Category:Westernis canon]]}}{{#if:{{{image|}}}||[[Category:Articles without an image]]}}</includeonly>

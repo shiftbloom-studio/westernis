@@ -1,0 +1,365 @@
+<noinclude>
+{{#cargo_declare:_table=Events|name=String|script=String|image=File|caption=String|othernames=List (,) of String|type=String|date=String|year_start=Integer|year_end=Integer|era=Page|location=List (,) of Page|part_of=Page|preceded_by=Page|followed_by=Page|participants=List (,) of Page|factions=List (,) of Page|result=Text|side1=List (,) of Page|side2=List (,) of Page|commanders1=List (,) of Page|commanders2=List (,) of Page|forces1=String|forces2=String|casualties1=String|casualties2=String|description=Text|canon=String}}
+'''Infobox event''' — Schlachten, Ratsversammlungen, Gründungen, Eide, Fahrten, Unheil und Feste.
+
+Neue Seiten entstehen mit [[Form:Event]] (oder über [[Westernis:Create]]). Die Felder landen in der Cargo-Tabelle [[Special:CargoTables/Events|Events]]. Die Darstellung steckt in [[Template:Infobox event/core]], das Aussehen in [[MediaWiki:Common.css]] (<code>.pi-theme-event</code>).
+
+<templatedata>
+{
+ "description": {
+  "en": "Battles, councils, founding, oaths, journeys, disasters and festivals.",
+  "de": "Schlachten, Ratsversammlungen, Gründungen, Eide, Fahrten, Unheil und Feste."
+ },
+ "format": "{{_\n| ___ = _\n}}",
+ "params": {
+  "name": {
+   "label": {
+    "en": "Name",
+    "de": "Name"
+   },
+   "description": "Display name (defaults to the page name)",
+   "type": "string",
+   "suggested": true
+  },
+  "script": {
+   "label": {
+    "en": "Tengwar",
+    "de": "Tengwar"
+   },
+   "description": "Name in Tengwar or another script (rendered with the Tengwar font)",
+   "type": "string",
+   "suggested": true
+  },
+  "image": {
+   "label": {
+    "en": "Image",
+    "de": "Bild"
+   },
+   "description": "Main image (file name without the File: prefix)",
+   "type": "wiki-file-name",
+   "suggested": true
+  },
+  "caption": {
+   "label": {
+    "en": "Caption",
+    "de": "Bildunterschrift"
+   },
+   "description": "Image caption",
+   "type": "string",
+   "suggested": true
+  },
+  "othernames": {
+   "label": {
+    "en": "Other names",
+    "de": "Weitere Namen"
+   },
+   "description": "Comma-separated alternative names",
+   "type": "string",
+   "suggested": true
+  },
+  "type": {
+   "label": {
+    "en": "Type",
+    "de": "Art"
+   },
+   "description": "Battle, War, Siege, Council, Founding, Oath, Journey, Disaster, Festival, Birth, Death",
+   "type": "string",
+   "suggestedvalues": [
+    "Battle",
+    "War",
+    "Siege",
+    "Council",
+    "Founding",
+    "Oath",
+    "Journey",
+    "Disaster",
+    "Festival",
+    "Birth",
+    "Death",
+    "Other"
+   ],
+   "suggested": true
+  },
+  "date": {
+   "label": {
+    "en": "Date",
+    "de": "Datum"
+   },
+   "description": "Date text (e.g. 15 March)",
+   "type": "string",
+   "suggested": true
+  },
+  "year_start": {
+   "label": {
+    "en": "Year",
+    "de": "Jahr"
+   },
+   "description": "Start year within the era",
+   "type": "number",
+   "suggested": false
+  },
+  "year_end": {
+   "label": {
+    "en": "End year",
+    "de": "Endjahr"
+   },
+   "description": "End year (for wars/periods)",
+   "type": "number",
+   "suggested": false
+  },
+  "era": {
+   "label": {
+    "en": "Era",
+    "de": "Zeitalter"
+   },
+   "description": "Era/Age",
+   "type": "wiki-page-name",
+   "suggested": false
+  },
+  "location": {
+   "label": {
+    "en": "Location",
+    "de": "Schauplatz"
+   },
+   "description": "Where it happened",
+   "type": "string",
+   "suggested": true
+  },
+  "part_of": {
+   "label": {
+    "en": "Part of",
+    "de": "Teil von"
+   },
+   "description": "Larger conflict or event",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "preceded_by": {
+   "label": {
+    "en": "Preceded by",
+    "de": "Vorgänger"
+   },
+   "description": "Previous event",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "followed_by": {
+   "label": {
+    "en": "Followed by",
+    "de": "Nachfolger"
+   },
+   "description": "Next event",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "participants": {
+   "label": {
+    "en": "Participants",
+    "de": "Beteiligte"
+   },
+   "description": "Characters involved",
+   "type": "string",
+   "suggested": true
+  },
+  "factions": {
+   "label": {
+    "en": "Factions",
+    "de": "Bünde"
+   },
+   "description": "Factions involved",
+   "type": "string",
+   "suggested": true
+  },
+  "result": {
+   "label": {
+    "en": "Result",
+    "de": "Ausgang"
+   },
+   "description": "Outcome",
+   "type": "content",
+   "suggested": true
+  },
+  "side1": {
+   "label": {
+    "en": "Side 1",
+    "de": "Erste Partei"
+   },
+   "description": "First side",
+   "type": "string",
+   "suggested": true
+  },
+  "side2": {
+   "label": {
+    "en": "Side 2",
+    "de": "Zweite Partei"
+   },
+   "description": "Second side",
+   "type": "string",
+   "suggested": true
+  },
+  "commanders1": {
+   "label": {
+    "en": "Commanders 1",
+    "de": "Heerführer (erste)"
+   },
+   "description": "Commanders of side 1",
+   "type": "string",
+   "suggested": true
+  },
+  "commanders2": {
+   "label": {
+    "en": "Commanders 2",
+    "de": "Heerführer (zweite)"
+   },
+   "description": "Commanders of side 2",
+   "type": "string",
+   "suggested": true
+  },
+  "forces1": {
+   "label": {
+    "en": "Forces 1",
+    "de": "Streitmacht (erste)"
+   },
+   "description": "Strength of side 1",
+   "type": "string",
+   "suggested": true
+  },
+  "forces2": {
+   "label": {
+    "en": "Forces 2",
+    "de": "Streitmacht (zweite)"
+   },
+   "description": "Strength of side 2",
+   "type": "string",
+   "suggested": true
+  },
+  "casualties1": {
+   "label": {
+    "en": "Casualties 1",
+    "de": "Verluste (erste)"
+   },
+   "description": "Losses of side 1",
+   "type": "string",
+   "suggested": true
+  },
+  "casualties2": {
+   "label": {
+    "en": "Casualties 2",
+    "de": "Verluste (zweite)"
+   },
+   "description": "Losses of side 2",
+   "type": "string",
+   "suggested": true
+  },
+  "description": {
+   "label": {
+    "en": "Description",
+    "de": "Beschreibung"
+   },
+   "description": "One or two sentences",
+   "type": "content",
+   "suggested": true
+  },
+  "short": {
+   "label": {
+    "en": "Short description",
+    "de": "Kurzbeschreibung"
+   },
+   "description": "One line shown under the title and in search results",
+   "type": "string",
+   "suggested": false
+  },
+  "canon": {
+   "label": {
+    "en": "Canon",
+    "de": "Kanon"
+   },
+   "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+   "type": "string",
+   "suggestedvalues": [
+    "Tolkien",
+    "Westernis",
+    "Draft"
+   ],
+   "default": "Westernis",
+   "suggested": false
+  },
+  "accent": {
+   "label": {
+    "en": "Accent colour",
+    "de": "Akzentfarbe"
+   },
+   "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)",
+   "type": "string",
+   "suggested": false
+  }
+ },
+ "paramOrder": [
+  "name",
+  "script",
+  "image",
+  "caption",
+  "othernames",
+  "type",
+  "date",
+  "year_start",
+  "year_end",
+  "era",
+  "location",
+  "part_of",
+  "preceded_by",
+  "followed_by",
+  "participants",
+  "factions",
+  "result",
+  "side1",
+  "side2",
+  "commanders1",
+  "commanders2",
+  "forces1",
+  "forces2",
+  "casualties1",
+  "casualties2",
+  "description",
+  "short",
+  "canon",
+  "accent"
+ ]
+}
+</templatedata>
+[[Category:Infobox templates]]
+</noinclude><includeonly>{{#cargo_store:_table=Events|name={{{name|{{PAGENAME}}}}}|script={{{script|}}}|image={{{image|}}}|caption={{{caption|}}}|othernames={{{othernames|}}}|type={{{type|}}}|date={{{date|}}}|year_start={{{year_start|}}}|year_end={{{year_end|}}}|era={{{era|}}}|location={{{location|}}}|part_of={{{part_of|}}}|preceded_by={{{preceded_by|}}}|followed_by={{{followed_by|}}}|participants={{{participants|}}}|factions={{{factions|}}}|result={{{result|}}}|side1={{{side1|}}}|side2={{{side2|}}}|commanders1={{{commanders1|}}}|commanders2={{{commanders2|}}}|forces1={{{forces1|}}}|forces2={{{forces2|}}}|casualties1={{{casualties1|}}}|casualties2={{{casualties2|}}}|description={{{description|}}}|canon={{{canon|Westernis}}}}}<!--
+-->{{#if:{{{short|}}}|{{SHORTDESC:{{{short}}}}}}}<!--
+-->{{Infobox event/core
+|name={{{name|}}}
+|script={{{script|}}}
+|image={{{image|}}}
+|caption={{{caption|}}}
+|othernames={{{othernames|}}}
+|type={{#invoke:Westernis|label|{{{type|}}}}}
+|date={{#invoke:Westernis|date|{{{date|}}}|{{{year_start|}}}|{{{era|}}}}}
+|year_start={{{year_start|}}}
+|year_end={{{year_end|}}}
+|era={{#if:{{{era|}}}|[[{{{era}}}]]}}
+|location={{#invoke:Westernis|list|{{{location|}}}}}
+|part_of={{#if:{{{part_of|}}}|[[{{{part_of}}}]]}}
+|preceded_by={{#if:{{{preceded_by|}}}|[[{{{preceded_by}}}]]}}
+|followed_by={{#if:{{{followed_by|}}}|[[{{{followed_by}}}]]}}
+|participants={{#invoke:Westernis|list|{{{participants|}}}}}
+|factions={{#invoke:Westernis|list|{{{factions|}}}}}
+|result={{{result|}}}
+|side1={{#invoke:Westernis|list|{{{side1|}}}}}
+|side2={{#invoke:Westernis|list|{{{side2|}}}}}
+|commanders1={{#invoke:Westernis|list|{{{commanders1|}}}}}
+|commanders2={{#invoke:Westernis|list|{{{commanders2|}}}}}
+|forces1={{{forces1|}}}
+|forces2={{{forces2|}}}
+|casualties1={{{casualties1|}}}
+|casualties2={{{casualties2|}}}
+|description={{{description|}}}
+|years={{#invoke:Westernis|years|{{{year_start|}}}|{{{year_end|}}}|{{{era|}}}}}
+|canon={{{canon|Westernis}}}
+|accent={{{accent|}}}
+|pagename={{PAGENAME}}
+}}<!--
+-->[[Category:Events]]{{#switch:{{{type|}}}|Battle=[[Category:Schlachten]]|War=[[Category:Kriege]]|Siege=[[Category:Belagerungen]]|Council=[[Category:Räte]]|Founding=[[Category:Gründungen]]|Oath=[[Category:Eide]]|Journey=[[Category:Fahrten]]|Disaster=[[Category:Unglücke]]|Festival=[[Category:Feste]]|Birth=[[Category:Geburten]]|Death=[[Category:Tode]]|#default=}}{{#if:{{{era|}}}|[[Category:Begebenheiten im Zeitalter {{{era}}}]]}}{{#switch:{{{canon|Westernis}}}|Tolkien=[[Category:Tolkien canon]]|Draft=[[Category:Draft articles]]|#default=[[Category:Westernis canon]]}}{{#if:{{{image|}}}||[[Category:Articles without an image]]}}</includeonly>

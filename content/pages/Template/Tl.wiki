@@ -1,0 +1,1 @@
+<noinclude>Shows a template name as a link: <code><nowiki>{{tl|Infobox character}}</nowiki></code>[[Category:Documentation templates]]</noinclude><includeonly><code>&#123;&#123;[[Template:{{{1}}}|{{{1}}}]]&#125;&#125;</code></includeonly>

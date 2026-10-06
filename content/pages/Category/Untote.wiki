@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Untote}}{{Category header|type=creature|kicker=Geschöpfe|title=Untote|description=Alle Einträge der Art „Untoter“.|form=Creature|table=Creatures|placeholder=Neues Geschöpf …}}
+[[Category:Creatures|Untote]]

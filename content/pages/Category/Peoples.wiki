@@ -1,0 +1,3 @@
+{{#default_form:People}}{{DISPLAYTITLE:Völker}}
+{{Category header|type=people|title=Völker|singular=Volk|placeholder=Neues Volk …|form=People|table=Peoples|description=Ein Volk: Elben, Menschen, Zwerge, Hobbits und die Sippen in ihnen.}}
+[[Category:Westernis|Völker]]

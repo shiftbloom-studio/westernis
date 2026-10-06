@@ -1,0 +1,14 @@
+{{Infobox location
+| type = Region
+| othernames = Die Einsamen Lande
+| regions = The Shire, Bree-land
+| settlements = Rivendell
+| inhabitants = Dúnedain, Elves
+| description = Die weiten Lande zwischen dem Nebelgebirge und den Blauen Bergen, einst das Königreich Arnor.
+| map = Map:Westernis
+| map_x = 32
+| map_y = 36
+| short = Die Lande westlich des Nebelgebirges
+| canon = Tolkien
+}}
+'''Eriador''' war das Land zwischen dem Nebelgebirge und den Blauen Bergen. Einst gehörte es zum Königreich Arnor; gegen Ende des [[Third Age|Dritten Zeitalters]] war es nur noch dünn besiedelt und wurde von den [[Rangers of the North|Waldläufern des Nordens]] bewacht.

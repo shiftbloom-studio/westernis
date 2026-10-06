@@ -1,0 +1,29 @@
+<noinclude>
+Gerüst für neue Einträge der Art „Ort“, vorgeladen von [[Form:Location]]. Frei bearbeitbar; die Reihenfolge der Abschnitte bitte im ganzen Wiki gleich halten.
+[[Category:Skeleton templates]]
+</noinclude>'''{{PAGENAME}}''' war ein … <!-- Einleitung: was für ein Ort, wo, warum von Bedeutung -->
+
+== Landeskunde ==
+<!-- Landeskunde: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Geschichte ==
+<!-- Geschichte: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Bewohner ==
+<!-- Bewohner: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Namenskunde ==
+<!-- Namenskunde: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Weitere Namen ==
+<!-- Weitere Namen: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Bildnisse ==
+<gallery mode="packed-hover">
+</gallery>
+
+== Siehe auch ==
+<!-- Siehe auch: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Anmerkungen ==
+<references />

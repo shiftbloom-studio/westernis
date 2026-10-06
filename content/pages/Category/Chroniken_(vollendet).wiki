@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Chroniken (vollendet)}}{{Category header|type=chronicle|kicker=Chroniken|title=Chroniken (vollendet)|description=Alle Einträge der Art „vollendet“.|form=Chronicle|table=Chronicles|namespace=Chronicle|placeholder=Neue Chronik …}}
+[[Category:Chronicles|Chroniken (vollendet)]]

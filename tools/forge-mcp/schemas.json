@@ -1,0 +1,2600 @@
+{
+  "generatedFrom": "tools/gen-entities/entities.js",
+  "language": "de",
+  "entities": [
+    {
+      "key": "character",
+      "singular": "Character",
+      "plural": "Characters",
+      "template": "Infobox character",
+      "form": "Character",
+      "table": "Characters",
+      "category": "Characters",
+      "namespace": "",
+      "accent": "#b23a48",
+      "icon": "crown",
+      "description": "A person of Westernis or Middle-earth: kings, wanderers, loremasters, villains.",
+      "labelDe": {
+        "singular": "Gestalt",
+        "plural": "Gestalten",
+        "description": "Eine Person aus Westernis oder Mittelerde: Könige, Wanderer, Gelehrte, Widersacher."
+      },
+      "fields": [
+        {
+          "name": "name",
+          "type": "String",
+          "label": "Name",
+          "labelDe": "Name",
+          "description": "Display name (defaults to the page name)"
+        },
+        {
+          "name": "script",
+          "type": "String",
+          "label": "Tengwar",
+          "labelDe": "Tengwar",
+          "description": "Name in Tengwar or another script (rendered with the Tengwar font)"
+        },
+        {
+          "name": "image",
+          "type": "File",
+          "label": "Image",
+          "labelDe": "Bild",
+          "description": "Main image (file name without the File: prefix)"
+        },
+        {
+          "name": "caption",
+          "type": "String",
+          "label": "Caption",
+          "labelDe": "Bildunterschrift",
+          "description": "Image caption"
+        },
+        {
+          "name": "othernames",
+          "type": "List of String",
+          "label": "Other names",
+          "labelDe": "Weitere Namen",
+          "description": "Comma-separated alternative names"
+        },
+        {
+          "name": "titles",
+          "type": "List of String",
+          "label": "Titles",
+          "labelDe": "Titel",
+          "description": "Titles and epithets"
+        },
+        {
+          "name": "race",
+          "type": "Page",
+          "label": "Race",
+          "labelDe": "Volk",
+          "description": "People or race (e.g. Men, Elves, Dwarves)",
+          "linksTo": "Peoples"
+        },
+        {
+          "name": "culture",
+          "type": "Page",
+          "label": "Culture",
+          "labelDe": "Kultur",
+          "description": "Culture or folk within the race (e.g. Dúnedain, Noldor)",
+          "linksTo": "Peoples"
+        },
+        {
+          "name": "gender",
+          "type": "String",
+          "label": "Gender",
+          "labelDe": "Geschlecht",
+          "description": "Gender"
+        },
+        {
+          "name": "house",
+          "type": "Page",
+          "label": "House",
+          "labelDe": "Haus",
+          "description": "Noble house or family",
+          "linksTo": "Factions"
+        },
+        {
+          "name": "affiliation",
+          "type": "List of Page",
+          "label": "Affiliation",
+          "labelDe": "Bündnisse",
+          "description": "Factions, orders, fellowships",
+          "linksTo": "Factions"
+        },
+        {
+          "name": "position",
+          "type": "String",
+          "label": "Position",
+          "labelDe": "Stellung",
+          "description": "Office or role (e.g. King of Gondor)"
+        },
+        {
+          "name": "realm",
+          "type": "Page",
+          "label": "Realm",
+          "labelDe": "Reich",
+          "description": "Realm most associated with",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "location",
+          "type": "Page",
+          "label": "Location",
+          "labelDe": "Aufenthalt",
+          "description": "Current or last known location",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "birth",
+          "type": "String",
+          "label": "Birth",
+          "labelDe": "Geburt",
+          "description": "Day/month or free text (e.g. 1 March)",
+          "dateParts": [
+            "birth_year",
+            "birth_era"
+          ]
+        },
+        {
+          "name": "birth_year",
+          "type": "Integer",
+          "label": "Birth year",
+          "labelDe": "Geburtsjahr",
+          "description": "Year number within the era"
+        },
+        {
+          "name": "birth_era",
+          "type": "Page",
+          "label": "Birth era",
+          "labelDe": "Zeitalter der Geburt",
+          "description": "Era/Age of birth",
+          "linksTo": "Eras"
+        },
+        {
+          "name": "birthplace",
+          "type": "Page",
+          "label": "Birthplace",
+          "labelDe": "Geburtsort",
+          "description": "Place of birth",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "death",
+          "type": "String",
+          "label": "Death",
+          "labelDe": "Tod",
+          "description": "Day/month or free text",
+          "dateParts": [
+            "death_year",
+            "death_era"
+          ]
+        },
+        {
+          "name": "death_year",
+          "type": "Integer",
+          "label": "Death year",
+          "labelDe": "Todesjahr",
+          "description": "Year number within the era"
+        },
+        {
+          "name": "death_era",
+          "type": "Page",
+          "label": "Death era",
+          "labelDe": "Zeitalter des Todes",
+          "description": "Era/Age of death",
+          "linksTo": "Eras"
+        },
+        {
+          "name": "deathplace",
+          "type": "Page",
+          "label": "Place of death",
+          "labelDe": "Sterbeort",
+          "description": "Place of death",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "age",
+          "type": "String",
+          "label": "Age",
+          "labelDe": "Alter",
+          "description": "Age at death or current age"
+        },
+        {
+          "name": "rule",
+          "type": "String",
+          "label": "Rule",
+          "labelDe": "Herrschaft",
+          "description": "Reign or period of office"
+        },
+        {
+          "name": "parentage",
+          "type": "List of Page",
+          "label": "Parentage",
+          "labelDe": "Eltern",
+          "description": "Parents",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "siblings",
+          "type": "List of Page",
+          "label": "Siblings",
+          "labelDe": "Geschwister",
+          "description": "Siblings",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "spouse",
+          "type": "List of Page",
+          "label": "Spouse",
+          "labelDe": "Gemahl(in)",
+          "description": "Spouse(s)",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "children",
+          "type": "List of Page",
+          "label": "Children",
+          "labelDe": "Kinder",
+          "description": "Children",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "height",
+          "type": "String",
+          "label": "Height",
+          "labelDe": "Größe",
+          "description": "Height"
+        },
+        {
+          "name": "hair",
+          "type": "String",
+          "label": "Hair",
+          "labelDe": "Haar",
+          "description": "Hair colour"
+        },
+        {
+          "name": "eyes",
+          "type": "String",
+          "label": "Eyes",
+          "labelDe": "Augen",
+          "description": "Eye colour"
+        },
+        {
+          "name": "clothing",
+          "type": "String",
+          "label": "Clothing",
+          "labelDe": "Gewandung",
+          "description": "Typical garb"
+        },
+        {
+          "name": "weapons",
+          "type": "List of Page",
+          "label": "Weapons",
+          "labelDe": "Waffen",
+          "description": "Weapons and artifacts carried",
+          "linksTo": "Artifacts"
+        },
+        {
+          "name": "steed",
+          "type": "Page",
+          "label": "Steed",
+          "labelDe": "Ross",
+          "description": "Mount",
+          "linksTo": "Creatures"
+        },
+        {
+          "name": "language",
+          "type": "List of Page",
+          "label": "Languages",
+          "labelDe": "Sprachen",
+          "description": "Languages spoken",
+          "linksTo": "Languages"
+        },
+        {
+          "name": "notablefor",
+          "type": "Text",
+          "label": "Notable for",
+          "labelDe": "Bedeutung",
+          "description": "One or two sentences on why this character matters"
+        },
+        {
+          "name": "short",
+          "type": "String",
+          "label": "Short description",
+          "labelDe": "Kurzbeschreibung",
+          "description": "One line shown under the title and in search results"
+        },
+        {
+          "name": "canon",
+          "type": "String",
+          "label": "Canon",
+          "labelDe": "Kanon",
+          "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+          "values": [
+            "Tolkien",
+            "Westernis",
+            "Draft"
+          ],
+          "valueLabelsDe": {
+            "Tolkien": "Tolkien",
+            "Westernis": "Westernis",
+            "Draft": "Entwurf"
+          }
+        },
+        {
+          "name": "accent",
+          "type": "String",
+          "label": "Accent colour",
+          "labelDe": "Akzentfarbe",
+          "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)"
+        }
+      ],
+      "sections": [
+        "Geschichte",
+        "Vermächtnis",
+        "Namenskunde",
+        "Weitere Namen",
+        "Stammbaum",
+        "Beziehungen",
+        "Auftritte in den Chroniken",
+        "Bildnisse",
+        "Siehe auch",
+        "Anmerkungen"
+      ],
+      "sectionKeys": [
+        "History",
+        "Legacy",
+        "Etymology",
+        "Other names",
+        "Genealogy",
+        "Relationships",
+        "Appearances",
+        "Gallery",
+        "See also",
+        "Notes"
+      ],
+      "leadHint": "'''{{PAGENAME}}''' war … <!-- Einleitung in 1–3 Absätzen: wer, wann, warum von Bedeutung -->"
+    },
+    {
+      "key": "location",
+      "singular": "Location",
+      "plural": "Locations",
+      "template": "Infobox location",
+      "form": "Location",
+      "table": "Locations",
+      "category": "Locations",
+      "namespace": "",
+      "accent": "#2f6b4f",
+      "icon": "tower",
+      "description": "A place: realm, region, settlement, fortress, landmark, river, forest, sea.",
+      "labelDe": {
+        "singular": "Ort",
+        "plural": "Orte",
+        "description": "Ein Ort: Reich, Landstrich, Siedlung, Festung, Wahrzeichen, Fluss, Wald, Meer."
+      },
+      "fields": [
+        {
+          "name": "name",
+          "type": "String",
+          "label": "Name",
+          "labelDe": "Name",
+          "description": "Display name (defaults to the page name)"
+        },
+        {
+          "name": "script",
+          "type": "String",
+          "label": "Tengwar",
+          "labelDe": "Tengwar",
+          "description": "Name in Tengwar or another script (rendered with the Tengwar font)"
+        },
+        {
+          "name": "image",
+          "type": "File",
+          "label": "Image",
+          "labelDe": "Bild",
+          "description": "Main image (file name without the File: prefix)"
+        },
+        {
+          "name": "caption",
+          "type": "String",
+          "label": "Caption",
+          "labelDe": "Bildunterschrift",
+          "description": "Image caption"
+        },
+        {
+          "name": "othernames",
+          "type": "List of String",
+          "label": "Other names",
+          "labelDe": "Weitere Namen",
+          "description": "Comma-separated alternative names"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "label": "Type",
+          "labelDe": "Art",
+          "description": "Realm, Region, Settlement, Fortress, Landmark, Mountain, River, Forest, Sea, Island",
+          "values": [
+            "Realm",
+            "Region",
+            "Settlement",
+            "Fortress",
+            "Landmark",
+            "Mountain",
+            "River",
+            "Forest",
+            "Sea",
+            "Island",
+            "Other"
+          ],
+          "valueLabelsDe": {
+            "Realm": "Reich",
+            "Region": "Landstrich",
+            "Settlement": "Siedlung",
+            "Fortress": "Festung",
+            "Landmark": "Wahrzeichen",
+            "Mountain": "Berg",
+            "River": "Fluss",
+            "Forest": "Wald",
+            "Sea": "Meer",
+            "Island": "Insel",
+            "Other": "Sonstiges"
+          }
+        },
+        {
+          "name": "parent",
+          "type": "Page",
+          "label": "Part of",
+          "labelDe": "Teil von",
+          "description": "Parent region or realm",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "realm",
+          "type": "Page",
+          "label": "Realm",
+          "labelDe": "Reich",
+          "description": "Realm the place belongs to",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "regions",
+          "type": "List of Page",
+          "label": "Regions",
+          "labelDe": "Landstriche",
+          "description": "Sub-regions",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "settlements",
+          "type": "List of Page",
+          "label": "Settlements",
+          "labelDe": "Siedlungen",
+          "description": "Notable settlements",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "capital",
+          "type": "Page",
+          "label": "Capital",
+          "labelDe": "Hauptstadt",
+          "description": "Capital (for realms)",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "population",
+          "type": "String",
+          "label": "Population",
+          "labelDe": "Bevölkerung",
+          "description": "Population or inhabitants count"
+        },
+        {
+          "name": "inhabitants",
+          "type": "List of Page",
+          "label": "Inhabitants",
+          "labelDe": "Bewohner",
+          "description": "Peoples living here",
+          "linksTo": "Peoples"
+        },
+        {
+          "name": "language",
+          "type": "List of Page",
+          "label": "Languages",
+          "labelDe": "Sprachen",
+          "description": "Languages spoken",
+          "linksTo": "Languages"
+        },
+        {
+          "name": "ruler",
+          "type": "Page",
+          "label": "Ruler",
+          "labelDe": "Herrscher",
+          "description": "Ruler or steward",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "factions",
+          "type": "List of Page",
+          "label": "Factions",
+          "labelDe": "Bünde",
+          "description": "Houses, orders and kingdoms based here",
+          "linksTo": "Factions"
+        },
+        {
+          "name": "founded",
+          "type": "String",
+          "label": "Founded",
+          "labelDe": "Gegründet",
+          "description": "Founding date text",
+          "dateParts": [
+            "founded_year",
+            "founded_era"
+          ]
+        },
+        {
+          "name": "founded_year",
+          "type": "Integer",
+          "label": "Founded year",
+          "labelDe": "Gründungsjahr",
+          "description": "Year within the era"
+        },
+        {
+          "name": "founded_era",
+          "type": "Page",
+          "label": "Founded era",
+          "labelDe": "Zeitalter der Gründung",
+          "description": "Era of founding",
+          "linksTo": "Eras"
+        },
+        {
+          "name": "destroyed",
+          "type": "String",
+          "label": "Destroyed",
+          "labelDe": "Zerstört",
+          "description": "Date of destruction or abandonment",
+          "dateParts": [
+            "destroyed_year",
+            "destroyed_era"
+          ]
+        },
+        {
+          "name": "destroyed_year",
+          "type": "Integer",
+          "label": "Destroyed year",
+          "labelDe": "Jahr der Zerstörung",
+          "description": "Year within the era"
+        },
+        {
+          "name": "destroyed_era",
+          "type": "Page",
+          "label": "Destroyed era",
+          "labelDe": "Zeitalter der Zerstörung",
+          "description": "Era of destruction",
+          "linksTo": "Eras"
+        },
+        {
+          "name": "events",
+          "type": "List of Page",
+          "label": "Events",
+          "labelDe": "Begebenheiten",
+          "description": "Notable events here",
+          "linksTo": "Events"
+        },
+        {
+          "name": "map",
+          "type": "Page",
+          "label": "Map",
+          "labelDe": "Karte",
+          "description": "Reference only: the map page this place appears on (markers themselves are edited on Map:Westernis)"
+        },
+        {
+          "name": "map_x",
+          "type": "Float",
+          "label": "Map X",
+          "labelDe": "Karte X",
+          "description": "Reference X coordinate (0–100) for the marker on Map:Westernis"
+        },
+        {
+          "name": "map_y",
+          "type": "Float",
+          "label": "Map Y",
+          "labelDe": "Karte Y",
+          "description": "Reference Y coordinate (0–100) for the marker on Map:Westernis"
+        },
+        {
+          "name": "description",
+          "type": "Text",
+          "label": "Description",
+          "labelDe": "Beschreibung",
+          "description": "One or two sentences describing the place"
+        },
+        {
+          "name": "short",
+          "type": "String",
+          "label": "Short description",
+          "labelDe": "Kurzbeschreibung",
+          "description": "One line shown under the title and in search results"
+        },
+        {
+          "name": "canon",
+          "type": "String",
+          "label": "Canon",
+          "labelDe": "Kanon",
+          "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+          "values": [
+            "Tolkien",
+            "Westernis",
+            "Draft"
+          ],
+          "valueLabelsDe": {
+            "Tolkien": "Tolkien",
+            "Westernis": "Westernis",
+            "Draft": "Entwurf"
+          }
+        },
+        {
+          "name": "accent",
+          "type": "String",
+          "label": "Accent colour",
+          "labelDe": "Akzentfarbe",
+          "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)"
+        }
+      ],
+      "sections": [
+        "Landeskunde",
+        "Geschichte",
+        "Bewohner",
+        "Namenskunde",
+        "Weitere Namen",
+        "Bildnisse",
+        "Siehe auch",
+        "Anmerkungen"
+      ],
+      "sectionKeys": [
+        "Geography",
+        "History",
+        "Inhabitants",
+        "Etymology",
+        "Other names",
+        "Gallery",
+        "See also",
+        "Notes"
+      ],
+      "leadHint": "'''{{PAGENAME}}''' war ein … <!-- Einleitung: was für ein Ort, wo, warum von Bedeutung -->"
+    },
+    {
+      "key": "faction",
+      "singular": "Faction",
+      "plural": "Factions",
+      "template": "Infobox faction",
+      "form": "Faction",
+      "table": "Factions",
+      "category": "Factions",
+      "namespace": "",
+      "accent": "#2c4f8a",
+      "icon": "banner",
+      "description": "A house, order, kingdom, guild, fellowship or other organisation.",
+      "labelDe": {
+        "singular": "Bund",
+        "plural": "Bünde",
+        "description": "Ein Haus, Orden, Königreich, eine Gilde, Gemeinschaft oder ein anderer Bund."
+      },
+      "fields": [
+        {
+          "name": "name",
+          "type": "String",
+          "label": "Name",
+          "labelDe": "Name",
+          "description": "Display name (defaults to the page name)"
+        },
+        {
+          "name": "script",
+          "type": "String",
+          "label": "Tengwar",
+          "labelDe": "Tengwar",
+          "description": "Name in Tengwar or another script (rendered with the Tengwar font)"
+        },
+        {
+          "name": "image",
+          "type": "File",
+          "label": "Image",
+          "labelDe": "Bild",
+          "description": "Main image (file name without the File: prefix)"
+        },
+        {
+          "name": "caption",
+          "type": "String",
+          "label": "Caption",
+          "labelDe": "Bildunterschrift",
+          "description": "Image caption"
+        },
+        {
+          "name": "othernames",
+          "type": "List of String",
+          "label": "Other names",
+          "labelDe": "Weitere Namen",
+          "description": "Comma-separated alternative names"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "label": "Type",
+          "labelDe": "Art",
+          "description": "House, Order, Kingdom, Guild, Fellowship, Host, Council",
+          "values": [
+            "House",
+            "Order",
+            "Kingdom",
+            "Guild",
+            "Fellowship",
+            "Host",
+            "Council",
+            "Other"
+          ],
+          "valueLabelsDe": {
+            "House": "Haus",
+            "Order": "Orden",
+            "Kingdom": "Königreich",
+            "Guild": "Gilde",
+            "Fellowship": "Gemeinschaft",
+            "Host": "Heerschar",
+            "Council": "Rat",
+            "Other": "Sonstiges"
+          }
+        },
+        {
+          "name": "founder",
+          "type": "Page",
+          "label": "Founder",
+          "labelDe": "Gründer",
+          "description": "Founder",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "founded",
+          "type": "String",
+          "label": "Founded",
+          "labelDe": "Gegründet",
+          "description": "Founding date",
+          "dateParts": [
+            "founded_year",
+            "founded_era"
+          ]
+        },
+        {
+          "name": "founded_year",
+          "type": "Integer",
+          "label": "Founded year",
+          "labelDe": "Gründungsjahr",
+          "description": "Year within the era"
+        },
+        {
+          "name": "founded_era",
+          "type": "Page",
+          "label": "Founded era",
+          "labelDe": "Zeitalter der Gründung",
+          "description": "Era of founding",
+          "linksTo": "Eras"
+        },
+        {
+          "name": "leader",
+          "type": "Page",
+          "label": "Leader",
+          "labelDe": "Anführer",
+          "description": "Current or last leader",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "seat",
+          "type": "Page",
+          "label": "Seat",
+          "labelDe": "Sitz",
+          "description": "Seat, capital or headquarters",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "realm",
+          "type": "Page",
+          "label": "Realm",
+          "labelDe": "Reich",
+          "description": "Realm",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "disbanded",
+          "type": "String",
+          "label": "Disbanded",
+          "labelDe": "Aufgelöst",
+          "description": "End of the organisation"
+        },
+        {
+          "name": "members",
+          "type": "List of Page",
+          "label": "Notable members",
+          "labelDe": "Namhafte Mitglieder",
+          "description": "Notable members",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "race",
+          "type": "List of Page",
+          "label": "Peoples",
+          "labelDe": "Völker",
+          "description": "Peoples that make up the faction",
+          "linksTo": "Peoples"
+        },
+        {
+          "name": "affiliation",
+          "type": "List of Page",
+          "label": "Allies",
+          "labelDe": "Verbündete",
+          "description": "Allied factions",
+          "linksTo": "Factions"
+        },
+        {
+          "name": "rivalry",
+          "type": "List of Page",
+          "label": "Rivals",
+          "labelDe": "Widersacher",
+          "description": "Enemies and rivals",
+          "linksTo": "Factions"
+        },
+        {
+          "name": "heirlooms",
+          "type": "List of Page",
+          "label": "Heirlooms",
+          "labelDe": "Erbstücke",
+          "description": "Artifacts held by the faction",
+          "linksTo": "Artifacts"
+        },
+        {
+          "name": "language",
+          "type": "Page",
+          "label": "Language",
+          "labelDe": "Sprache",
+          "description": "Language",
+          "linksTo": "Languages"
+        },
+        {
+          "name": "colours",
+          "type": "String",
+          "label": "Colours",
+          "labelDe": "Farben",
+          "description": "Heraldic colours"
+        },
+        {
+          "name": "motto",
+          "type": "String",
+          "label": "Motto",
+          "labelDe": "Wahlspruch",
+          "description": "Motto or words"
+        },
+        {
+          "name": "preceded_by",
+          "type": "Page",
+          "label": "Preceded by",
+          "labelDe": "Vorgänger",
+          "description": "Predecessor organisation",
+          "linksTo": "Factions"
+        },
+        {
+          "name": "followed_by",
+          "type": "Page",
+          "label": "Followed by",
+          "labelDe": "Nachfolger",
+          "description": "Successor organisation",
+          "linksTo": "Factions"
+        },
+        {
+          "name": "purpose",
+          "type": "Text",
+          "label": "Purpose",
+          "labelDe": "Zweck",
+          "description": "What the faction is for"
+        },
+        {
+          "name": "short",
+          "type": "String",
+          "label": "Short description",
+          "labelDe": "Kurzbeschreibung",
+          "description": "One line shown under the title and in search results"
+        },
+        {
+          "name": "canon",
+          "type": "String",
+          "label": "Canon",
+          "labelDe": "Kanon",
+          "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+          "values": [
+            "Tolkien",
+            "Westernis",
+            "Draft"
+          ],
+          "valueLabelsDe": {
+            "Tolkien": "Tolkien",
+            "Westernis": "Westernis",
+            "Draft": "Entwurf"
+          }
+        },
+        {
+          "name": "accent",
+          "type": "String",
+          "label": "Accent colour",
+          "labelDe": "Akzentfarbe",
+          "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)"
+        }
+      ],
+      "sections": [
+        "Geschichte",
+        "Aufbau",
+        "Mitglieder",
+        "Wappenkunde",
+        "Namenskunde",
+        "Bildnisse",
+        "Siehe auch",
+        "Anmerkungen"
+      ],
+      "sectionKeys": [
+        "History",
+        "Organisation",
+        "Members",
+        "Heraldry",
+        "Etymology",
+        "Gallery",
+        "See also",
+        "Notes"
+      ],
+      "leadHint": "'''{{PAGENAME}}''' war ein … <!-- Einleitung -->"
+    },
+    {
+      "key": "people",
+      "singular": "People",
+      "plural": "Peoples",
+      "template": "Infobox people",
+      "form": "People",
+      "table": "Peoples",
+      "category": "Peoples",
+      "namespace": "",
+      "accent": "#6a4c93",
+      "icon": "tree",
+      "description": "A race or people: Elves, Men, Dwarves, Hobbits, and the cultures within them.",
+      "labelDe": {
+        "singular": "Volk",
+        "plural": "Völker",
+        "description": "Ein Volk: Elben, Menschen, Zwerge, Hobbits und die Sippen in ihnen."
+      },
+      "fields": [
+        {
+          "name": "name",
+          "type": "String",
+          "label": "Name",
+          "labelDe": "Name",
+          "description": "Display name (defaults to the page name)"
+        },
+        {
+          "name": "script",
+          "type": "String",
+          "label": "Tengwar",
+          "labelDe": "Tengwar",
+          "description": "Name in Tengwar or another script (rendered with the Tengwar font)"
+        },
+        {
+          "name": "image",
+          "type": "File",
+          "label": "Image",
+          "labelDe": "Bild",
+          "description": "Main image (file name without the File: prefix)"
+        },
+        {
+          "name": "caption",
+          "type": "String",
+          "label": "Caption",
+          "labelDe": "Bildunterschrift",
+          "description": "Image caption"
+        },
+        {
+          "name": "othernames",
+          "type": "List of String",
+          "label": "Other names",
+          "labelDe": "Weitere Namen",
+          "description": "Comma-separated alternative names"
+        },
+        {
+          "name": "origin",
+          "type": "Text",
+          "label": "Origin",
+          "labelDe": "Ursprung",
+          "description": "How the people came to be"
+        },
+        {
+          "name": "homeland",
+          "type": "List of Page",
+          "label": "Homelands",
+          "labelDe": "Heimatlande",
+          "description": "Homelands",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "parent",
+          "type": "Page",
+          "label": "Part of",
+          "labelDe": "Teil von",
+          "description": "Parent race (for cultures/folk)",
+          "linksTo": "Peoples"
+        },
+        {
+          "name": "subgroups",
+          "type": "List of Page",
+          "label": "Subgroups",
+          "labelDe": "Stämme",
+          "description": "Folk, houses or kindreds",
+          "linksTo": "Peoples"
+        },
+        {
+          "name": "language",
+          "type": "List of Page",
+          "label": "Languages",
+          "labelDe": "Sprachen",
+          "description": "Languages",
+          "linksTo": "Languages"
+        },
+        {
+          "name": "lifespan",
+          "type": "String",
+          "label": "Lifespan",
+          "labelDe": "Lebensspanne",
+          "description": "Typical lifespan"
+        },
+        {
+          "name": "affiliation",
+          "type": "List of Page",
+          "label": "Allies",
+          "labelDe": "Verbündete",
+          "description": "Allied peoples and factions",
+          "linksTo": "Factions"
+        },
+        {
+          "name": "rivalry",
+          "type": "List of Page",
+          "label": "Enemies",
+          "labelDe": "Feinde",
+          "description": "Enemies",
+          "linksTo": "Factions"
+        },
+        {
+          "name": "notable_members",
+          "type": "List of Page",
+          "label": "Notable members",
+          "labelDe": "Namhafte Mitglieder",
+          "description": "Notable individuals",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "height",
+          "type": "String",
+          "label": "Height",
+          "labelDe": "Größe",
+          "description": "Typical height"
+        },
+        {
+          "name": "hair",
+          "type": "String",
+          "label": "Hair",
+          "labelDe": "Haar",
+          "description": "Hair"
+        },
+        {
+          "name": "skin",
+          "type": "String",
+          "label": "Skin",
+          "labelDe": "Haut",
+          "description": "Skin"
+        },
+        {
+          "name": "eyes",
+          "type": "String",
+          "label": "Eyes",
+          "labelDe": "Augen",
+          "description": "Eyes"
+        },
+        {
+          "name": "clothing",
+          "type": "String",
+          "label": "Clothing",
+          "labelDe": "Gewandung",
+          "description": "Typical garb"
+        },
+        {
+          "name": "weapons",
+          "type": "List of Page",
+          "label": "Weapons",
+          "labelDe": "Waffen",
+          "description": "Typical arms",
+          "linksTo": "Artifacts"
+        },
+        {
+          "name": "distinctions",
+          "type": "Text",
+          "label": "Distinctions",
+          "labelDe": "Eigenheiten",
+          "description": "What sets this people apart"
+        },
+        {
+          "name": "short",
+          "type": "String",
+          "label": "Short description",
+          "labelDe": "Kurzbeschreibung",
+          "description": "One line shown under the title and in search results"
+        },
+        {
+          "name": "canon",
+          "type": "String",
+          "label": "Canon",
+          "labelDe": "Kanon",
+          "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+          "values": [
+            "Tolkien",
+            "Westernis",
+            "Draft"
+          ],
+          "valueLabelsDe": {
+            "Tolkien": "Tolkien",
+            "Westernis": "Westernis",
+            "Draft": "Entwurf"
+          }
+        },
+        {
+          "name": "accent",
+          "type": "String",
+          "label": "Accent colour",
+          "labelDe": "Akzentfarbe",
+          "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)"
+        }
+      ],
+      "sections": [
+        "Geschichte",
+        "Kultur",
+        "Gesellschaft",
+        "Sprache",
+        "Erscheinung",
+        "Namenskunde",
+        "Bildnisse",
+        "Siehe auch",
+        "Anmerkungen"
+      ],
+      "sectionKeys": [
+        "History",
+        "Culture",
+        "Society",
+        "Language",
+        "Appearance",
+        "Etymology",
+        "Gallery",
+        "See also",
+        "Notes"
+      ],
+      "leadHint": "Die '''{{PAGENAME}}''' waren … <!-- Einleitung -->"
+    },
+    {
+      "key": "creature",
+      "singular": "Creature",
+      "plural": "Creatures",
+      "template": "Infobox creature",
+      "form": "Creature",
+      "table": "Creatures",
+      "category": "Creatures",
+      "namespace": "",
+      "accent": "#8a5a2c",
+      "icon": "dragon",
+      "description": "Beasts, monsters and other creatures: dragons, eagles, wargs, spirits.",
+      "labelDe": {
+        "singular": "Geschöpf",
+        "plural": "Geschöpfe",
+        "description": "Tiere, Ungeheuer und andere Geschöpfe: Drachen, Adler, Warge, Geister."
+      },
+      "fields": [
+        {
+          "name": "name",
+          "type": "String",
+          "label": "Name",
+          "labelDe": "Name",
+          "description": "Display name (defaults to the page name)"
+        },
+        {
+          "name": "script",
+          "type": "String",
+          "label": "Tengwar",
+          "labelDe": "Tengwar",
+          "description": "Name in Tengwar or another script (rendered with the Tengwar font)"
+        },
+        {
+          "name": "image",
+          "type": "File",
+          "label": "Image",
+          "labelDe": "Bild",
+          "description": "Main image (file name without the File: prefix)"
+        },
+        {
+          "name": "caption",
+          "type": "String",
+          "label": "Caption",
+          "labelDe": "Bildunterschrift",
+          "description": "Image caption"
+        },
+        {
+          "name": "othernames",
+          "type": "List of String",
+          "label": "Other names",
+          "labelDe": "Weitere Namen",
+          "description": "Comma-separated alternative names"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "label": "Type",
+          "labelDe": "Art",
+          "description": "Beast, Dragon, Spirit, Undead, Construct, Bird, Plant",
+          "values": [
+            "Beast",
+            "Dragon",
+            "Spirit",
+            "Undead",
+            "Construct",
+            "Bird",
+            "Plant",
+            "Other"
+          ],
+          "valueLabelsDe": {
+            "Beast": "Tier",
+            "Dragon": "Drache",
+            "Spirit": "Geist",
+            "Undead": "Untoter",
+            "Construct": "Gebilde",
+            "Bird": "Vogel",
+            "Plant": "Pflanze",
+            "Other": "Sonstiges"
+          }
+        },
+        {
+          "name": "origin",
+          "type": "Page",
+          "label": "Origin",
+          "labelDe": "Ursprung",
+          "description": "Creator or origin",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "habitat",
+          "type": "List of Page",
+          "label": "Habitat",
+          "labelDe": "Lebensraum",
+          "description": "Where it is found",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "alignment",
+          "type": "String",
+          "label": "Alignment",
+          "labelDe": "Gesinnung",
+          "description": "Free, Servant of the Shadow, Wild"
+        },
+        {
+          "name": "size",
+          "type": "String",
+          "label": "Size",
+          "labelDe": "Größe",
+          "description": "Size"
+        },
+        {
+          "name": "first_era",
+          "type": "Page",
+          "label": "First appeared",
+          "labelDe": "Erstmals bezeugt",
+          "description": "Era first recorded",
+          "linksTo": "Eras"
+        },
+        {
+          "name": "notable_individuals",
+          "type": "List of Page",
+          "label": "Notable individuals",
+          "labelDe": "Namhafte Vertreter",
+          "description": "Named creatures of this kind",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "abilities",
+          "type": "Text",
+          "label": "Abilities",
+          "labelDe": "Fähigkeiten",
+          "description": "Powers and traits"
+        },
+        {
+          "name": "short",
+          "type": "String",
+          "label": "Short description",
+          "labelDe": "Kurzbeschreibung",
+          "description": "One line shown under the title and in search results"
+        },
+        {
+          "name": "canon",
+          "type": "String",
+          "label": "Canon",
+          "labelDe": "Kanon",
+          "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+          "values": [
+            "Tolkien",
+            "Westernis",
+            "Draft"
+          ],
+          "valueLabelsDe": {
+            "Tolkien": "Tolkien",
+            "Westernis": "Westernis",
+            "Draft": "Entwurf"
+          }
+        },
+        {
+          "name": "accent",
+          "type": "String",
+          "label": "Accent colour",
+          "labelDe": "Akzentfarbe",
+          "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)"
+        }
+      ],
+      "sections": [
+        "Beschreibung",
+        "Geschichte",
+        "Namhafte Vertreter",
+        "Namenskunde",
+        "Bildnisse",
+        "Siehe auch",
+        "Anmerkungen"
+      ],
+      "sectionKeys": [
+        "Description",
+        "History",
+        "Notable individuals",
+        "Etymology",
+        "Gallery",
+        "See also",
+        "Notes"
+      ],
+      "leadHint": "'''{{PAGENAME}}''' waren … <!-- Einleitung -->"
+    },
+    {
+      "key": "artifact",
+      "singular": "Artifact",
+      "plural": "Artifacts",
+      "template": "Infobox artifact",
+      "form": "Artifact",
+      "table": "Artifacts",
+      "category": "Artifacts",
+      "namespace": "",
+      "accent": "#b8862b",
+      "icon": "ring",
+      "description": "Weapons, rings, relics, jewels, vessels, texts and other objects of note.",
+      "labelDe": {
+        "singular": "Artefakt",
+        "plural": "Artefakte",
+        "description": "Waffen, Ringe, Reliquien, Juwelen, Gefäße, Schriften und andere Dinge von Rang."
+      },
+      "fields": [
+        {
+          "name": "name",
+          "type": "String",
+          "label": "Name",
+          "labelDe": "Name",
+          "description": "Display name (defaults to the page name)"
+        },
+        {
+          "name": "script",
+          "type": "String",
+          "label": "Tengwar",
+          "labelDe": "Tengwar",
+          "description": "Name in Tengwar or another script (rendered with the Tengwar font)"
+        },
+        {
+          "name": "image",
+          "type": "File",
+          "label": "Image",
+          "labelDe": "Bild",
+          "description": "Main image (file name without the File: prefix)"
+        },
+        {
+          "name": "caption",
+          "type": "String",
+          "label": "Caption",
+          "labelDe": "Bildunterschrift",
+          "description": "Image caption"
+        },
+        {
+          "name": "othernames",
+          "type": "List of String",
+          "label": "Other names",
+          "labelDe": "Weitere Namen",
+          "description": "Comma-separated alternative names"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "label": "Type",
+          "labelDe": "Art",
+          "description": "Weapon, Ring, Jewel, Relic, Vessel, Text, Armour, Instrument",
+          "values": [
+            "Weapon",
+            "Ring",
+            "Jewel",
+            "Relic",
+            "Vessel",
+            "Text",
+            "Armour",
+            "Instrument",
+            "Other"
+          ],
+          "valueLabelsDe": {
+            "Weapon": "Waffe",
+            "Ring": "Ring",
+            "Jewel": "Juwel",
+            "Relic": "Reliquie",
+            "Vessel": "Gefäß",
+            "Text": "Schrift",
+            "Armour": "Rüstung",
+            "Instrument": "Instrument",
+            "Other": "Sonstiges"
+          }
+        },
+        {
+          "name": "appearance",
+          "type": "Text",
+          "label": "Appearance",
+          "labelDe": "Aussehen",
+          "description": "What it looks like"
+        },
+        {
+          "name": "powers",
+          "type": "Text",
+          "label": "Powers",
+          "labelDe": "Kräfte",
+          "description": "Powers and properties"
+        },
+        {
+          "name": "creator",
+          "type": "Page",
+          "label": "Creator",
+          "labelDe": "Schöpfer",
+          "description": "Maker",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "created",
+          "type": "String",
+          "label": "Created",
+          "labelDe": "Geschaffen",
+          "description": "Date of making",
+          "dateParts": [
+            "created_year",
+            "created_era"
+          ]
+        },
+        {
+          "name": "created_year",
+          "type": "Integer",
+          "label": "Created year",
+          "labelDe": "Jahr der Erschaffung",
+          "description": "Year within the era"
+        },
+        {
+          "name": "created_era",
+          "type": "Page",
+          "label": "Created era",
+          "labelDe": "Zeitalter der Erschaffung",
+          "description": "Era of making",
+          "linksTo": "Eras"
+        },
+        {
+          "name": "created_location",
+          "type": "Page",
+          "label": "Made in",
+          "labelDe": "Geschaffen in",
+          "description": "Place of making",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "owner",
+          "type": "List of Page",
+          "label": "Owners",
+          "labelDe": "Träger",
+          "description": "Owners in order",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "location",
+          "type": "Page",
+          "label": "Location",
+          "labelDe": "Verbleib",
+          "description": "Current or last location",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "destroyer",
+          "type": "Page",
+          "label": "Destroyed by",
+          "labelDe": "Zerstört von",
+          "description": "Who destroyed it",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "destroyed",
+          "type": "String",
+          "label": "Destroyed",
+          "labelDe": "Zerstört",
+          "description": "When it was destroyed or lost"
+        },
+        {
+          "name": "destroyed_location",
+          "type": "Page",
+          "label": "Destroyed at",
+          "labelDe": "Zerstört in",
+          "description": "Where it was destroyed",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "notablefor",
+          "type": "Text",
+          "label": "Notable for",
+          "labelDe": "Bedeutung",
+          "description": "Why it matters"
+        },
+        {
+          "name": "short",
+          "type": "String",
+          "label": "Short description",
+          "labelDe": "Kurzbeschreibung",
+          "description": "One line shown under the title and in search results"
+        },
+        {
+          "name": "canon",
+          "type": "String",
+          "label": "Canon",
+          "labelDe": "Kanon",
+          "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+          "values": [
+            "Tolkien",
+            "Westernis",
+            "Draft"
+          ],
+          "valueLabelsDe": {
+            "Tolkien": "Tolkien",
+            "Westernis": "Westernis",
+            "Draft": "Entwurf"
+          }
+        },
+        {
+          "name": "accent",
+          "type": "String",
+          "label": "Accent colour",
+          "labelDe": "Akzentfarbe",
+          "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)"
+        }
+      ],
+      "sections": [
+        "Beschreibung",
+        "Geschichte",
+        "Kräfte",
+        "Namenskunde",
+        "Weitere Namen",
+        "Bildnisse",
+        "Siehe auch",
+        "Anmerkungen"
+      ],
+      "sectionKeys": [
+        "Description",
+        "History",
+        "Powers",
+        "Etymology",
+        "Other names",
+        "Gallery",
+        "See also",
+        "Notes"
+      ],
+      "leadHint": "'''{{PAGENAME}}''' war … <!-- Einleitung -->"
+    },
+    {
+      "key": "event",
+      "singular": "Event",
+      "plural": "Events",
+      "template": "Infobox event",
+      "form": "Event",
+      "table": "Events",
+      "category": "Events",
+      "namespace": "",
+      "accent": "#9c3b1c",
+      "icon": "sword",
+      "description": "Battles, councils, founding, oaths, journeys, disasters and festivals.",
+      "labelDe": {
+        "singular": "Begebenheit",
+        "plural": "Begebenheiten",
+        "description": "Schlachten, Ratsversammlungen, Gründungen, Eide, Fahrten, Unheil und Feste."
+      },
+      "fields": [
+        {
+          "name": "name",
+          "type": "String",
+          "label": "Name",
+          "labelDe": "Name",
+          "description": "Display name (defaults to the page name)"
+        },
+        {
+          "name": "script",
+          "type": "String",
+          "label": "Tengwar",
+          "labelDe": "Tengwar",
+          "description": "Name in Tengwar or another script (rendered with the Tengwar font)"
+        },
+        {
+          "name": "image",
+          "type": "File",
+          "label": "Image",
+          "labelDe": "Bild",
+          "description": "Main image (file name without the File: prefix)"
+        },
+        {
+          "name": "caption",
+          "type": "String",
+          "label": "Caption",
+          "labelDe": "Bildunterschrift",
+          "description": "Image caption"
+        },
+        {
+          "name": "othernames",
+          "type": "List of String",
+          "label": "Other names",
+          "labelDe": "Weitere Namen",
+          "description": "Comma-separated alternative names"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "label": "Type",
+          "labelDe": "Art",
+          "description": "Battle, War, Siege, Council, Founding, Oath, Journey, Disaster, Festival, Birth, Death",
+          "values": [
+            "Battle",
+            "War",
+            "Siege",
+            "Council",
+            "Founding",
+            "Oath",
+            "Journey",
+            "Disaster",
+            "Festival",
+            "Birth",
+            "Death",
+            "Other"
+          ],
+          "valueLabelsDe": {
+            "Battle": "Schlacht",
+            "War": "Krieg",
+            "Siege": "Belagerung",
+            "Council": "Rat",
+            "Founding": "Gründung",
+            "Oath": "Eid",
+            "Journey": "Fahrt",
+            "Disaster": "Unheil",
+            "Festival": "Fest",
+            "Birth": "Geburt",
+            "Death": "Tod",
+            "Other": "Sonstiges"
+          }
+        },
+        {
+          "name": "date",
+          "type": "String",
+          "label": "Date",
+          "labelDe": "Datum",
+          "description": "Date text (e.g. 15 March)",
+          "dateParts": [
+            "year_start",
+            "era"
+          ]
+        },
+        {
+          "name": "year_start",
+          "type": "Integer",
+          "label": "Year",
+          "labelDe": "Jahr",
+          "description": "Start year within the era"
+        },
+        {
+          "name": "year_end",
+          "type": "Integer",
+          "label": "End year",
+          "labelDe": "Endjahr",
+          "description": "End year (for wars/periods)"
+        },
+        {
+          "name": "era",
+          "type": "Page",
+          "label": "Era",
+          "labelDe": "Zeitalter",
+          "description": "Era/Age",
+          "linksTo": "Eras"
+        },
+        {
+          "name": "location",
+          "type": "List of Page",
+          "label": "Location",
+          "labelDe": "Schauplatz",
+          "description": "Where it happened",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "part_of",
+          "type": "Page",
+          "label": "Part of",
+          "labelDe": "Teil von",
+          "description": "Larger conflict or event",
+          "linksTo": "Events"
+        },
+        {
+          "name": "preceded_by",
+          "type": "Page",
+          "label": "Preceded by",
+          "labelDe": "Vorgänger",
+          "description": "Previous event",
+          "linksTo": "Events"
+        },
+        {
+          "name": "followed_by",
+          "type": "Page",
+          "label": "Followed by",
+          "labelDe": "Nachfolger",
+          "description": "Next event",
+          "linksTo": "Events"
+        },
+        {
+          "name": "participants",
+          "type": "List of Page",
+          "label": "Participants",
+          "labelDe": "Beteiligte",
+          "description": "Characters involved",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "factions",
+          "type": "List of Page",
+          "label": "Factions",
+          "labelDe": "Bünde",
+          "description": "Factions involved",
+          "linksTo": "Factions"
+        },
+        {
+          "name": "result",
+          "type": "Text",
+          "label": "Result",
+          "labelDe": "Ausgang",
+          "description": "Outcome"
+        },
+        {
+          "name": "side1",
+          "type": "List of Page",
+          "label": "Side 1",
+          "labelDe": "Erste Partei",
+          "description": "First side",
+          "linksTo": "Factions"
+        },
+        {
+          "name": "side2",
+          "type": "List of Page",
+          "label": "Side 2",
+          "labelDe": "Zweite Partei",
+          "description": "Second side",
+          "linksTo": "Factions"
+        },
+        {
+          "name": "commanders1",
+          "type": "List of Page",
+          "label": "Commanders 1",
+          "labelDe": "Heerführer (erste)",
+          "description": "Commanders of side 1",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "commanders2",
+          "type": "List of Page",
+          "label": "Commanders 2",
+          "labelDe": "Heerführer (zweite)",
+          "description": "Commanders of side 2",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "forces1",
+          "type": "String",
+          "label": "Forces 1",
+          "labelDe": "Streitmacht (erste)",
+          "description": "Strength of side 1"
+        },
+        {
+          "name": "forces2",
+          "type": "String",
+          "label": "Forces 2",
+          "labelDe": "Streitmacht (zweite)",
+          "description": "Strength of side 2"
+        },
+        {
+          "name": "casualties1",
+          "type": "String",
+          "label": "Casualties 1",
+          "labelDe": "Verluste (erste)",
+          "description": "Losses of side 1"
+        },
+        {
+          "name": "casualties2",
+          "type": "String",
+          "label": "Casualties 2",
+          "labelDe": "Verluste (zweite)",
+          "description": "Losses of side 2"
+        },
+        {
+          "name": "description",
+          "type": "Text",
+          "label": "Description",
+          "labelDe": "Beschreibung",
+          "description": "One or two sentences"
+        },
+        {
+          "name": "short",
+          "type": "String",
+          "label": "Short description",
+          "labelDe": "Kurzbeschreibung",
+          "description": "One line shown under the title and in search results"
+        },
+        {
+          "name": "canon",
+          "type": "String",
+          "label": "Canon",
+          "labelDe": "Kanon",
+          "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+          "values": [
+            "Tolkien",
+            "Westernis",
+            "Draft"
+          ],
+          "valueLabelsDe": {
+            "Tolkien": "Tolkien",
+            "Westernis": "Westernis",
+            "Draft": "Entwurf"
+          }
+        },
+        {
+          "name": "accent",
+          "type": "String",
+          "label": "Accent colour",
+          "labelDe": "Akzentfarbe",
+          "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)"
+        }
+      ],
+      "sections": [
+        "Vorgeschichte",
+        "Verlauf",
+        "Nachwirkungen",
+        "Beteiligte",
+        "Namenskunde",
+        "Bildnisse",
+        "Siehe auch",
+        "Anmerkungen"
+      ],
+      "sectionKeys": [
+        "Background",
+        "Course of events",
+        "Aftermath",
+        "Participants",
+        "Etymology",
+        "Gallery",
+        "See also",
+        "Notes"
+      ],
+      "leadHint": "Die '''{{PAGENAME}}''' war … <!-- Einleitung -->"
+    },
+    {
+      "key": "era",
+      "singular": "Era",
+      "plural": "Eras",
+      "template": "Infobox era",
+      "form": "Era",
+      "table": "Eras",
+      "category": "Eras",
+      "namespace": "",
+      "accent": "#8c6a2b",
+      "icon": "hourglass",
+      "description": "An age or era of the world, giving years their frame (prefix like T.A.).",
+      "labelDe": {
+        "singular": "Zeitalter",
+        "plural": "Zeitalter",
+        "description": "Ein Zeitalter der Welt, das den Jahren ihren Rahmen gibt (mit Kürzel wie D.Z.)."
+      },
+      "fields": [
+        {
+          "name": "name",
+          "type": "String",
+          "label": "Name",
+          "labelDe": "Name",
+          "description": "Display name (defaults to the page name)"
+        },
+        {
+          "name": "script",
+          "type": "String",
+          "label": "Tengwar",
+          "labelDe": "Tengwar",
+          "description": "Name in Tengwar or another script (rendered with the Tengwar font)"
+        },
+        {
+          "name": "image",
+          "type": "File",
+          "label": "Image",
+          "labelDe": "Bild",
+          "description": "Main image (file name without the File: prefix)"
+        },
+        {
+          "name": "caption",
+          "type": "String",
+          "label": "Caption",
+          "labelDe": "Bildunterschrift",
+          "description": "Image caption"
+        },
+        {
+          "name": "othernames",
+          "type": "List of String",
+          "label": "Other names",
+          "labelDe": "Weitere Namen",
+          "description": "Comma-separated alternative names"
+        },
+        {
+          "name": "sequence",
+          "type": "Integer",
+          "label": "Sequence",
+          "labelDe": "Reihenfolge",
+          "description": "Order of this era (1, 2, 3…) for timelines"
+        },
+        {
+          "name": "year_start",
+          "type": "Integer",
+          "label": "First year",
+          "labelDe": "Erstes Jahr",
+          "description": "First year of the era"
+        },
+        {
+          "name": "year_end",
+          "type": "Integer",
+          "label": "Last year",
+          "labelDe": "Letztes Jahr",
+          "description": "Last year of the era"
+        },
+        {
+          "name": "prefix",
+          "type": "String",
+          "label": "Prefix",
+          "labelDe": "Kürzel",
+          "description": "Year prefix used in dates (e.g. T.A.)"
+        },
+        {
+          "name": "preceded_by",
+          "type": "Page",
+          "label": "Preceded by",
+          "labelDe": "Vorgänger",
+          "description": "Previous era",
+          "linksTo": "Eras"
+        },
+        {
+          "name": "followed_by",
+          "type": "Page",
+          "label": "Followed by",
+          "labelDe": "Nachfolger",
+          "description": "Next era",
+          "linksTo": "Eras"
+        },
+        {
+          "name": "defining_events",
+          "type": "List of Page",
+          "label": "Defining events",
+          "labelDe": "Prägende Begebenheiten",
+          "description": "Events that frame the era",
+          "linksTo": "Events"
+        },
+        {
+          "name": "description",
+          "type": "Text",
+          "label": "Description",
+          "labelDe": "Beschreibung",
+          "description": "Summary of the era"
+        },
+        {
+          "name": "short",
+          "type": "String",
+          "label": "Short description",
+          "labelDe": "Kurzbeschreibung",
+          "description": "One line shown under the title and in search results"
+        },
+        {
+          "name": "canon",
+          "type": "String",
+          "label": "Canon",
+          "labelDe": "Kanon",
+          "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+          "values": [
+            "Tolkien",
+            "Westernis",
+            "Draft"
+          ],
+          "valueLabelsDe": {
+            "Tolkien": "Tolkien",
+            "Westernis": "Westernis",
+            "Draft": "Entwurf"
+          }
+        },
+        {
+          "name": "accent",
+          "type": "String",
+          "label": "Accent colour",
+          "labelDe": "Akzentfarbe",
+          "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)"
+        }
+      ],
+      "sections": [
+        "Überblick",
+        "Geschichte",
+        "Zeittafel",
+        "Völker und Reiche",
+        "Siehe auch",
+        "Anmerkungen"
+      ],
+      "sectionKeys": [
+        "Overview",
+        "History",
+        "Timeline",
+        "Peoples and realms",
+        "See also",
+        "Notes"
+      ],
+      "leadHint": "Das '''{{PAGENAME}}''' war … <!-- Einleitung -->"
+    },
+    {
+      "key": "language",
+      "singular": "Language",
+      "plural": "Languages",
+      "template": "Infobox language",
+      "form": "Language",
+      "table": "Languages",
+      "category": "Languages",
+      "namespace": "",
+      "accent": "#3b7a8c",
+      "icon": "quill",
+      "description": "A tongue or script of the world.",
+      "labelDe": {
+        "singular": "Sprache",
+        "plural": "Sprachen",
+        "description": "Eine Sprache oder Schrift der Welt."
+      },
+      "fields": [
+        {
+          "name": "name",
+          "type": "String",
+          "label": "Name",
+          "labelDe": "Name",
+          "description": "Display name (defaults to the page name)"
+        },
+        {
+          "name": "script",
+          "type": "String",
+          "label": "Tengwar",
+          "labelDe": "Tengwar",
+          "description": "Name in Tengwar or another script (rendered with the Tengwar font)"
+        },
+        {
+          "name": "image",
+          "type": "File",
+          "label": "Image",
+          "labelDe": "Bild",
+          "description": "Main image (file name without the File: prefix)"
+        },
+        {
+          "name": "caption",
+          "type": "String",
+          "label": "Caption",
+          "labelDe": "Bildunterschrift",
+          "description": "Image caption"
+        },
+        {
+          "name": "othernames",
+          "type": "List of String",
+          "label": "Other names",
+          "labelDe": "Weitere Namen",
+          "description": "Comma-separated alternative names"
+        },
+        {
+          "name": "family",
+          "type": "Page",
+          "label": "Family",
+          "labelDe": "Sprachstamm",
+          "description": "Language family",
+          "linksTo": "Languages"
+        },
+        {
+          "name": "parent",
+          "type": "Page",
+          "label": "Derived from",
+          "labelDe": "Abgeleitet von",
+          "description": "Parent language",
+          "linksTo": "Languages"
+        },
+        {
+          "name": "writing",
+          "type": "String",
+          "label": "Writing system",
+          "labelDe": "Schrift",
+          "description": "Script used (e.g. Tengwar, Cirth)"
+        },
+        {
+          "name": "speakers",
+          "type": "List of Page",
+          "label": "Spoken by",
+          "labelDe": "Gesprochen von",
+          "description": "Peoples speaking it",
+          "linksTo": "Peoples"
+        },
+        {
+          "name": "region",
+          "type": "List of Page",
+          "label": "Regions",
+          "labelDe": "Verbreitung",
+          "description": "Where it is spoken",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "era",
+          "type": "List of Page",
+          "label": "Eras",
+          "labelDe": "Zeitalter",
+          "description": "Eras in use",
+          "linksTo": "Eras"
+        },
+        {
+          "name": "sample",
+          "type": "Text",
+          "label": "Sample",
+          "labelDe": "Probe",
+          "description": "A phrase in the language"
+        },
+        {
+          "name": "sample_script",
+          "type": "String",
+          "label": "Sample (script)",
+          "labelDe": "Probe (Schrift)",
+          "description": "The same phrase in Tengwar characters"
+        },
+        {
+          "name": "sample_meaning",
+          "type": "String",
+          "label": "Meaning",
+          "labelDe": "Bedeutung",
+          "description": "Translation of the sample"
+        },
+        {
+          "name": "short",
+          "type": "String",
+          "label": "Short description",
+          "labelDe": "Kurzbeschreibung",
+          "description": "One line shown under the title and in search results"
+        },
+        {
+          "name": "canon",
+          "type": "String",
+          "label": "Canon",
+          "labelDe": "Kanon",
+          "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+          "values": [
+            "Tolkien",
+            "Westernis",
+            "Draft"
+          ],
+          "valueLabelsDe": {
+            "Tolkien": "Tolkien",
+            "Westernis": "Westernis",
+            "Draft": "Entwurf"
+          }
+        },
+        {
+          "name": "accent",
+          "type": "String",
+          "label": "Accent colour",
+          "labelDe": "Akzentfarbe",
+          "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)"
+        }
+      ],
+      "sections": [
+        "Geschichte",
+        "Lautlehre und Grammatik",
+        "Wortschatz",
+        "Schrift",
+        "Sprachproben",
+        "Siehe auch",
+        "Anmerkungen"
+      ],
+      "sectionKeys": [
+        "History",
+        "Phonology and grammar",
+        "Vocabulary",
+        "Writing",
+        "Samples",
+        "See also",
+        "Notes"
+      ],
+      "leadHint": "'''{{PAGENAME}}''' war die Sprache der … <!-- Einleitung -->"
+    },
+    {
+      "key": "power",
+      "singular": "Power",
+      "plural": "Powers",
+      "template": "Infobox power",
+      "form": "Power",
+      "table": "Powers",
+      "category": "Powers",
+      "namespace": "",
+      "accent": "#c9a227",
+      "icon": "star",
+      "description": "Valar, Maiar, gods, spirits and other powers of the world.",
+      "labelDe": {
+        "singular": "Macht",
+        "plural": "Mächte",
+        "description": "Valar, Maiar, Götter, Geister und andere Mächte der Welt."
+      },
+      "fields": [
+        {
+          "name": "name",
+          "type": "String",
+          "label": "Name",
+          "labelDe": "Name",
+          "description": "Display name (defaults to the page name)"
+        },
+        {
+          "name": "script",
+          "type": "String",
+          "label": "Tengwar",
+          "labelDe": "Tengwar",
+          "description": "Name in Tengwar or another script (rendered with the Tengwar font)"
+        },
+        {
+          "name": "image",
+          "type": "File",
+          "label": "Image",
+          "labelDe": "Bild",
+          "description": "Main image (file name without the File: prefix)"
+        },
+        {
+          "name": "caption",
+          "type": "String",
+          "label": "Caption",
+          "labelDe": "Bildunterschrift",
+          "description": "Image caption"
+        },
+        {
+          "name": "othernames",
+          "type": "List of String",
+          "label": "Other names",
+          "labelDe": "Weitere Namen",
+          "description": "Comma-separated alternative names"
+        },
+        {
+          "name": "titles",
+          "type": "List of String",
+          "label": "Titles",
+          "labelDe": "Titel",
+          "description": "Titles"
+        },
+        {
+          "name": "pantheon",
+          "type": "Page",
+          "label": "Order",
+          "labelDe": "Stand",
+          "description": "Pantheon or order (e.g. Valar, Maiar)",
+          "linksTo": "Peoples"
+        },
+        {
+          "name": "domain",
+          "type": "List of String",
+          "label": "Domains",
+          "labelDe": "Walten",
+          "description": "Spheres of power"
+        },
+        {
+          "name": "rank",
+          "type": "String",
+          "label": "Rank",
+          "labelDe": "Rang",
+          "description": "Rank within the order"
+        },
+        {
+          "name": "allegiance",
+          "type": "String",
+          "label": "Allegiance",
+          "labelDe": "Treue",
+          "description": "Light, Shadow, Neutral"
+        },
+        {
+          "name": "dwelling",
+          "type": "Page",
+          "label": "Dwelling",
+          "labelDe": "Wohnstatt",
+          "description": "Home or seat",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "symbols",
+          "type": "String",
+          "label": "Symbols",
+          "labelDe": "Sinnbilder",
+          "description": "Symbols and sacred things"
+        },
+        {
+          "name": "followers",
+          "type": "List of Page",
+          "label": "Followers",
+          "labelDe": "Gefolge",
+          "description": "Servants and followers",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "relatives",
+          "type": "List of Page",
+          "label": "Kin",
+          "labelDe": "Sippe",
+          "description": "Related powers",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "notablefor",
+          "type": "Text",
+          "label": "Notable for",
+          "labelDe": "Bedeutung",
+          "description": "Why this power matters"
+        },
+        {
+          "name": "short",
+          "type": "String",
+          "label": "Short description",
+          "labelDe": "Kurzbeschreibung",
+          "description": "One line shown under the title and in search results"
+        },
+        {
+          "name": "canon",
+          "type": "String",
+          "label": "Canon",
+          "labelDe": "Kanon",
+          "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+          "values": [
+            "Tolkien",
+            "Westernis",
+            "Draft"
+          ],
+          "valueLabelsDe": {
+            "Tolkien": "Tolkien",
+            "Westernis": "Westernis",
+            "Draft": "Entwurf"
+          }
+        },
+        {
+          "name": "accent",
+          "type": "String",
+          "label": "Accent colour",
+          "labelDe": "Akzentfarbe",
+          "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)"
+        }
+      ],
+      "sections": [
+        "Geschichte",
+        "Mächte und Walten",
+        "Verehrung und Gefolgschaft",
+        "Namenskunde",
+        "Weitere Namen",
+        "Bildnisse",
+        "Siehe auch",
+        "Anmerkungen"
+      ],
+      "sectionKeys": [
+        "History",
+        "Powers and domains",
+        "Worship and followers",
+        "Etymology",
+        "Other names",
+        "Gallery",
+        "See also",
+        "Notes"
+      ],
+      "leadHint": "'''{{PAGENAME}}''' war … <!-- Einleitung -->"
+    },
+    {
+      "key": "chronicle",
+      "singular": "Chronicle",
+      "plural": "Chronicles",
+      "template": "Infobox chronicle",
+      "form": "Chronicle",
+      "table": "Chronicles",
+      "category": "Chronicles",
+      "namespace": "Chronicle",
+      "accent": "#5b4a8a",
+      "icon": "book",
+      "description": "Your own stories and narratives set in Westernis (lives in the Chronicle: namespace).",
+      "labelDe": {
+        "singular": "Chronik",
+        "plural": "Chroniken",
+        "description": "Eigene Geschichten und Erzählungen aus Westernis (im Namensraum Chronicle)."
+      },
+      "fields": [
+        {
+          "name": "title",
+          "type": "String",
+          "label": "Title",
+          "labelDe": "Titel",
+          "description": "Display name (defaults to the page name)"
+        },
+        {
+          "name": "image",
+          "type": "File",
+          "label": "Image",
+          "labelDe": "Bild",
+          "description": "Main image (file name without the File: prefix)"
+        },
+        {
+          "name": "caption",
+          "type": "String",
+          "label": "Caption",
+          "labelDe": "Bildunterschrift",
+          "description": "Image caption"
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "label": "Status",
+          "labelDe": "Stand",
+          "description": "idea, draft, revised, final",
+          "values": [
+            "idea",
+            "draft",
+            "revised",
+            "final"
+          ],
+          "valueLabelsDe": {
+            "idea": "Einfall",
+            "draft": "Entwurf",
+            "revised": "überarbeitet",
+            "final": "vollendet"
+          }
+        },
+        {
+          "name": "era",
+          "type": "Page",
+          "label": "Era",
+          "labelDe": "Zeitalter",
+          "description": "Era the story is set in",
+          "linksTo": "Eras"
+        },
+        {
+          "name": "year_start",
+          "type": "Integer",
+          "label": "From year",
+          "labelDe": "Von Jahr",
+          "description": "First year covered"
+        },
+        {
+          "name": "year_end",
+          "type": "Integer",
+          "label": "To year",
+          "labelDe": "Bis Jahr",
+          "description": "Last year covered"
+        },
+        {
+          "name": "sequence",
+          "type": "Integer",
+          "label": "Sequence",
+          "labelDe": "Reihenfolge",
+          "description": "Order within the larger work"
+        },
+        {
+          "name": "part_of",
+          "type": "Page",
+          "label": "Part of",
+          "labelDe": "Teil von",
+          "description": "Larger work or series",
+          "linksTo": "Chronicles"
+        },
+        {
+          "name": "wordcount",
+          "type": "Integer",
+          "label": "Word count",
+          "labelDe": "Wortzahl",
+          "description": "Approximate length"
+        },
+        {
+          "name": "pov",
+          "type": "List of Page",
+          "label": "Point of view",
+          "labelDe": "Erzählblick",
+          "description": "POV characters",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "characters",
+          "type": "List of Page",
+          "label": "Characters",
+          "labelDe": "Gestalten",
+          "description": "Characters appearing",
+          "linksTo": "Characters"
+        },
+        {
+          "name": "locations",
+          "type": "List of Page",
+          "label": "Locations",
+          "labelDe": "Schauplätze",
+          "description": "Places appearing",
+          "linksTo": "Locations"
+        },
+        {
+          "name": "events",
+          "type": "List of Page",
+          "label": "Events",
+          "labelDe": "Begebenheiten",
+          "description": "Events depicted",
+          "linksTo": "Events"
+        },
+        {
+          "name": "summary",
+          "type": "Text",
+          "label": "Summary",
+          "labelDe": "Abriss",
+          "description": "One-paragraph synopsis"
+        },
+        {
+          "name": "short",
+          "type": "String",
+          "label": "Short description",
+          "labelDe": "Kurzbeschreibung",
+          "description": "One line shown under the title and in search results"
+        },
+        {
+          "name": "canon",
+          "type": "String",
+          "label": "Canon",
+          "labelDe": "Kanon",
+          "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+          "values": [
+            "Tolkien",
+            "Westernis",
+            "Draft"
+          ],
+          "valueLabelsDe": {
+            "Tolkien": "Tolkien",
+            "Westernis": "Westernis",
+            "Draft": "Entwurf"
+          }
+        },
+        {
+          "name": "accent",
+          "type": "String",
+          "label": "Accent colour",
+          "labelDe": "Akzentfarbe",
+          "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)"
+        }
+      ],
+      "sections": [
+        "Abriss",
+        "Die Chronik",
+        "Anmerkungen"
+      ],
+      "sectionKeys": [
+        "Synopsis",
+        "Text",
+        "Notes"
+      ],
+      "leadHint": "<!-- Ein kurzer Abriss, danach die Geschichte selbst unter == Die Chronik == -->"
+    }
+  ]
+}

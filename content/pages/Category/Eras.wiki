@@ -1,0 +1,3 @@
+{{#default_form:Era}}{{DISPLAYTITLE:Zeitalter}}
+{{Category header|type=era|title=Zeitalter|singular=Zeitalter|placeholder=Neues Zeitalter …|form=Era|table=Eras|description=Ein Zeitalter der Welt, das den Jahren ihren Rahmen gibt (mit Kürzel wie D.Z.).}}
+[[Category:Westernis|Zeitalter]]

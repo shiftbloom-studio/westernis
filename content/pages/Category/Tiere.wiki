@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Tiere}}{{Category header|type=creature|kicker=Geschöpfe|title=Tiere|description=Alle Einträge der Art „Tier“.|form=Creature|table=Creatures|placeholder=Neues Geschöpf …}}
+[[Category:Creatures|Tiere]]

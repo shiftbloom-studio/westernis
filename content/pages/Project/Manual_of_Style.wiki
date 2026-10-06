@@ -1,0 +1,27 @@
+{{SHORTDESC:Wie Einträge in Westernis geschrieben werden}}
+Diese Stilregeln gelten für alle Einträge des Wikis – für die Zusammenfassungen aus Tolkiens Werk ebenso wie für den eigenen Kanon von Westernis.
+
+== Sprache und Zeitform ==
+* Geschrieben wird auf Deutsch, aus Sicht der Welt und im Präteritum: „Aragorn ''war'' der Sohn Arathorns.“
+* Der Ton ist der einer Chronik: gehoben, klar und ohne Blick von außen – kein „heute“, keine Hinweise auf Bücher oder Leser im Fließtext.
+* Eingeführte deutsche Tolkien-Begriffe haben Vorrang: Mittelerde, Elben, Zwerge, Bruchtal, Nebelgebirge, Auenland, Drittes Zeitalter, Ringkrieg.
+* Völker stehen im Plural („die Elben“, nicht „die Elbenrasse“).
+* Fremdsprachliche Wörter werden kursiv gesetzt (''mae govannen''). Beinamen werden großgeschrieben, wenn sie als Name dienen („der Graue Pilger“).
+* Deutsche Anführungszeichen („…“) und der Halbgeviertstrich mit Leerzeichen ( – ) für Einschübe.
+
+== Lemma und Verlinkung ==
+* Das Lemma – der Name, unter dem der Eintrag steht – erscheint bei seiner ersten Nennung in der Einleitung '''fett''' und in seiner deutschen Form: <code><nowiki>'''Bruchtal''' war …</nowiki></code>.
+* Personen, Orte, Völker und Dinge werden bei ihrer ersten Erwähnung verlinkt, danach nicht erneut.
+* Linkziel ist immer der bestehende Seitentitel, auch wenn er englisch ist; die deutsche Form steht hinter dem senkrechten Strich: <code><nowiki>[[Rivendell|Bruchtal]]</nowiki></code>, <code><nowiki>im [[Third Age|Dritten Zeitalter]]</nowiki></code>.
+
+== Aufbau ==
+Jeder Eintrag beginnt mit der Infobox seiner Art (siehe [[Westernis:Create|Einen Eintrag beginnen]]), dann folgt eine Einleitung von ein bis drei Absätzen, danach die Abschnitte in der Reihenfolge des Gerüsts – bei Gestalten etwa Geschichte, Vermächtnis, Namenskunde, Weitere Namen, Stammbaum, Beziehungen, Auftritte in den Chroniken, Bildnisse, Siehe auch, Anmerkungen. Abschnittstitel sind deutsch und werden aus dem Gerüst übernommen; leere Abschnitte entfallen.
+
+== Daten ==
+Jahr und Zeitalter stehen in der Infobox (<code>birth_year=2931</code>, <code>birth_era=Third Age</code>); die Vorlagen machen daraus „D.Z. 2931“. Jede Zeitalter-Seite legt ihr Kürzel selbst fest. Tag und Monat werden deutsch geschrieben (<code>birth=1. März</code>).
+
+== Namen ==
+Titel tragen keinen vorangestellten Artikel (<code>Shire</code>, nicht <code>The Shire</code>; Chroniken dürfen ihren behalten). Gleichnamige werden zuerst durch Ordnungszahlen unterschieden (Arathorn I, Arathorn II – im Fließtext mit Punkt: Arathorn II.), dann durch Zusätze in Klammern. Für weitere Namen, Schreibweisen und deutsche Formen werden Weiterleitungen angelegt.
+
+== Kanon ==
+Jede Infobox hat ein Feld <code>canon</code>: '''Tolkien''' für das Legendarium, '''Westernis''' für den eigenen Kanon, '''Draft''' für alles Ungeprüfte – auch für Seiten, die eine KI angelegt hat. Siehe [[Westernis:Canon|Kanon]].

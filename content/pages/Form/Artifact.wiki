@@ -1,0 +1,106 @@
+<noinclude>
+Dies ist das Formular „Artefakt“. Gib unten einen Seitennamen ein, um einen neuen Eintrag anzulegen, oder öffne einen bestehenden, um ihn mit diesem Formular zu bearbeiten.
+
+{{#forminput:form=Artifact|autocomplete on category=Artifacts|placeholder=Name des Artefakts|button text=Anlegen / bearbeiten|no autofocus}}
+
+[[Category:Forms]]
+</noinclude><includeonly>
+<div class="wst-form wst-form-artifact">
+{{{info|page name=<Infobox artifact[name]>|create title=Ein Artefakt anlegen|edit title=Artefakt bearbeiten}}}
+{{{for template|Infobox artifact|label=Artefakt}}}
+{| class="formtable wst-formtable"
+|+ Name & Bild
+|-
+! Name:
+| {{{field|name|input type=text|placeholder=Anzeigename (sonst der Seitenname)}}}
+|-
+! Tengwar:
+| {{{field|script|input type=text|placeholder=Tengwar-Text (in Tengwar-Schrift dargestellt)}}}
+|-
+! Bild:
+| {{{field|image|input type=text|uploadable|placeholder=Beispiel.jpg}}}
+|-
+! Bildunterschrift:
+| {{{field|caption|input type=text|placeholder=Bildunterschrift}}}
+|-
+! Weitere Namen:
+| {{{field|othernames|input type=tokens|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Beschreibung
+|-
+! Art:
+| {{{field|type|input type=dropdown|values=Weapon,Ring,Jewel,Relic,Vessel,Text,Armour,Instrument,Other|mapping template=Wst label}}}
+|-
+! Aussehen:
+| {{{field|appearance|input type=textarea|rows=3|autogrow}}}
+|-
+! Kräfte:
+| {{{field|powers|input type=textarea|rows=3|autogrow}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Entstehung
+|-
+! Schöpfer:
+| {{{field|creator|input type=combobox|values from category=Characters}}}
+|-
+! Geschaffen:
+| {{{field|created|input type=text}}} <span class="wst-form-inline">Jahr {{{field|created_year|input type=text|size=6}}} Zeitalter {{{field|created_era|input type=combobox|values from category=Eras}}}</span>
+|-
+! Geschaffen in:
+| {{{field|created_location|input type=combobox|values from category=Locations}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Geschichte
+|-
+! Träger:
+| {{{field|owner|input type=tokens|values from category=Characters|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Verbleib:
+| {{{field|location|input type=combobox|values from category=Locations}}}
+|-
+! Zerstört von:
+| {{{field|destroyer|input type=combobox|values from category=Characters}}}
+|-
+! Zerstört:
+| {{{field|destroyed|input type=text}}}
+|-
+! Zerstört in:
+| {{{field|destroyed_location|input type=combobox|values from category=Locations}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Einzelheiten
+|-
+! Bedeutung:
+| {{{field|notablefor|input type=textarea|rows=3|autogrow}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Angaben zum Eintrag
+|-
+! Kurzbeschreibung:
+| {{{field|short|input type=text|placeholder=Eine Zeile unter dem Titel und in Suchergebnissen}}}
+|-
+! Kanon:
+| {{{field|canon|input type=radiobutton|values=Tolkien,Westernis,Draft|mapping template=Wst label|default=Westernis}}}
+|-
+! Akzentfarbe:
+| {{{field|accent|input type=text|placeholder=#7a1f2b (optionale Hex-Farbe)}}}
+|-
+|}
+{{{end template}}}
+
+<div class="wst-form-text">'''Text des Eintrags''' <small>(das Gerüst ist für neue Seiten vorbefüllt; ersetze die Kommentare)</small></div>
+{{{standard input|free text|rows=28|editor=wikieditor|preload=Template:Skeleton/Artifact}}}
+
+{{{standard input|summary}}}
+
+{{{standard input|minor edit}}} {{{standard input|watch}}}
+
+{{{standard input|save}}} {{{standard input|preview}}} {{{standard input|changes}}} {{{standard input|cancel}}}
+</div>
+</includeonly>

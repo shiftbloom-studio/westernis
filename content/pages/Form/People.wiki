@@ -1,0 +1,118 @@
+<noinclude>
+Dies ist das Formular „Volk“. Gib unten einen Seitennamen ein, um einen neuen Eintrag anzulegen, oder öffne einen bestehenden, um ihn mit diesem Formular zu bearbeiten.
+
+{{#forminput:form=People|autocomplete on category=Peoples|placeholder=Name des Volkes|button text=Anlegen / bearbeiten|no autofocus}}
+
+[[Category:Forms]]
+</noinclude><includeonly>
+<div class="wst-form wst-form-people">
+{{{info|page name=<Infobox people[name]>|create title=Ein Volk anlegen|edit title=Volk bearbeiten}}}
+{{{for template|Infobox people|label=Volk}}}
+{| class="formtable wst-formtable"
+|+ Name & Bild
+|-
+! Name:
+| {{{field|name|input type=text|placeholder=Anzeigename (sonst der Seitenname)}}}
+|-
+! Tengwar:
+| {{{field|script|input type=text|placeholder=Tengwar-Text (in Tengwar-Schrift dargestellt)}}}
+|-
+! Bild:
+| {{{field|image|input type=text|uploadable|placeholder=Beispiel.jpg}}}
+|-
+! Bildunterschrift:
+| {{{field|caption|input type=text|placeholder=Bildunterschrift}}}
+|-
+! Weitere Namen:
+| {{{field|othernames|input type=tokens|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Ursprung
+|-
+! Ursprung:
+| {{{field|origin|input type=textarea|rows=3|autogrow}}}
+|-
+! Heimatlande:
+| {{{field|homeland|input type=tokens|values from category=Locations|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Teil von:
+| {{{field|parent|input type=combobox|values from category=Peoples}}}
+|-
+! Stämme:
+| {{{field|subgroups|input type=tokens|values from category=Peoples|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Sprachen:
+| {{{field|language|input type=tokens|values from category=Languages|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Lebensspanne:
+| {{{field|lifespan|input type=text}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Beziehungen
+|-
+! Verbündete:
+| {{{field|affiliation|input type=tokens|values from category=Factions|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Feinde:
+| {{{field|rivalry|input type=tokens|values from category=Factions|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Namhafte Mitglieder:
+| {{{field|notable_members|input type=tokens|values from category=Characters|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Erscheinung
+|-
+! Größe:
+| {{{field|height|input type=text}}}
+|-
+! Haar:
+| {{{field|hair|input type=text}}}
+|-
+! Haut:
+| {{{field|skin|input type=text}}}
+|-
+! Augen:
+| {{{field|eyes|input type=text}}}
+|-
+! Gewandung:
+| {{{field|clothing|input type=text}}}
+|-
+! Waffen:
+| {{{field|weapons|input type=tokens|values from category=Artifacts|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Einzelheiten
+|-
+! Eigenheiten:
+| {{{field|distinctions|input type=textarea|rows=3|autogrow}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Angaben zum Eintrag
+|-
+! Kurzbeschreibung:
+| {{{field|short|input type=text|placeholder=Eine Zeile unter dem Titel und in Suchergebnissen}}}
+|-
+! Kanon:
+| {{{field|canon|input type=radiobutton|values=Tolkien,Westernis,Draft|mapping template=Wst label|default=Westernis}}}
+|-
+! Akzentfarbe:
+| {{{field|accent|input type=text|placeholder=#7a1f2b (optionale Hex-Farbe)}}}
+|-
+|}
+{{{end template}}}
+
+<div class="wst-form-text">'''Text des Eintrags''' <small>(das Gerüst ist für neue Seiten vorbefüllt; ersetze die Kommentare)</small></div>
+{{{standard input|free text|rows=28|editor=wikieditor|preload=Template:Skeleton/People}}}
+
+{{{standard input|summary}}}
+
+{{{standard input|minor edit}}} {{{standard input|watch}}}
+
+{{{standard input|save}}} {{{standard input|preview}}} {{{standard input|changes}}} {{{standard input|cancel}}}
+</div>
+</includeonly>

@@ -1,0 +1,40 @@
+<noinclude>
+Darstellungsvorlage für [[Template:Infobox faction]]. Nicht direkt verwenden.
+[[Category:Infobox templates]]
+</noinclude><includeonly><infobox theme="faction" accent-color-source="accent">
+  <title source="name"><default>{{{pagename}}}</default></title>
+  <data source="script"><format><div class="wst-tengwar wst-tengwar-title">{{{script}}}</div></format></data>
+  <image source="image"><caption source="caption"/></image>
+  <data source="othernames"><label>Weitere Namen</label></data>
+  <group>
+    <header>Aufbau</header>
+    <data source="type"><label>Art</label></data>
+    <data source="founder"><label>Gründer</label></data>
+    <data source="founded"><label>Gegründet</label></data>
+    <data source="leader"><label>Anführer</label></data>
+    <data source="seat"><label>Sitz</label></data>
+    <data source="realm"><label>Reich</label></data>
+    <data source="disbanded"><label>Aufgelöst</label></data>
+  </group>
+  <group>
+    <header>Mitglieder & Verbündete</header>
+    <data source="members"><label>Namhafte Mitglieder</label></data>
+    <data source="race"><label>Völker</label></data>
+    <data source="affiliation"><label>Verbündete</label></data>
+    <data source="rivalry"><label>Widersacher</label></data>
+    <data source="heirlooms"><label>Erbstücke</label></data>
+    <data source="language"><label>Sprache</label></data>
+  </group>
+  <group collapse="closed">
+    <header>Wappenkunde</header>
+    <data source="colours"><label>Farben</label></data>
+    <data source="motto"><label>Wahlspruch</label></data>
+    <data source="preceded_by"><label>Vorgänger</label></data>
+    <data source="followed_by"><label>Nachfolger</label></data>
+  </group>
+  <group>
+    <header>Überblick</header>
+    <data source="purpose"><label>Zweck</label><format><div class="wst-pi-long">{{{purpose}}}</div></format></data>
+  </group>
+  <navigation><span class="wst-pi-nav">{{#invoke:Westernis|canon|{{{canon|}}}}} <span class="wst-pi-type">Bund</span> <span class="wst-pi-edit">[[Special:FormEdit/Faction/{{FULLPAGENAME}}|bearbeiten]]</span></span></navigation>
+</infobox></includeonly>

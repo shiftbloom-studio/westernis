@@ -1,0 +1,28 @@
+{{SHORTDESC:Einen neuen Eintrag mit einem Formular beginnen}}{{DISPLAYTITLE:Einen Eintrag beginnen}}__NOTOC__ __NOEDITSECTION__
+<div class="wst-create">
+<div class="wst-create-card wst-accent-character"><div class="wst-create-head"><span class="wst-seal"><span class="wst-icon wst-icon-character"></span></span><span class="wst-create-title">Gestalt</span></div><div class="wst-create-desc">Eine Person aus Westernis oder Mittelerde: Könige, Wanderer, Gelehrte, Widersacher.</div>
+{{#forminput:form=Character|autocomplete on category=Characters|placeholder=Name der Gestalt|button text=Anlegen|no autofocus}}</div>
+<div class="wst-create-card wst-accent-location"><div class="wst-create-head"><span class="wst-seal"><span class="wst-icon wst-icon-location"></span></span><span class="wst-create-title">Ort</span></div><div class="wst-create-desc">Ein Ort: Reich, Landstrich, Siedlung, Festung, Wahrzeichen, Fluss, Wald, Meer.</div>
+{{#forminput:form=Location|autocomplete on category=Locations|placeholder=Name des Ortes|button text=Anlegen|no autofocus}}</div>
+<div class="wst-create-card wst-accent-faction"><div class="wst-create-head"><span class="wst-seal"><span class="wst-icon wst-icon-faction"></span></span><span class="wst-create-title">Bund</span></div><div class="wst-create-desc">Ein Haus, Orden, Königreich, eine Gilde, Gemeinschaft oder ein anderer Bund.</div>
+{{#forminput:form=Faction|autocomplete on category=Factions|placeholder=Name des Bundes|button text=Anlegen|no autofocus}}</div>
+<div class="wst-create-card wst-accent-people"><div class="wst-create-head"><span class="wst-seal"><span class="wst-icon wst-icon-people"></span></span><span class="wst-create-title">Volk</span></div><div class="wst-create-desc">Ein Volk: Elben, Menschen, Zwerge, Hobbits und die Sippen in ihnen.</div>
+{{#forminput:form=People|autocomplete on category=Peoples|placeholder=Name des Volkes|button text=Anlegen|no autofocus}}</div>
+<div class="wst-create-card wst-accent-creature"><div class="wst-create-head"><span class="wst-seal"><span class="wst-icon wst-icon-creature"></span></span><span class="wst-create-title">Geschöpf</span></div><div class="wst-create-desc">Tiere, Ungeheuer und andere Geschöpfe: Drachen, Adler, Warge, Geister.</div>
+{{#forminput:form=Creature|autocomplete on category=Creatures|placeholder=Name des Geschöpfs|button text=Anlegen|no autofocus}}</div>
+<div class="wst-create-card wst-accent-artifact"><div class="wst-create-head"><span class="wst-seal"><span class="wst-icon wst-icon-artifact"></span></span><span class="wst-create-title">Artefakt</span></div><div class="wst-create-desc">Waffen, Ringe, Reliquien, Juwelen, Gefäße, Schriften und andere Dinge von Rang.</div>
+{{#forminput:form=Artifact|autocomplete on category=Artifacts|placeholder=Name des Artefakts|button text=Anlegen|no autofocus}}</div>
+<div class="wst-create-card wst-accent-event"><div class="wst-create-head"><span class="wst-seal"><span class="wst-icon wst-icon-event"></span></span><span class="wst-create-title">Begebenheit</span></div><div class="wst-create-desc">Schlachten, Ratsversammlungen, Gründungen, Eide, Fahrten, Unheil und Feste.</div>
+{{#forminput:form=Event|autocomplete on category=Events|placeholder=Name der Begebenheit|button text=Anlegen|no autofocus}}</div>
+<div class="wst-create-card wst-accent-era"><div class="wst-create-head"><span class="wst-seal"><span class="wst-icon wst-icon-era"></span></span><span class="wst-create-title">Zeitalter</span></div><div class="wst-create-desc">Ein Zeitalter der Welt, das den Jahren ihren Rahmen gibt (mit Kürzel wie D.Z.).</div>
+{{#forminput:form=Era|autocomplete on category=Eras|placeholder=Name des Zeitalters|button text=Anlegen|no autofocus}}</div>
+<div class="wst-create-card wst-accent-language"><div class="wst-create-head"><span class="wst-seal"><span class="wst-icon wst-icon-language"></span></span><span class="wst-create-title">Sprache</span></div><div class="wst-create-desc">Eine Sprache oder Schrift der Welt.</div>
+{{#forminput:form=Language|autocomplete on category=Languages|placeholder=Name der Sprache|button text=Anlegen|no autofocus}}</div>
+<div class="wst-create-card wst-accent-power"><div class="wst-create-head"><span class="wst-seal"><span class="wst-icon wst-icon-power"></span></span><span class="wst-create-title">Macht</span></div><div class="wst-create-desc">Valar, Maiar, Götter, Geister und andere Mächte der Welt.</div>
+{{#forminput:form=Power|autocomplete on category=Powers|placeholder=Name der Macht|button text=Anlegen|no autofocus}}</div>
+<div class="wst-create-card wst-accent-chronicle"><div class="wst-create-head"><span class="wst-seal"><span class="wst-icon wst-icon-chronicle"></span></span><span class="wst-create-title">Chronik</span></div><div class="wst-create-desc">Eigene Geschichten und Erzählungen aus Westernis (im Namensraum Chronicle).</div>
+{{#forminput:form=Chronicle|autocomplete on category=Chronicles|namespace=Chronicle|placeholder=Titel der Chronik|button text=Anlegen|no autofocus}}</div>
+</div>
+
+== Ohne Formular ==
+Gib einen Titel ins Suchfeld ein, öffne den roten Link und beginne mit <code>{{tl|Infobox character}}</code> (oder einer anderen Infobox). Jede Vorlage führt ihre Parameter in der Dokumentation auf.

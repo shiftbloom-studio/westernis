@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Eide}}{{Category header|type=event|kicker=Begebenheiten|title=Eide|description=Alle Einträge der Art „Eid“.|form=Event|table=Events|placeholder=Neue Begebenheit …}}
+[[Category:Events|Eide]]

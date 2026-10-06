@@ -1,0 +1,124 @@
+<noinclude>
+Dies ist das Formular „Bund“. Gib unten einen Seitennamen ein, um einen neuen Eintrag anzulegen, oder öffne einen bestehenden, um ihn mit diesem Formular zu bearbeiten.
+
+{{#forminput:form=Faction|autocomplete on category=Factions|placeholder=Name des Bundes|button text=Anlegen / bearbeiten|no autofocus}}
+
+[[Category:Forms]]
+</noinclude><includeonly>
+<div class="wst-form wst-form-faction">
+{{{info|page name=<Infobox faction[name]>|create title=Einen Bund anlegen|edit title=Bund bearbeiten}}}
+{{{for template|Infobox faction|label=Bund}}}
+{| class="formtable wst-formtable"
+|+ Name & Bild
+|-
+! Name:
+| {{{field|name|input type=text|placeholder=Anzeigename (sonst der Seitenname)}}}
+|-
+! Tengwar:
+| {{{field|script|input type=text|placeholder=Tengwar-Text (in Tengwar-Schrift dargestellt)}}}
+|-
+! Bild:
+| {{{field|image|input type=text|uploadable|placeholder=Beispiel.jpg}}}
+|-
+! Bildunterschrift:
+| {{{field|caption|input type=text|placeholder=Bildunterschrift}}}
+|-
+! Weitere Namen:
+| {{{field|othernames|input type=tokens|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Aufbau
+|-
+! Art:
+| {{{field|type|input type=dropdown|values=House,Order,Kingdom,Guild,Fellowship,Host,Council,Other|mapping template=Wst label}}}
+|-
+! Gründer:
+| {{{field|founder|input type=combobox|values from category=Characters}}}
+|-
+! Gegründet:
+| {{{field|founded|input type=text}}} <span class="wst-form-inline">Jahr {{{field|founded_year|input type=text|size=6}}} Zeitalter {{{field|founded_era|input type=combobox|values from category=Eras}}}</span>
+|-
+! Anführer:
+| {{{field|leader|input type=combobox|values from category=Characters}}}
+|-
+! Sitz:
+| {{{field|seat|input type=combobox|values from category=Locations}}}
+|-
+! Reich:
+| {{{field|realm|input type=combobox|values from category=Locations}}}
+|-
+! Aufgelöst:
+| {{{field|disbanded|input type=text}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Mitglieder & Verbündete
+|-
+! Namhafte Mitglieder:
+| {{{field|members|input type=tokens|values from category=Characters|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Völker:
+| {{{field|race|input type=tokens|values from category=Peoples|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Verbündete:
+| {{{field|affiliation|input type=tokens|values from category=Factions|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Widersacher:
+| {{{field|rivalry|input type=tokens|values from category=Factions|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Erbstücke:
+| {{{field|heirlooms|input type=tokens|values from category=Artifacts|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Sprache:
+| {{{field|language|input type=combobox|values from category=Languages}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Wappenkunde
+|-
+! Farben:
+| {{{field|colours|input type=text}}}
+|-
+! Wahlspruch:
+| {{{field|motto|input type=text}}}
+|-
+! Vorgänger:
+| {{{field|preceded_by|input type=combobox|values from category=Factions}}}
+|-
+! Nachfolger:
+| {{{field|followed_by|input type=combobox|values from category=Factions}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Einzelheiten
+|-
+! Zweck:
+| {{{field|purpose|input type=textarea|rows=3|autogrow}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Angaben zum Eintrag
+|-
+! Kurzbeschreibung:
+| {{{field|short|input type=text|placeholder=Eine Zeile unter dem Titel und in Suchergebnissen}}}
+|-
+! Kanon:
+| {{{field|canon|input type=radiobutton|values=Tolkien,Westernis,Draft|mapping template=Wst label|default=Westernis}}}
+|-
+! Akzentfarbe:
+| {{{field|accent|input type=text|placeholder=#7a1f2b (optionale Hex-Farbe)}}}
+|-
+|}
+{{{end template}}}
+
+<div class="wst-form-text">'''Text des Eintrags''' <small>(das Gerüst ist für neue Seiten vorbefüllt; ersetze die Kommentare)</small></div>
+{{{standard input|free text|rows=28|editor=wikieditor|preload=Template:Skeleton/Faction}}}
+
+{{{standard input|summary}}}
+
+{{{standard input|minor edit}}} {{{standard input|watch}}}
+
+{{{standard input|save}}} {{{standard input|preview}}} {{{standard input|changes}}} {{{standard input|cancel}}}
+</div>
+</includeonly>

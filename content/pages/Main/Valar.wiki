@@ -1,0 +1,11 @@
+{{Infobox people
+| othernames = Die Mächte der Welt
+| origin = Die Größten unter den Ainur, die in die Welt eintraten, um sie zu gestalten und zu hüten.
+| homeland = Valinor
+| notable_members = Manwë
+| lifespan = Unsterblich
+| distinctions = Herrscher der Welt unter Ilúvatar.
+| short = Die Mächte, die die Welt gestalteten
+| canon = Tolkien
+}}
+Die '''Valar''' waren die Mächte der Welt, die Größten unter den Ainur. [[Manwë]] war ihr König.

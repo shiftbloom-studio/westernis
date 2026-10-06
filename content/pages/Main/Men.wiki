@@ -1,0 +1,14 @@
+{{DISPLAYTITLE:Menschen}}
+{{Infobox people
+| name = Menschen
+| othernames = Atani, die Zweitgeborenen, Hildor
+| origin = Erwachten in Hildórien beim ersten Aufgang der Sonne.
+| homeland = Middle-earth
+| subgroups = Dúnedain
+| language = Westron
+| lifespan = Sterblich; manche Geschlechter waren langlebig
+| distinctions = Die Gabe der Menschen: die Sterblichkeit und die Freiheit vom Schicksal der Welt.
+| short = Die sterblichen Zweitgeborenen
+| canon = Tolkien
+}}
+Die '''Menschen''' waren die Zweitgeborenen unter den Kindern Ilúvatars. Anders als die [[Elves|Elben]] waren sie sterblich, und ihr Geschick jenseits des Todes blieb selbst den Valar verborgen.

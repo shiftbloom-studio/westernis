@@ -1,0 +1,20 @@
+{
+  "name": "westernis-forge-mcp",
+  "version": "1.1.0",
+  "description": "Forge: a Model Context Protocol server that lets Claude Code read, write and lore-check the Westernis MediaWiki",
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "private": true,
+  "bin": { "westernis-forge": "src/index.js" },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test test/offline.test.js",
+    "test:live": "node src/test-tools.js",
+    "smoke": "node src/smoke.js"
+  },
+  "engines": { "node": ">=22" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "zod": "^3.25.0"
+  }
+}

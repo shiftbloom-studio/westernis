@@ -1,0 +1,13 @@
+<noinclude>
+Gerüst für neue Einträge der Art „Chronik“, vorgeladen von [[Form:Chronicle]]. Frei bearbeitbar; die Reihenfolge der Abschnitte bitte im ganzen Wiki gleich halten.
+[[Category:Skeleton templates]]
+</noinclude><!-- Ein kurzer Abriss, danach die Geschichte selbst unter == Die Chronik == -->
+
+== Abriss ==
+<!-- Abriss: aus Sicht der Welt und im Präteritum schreiben. Personen, Orte und Dinge bei der ersten Erwähnung verlinken. -->
+
+== Die Chronik ==
+<!-- Die Chronik selbst. Für eine illuminierte Initiale {{Drop cap|Anfangsbuchstabe}} verwenden. -->
+
+== Anmerkungen ==
+<references />

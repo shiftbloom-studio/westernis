@@ -1,0 +1,3 @@
+{{#default_form:Chronicle}}{{DISPLAYTITLE:Chroniken}}
+{{Category header|type=chronicle|title=Chroniken|singular=Chronik|placeholder=Neue Chronik …|form=Chronicle|table=Chronicles|namespace=Chronicle|description=Eigene Geschichten und Erzählungen aus Westernis (im Namensraum Chronicle).}}
+[[Category:Westernis|Chroniken]]

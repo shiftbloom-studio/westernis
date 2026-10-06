@@ -1,0 +1,4 @@
+<noinclude>
+Marks an article as unfinished. <code><nowiki>{{Stub}}</nowiki></code> or <code><nowiki>{{Stub|needs=history and family}}</nowiki></code>
+[[Category:Notice templates]]
+</noinclude><includeonly><div class="wst-notice wst-notice-stub"><span class="wst-notice-icon"></span><span>Dieser Eintrag ist unvollendet{{#if:{{{needs|}}}|&#32;– es fehlt noch {{{needs}}}}}. Die Kunde wird noch gesammelt.</span></div>[[Category:Stubs]]</includeonly>

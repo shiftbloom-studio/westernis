@@ -1,0 +1,85 @@
+# Checks that need no secrets, no Docker and no running wiki.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generated:
+    name: Generated files are up to date
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Run the entity generator
+        run: node tools/gen-entities/generate.js
+      - name: Run the sample and help page generator
+        run: node tools/gen-entities/samples.js
+      - name: Fail on drift
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --porcelain
+            git --no-pager diff --stat
+            echo "::error::Generated files are out of date. Run 'node tools/gen-entities/generate.js' and 'node tools/gen-entities/samples.js', then commit the result."
+            exit 1
+          fi
+
+  node:
+    name: JavaScript, JSON and the MCP server
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: tools/forge-mcp/package-lock.json
+      - name: Syntax check (node --check)
+        run: |
+          for f in tools/forge-mcp/src/*.js tools/forge-mcp/test/*.js tools/gen-entities/*.js tools/brand/*.js wiki/assets/js/*.js content/pages/MediaWiki/*.js; do
+            node --check "$f" || exit 1
+          done
+      - name: JSON files parse
+        run: |
+          git ls-files -z '*.json' | xargs -0 node -e '
+            let bad = 0;
+            for (const f of process.argv.slice(1)) {
+              try { JSON.parse(require("fs").readFileSync(f, "utf8")); }
+              catch (e) { console.error(`::error file=${f}::${e.message}`); bad = 1; }
+            }
+            process.exit(bad);'
+      - name: Install the MCP server dependencies
+        run: npm ci
+        working-directory: tools/forge-mcp
+      - name: Offline MCP server test (no wiki needed)
+        # Name the file explicitly: a bare `node --test` would also run src/test-tools.js, which writes to a live wiki.
+        run: node --test test/offline.test.js
+        working-directory: tools/forge-mcp
+
+  powershell:
+    name: Control script parses
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - name: Parse scripts/wiki.ps1
+        shell: pwsh
+        run: |
+          $tokens = $null; $errors = $null
+          [void][System.Management.Automation.Language.Parser]::ParseFile("$PWD/scripts/wiki.ps1", [ref]$tokens, [ref]$errors)
+          if ($errors.Count) {
+            $errors | ForEach-Object { Write-Host "::error file=scripts/wiki.ps1,line=$($_.Extent.StartLineNumber)::$($_.Message)" }
+            exit 1
+          }
+          Write-Host 'scripts/wiki.ps1: no parse errors'

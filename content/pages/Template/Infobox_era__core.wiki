@@ -1,0 +1,28 @@
+<noinclude>
+Darstellungsvorlage für [[Template:Infobox era]]. Nicht direkt verwenden.
+[[Category:Infobox templates]]
+</noinclude><includeonly><infobox theme="era" accent-color-source="accent">
+  <title source="name"><default>{{{pagename}}}</default></title>
+  <data source="script"><format><div class="wst-tengwar wst-tengwar-title">{{{script}}}</div></format></data>
+  <image source="image"><caption source="caption"/></image>
+  <data source="othernames"><label>Weitere Namen</label></data>
+    <data source="span"><label>Jahre</label></data>
+  <group>
+    <header>Zeitspanne</header>
+    <data source="sequence"><label>Reihenfolge</label></data>
+    <data source="year_start"><label>Erstes Jahr</label></data>
+    <data source="year_end"><label>Letztes Jahr</label></data>
+    <data source="prefix"><label>Kürzel</label></data>
+    <data source="preceded_by"><label>Vorgänger</label></data>
+    <data source="followed_by"><label>Nachfolger</label></data>
+  </group>
+  <group>
+    <header>Prägende Begebenheiten</header>
+    <data source="defining_events"></data>
+  </group>
+  <group>
+    <header>Überblick</header>
+    <data source="description"><label>Beschreibung</label><format><div class="wst-pi-long">{{{description}}}</div></format></data>
+  </group>
+  <navigation><span class="wst-pi-nav">{{#invoke:Westernis|canon|{{{canon|}}}}} <span class="wst-pi-type">Zeitalter</span> <span class="wst-pi-edit">[[Special:FormEdit/Era/{{FULLPAGENAME}}|bearbeiten]]</span></span></navigation>
+</infobox></includeonly>

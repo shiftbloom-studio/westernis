@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Rüstungen}}{{Category header|type=artifact|kicker=Artefakte|title=Rüstungen|description=Alle Einträge der Art „Rüstung“.|form=Artifact|table=Artifacts|placeholder=Neues Artefakt …}}
+[[Category:Artifacts|Rüstungen]]

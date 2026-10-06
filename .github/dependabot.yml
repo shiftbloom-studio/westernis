@@ -1,0 +1,29 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+  - package-ecosystem: npm
+    directory: /tools/forge-mcp
+    schedule:
+      interval: monthly
+    groups:
+      forge-mcp:
+        patterns: ["*"]
+  - package-ecosystem: npm
+    directory: /tools/brand
+    schedule:
+      interval: monthly
+    groups:
+      brand:
+        patterns: ["*"]
+  # MediaWiki base image (FROM mediawiki:1.46.0): patch releases only. A new MediaWiki branch
+  # also needs new REL1_xx extension branches, so upgrade by hand (see README, Upgrading).
+  - package-ecosystem: docker
+    directory: /docker/mediawiki
+    schedule:
+      interval: monthly
+    ignore:
+      - dependency-name: mediawiki
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]

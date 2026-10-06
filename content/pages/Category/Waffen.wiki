@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Waffen}}{{Category header|type=artifact|kicker=Artefakte|title=Waffen|description=Alle Einträge der Art „Waffe“.|form=Artifact|table=Artifacts|placeholder=Neues Artefakt …}}
+[[Category:Artifacts|Waffen]]

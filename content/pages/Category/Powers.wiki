@@ -1,0 +1,3 @@
+{{#default_form:Power}}{{DISPLAYTITLE:Mächte}}
+{{Category header|type=power|title=Mächte|singular=Macht|placeholder=Neue Macht …|form=Power|table=Powers|description=Valar, Maiar, Götter, Geister und andere Mächte der Welt.}}
+[[Category:Westernis|Mächte]]

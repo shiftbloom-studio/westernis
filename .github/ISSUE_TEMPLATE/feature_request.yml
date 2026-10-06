@@ -1,0 +1,41 @@
+name: Feature request
+description: Suggest an improvement or a new feature.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the use case. What are you trying to do, and what gets in the way?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: How could it work? Mention alternatives you considered.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Wiki configuration (LocalSettings, extensions)
+        - Docker image / Compose / deployment
+        - Control script (wiki.ps1) or seed scripts
+        - Theme (CSS, JS, artwork)
+        - Entity types, templates, forms (tools/gen-entities)
+        - Art generators (tools/brand)
+        - MCP server (tools/forge-mcp) or Claude Code skills
+        - Seed content (sample pages, help pages)
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Screenshots, links, examples from other wikis.

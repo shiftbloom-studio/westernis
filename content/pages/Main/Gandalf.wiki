@@ -1,0 +1,23 @@
+{{Infobox character
+| othernames = Mithrandir, Olórin, Tharkûn, Incánus, der Graue Pilger
+| titles = Der Graue, der Weiße
+| race = Maiar
+| culture = Istari
+| gender = männlich
+| affiliation = Fellowship of the Ring
+| position = Zauberer
+| location = Minas Tirith
+| weapons = Glamdring
+| steed = Shadowfax
+| language = Westron, Sindarin, Quenya
+| notablefor = Der Zauberer, der die Freien Völker durch den Ringkrieg geleitete.
+| short = Der Graue Pilger, Zauberer der Istari
+| canon = Tolkien
+}}
+'''Gandalf''' war einer der Istari, ein [[Maiar|Maia]], der im [[Third Age|Dritten Zeitalter]] nach Mittelerde gesandt wurde, um den Widerstand gegen Sauron zu entfachen. Er führte die [[Fellowship of the Ring|Gemeinschaft des Rings]], bis er in Moria fiel, und kehrte als Gandalf der Weiße zurück.
+
+== Beziehungen ==
+{{Relationships}}
+
+== Auftritte in den Chroniken ==
+{{Appearances}}

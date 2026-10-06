@@ -1,0 +1,18 @@
+{{DISPLAYTITLE:Elronds Rat}}
+{{Infobox event
+| name = Elronds Rat
+| type = Council
+| date = 25. Oktober
+| year_start = 3018
+| era = Third Age
+| location = Rivendell
+| participants = Elrond, Gandalf, Aragorn II
+| factions = Fellowship of the Ring
+| part_of = War of the Ring
+| followed_by = Battle of the Pelennor Fields
+| result = Die Gemeinschaft des Rings wurde erwählt, den Ring nach Mordor zu tragen.
+| description = Die Ratsversammlung in Bruchtal, auf der über das Schicksal des Einen Rings entschieden wurde.
+| short = Der Rat, der die Gemeinschaft erwählte
+| canon = Tolkien
+}}
+'''Elronds Rat''' trat am 25. Oktober D.Z. 3018 in [[Rivendell|Bruchtal]] zusammen. Dort wurde die Geschichte des [[One Ring|Einen Rings]] vollständig erzählt, und die [[Fellowship of the Ring|Gemeinschaft des Rings]] wurde erwählt.

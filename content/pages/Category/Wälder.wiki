@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Wälder}}{{Category header|type=location|kicker=Orte|title=Wälder|description=Alle Einträge der Art „Wald“.|form=Location|table=Locations|placeholder=Neuer Ort …}}
+[[Category:Locations|Wälder]]

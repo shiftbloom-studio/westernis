@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Chroniken (Einfall)}}{{Category header|type=chronicle|kicker=Chroniken|title=Chroniken (Einfall)|description=Alle Einträge der Art „Einfall“.|form=Chronicle|table=Chronicles|namespace=Chronicle|placeholder=Neue Chronik …}}
+[[Category:Chronicles|Chroniken (Einfall)]]

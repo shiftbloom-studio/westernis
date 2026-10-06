@@ -1,0 +1,151 @@
+<noinclude>
+Dies ist das Formular „Gestalt“. Gib unten einen Seitennamen ein, um einen neuen Eintrag anzulegen, oder öffne einen bestehenden, um ihn mit diesem Formular zu bearbeiten.
+
+{{#forminput:form=Character|autocomplete on category=Characters|placeholder=Name der Gestalt|button text=Anlegen / bearbeiten|no autofocus}}
+
+[[Category:Forms]]
+</noinclude><includeonly>
+<div class="wst-form wst-form-character">
+{{{info|page name=<Infobox character[name]>|create title=Eine Gestalt anlegen|edit title=Gestalt bearbeiten}}}
+{{{for template|Infobox character|label=Gestalt}}}
+{| class="formtable wst-formtable"
+|+ Name & Bild
+|-
+! Name:
+| {{{field|name|input type=text|placeholder=Anzeigename (sonst der Seitenname)}}}
+|-
+! Tengwar:
+| {{{field|script|input type=text|placeholder=Tengwar-Text (in Tengwar-Schrift dargestellt)}}}
+|-
+! Bild:
+| {{{field|image|input type=text|uploadable|placeholder=Beispiel.jpg}}}
+|-
+! Bildunterschrift:
+| {{{field|caption|input type=text|placeholder=Bildunterschrift}}}
+|-
+! Weitere Namen:
+| {{{field|othernames|input type=tokens|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Lebensdaten
+|-
+! Titel:
+| {{{field|titles|input type=tokens|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Volk:
+| {{{field|race|input type=combobox|values from category=Peoples}}}
+|-
+! Kultur:
+| {{{field|culture|input type=combobox|values from category=Peoples}}}
+|-
+! Geschlecht:
+| {{{field|gender|input type=text}}}
+|-
+! Haus:
+| {{{field|house|input type=combobox|values from category=Factions}}}
+|-
+! Bündnisse:
+| {{{field|affiliation|input type=tokens|values from category=Factions|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Stellung:
+| {{{field|position|input type=text}}}
+|-
+! Reich:
+| {{{field|realm|input type=combobox|values from category=Locations}}}
+|-
+! Aufenthalt:
+| {{{field|location|input type=combobox|values from category=Locations}}}
+|-
+! Geburt:
+| {{{field|birth|input type=text}}} <span class="wst-form-inline">Jahr {{{field|birth_year|input type=text|size=6}}} Zeitalter {{{field|birth_era|input type=combobox|values from category=Eras}}}</span>
+|-
+! Geburtsort:
+| {{{field|birthplace|input type=combobox|values from category=Locations}}}
+|-
+! Tod:
+| {{{field|death|input type=text}}} <span class="wst-form-inline">Jahr {{{field|death_year|input type=text|size=6}}} Zeitalter {{{field|death_era|input type=combobox|values from category=Eras}}}</span>
+|-
+! Sterbeort:
+| {{{field|deathplace|input type=combobox|values from category=Locations}}}
+|-
+! Alter:
+| {{{field|age|input type=text}}}
+|-
+! Herrschaft:
+| {{{field|rule|input type=text}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Sippe
+|-
+! Eltern:
+| {{{field|parentage|input type=tokens|values from category=Characters|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Geschwister:
+| {{{field|siblings|input type=tokens|values from category=Characters|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Gemahl(in):
+| {{{field|spouse|input type=tokens|values from category=Characters|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Kinder:
+| {{{field|children|input type=tokens|values from category=Characters|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Erscheinung
+|-
+! Größe:
+| {{{field|height|input type=text}}}
+|-
+! Haar:
+| {{{field|hair|input type=text}}}
+|-
+! Augen:
+| {{{field|eyes|input type=text}}}
+|-
+! Gewandung:
+| {{{field|clothing|input type=text}}}
+|-
+! Waffen:
+| {{{field|weapons|input type=tokens|values from category=Artifacts|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Ross:
+| {{{field|steed|input type=combobox|values from category=Creatures}}}
+|-
+! Sprachen:
+| {{{field|language|input type=tokens|values from category=Languages|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Einzelheiten
+|-
+! Bedeutung:
+| {{{field|notablefor|input type=textarea|rows=3|autogrow}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Angaben zum Eintrag
+|-
+! Kurzbeschreibung:
+| {{{field|short|input type=text|placeholder=Eine Zeile unter dem Titel und in Suchergebnissen}}}
+|-
+! Kanon:
+| {{{field|canon|input type=radiobutton|values=Tolkien,Westernis,Draft|mapping template=Wst label|default=Westernis}}}
+|-
+! Akzentfarbe:
+| {{{field|accent|input type=text|placeholder=#7a1f2b (optionale Hex-Farbe)}}}
+|-
+|}
+{{{end template}}}
+
+<div class="wst-form-text">'''Text des Eintrags''' <small>(das Gerüst ist für neue Seiten vorbefüllt; ersetze die Kommentare)</small></div>
+{{{standard input|free text|rows=28|editor=wikieditor|preload=Template:Skeleton/Character}}}
+
+{{{standard input|summary}}}
+
+{{{standard input|minor edit}}} {{{standard input|watch}}}
+
+{{{standard input|save}}} {{{standard input|preview}}} {{{standard input|changes}}} {{{standard input|cancel}}}
+</div>
+</includeonly>

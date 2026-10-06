@@ -1,0 +1,3 @@
+{{#default_form:Character}}{{DISPLAYTITLE:Gestalten}}
+{{Category header|type=character|title=Gestalten|singular=Gestalt|placeholder=Neue Gestalt …|form=Character|table=Characters|description=Eine Person aus Westernis oder Mittelerde: Könige, Wanderer, Gelehrte, Widersacher.}}
+[[Category:Westernis|Gestalten]]

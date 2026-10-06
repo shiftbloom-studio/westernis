@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Ringkrieg}}
+{{Infobox event
+| name = Ringkrieg
+| type = War
+| year_start = 3018
+| year_end = 3019
+| era = Third Age
+| location = Gondor, Mordor, Eriador
+| participants = Aragorn II, Gandalf, Elrond
+| factions = Fellowship of the Ring, Rangers of the North
+| followed_by = Fourth Age
+| side1 = Gondor, Fellowship of the Ring
+| side2 = Mordor
+| commanders1 = Aragorn II, Gandalf
+| commanders2 = Sauron
+| result = Vernichtung des Einen Rings; endgültiger Sturz Saurons; Erneuerung des Königtums von Gondor und Arnor.
+| description = Der große Krieg am Ende des Dritten Zeitalters zwischen den Freien Völkern und Sauron.
+| short = Der Krieg, der das Dritte Zeitalter beendete
+| canon = Tolkien
+}}
+Der '''Ringkrieg''' wurde in den letzten Jahren des [[Third Age|Dritten Zeitalters]] zwischen Sauron von [[Mordor]] und den Freien Völkern Mittelerdes ausgefochten. Er endete mit der Vernichtung des [[One Ring|Einen Rings]].
+
+== Verlauf ==
+{{Timeline|era=Third Age|from=3018|to=3019}}

@@ -1,0 +1,3 @@
+{{#default_form:Location}}{{DISPLAYTITLE:Orte}}
+{{Category header|type=location|title=Orte|singular=Ort|placeholder=Neuer Ort …|form=Location|table=Locations|description=Ein Ort: Reich, Landstrich, Siedlung, Festung, Wahrzeichen, Fluss, Wald, Meer.}}
+[[Category:Westernis|Orte]]

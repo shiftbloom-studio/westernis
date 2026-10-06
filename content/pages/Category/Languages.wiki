@@ -1,0 +1,3 @@
+{{#default_form:Language}}{{DISPLAYTITLE:Sprachen}}
+{{Category header|type=language|title=Sprachen|singular=Sprache|placeholder=Neue Sprache …|form=Language|table=Languages|description=Eine Sprache oder Schrift der Welt.}}
+[[Category:Westernis|Sprachen]]

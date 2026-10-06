@@ -1,0 +1,89 @@
+<noinclude>
+Dies ist das Formular „Sprache“. Gib unten einen Seitennamen ein, um einen neuen Eintrag anzulegen, oder öffne einen bestehenden, um ihn mit diesem Formular zu bearbeiten.
+
+{{#forminput:form=Language|autocomplete on category=Languages|placeholder=Name der Sprache|button text=Anlegen / bearbeiten|no autofocus}}
+
+[[Category:Forms]]
+</noinclude><includeonly>
+<div class="wst-form wst-form-language">
+{{{info|page name=<Infobox language[name]>|create title=Eine Sprache anlegen|edit title=Sprache bearbeiten}}}
+{{{for template|Infobox language|label=Sprache}}}
+{| class="formtable wst-formtable"
+|+ Name & Bild
+|-
+! Name:
+| {{{field|name|input type=text|placeholder=Anzeigename (sonst der Seitenname)}}}
+|-
+! Tengwar:
+| {{{field|script|input type=text|placeholder=Tengwar-Text (in Tengwar-Schrift dargestellt)}}}
+|-
+! Bild:
+| {{{field|image|input type=text|uploadable|placeholder=Beispiel.jpg}}}
+|-
+! Bildunterschrift:
+| {{{field|caption|input type=text|placeholder=Bildunterschrift}}}
+|-
+! Weitere Namen:
+| {{{field|othernames|input type=tokens|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Einordnung
+|-
+! Sprachstamm:
+| {{{field|family|input type=combobox|values from category=Languages}}}
+|-
+! Abgeleitet von:
+| {{{field|parent|input type=combobox|values from category=Languages}}}
+|-
+! Schrift:
+| {{{field|writing|input type=text}}}
+|-
+! Gesprochen von:
+| {{{field|speakers|input type=tokens|values from category=Peoples|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Verbreitung:
+| {{{field|region|input type=tokens|values from category=Locations|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+! Zeitalter:
+| {{{field|era|input type=tokens|values from category=Eras|delimiter=,|placeholder=durch Kommata getrennt}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Sprachprobe
+|-
+! Probe:
+| {{{field|sample|input type=textarea|rows=3|autogrow}}}
+|-
+! Probe (Schrift):
+| {{{field|sample_script|input type=text}}}
+|-
+! Bedeutung:
+| {{{field|sample_meaning|input type=text}}}
+|-
+|}
+{| class="formtable wst-formtable"
+|+ Angaben zum Eintrag
+|-
+! Kurzbeschreibung:
+| {{{field|short|input type=text|placeholder=Eine Zeile unter dem Titel und in Suchergebnissen}}}
+|-
+! Kanon:
+| {{{field|canon|input type=radiobutton|values=Tolkien,Westernis,Draft|mapping template=Wst label|default=Westernis}}}
+|-
+! Akzentfarbe:
+| {{{field|accent|input type=text|placeholder=#7a1f2b (optionale Hex-Farbe)}}}
+|-
+|}
+{{{end template}}}
+
+<div class="wst-form-text">'''Text des Eintrags''' <small>(das Gerüst ist für neue Seiten vorbefüllt; ersetze die Kommentare)</small></div>
+{{{standard input|free text|rows=28|editor=wikieditor|preload=Template:Skeleton/Language}}}
+
+{{{standard input|summary}}}
+
+{{{standard input|minor edit}}} {{{standard input|watch}}}
+
+{{{standard input|save}}} {{{standard input|preview}}} {{{standard input|changes}}} {{{standard input|cancel}}}
+</div>
+</includeonly>

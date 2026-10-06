@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Inseln}}{{Category header|type=location|kicker=Orte|title=Inseln|description=Alle Einträge der Art „Insel“.|form=Location|table=Locations|placeholder=Neuer Ort …}}
+[[Category:Locations|Inseln]]

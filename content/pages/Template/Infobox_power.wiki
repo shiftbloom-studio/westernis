@@ -1,0 +1,229 @@
+<noinclude>
+{{#cargo_declare:_table=Powers|name=String|script=String|image=File|caption=String|othernames=List (,) of String|titles=List (,) of String|pantheon=Page|domain=List (,) of String|rank=String|allegiance=String|dwelling=Page|symbols=String|followers=List (,) of Page|relatives=List (,) of Page|notablefor=Text|canon=String}}
+'''Infobox power''' — Valar, Maiar, Götter, Geister und andere Mächte der Welt.
+
+Neue Seiten entstehen mit [[Form:Power]] (oder über [[Westernis:Create]]). Die Felder landen in der Cargo-Tabelle [[Special:CargoTables/Powers|Powers]]. Die Darstellung steckt in [[Template:Infobox power/core]], das Aussehen in [[MediaWiki:Common.css]] (<code>.pi-theme-power</code>).
+
+<templatedata>
+{
+ "description": {
+  "en": "Valar, Maiar, gods, spirits and other powers of the world.",
+  "de": "Valar, Maiar, Götter, Geister und andere Mächte der Welt."
+ },
+ "format": "{{_\n| ___ = _\n}}",
+ "params": {
+  "name": {
+   "label": {
+    "en": "Name",
+    "de": "Name"
+   },
+   "description": "Display name (defaults to the page name)",
+   "type": "string",
+   "suggested": true
+  },
+  "script": {
+   "label": {
+    "en": "Tengwar",
+    "de": "Tengwar"
+   },
+   "description": "Name in Tengwar or another script (rendered with the Tengwar font)",
+   "type": "string",
+   "suggested": true
+  },
+  "image": {
+   "label": {
+    "en": "Image",
+    "de": "Bild"
+   },
+   "description": "Main image (file name without the File: prefix)",
+   "type": "wiki-file-name",
+   "suggested": true
+  },
+  "caption": {
+   "label": {
+    "en": "Caption",
+    "de": "Bildunterschrift"
+   },
+   "description": "Image caption",
+   "type": "string",
+   "suggested": true
+  },
+  "othernames": {
+   "label": {
+    "en": "Other names",
+    "de": "Weitere Namen"
+   },
+   "description": "Comma-separated alternative names",
+   "type": "string",
+   "suggested": true
+  },
+  "titles": {
+   "label": {
+    "en": "Titles",
+    "de": "Titel"
+   },
+   "description": "Titles",
+   "type": "string",
+   "suggested": true
+  },
+  "pantheon": {
+   "label": {
+    "en": "Order",
+    "de": "Stand"
+   },
+   "description": "Pantheon or order (e.g. Valar, Maiar)",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "domain": {
+   "label": {
+    "en": "Domains",
+    "de": "Walten"
+   },
+   "description": "Spheres of power",
+   "type": "string",
+   "suggested": true
+  },
+  "rank": {
+   "label": {
+    "en": "Rank",
+    "de": "Rang"
+   },
+   "description": "Rank within the order",
+   "type": "string",
+   "suggested": true
+  },
+  "allegiance": {
+   "label": {
+    "en": "Allegiance",
+    "de": "Treue"
+   },
+   "description": "Light, Shadow, Neutral",
+   "type": "string",
+   "suggested": true
+  },
+  "dwelling": {
+   "label": {
+    "en": "Dwelling",
+    "de": "Wohnstatt"
+   },
+   "description": "Home or seat",
+   "type": "wiki-page-name",
+   "suggested": true
+  },
+  "symbols": {
+   "label": {
+    "en": "Symbols",
+    "de": "Sinnbilder"
+   },
+   "description": "Symbols and sacred things",
+   "type": "string",
+   "suggested": true
+  },
+  "followers": {
+   "label": {
+    "en": "Followers",
+    "de": "Gefolge"
+   },
+   "description": "Servants and followers",
+   "type": "string",
+   "suggested": true
+  },
+  "relatives": {
+   "label": {
+    "en": "Kin",
+    "de": "Sippe"
+   },
+   "description": "Related powers",
+   "type": "string",
+   "suggested": true
+  },
+  "notablefor": {
+   "label": {
+    "en": "Notable for",
+    "de": "Bedeutung"
+   },
+   "description": "Why this power matters",
+   "type": "content",
+   "suggested": true
+  },
+  "short": {
+   "label": {
+    "en": "Short description",
+    "de": "Kurzbeschreibung"
+   },
+   "description": "One line shown under the title and in search results",
+   "type": "string",
+   "suggested": false
+  },
+  "canon": {
+   "label": {
+    "en": "Canon",
+    "de": "Kanon"
+   },
+   "description": "Tolkien = canonical legendarium · Westernis = your own canon · Draft = unreviewed or AI-generated",
+   "type": "string",
+   "suggestedvalues": [
+    "Tolkien",
+    "Westernis",
+    "Draft"
+   ],
+   "default": "Westernis",
+   "suggested": false
+  },
+  "accent": {
+   "label": {
+    "en": "Accent colour",
+    "de": "Akzentfarbe"
+   },
+   "description": "Optional hex colour that overrides the type accent (e.g. #7a1f2b)",
+   "type": "string",
+   "suggested": false
+  }
+ },
+ "paramOrder": [
+  "name",
+  "script",
+  "image",
+  "caption",
+  "othernames",
+  "titles",
+  "pantheon",
+  "domain",
+  "rank",
+  "allegiance",
+  "dwelling",
+  "symbols",
+  "followers",
+  "relatives",
+  "notablefor",
+  "short",
+  "canon",
+  "accent"
+ ]
+}
+</templatedata>
+[[Category:Infobox templates]]
+</noinclude><includeonly>{{#cargo_store:_table=Powers|name={{{name|{{PAGENAME}}}}}|script={{{script|}}}|image={{{image|}}}|caption={{{caption|}}}|othernames={{{othernames|}}}|titles={{{titles|}}}|pantheon={{{pantheon|}}}|domain={{{domain|}}}|rank={{{rank|}}}|allegiance={{{allegiance|}}}|dwelling={{{dwelling|}}}|symbols={{{symbols|}}}|followers={{{followers|}}}|relatives={{{relatives|}}}|notablefor={{{notablefor|}}}|canon={{{canon|Westernis}}}}}<!--
+-->{{#if:{{{short|}}}|{{SHORTDESC:{{{short}}}}}}}<!--
+-->{{Infobox power/core
+|name={{{name|}}}
+|script={{{script|}}}
+|image={{{image|}}}
+|caption={{{caption|}}}
+|othernames={{{othernames|}}}
+|titles={{{titles|}}}
+|pantheon={{#if:{{{pantheon|}}}|[[{{{pantheon}}}]]}}
+|domain={{{domain|}}}
+|rank={{{rank|}}}
+|allegiance={{{allegiance|}}}
+|dwelling={{#if:{{{dwelling|}}}|[[{{{dwelling}}}]]}}
+|symbols={{{symbols|}}}
+|followers={{#invoke:Westernis|list|{{{followers|}}}}}
+|relatives={{#invoke:Westernis|list|{{{relatives|}}}}}
+|notablefor={{{notablefor|}}}
+|canon={{{canon|Westernis}}}
+|accent={{{accent|}}}
+|pagename={{PAGENAME}}
+}}<!--
+-->[[Category:Powers]]{{#if:{{{pantheon|}}}|[[Category:{{{pantheon}}}]]}}{{#switch:{{{canon|Westernis}}}|Tolkien=[[Category:Tolkien canon]]|Draft=[[Category:Draft articles]]|#default=[[Category:Westernis canon]]}}{{#if:{{{image|}}}||[[Category:Articles without an image]]}}</includeonly>

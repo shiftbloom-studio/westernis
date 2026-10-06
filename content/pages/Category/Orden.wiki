@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Orden}}{{Category header|type=faction|kicker=Bünde|title=Orden|description=Alle Einträge der Art „Orden“.|form=Faction|table=Factions|placeholder=Neuer Bund …}}
+[[Category:Factions|Orden]]

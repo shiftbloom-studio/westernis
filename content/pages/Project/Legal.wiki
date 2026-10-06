@@ -1,0 +1,18 @@
+{{DISPLAYTITLE:Rechtliches}}
+{{SHORTDESC:Lizenzen und Hinweis zum Fanprojekt}}
+== Ein inoffizielles Fanprojekt ==
+Westernis ist ein inoffizielles Fanprojekt. Es steht in keiner Verbindung zum Tolkien Estate, zum Tolkien Trust, zu Middle-earth Enterprises, zu den Verlagen HarperCollins und Klett-Cotta oder zu Lizenznehmern von Filmen und Spielen und wird von ihnen weder unterstützt noch genehmigt. J. R. R. Tolkiens Werke sind urheberrechtlich geschützt; „Der Herr der Ringe“, „Der Hobbit“, „Mittelerde“ sowie die Namen von Gestalten, Orten, Ereignissen und Dingen daraus sind Marken oder anderweitig geschützte Bezeichnungen ihrer jeweiligen Inhaber und werden hier nur verwendet, um zu benennen, wovon die Beispielseiten handeln.
+
+Die Beispielseiten fassen das veröffentlichte Legendarium in eigenen Worten zusammen; kurze Zitate sind mit Quelle angegeben. Deutsche Namensformen folgen den eingeführten deutschen Übersetzungen.
+
+== Lizenzen ==
+* '''Code''' – Konfiguration, Skripte, Theme (CSS und JavaScript), Lua-Module, Generatoren und der MCP-Server: GNU Affero General Public License, Version 3 oder neuer (AGPL-3.0-or-later).
+* '''Texte''' – die mitgelieferten Wiki-Seiten (Beispielartikel, Hauptseite, Hilfe- und Projektseiten, Vorlagendokumentation): Creative Commons Namensnennung – Weitergabe unter gleichen Bedingungen 4.0 International (CC BY-SA 4.0).
+* '''Grafiken''' – Karte, Landschaft, Symbole, Ornamente und Logos: CC BY-SA 4.0 (die Skripte, die sie zeichnen, gehören zum Code).
+* '''Schriften''' – SIL Open Font License 1.1; Tengwar Telcontar: GNU General Public License, Version 3 oder neuer, mit Ausnahme für eingebettete Schriften. Die Lizenztexte liegen bei den Schriftdateien unter <code>/assets/fonts</code>.
+* '''MediaWiki''' und seine Erweiterungen werden beim Bau des Docker-Images geladen und stehen unter ihren eigenen Lizenzen.
+
+Die Lizenzen dieses Projekts (AGPL-3.0-or-later für den Code, CC BY-SA 4.0 für Texte und Grafiken) erfassen nur die eigenen Beiträge und räumen keine Rechte an Tolkiens Werken oder an Marken Dritter ein. Einzelheiten und Urheberangaben stehen in den Dateien <code>LICENSE</code>, <code>content/LICENSE.md</code> und <code>THIRD_PARTY_NOTICES.md</code> des Quellcodes.
+
+== Quellcode ==
+Der Quellcode von Westernis ist frei verfügbar: [https://github.com/shiftbloom-studio/westernis github.com/shiftbloom-studio/westernis]. Der Link „Quellcode (AGPL)“ in der Fußzeile führt zum Quellcode der Fassung, die dieses Wiki betreibt.

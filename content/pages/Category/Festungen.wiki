@@ -1,0 +1,2 @@
+{{DISPLAYTITLE:Festungen}}{{Category header|type=location|kicker=Orte|title=Festungen|description=Alle Einträge der Art „Festung“.|form=Location|table=Locations|placeholder=Neuer Ort …}}
+[[Category:Locations|Festungen]]

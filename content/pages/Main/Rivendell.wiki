@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Bruchtal}}
+{{Infobox location
+| name = Bruchtal
+| script =
+| type = Settlement
+| othernames = Imladris, das Letzte Heimelige Haus
+| parent = Eriador
+| founded_year = 1697
+| founded_era = Second Age
+| ruler = Elrond
+| inhabitants = Elves
+| language = Sindarin
+| events = Council of Elrond
+| description = Eine verborgene Zuflucht in einem Tal am Fuß des Nebelgebirges, von Elrond im Krieg gegen Sauron gegründet.
+| map = Map:Westernis
+| map_x = 44
+| map_y = 33
+| short = Elronds verborgene Zuflucht im Tal
+| canon = Tolkien
+}}
+'''Bruchtal''' war die verborgene Zuflucht [[Elrond]]s in einem tiefen Tal des Nebelgebirges. Im [[Second Age|Zweiten Zeitalter]] gegründet, wurde es zu einem Hort der Kunde und der Heilung; in den letzten Jahren des [[Third Age|Dritten Zeitalters]] tagte dort [[Council of Elrond|Elronds Rat]].
+
+== Bewohner ==
+{{Relationships}}

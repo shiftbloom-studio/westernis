@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Zweites Zeitalter}}
+{{Infobox era
+| name = Zweites Zeitalter
+| othernames = Zeitalter Númenors, Dunkle Jahre
+| sequence = 2
+| year_start = 1
+| year_end = 3441
+| prefix = Z.Z.
+| preceded_by = First Age
+| followed_by = Third Age
+| defining_events = Forging of the Rings of Power, Downfall of Númenor, War of the Last Alliance
+| description = Das Zeitalter Númenors und der Ringe der Macht, das mit dem ersten Sturz Saurons endete.
+| short = Das Zeitalter Númenors und der Ringe der Macht
+| canon = Tolkien
+}}
+Das '''Zweite Zeitalter''' begann nach dem Sturz Morgoths und endete mit Saurons erster Niederlage gegen das Letzte Bündnis von Elben und Menschen. In diesen Jahren wurde den [[Men|Menschen]] des Westens die Insel Númenor geschenkt, die Ringe der Macht wurden geschmiedet, und die Reiche im Exil, [[Gondor]] und Arnor, wurden gegründet.
+
+== Zeittafel ==
+{{Timeline|era=Second Age}}
+
+== Siehe auch ==
+* [[Third Age|Drittes Zeitalter]]

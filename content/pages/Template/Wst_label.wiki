@@ -1,0 +1,3 @@
+<noinclude>Zeigt für einen gespeicherten Auswahlwert (Battle, Realm, idea …) die deutsche Bezeichnung. Von den Formularen als ''mapping template'' verwendet; die Tabelle steht in [[Module:Westernis/labels]].
+[[Category:Layout templates]]
+</noinclude><includeonly>{{#invoke:Westernis|label|{{{1|}}}}}</includeonly>
