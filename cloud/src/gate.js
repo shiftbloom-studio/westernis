@@ -154,6 +154,71 @@ export async function passwordVersion(cfg) {
   return cfg.pv;
 }
 
+// ------------------------------------------------------------------------------------------ guest accounts
+
+/** Login names of guest accounts: lower case, letters, digits, space, ".", "_", "-" (max 64). */
+export const LOGIN_NAME_RE = /^[a-z0-9][a-z0-9 ._-]{0,63}$/;
+const WIKI_USER_RE = /^[\x21-\x7e](?:[\x20-\x7e]*[\x21-\x7e])?$/;
+let usersCache; // { raw, owner, users }
+
+/**
+ * Guest accounts from the Worker secret GATE_USERS: a JSON array of { login, user, hash } (login name typed
+ * on the login page, MediaWiki user name, GATE_PASSWORD_HASH-format hash). Invalid entries, and entries that
+ * would sign in as the owner's wiki account, are skipped (logged); the owner's own login is never affected.
+ */
+export function gateUsers(env) {
+  const raw = env?.GATE_USERS;
+  const owner = (ssoUser(env) ?? "").toLowerCase();
+  if (usersCache && usersCache.raw === raw && usersCache.owner === owner) return usersCache.users;
+  const users = [];
+  const skip = (reason) => console.error(JSON.stringify({ evt: "gate-users-invalid", reason }));
+  if (typeof raw === "string" && raw.trim()) {
+    let parsed = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = null;
+    }
+    if (!Array.isArray(parsed)) skip("GATE_USERS is not a JSON array");
+    else {
+      for (const e of parsed) {
+        const login = String(e?.login ?? "").trim().toLowerCase();
+        const user = String(e?.user ?? "").trim();
+        const password = parsePasswordHash(e?.hash);
+        if (!LOGIN_NAME_RE.test(login) || !WIKI_USER_RE.test(user) || !password) { skip(`entry "${login}" is malformed`); continue; }
+        if (user.toLowerCase() === owner || login === owner) { skip(`entry "${login}" would sign in as the owner`); continue; }
+        if (users.some((u) => u.login === login || u.user === user)) { skip(`entry "${login}" is a duplicate`); continue; }
+        users.push({ login, user, password, hashRaw: String(e.hash).trim() });
+      }
+    }
+  }
+  usersCache = { raw, owner, users };
+  return users;
+}
+
+/** The MediaWiki names the gate may sign in (owner first), for the container's WIKI_SSO_USERS. */
+export function ssoUsers(env) {
+  return [ssoUser(env), ...gateUsers(env).map((u) => u.user)].filter(Boolean);
+}
+
+/**
+ * The account a login form names: empty (or the owner's wiki name) = the owner; otherwise a guest from
+ * GATE_USERS by login name or wiki name (case-insensitive); null when there is none.
+ */
+export function findAccount(cfg, env, name) {
+  const n = String(name ?? "").trim().toLowerCase();
+  const ownerName = (ssoUser(env) ?? "").toLowerCase();
+  if (!n || (ownerName && n === ownerName)) return { owner: true, user: ssoUser(env), password: cfg.password, hashRaw: cfg.hashRaw };
+  return gateUsers(env).find((u) => u.login === n || u.user.toLowerCase() === n) ?? null;
+}
+
+/** Password version of an account (first 12 hex chars of SHA-256 of its hash): a new password ends its sessions. */
+async function accountVersion(cfg, account) {
+  if (!account || account.owner) return passwordVersion(cfg);
+  account.pv ??= hex(await sha256(account.hashRaw)).slice(0, 12);
+  return account.pv;
+}
+
 /** SESSION_DAYS as an integer 1..365, default 30. */
 export function sessionDays(env) {
   const n = Number(String(env?.SESSION_DAYS ?? "").trim() || DEFAULT_SESSION_DAYS);
@@ -201,15 +266,23 @@ async function hmac(secret, data) {
   return new Uint8Array(await crypto.subtle.sign("HMAC", key, enc.encode(data)));
 }
 
-/** "<base64url(JSON {v:1, iat, exp, pv})>.<base64url(HMAC-SHA256(SESSION_SECRET, first part))>" */
-export async function makeSession(cfg, env, now = Date.now()) {
+/**
+ * "<base64url(JSON {v:1, iat, exp, pv[, u]})>.<base64url(HMAC-SHA256(SESSION_SECRET, first part))>";
+ * `u` (the MediaWiki user) is set for guest accounts only, so owner sessions keep their old form.
+ */
+export async function makeSession(cfg, env, now = Date.now(), account = null) {
   const iat = Math.floor(now / 1000);
   const exp = iat + sessionDays(env) * 86_400;
-  const payload = b64url(enc.encode(JSON.stringify({ v: 1, iat, exp, pv: await passwordVersion(cfg) })));
+  const body = { v: 1, iat, exp, pv: await accountVersion(cfg, account) };
+  if (account && !account.owner) body.u = account.user;
+  const payload = b64url(enc.encode(JSON.stringify(body)));
   return `${payload}.${b64url(await hmac(cfg.secret, payload))}`;
 }
 
-/** The session payload if the cookie value is authentic, unexpired and for the current password; else null. */
+/**
+ * The session payload (plus `wikiUser`, the MediaWiki user it signs in) if the cookie value is authentic,
+ * unexpired and for the account's current password; null otherwise, also for a guest no longer in GATE_USERS.
+ */
 export async function verifySession(value, cfg, env, now = Date.now()) {
   if (typeof value !== "string" || value.length > MAX_COOKIE_LENGTH) return null;
   const parts = value.split(".");
@@ -227,8 +300,14 @@ export async function verifySession(value, cfg, env, now = Date.now()) {
   const t = Math.floor(now / 1000);
   const maxAge = sessionDays(env) * 86_400;
   if (p.exp <= t || p.iat > t + CLOCK_SKEW_S || p.exp - p.iat > maxAge || t - p.iat > maxAge) return null;
-  if (p.pv !== (await passwordVersion(cfg))) return null;
-  return p;
+  if (p.u === undefined) {
+    if (p.pv !== (await passwordVersion(cfg))) return null;
+    return { ...p, wikiUser: ssoUser(env) };
+  }
+  if (typeof p.u !== "string") return null;
+  const guest = gateUsers(env).find((g) => g.user === p.u);
+  if (!guest || p.pv !== (await accountVersion(cfg, guest))) return null;
+  return { ...p, wikiUser: guest.user };
 }
 
 /** All values of cookie `name` in a Cookie header (browsers may send two with different Domain). */
@@ -417,14 +496,18 @@ async function login(request, env, url, cfg, host) {
 
   const form = await readForm(request);
   const next = safeNext(form?.get("next") ?? "/");
-  const ok = form !== null && (await verifyPassword(form.get("password") ?? "", cfg.password));
+  const name = String(form?.get("name") ?? "").slice(0, 128);
+  const account = form !== null ? findAccount(cfg, env, name) : null;
+  // An unknown name costs the same PBKDF2 work as a wrong password (no account enumeration by timing).
+  const checked = await verifyPassword(form?.get("password") ?? "", account ? account.password : cfg.password);
+  const ok = account !== null && checked;
   if (!ok) {
     await sleep(timing.failDelayMs);
     log({ evt: "gate-login", ok: false });
-    return loginPage({ next, days: sessionDays(env), error: "Das Passwort stimmt nicht.", status: 401 });
+    return loginPage({ next, days: sessionDays(env), error: "Name oder Passwort stimmt nicht.", status: 401, name });
   }
-  log({ evt: "gate-login", ok: true });
-  const value = await makeSession(cfg, env);
+  log({ evt: "gate-login", ok: true, user: account.owner ? "owner" : account.user });
+  const value = await makeSession(cfg, env, Date.now(), account);
   return new Response(null, {
     status: 303,
     headers: {

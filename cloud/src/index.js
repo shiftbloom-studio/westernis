@@ -74,7 +74,8 @@ function forward(request, url, auth, env) {
     else fwd.headers.delete("cookie");
   }
   if (auth.kind === "session") {
-    const user = ssoUser(env);
+    // the session's own account (owner or a guest from GATE_USERS), as verified by verifySession
+    const user = auth.session?.wikiUser ?? ssoUser(env);
     if (user) fwd.headers.set(USER_HEADER, user);
   }
   fwd.headers.set("X-Forwarded-Proto", url.protocol.replace(":", ""));

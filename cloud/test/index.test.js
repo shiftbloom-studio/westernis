@@ -149,7 +149,7 @@ describe("fail-closed: missing or malformed gate secrets", () => {
 });
 
 describe("login page", () => {
-  test("GET: German form, password only, noindex, no external assets, strict headers", async () => {
+  test("GET: German form, optional guest name + password, noindex, no external assets, strict headers", async () => {
     const { call } = setup();
     const res = await call(`https://${EDIT}/__wst/login?next=%2Fwiki%2FAragorn_II`, { headers: navHeaders() });
     assert.equal(res.status, 200);
@@ -160,7 +160,9 @@ describe("login page", () => {
     assert.match(html, /#0b0a12/);
     assert.match(html, /#e3c16f/);
     assert.match(html, /name="next" value="\/wiki\/Aragorn_II"/);
-    assert.equal((html.match(/<input /g) ?? []).length, 2, "hidden next + password; no username field");
+    assert.equal((html.match(/<input /g) ?? []).length, 3, "hidden next + optional name + password");
+    assert.match(html, /name="name"[^>]*autocomplete="username"/);
+    assert.doesNotMatch(html, /name="name"[^>]*required/, "the name is optional (empty = owner)");
     assert.doesNotMatch(html, /<script|<link|src=|url\(|@import|https?:\/\//i);
     assert.equal(res.headers.get("cache-control"), "no-store");
     assert.equal(res.headers.get("x-robots-tag"), "noindex, nofollow");
@@ -223,7 +225,7 @@ describe("login POST", () => {
       assert.equal(res.status, 401);
       assert.equal(res.headers.get("set-cookie"), null);
       const html = await res.text();
-      assert.match(html, /Das Passwort stimmt nicht\./);
+      assert.match(html, /Name oder Passwort stimmt nicht\./);
       assert.match(html, /name="next" value="\/wiki\/X"/);
     }
   });
@@ -590,5 +592,88 @@ describe("internal paths and /__wst/restart", () => {
     assert.equal((await call(`https://${READ}/__wst/restart`)).status, 403, "anonymous public GET");
     assert.equal((await call(`https://${EDIT}/__wst/restart`, { headers: { "x-westernis-token": TOKEN } })).status, 405);
     assert.equal(calls.restart.length, 0);
+  });
+});
+
+describe("guest accounts (GATE_USERS)", () => {
+  const GUEST_PASSWORD = "Gast Passwort 2026 x";
+  let GUEST_HASH;
+  before(async () => {
+    GUEST_HASH = await gate.hashPassword(GUEST_PASSWORD, { salt: new Uint8Array(16).fill(9) });
+  });
+  const users = (list) => ({ GATE_USERS: JSON.stringify(list) });
+  const rimas = () => users([{ login: "rimas", user: "Rimas", hash: GUEST_HASH }]);
+  const login = (call, fields) => call(`https://${EDIT}/__wst/login`, form({ next: "/", ...fields }));
+  const cookieOf = (res) => res.headers.get("set-cookie").split(";")[0];
+
+  test("a guest signs in with name + own password and reaches MediaWiki as that user", async () => {
+    const { call, calls } = setup(rimas());
+    for (const name of ["rimas", "RIMAS", " Rimas "]) {
+      const res = await login(call, { name, password: GUEST_PASSWORD });
+      assert.equal(res.status, 303, name);
+      const r = await call(`https://${READ}/wiki/Hauptseite`, { headers: { cookie: cookieOf(res) } });
+      assert.equal(r.status, 200);
+      assert.equal(calls.fetch.at(-1).headers.get("X-Westernis-User"), "Rimas");
+    }
+  });
+  test("the owner still signs in with an empty name (or the owner's wiki name)", async () => {
+    const { call, calls } = setup(rimas());
+    for (const name of ["", USER, USER.toLowerCase()]) {
+      const res = await login(call, { name, password: PASSWORD });
+      assert.equal(res.status, 303, `name "${name}"`);
+      await call(`https://${READ}/wiki/X`, { headers: { cookie: cookieOf(res) } });
+      assert.equal(calls.fetch.at(-1).headers.get("X-Westernis-User"), USER);
+    }
+  });
+  test("wrong combinations are refused: guest name + owner password, no name + guest password, unknown name", async () => {
+    const { call } = setup(rimas());
+    for (const fields of [
+      { name: "rimas", password: PASSWORD },
+      { name: "", password: GUEST_PASSWORD },
+      { name: "gandalf", password: GUEST_PASSWORD },
+      { name: "gandalf", password: PASSWORD },
+    ]) {
+      const res = await login(call, fields);
+      assert.equal(res.status, 401, JSON.stringify(fields));
+      assert.equal(res.headers.get("set-cookie"), null);
+    }
+  });
+  test("removing a guest or changing the guest's password ends the guest's sessions only", async () => {
+    const a = setup(rimas());
+    const guestCookie = cookieOf(await login(a.call, { name: "rimas", password: GUEST_PASSWORD }));
+    const ownerCookie = cookieOf(await login(a.call, { name: "", password: PASSWORD }));
+    const otherHash = await gate.hashPassword("ein ganz anderes Passwort", { salt: new Uint8Array(16).fill(3) });
+    for (const vars of [users([]), users([{ login: "rimas", user: "Rimas", hash: otherHash }])]) {
+      const b = setup(vars);
+      assert.equal((await b.call(`https://${EDIT}/api.php`, { headers: { cookie: guestCookie } })).status, 401);
+      assert.equal((await b.call(`https://${EDIT}/api.php`, { headers: { cookie: ownerCookie } })).status, 200);
+    }
+  });
+  test("an entry that would sign in as the owner, malformed entries and bad JSON are ignored", async () => {
+    for (const raw of [
+      JSON.stringify([{ login: "boss", user: USER, hash: "x" }]),
+      JSON.stringify([{ login: "evil", user: USER, hash: "" }]),
+      JSON.stringify([{ login: "x y z?", user: "Bad", hash: "nope" }]),
+      "{not json",
+    ]) {
+      const { call } = setup({ GATE_USERS: raw });
+      assert.equal((await login(call, { name: "", password: PASSWORD })).status, 303, "owner unaffected");
+      assert.equal(gate.gateUsers({ GATE_USERS: raw, GATE_WIKI_USER: USER }).length, 0, raw);
+    }
+    const hash = await gate.hashPassword("pw for boss", { salt: new Uint8Array(16).fill(5) });
+    assert.equal(gate.gateUsers({ GATE_USERS: JSON.stringify([{ login: "boss", user: USER, hash }]), GATE_WIKI_USER: USER }).length, 0);
+  });
+  test("a client cannot pick the user: X-Westernis-User from the request is replaced by the session's own", async () => {
+    const { call, calls } = setup(rimas());
+    const cookie = cookieOf(await login(call, { name: "rimas", password: GUEST_PASSWORD }));
+    await call(`https://${READ}/wiki/X`, { headers: { cookie, "x-westernis-user": USER } });
+    assert.equal(calls.fetch.at(-1).headers.get("X-Westernis-User"), "Rimas");
+  });
+  test("the container gets every allowed wiki name (owner first), never a hash", async () => {
+    const wc = await import("../src/wiki-container.js");
+    const env = { GATE_WIKI_USER: USER, ...rimas() };
+    const e = wc.containerEnv(env);
+    assert.equal(e.WIKI_SSO_USERS, `${USER},Rimas`);
+    assert.doesNotMatch(JSON.stringify(e), /pbkdf2/);
   });
 });

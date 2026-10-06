@@ -93,6 +93,18 @@ if (!ssh) {
 }
 for (const [k, v] of Object.entries(values)) text = text.split(`\${${k}}`).join(JSON.stringify(String(v)).slice(1, -1));
 
+// CONTAINER_IMAGE (optional): deploy an image that is already in a registry instead of building
+// cloud/image/Dockerfile (no Docker needed), e.g. registry.cloudflare.com/<account>/westernis-wikicontainer:<tag>.
+const image = pick('CONTAINER_IMAGE');
+if (image) {
+  if (!/^[a-z0-9.-]+(\/[a-z0-9._-]+)+(:[A-Za-z0-9._-]+|@sha256:[0-9a-f]{64})$/.test(image)) {
+    console.error('render-config: CONTAINER_IMAGE must be an image reference with a tag or digest (registry/path:tag)');
+    process.exit(1);
+  }
+  if (!/"image"\s*:\s*"[^"]*"/.test(text)) { console.error('render-config: the template has no "image" entry'); process.exit(1); }
+  text = text.replace(/"image"\s*:\s*"[^"]*"/, `"image": ${JSON.stringify(image)}`).replace(/^[ \t]*"image_build_context"[^\n]*\n/m, '');
+}
+
 // check: valid JSONC (strip comments outside strings), account and jurisdictions rendered
 let json = '', inStr = false;
 for (let i = 0; i < text.length; i++) {

@@ -266,6 +266,10 @@ pwsh -File ./cloud/scripts/Set-Secrets.ps1     # gate password + all Worker secr
 cd cloud && npx wrangler deploy                # Worker + container application
 ```
 
+**Guests:** `pwsh -File ./cloud/scripts/Add-WikiUser.ps1 -Name <Name>` gives someone their own login
+(name + generated password, shown once; only the hash is stored as the Worker secret `GATE_USERS`). They
+appear in the wiki as themselves, as normal editors; `-Remove` takes the login away again.
+
 **Deploy on every push, without your machine (Workers Builds):** in the Cloudflare dashboard open
 *Workers & Pages → (your Worker) → Settings → Builds → Connect* and pick this repository, then set
 

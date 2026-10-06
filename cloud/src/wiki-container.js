@@ -20,6 +20,7 @@
 // stays "stuck" until the process exits or an admin forces it (POST /__wst/restart?force=1 -> SIGKILL).
 import { Container } from "@cloudflare/containers";
 import { isNavigation, sleep } from "./http.js";
+import { ssoUsers } from "./gate.js";
 import { wakingPage, failedPage, stuckPage } from "./waking.js";
 
 export { isNavigation };
@@ -43,7 +44,58 @@ const UNRESPONSIVE_KEY = "wst:unresponsive"; // first time the idle check found 
 const log = (o) => console.log(JSON.stringify(o));
 
 // Runs as root before the image's normal entrypoint (see the constructor).
-const RUNTIME_PREP = "install -d -m 1777 /run/lock && install -d -o www-data -g www-data -m 1777 /run/apache2 /run/lock/apache2";
+// Images whose LocalSettings.cloud.php predates multi-user single sign-on get this override as
+// LocalSettings.local.php (loaded last): every name in WIKI_SSO_USERS may be signed in, and is created as a
+// normal user on its first sign-in. Same rules as LocalSettings.cloud.php otherwise (one header, hyphenated).
+export const SSO_USERS_PHP = `<?php
+// Written at container start by the Westernis Worker (image without multi-user single sign-on).
+$wstSsoUsers = [];
+foreach ( explode( ',', (string)getenv( 'WIKI_SSO_USERS' ) ) as $wstName ) {
+	$wstName = str_replace( '_', ' ', trim( $wstName ) );
+	if ( $wstName !== '' ) {
+		$wstSsoUsers[] = $wstName;
+	}
+}
+$wgAuthRemoteuserUserName = static function () use ( $wstSsoUsers ): string {
+	if ( PHP_SAPI === 'cli' || !$wstSsoUsers ) {
+		return '';
+	}
+	$value = $_SERVER['HTTP_X_WESTERNIS_USER'] ?? null;
+	if ( !is_string( $value ) || $value === '' ) {
+		return '';
+	}
+	if ( function_exists( 'getallheaders' ) ) {
+		$names = [];
+		foreach ( array_keys( getallheaders() ?: [] ) as $name ) {
+			if ( strtolower( strtr( (string)$name, '_', '-' ) ) === 'x-westernis-user' ) {
+				$names[] = (string)$name;
+			}
+		}
+		if ( count( $names ) !== 1 || str_contains( $names[0], '_' ) ) {
+			return '';
+		}
+	}
+	$given = str_replace( '_', ' ', trim( $value ) );
+	foreach ( $wstSsoUsers as $wstName ) {
+		if ( hash_equals( $wstName, $given ) ) {
+			return $wstName;
+		}
+	}
+	return '';
+};
+// Only the names above can reach account creation (the callback returns nothing else).
+$wgGroupPermissions['*']['autocreateaccount'] = true;
+`;
+
+const RUNTIME_PREP = [
+  "install -d -m 1777 /run/lock && install -d -o www-data -g www-data -m 1777 /run/apache2 /run/lock/apache2",
+  "if ! grep -q WIKI_SSO_USERS /var/www/html/LocalSettings.cloud.php 2>/dev/null; then",
+  "cat > /var/www/html/LocalSettings.local.php <<'WSTPHP'",
+  SSO_USERS_PHP.trimEnd(),
+  "WSTPHP",
+  "chmod 0644 /var/www/html/LocalSettings.local.php",
+  "fi",
+].join("\n");
 
 // Diagnostics wrapper (see the constructor). Never prints secrets: the boot scripts do not, and the upload
 // helper only reports its own errors.
@@ -75,6 +127,8 @@ export function containerEnv(env) {
     WIKI_DEBUG: env.WIKI_DEBUG ?? "0",
     // MediaWiki trusts "X-Westernis-User: <this name>" (set only by the Worker, for gate sessions); "" = no SSO
     WIKI_SSO_USER: String(env.GATE_WIKI_USER ?? "").trim(),
+    // every MediaWiki name the gate may sign in (owner + GATE_USERS guests); names only, never hashes
+    WIKI_SSO_USERS: ssoUsers(env).join(","),
     R2_ACCOUNT_ID: env.R2_ACCOUNT_ID,
     R2_DB_BUCKET: env.R2_DB_BUCKET,
     R2_MEDIA_BUCKET: env.R2_MEDIA_BUCKET,

@@ -117,6 +117,16 @@ foreach ($k in $values.Keys) {
   $text = $text.Replace("`${$k}", $json.Substring(1, $json.Length - 2))
 }
 
+# CONTAINER_IMAGE (optional, .env.cloud): deploy an image already in a registry instead of building
+# cloud/image/Dockerfile (no Docker needed), e.g. registry.cloudflare.com/<account>/westernis-wikicontainer:<tag>.
+$image = ([string]$cloud['CONTAINER_IMAGE']).Trim()
+if (-not (Test-WstUnset $image)) {
+  if ($image -cnotmatch '^[a-z0-9.-]+(/[a-z0-9._-]+)+(:[A-Za-z0-9._-]+|@sha256:[0-9a-f]{64})$') { throw 'Init-Cloud: CONTAINER_IMAGE must be an image reference with a tag or digest (registry/path:tag).' }
+  if ($text -notmatch '"image"\s*:\s*"[^"]*"') { throw 'Init-Cloud: the template has no "image" entry.' }
+  $text = [regex]::Replace($text, '"image"\s*:\s*"[^"]*"', ('"image": "' + $image + '"'), 1)
+  $text = [regex]::Replace($text, '(?m)^[ \t]*"image_build_context"[^\n]*\n', '')
+}
+
 # ---- check the result -------------------------------------------------------------------------------------
 try { $cfg = $text | ConvertFrom-Json -Depth 64 } catch { throw "Init-Cloud: the rendered file is not valid JSONC: $($_.Exception.Message)" }
 if ($cfg.account_id -ne $values.CF_ACCOUNT_ID) { throw 'Init-Cloud: account_id was not rendered.' }

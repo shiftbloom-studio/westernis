@@ -9,11 +9,12 @@ import { GOLD, NIGHT, htmlHeaders, renderPage } from "./waking.js";
 const FORM_CSS = `
 form { margin: 1.4rem auto 0.6rem; max-width: 20rem; display: flex; flex-direction: column; gap: 0.7rem; text-align: left; }
 label { color: #a39985; font-size: 0.95rem; letter-spacing: 0.04em; }
-input[type=password] {
+input[type=password], input[type=text] {
   width: 100%; padding: 0.6rem 0.75rem; border-radius: 6px; font: inherit; color: #efe6d2;
-  background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(227, 193, 111, 0.35);
+  background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(227, 193, 111, 0.35); box-sizing: border-box;
 }
-input[type=password]:focus { outline: 2px solid ${GOLD}; outline-offset: 1px; border-color: ${GOLD}; }
+input[type=password]:focus, input[type=text]:focus { outline: 2px solid ${GOLD}; outline-offset: 1px; border-color: ${GOLD}; }
+label .opt { color: #7d7564; font-size: 0.85rem; }
 button {
   margin-top: 0.3rem; padding: 0.6rem 1rem; border-radius: 6px; cursor: pointer; font: inherit;
   font-family: "Cinzel", "Trajan Pro", "EB Garamond", Georgia, serif; letter-spacing: 0.08em;
@@ -34,9 +35,11 @@ export const PAGE_HEADERS = {
 const page = (status, html, extra = {}) => new Response(html, { status, headers: htmlHeaders({ ...PAGE_HEADERS, ...extra }) });
 
 /** The sign-in form. `next` must already be validated (gate.js safeNext). */
-export function loginPage({ next = "/", days = 30, error = "", status = 200 } = {}) {
+export function loginPage({ next = "/", days = 30, error = "", status = 200, name = "" } = {}) {
   const body = `${error ? `<p class="error" role="alert">${escapeHtml(error)}</p>\n` : ""}<form method="post" action="/__wst/login">
 <input type="hidden" name="next" value="${escapeHtml(next)}">
+<label for="name">Name <span class="opt">(nur für Gäste)</span></label>
+<input id="name" type="text" name="name" value="${escapeHtml(name)}" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="64">
 <label for="password">Passwort</label>
 <input id="password" type="password" name="password" autocomplete="current-password" required autofocus maxlength="1024">
 <button type="submit">Eintreten</button>

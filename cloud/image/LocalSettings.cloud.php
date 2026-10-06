@@ -75,9 +75,17 @@ $wgPasswordSender = 'wiki@wiki.example.org';
 // port is bound to 127.0.0.1, because there anyone who can reach the port could send the header.
 // ---------------------------------------------------------------------------
 wfLoadExtension( 'Auth_remoteuser' );
-$wstSsoUser = str_replace( '_', ' ', trim( (string)getenv( 'WIKI_SSO_USER' ) ) );
-$wgAuthRemoteuserUserName = static function () use ( $wstSsoUser ): string {
-	if ( PHP_SAPI === 'cli' || $wstSsoUser === '' ) {
+// Every MediaWiki name the gate may sign in: WIKI_SSO_USERS (owner + guest accounts from the Worker secret
+// GATE_USERS, comma-separated), falling back to the single WIKI_SSO_USER of older Workers.
+$wstSsoUsers = [];
+foreach ( explode( ',', (string)( getenv( 'WIKI_SSO_USERS' ) ?: getenv( 'WIKI_SSO_USER' ) ) ) as $wstName ) {
+	$wstName = str_replace( '_', ' ', trim( $wstName ) );
+	if ( $wstName !== '' ) {
+		$wstSsoUsers[] = $wstName;
+	}
+}
+$wgAuthRemoteuserUserName = static function () use ( $wstSsoUsers ): string {
+	if ( PHP_SAPI === 'cli' || !$wstSsoUsers ) {
 		return '';
 	}
 	$value = $_SERVER['HTTP_X_WESTERNIS_USER'] ?? null;
@@ -97,12 +105,19 @@ $wgAuthRemoteuserUserName = static function () use ( $wstSsoUser ): string {
 			return '';
 		}
 	}
-	return hash_equals( $wstSsoUser, str_replace( '_', ' ', trim( $value ) ) ) ? $wstSsoUser : '';
+	$given = str_replace( '_', ' ', trim( $value ) );
+	foreach ( $wstSsoUsers as $wstName ) {
+		if ( hash_equals( $wstName, $given ) ) {
+			return $wstName;
+		}
+	}
+	return '';
 };
 $wgAuthRemoteuserAllowUserSwitch = false;
 $wgAuthRemoteuserRemoveAuthPagesAndLinks = true;
-// Never create an account from a remote name (LocalSettings.php already forbids createaccount).
-$wgGroupPermissions['*']['autocreateaccount'] = false;
+// A listed guest gets a normal account on the first sign-in. Only names the callback above returns can reach
+// account creation (LocalSettings.php still forbids createaccount, so nobody can register).
+$wgGroupPermissions['*']['autocreateaccount'] = true;
 
 // ---------------------------------------------------------------------------
 // Database: SQLite on the container's local disk, streamed to R2 by Litestream.
