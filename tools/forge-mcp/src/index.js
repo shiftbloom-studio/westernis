@@ -69,6 +69,25 @@ function parseInfobox(wikitext) {
   return { template, entity: entityByTemplate[template.toLowerCase()]?.key || null, fields };
 }
 
+/**
+ * Every identifier a Cargo query on this entity's table can resolve (lower case: SQLite compares
+ * identifiers case-insensitively): the declared fields, the __full columns of list fields, Cargo's
+ * own columns, the helper-table columns HOLDS joins in, and SQLite's rowid aliases.
+ */
+const CARGO_BUILTIN_COLUMNS = ['_pagename', '_pagetitle', '_pagenamespace', '_pageid', '_id', '_value', '_rowid', '_position', 'rowid', 'oid', '_rowid_'];
+const cargoColumnCache = new Map();
+function cargoColumnNames(entity) {
+  if (!cargoColumnCache.has(entity.key)) {
+    const names = new Set(CARGO_BUILTIN_COLUMNS);
+    for (const f of entity.fields) {
+      names.add(f.name.toLowerCase());
+      if (/^List of /i.test(f.type || '')) names.add(`${f.name.toLowerCase()}__full`);
+    }
+    cargoColumnCache.set(entity.key, names);
+  }
+  return cargoColumnCache.get(entity.key);
+}
+
 function stripInfobox(wikitext) {
   const span = infoboxSpan(wikitext);
   return span ? wikitext.slice(0, span.start) + wikitext.slice(span.end) : wikitext;
@@ -174,7 +193,7 @@ server.registerTool('wiki_site_info', {
     const q = await wiki.siteInfo();
     return json({
       sitename: q.general.sitename, server: q.general.server, articlepath: q.general.articlepath, generator: q.general.generator,
-      statistics: q.statistics, bot: login, envFile,
+      statistics: q.statistics, bot: login, envFile, api: wiki.api, gateToken: wiki.apiToken ? 'set' : 'not set',
       entityTypes: ENTITY_KEYS,
       extensions: q.extensions.map((e) => `${e.name} ${e.version || ''}`.trim()),
     });
@@ -237,10 +256,18 @@ server.registerTool('wiki_lore_context', {
     const pages = await Promise.all(titles.map((t) => wiki.getPage(t)));
     const backlinks = main.exists ? await wiki.linksHere(main.title, 40) : [];
     const cargo = [];
+    const cargoSkipped = [];
     for (const e of schemas.entities) {
       const refFields = e.fields.filter((f) => f.type === 'List of Page' || f.type === 'Page');
       if (!refFields.length) continue;
       const safe = topic.replace(/"/g, '');
+      // On SQLite a double-quoted value that names a column is read as that column ("Realm" -> realm = realm),
+      // which matches unrelated rows. Values stay double-quoted (the only quoting that survives HOLDS and
+      // apostrophes), so a topic equal to a column name of this table is skipped instead.
+      if (cargoColumnNames(e).has(safe.trim().toLowerCase())) {
+        cargoSkipped.push({ table: e.table, reason: `"${safe}" is also a column name of ${e.table}` });
+        continue;
+      }
       const where = refFields.map((f) => (f.type === 'Page' ? `${f.name}="${safe}"` : `${f.name} HOLDS "${safe}"`)).join(' OR ');
       try {
         const rows = await wiki.cargoQuery({ tables: e.table, fields: '_pageName=page', where, limit: 30 });
@@ -252,6 +279,7 @@ server.registerTool('wiki_lore_context', {
       topicPage: main.exists ? { title: main.title, lastmod: main.lastmod, description: main.description, infobox: parseInfobox(main.wikitext), sections: sectionsOf(main.wikitext), wikitext: clip(main.wikitext, 20_000) } : null,
       linkedFrom: backlinks,
       mentionedInCargo: cargo,
+      ...(cargoSkipped.length ? { cargoSkipped } : {}),
       related: pages.filter((p) => p.exists && p.title !== main.title).map((p) => ({ title: p.title, description: p.description, infobox: parseInfobox(p.wikitext)?.fields, lead: clip(stripInfobox(p.wikitext).split('\n==')[0].trim(), 1500) })),
     });
   } catch (e) { return fail(e.message); }
@@ -259,7 +287,12 @@ server.registerTool('wiki_lore_context', {
 
 server.registerTool('wiki_cargo_query', {
   title: 'Query structured data (Cargo)',
-  description: 'SQL-like query over the entity tables (Characters, Locations, Factions, Peoples, Creatures, Artifacts, Events, Eras, Languages, Powers, Chronicles). Example: tables="Characters", fields="_pageName,race,realm", where="realm=\'Gondor\'". List fields use HOLDS: where="affiliation HOLDS \'Fellowship of the Ring\'". Rows come back keyed by field name (underscore fields such as _pageName are returned as pageName).',
+  description: 'SQL-like query over the entity tables (Characters, Locations, Factions, Peoples, Creatures, Artifacts, Events, Eras, Languages, Powers, Chronicles). Example: tables="Characters", fields="_pageName,race,realm", where="realm=\'Gondor\'". List fields use HOLDS: where="affiliation HOLDS \'Fellowship of the Ring\'". Rows come back keyed by field name (underscore fields such as _pageName are returned as pageName). '
+    + 'SQL dialect: the cloud wiki stores Cargo data in SQLite, so write queries that work there: '
+    + '(1) = and HOLDS compare case- and accent-sensitively (\'gondor\' does not match \'Gondor\'); LIKE ignores case for ASCII letters only. '
+    + '(2) Quote values with single quotes; a double-quoted value that equals a column name is read as that column (realm="Realm" compares realm with itself). Use double quotes only for values containing an apostrophe. '
+    + '(3) MySQL-only functions do not exist: no YEAR(), MONTH(), DATE_FORMAT(), IF(), NOW(), REGEXP; use CASE WHEN … END and the Integer year fields instead. LOG(x) is base 10. '
+    + '(4) order_by sorts by byte order: uppercase before lowercase, umlauts and accented letters after z.',
   inputSchema: {
     tables: z.string(), fields: z.string().default('_pageName'), where: z.string().optional(), order_by: z.string().optional(),
     group_by: z.string().optional(), having: z.string().optional(), join_on: z.string().optional(), limit: z.number().int().min(1).max(500).default(50),

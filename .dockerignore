@@ -1,5 +1,8 @@
-# Build context = project root (see docker-compose.yml). The image needs only
-# docker/mediawiki/, scripts/*.sh, content/ and wiki/ (LocalSettings*.php, assets/).
+# Build context = project root (see docker-compose.yml). The legacy image needs docker/mediawiki/, scripts/*.sh,
+# content/ and wiki/ (LocalSettings*.php incl. the optional untracked LocalSettings.local.php, assets/).
+# cloud/image/Dockerfile has its own copy of these rules, cloud/image/Dockerfile.dockerignore (BuildKit uses it
+# instead of this file): it also excludes wiki/LocalSettings.local.php. Change both files together.
+# Do not exclude cloud/ as a whole: the cloud image needs cloud/image/ and cloud/migrate/container/.
 .git
 .github
 .gitignore
@@ -9,9 +12,13 @@
 .mcp.json
 .env
 .env.*
+**/.env
+**/.env.*
 .dev.vars*
+**/.dev.vars*
 .claude/
 .wrangler/
+**/.wrangler/
 backups/
 docs/
 tools/
@@ -26,3 +33,15 @@ out.html
 scripts/*.ps1
 **/.DS_Store
 **/Thumbs.db
+# Cloudflare: the Worker, its tests and the rendered per-install config are not part of any image;
+# migration bundles (cloud/migrate/out/) contain password hashes and must never enter a build context.
+cloud/node_modules/
+cloud/migrate/out/
+cloud/wrangler.jsonc
+cloud/src/
+cloud/test/
+cloud/scripts/
+cloud/package.json
+cloud/package-lock.json
+cloud/migrate/*.ps1
+cloud/migrate/*.mjs

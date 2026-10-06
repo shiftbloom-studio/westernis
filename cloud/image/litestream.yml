@@ -1,0 +1,52 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-FileCopyrightText: Fabian Zimber / shiftbloom studio
+#
+# Litestream v0.5.17 -> R2 bucket R2_DB_BUCKET (EU jurisdiction), docs/cloudflare-design.md section 2.7.
+# Every VAR reference below is expanded from the environment when Litestream reads this file (on by default);
+# wst-start.sh overrides WST_DB_GENERATION per restore call. Litestream runs as user wstsync (wst-as sync),
+# started by the root supervisor wst-start.sh WITHOUT exec: the supervisor owns the stop order (Apache, jobs,
+# a socket-confirmed flush, then exactly one SIGTERM to Litestream).
+# Credentials: LITESTREAM_ACCESS_KEY_ID / LITESTREAM_SECRET_ACCESS_KEY. Do NOT set the AWS_ pair: it takes
+# precedence. Only the sync side ever gets either pair (wst-as).
+# Never add comments with a dollar sign here: the expansion also runs over comments.
+
+# Global replica defaults for every db below
+bucket: ${R2_DB_BUCKET}
+# No scheme: Litestream prefixes https:// and detects R2 (sign-payload, concurrency 2) from the host name
+endpoint: ${R2_ACCOUNT_ID}.eu.r2.cloudflarestorage.com
+region: auto
+
+# Final sync on SIGTERM, retried for up to this long per database (they close one after the other, main
+# database first). The supervisor flushes through the control socket before it sends SIGTERM, so this is the
+# second line of defence; its overall stop deadline (11.5 min) stays under the platform's 15 min.
+shutdown-sync-timeout: 5m
+shutdown-sync-interval: 1s
+
+# Control socket for `litestream sync -wait` (wst-sync.sh): first-sync check on a new generation and the
+# confirmed flush before the stop. Owned by wstsync, mode 0600 (the default).
+socket:
+  enabled: true
+  path: /run/wst-sync/litestream.sock
+
+# A full snapshot a day, kept 30 days together with its LTX files = 30 days of point-in-time restore
+snapshot:
+  interval: 24h
+  retention: 720h
+
+logging:
+  level: info
+
+# sync-interval stays at its 1s default
+dbs:
+  - path: /var/lib/westernis/db/westernis.sqlite
+    replica:
+      type: s3
+      path: litestream/${WST_DB_GENERATION}/westernis
+  - path: /var/lib/westernis/db/westernis_cargo.sqlite
+    replica:
+      type: s3
+      path: litestream/${WST_DB_GENERATION}/westernis_cargo
+  - path: /var/lib/westernis/db/wikicache.sqlite
+    replica:
+      type: s3
+      path: litestream/${WST_DB_GENERATION}/wikicache

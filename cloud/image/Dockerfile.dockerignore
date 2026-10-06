@@ -1,0 +1,52 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-FileCopyrightText: Fabian Zimber / shiftbloom studio
+#
+# Build-context ignore file for cloud/image/Dockerfile ONLY. BuildKit uses <Dockerfile>.dockerignore next to the
+# Dockerfile instead of the root .dockerignore, so this file repeats every rule of /.dockerignore (keep the two
+# in sync) and adds what must never reach the cloud image: the LAN stack's untracked per-install override
+# wiki/LocalSettings.local.php (the legacy image still gets it through the root .dockerignore).
+# Build context = repo root: docker build -f cloud/image/Dockerfile .
+.git
+.github
+.gitignore
+.gitattributes
+.editorconfig
+.dockerignore
+.mcp.json
+.env
+.env.*
+**/.env
+**/.env.*
+.dev.vars*
+**/.dev.vars*
+.claude/
+.wrangler/
+**/.wrangler/
+backups/
+docs/
+tools/
+third_party/
+LICENSES/
+node_modules/
+**/node_modules/
+scratch/
+*.md
+**/*.log
+out.html
+scripts/*.ps1
+**/.DS_Store
+**/Thumbs.db
+cloud/node_modules/
+cloud/migrate/out/
+cloud/wrangler.jsonc
+cloud/src/
+cloud/test/
+cloud/scripts/
+cloud/package.json
+cloud/package-lock.json
+cloud/migrate/*.ps1
+cloud/migrate/*.mjs
+# cloud image only
+wiki/LocalSettings.local.php
+**/LocalSettings.local.php
+cloud/image/Dockerfile.dockerignore

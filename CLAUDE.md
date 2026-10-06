@@ -1,8 +1,21 @@
 # Westernis — project notes for Claude Code
 
-A private, LAN-only MediaWiki (1.46, Citizen skin) for the owner's Middle-earth-derived
-"Westernis" universe, run with Docker Compose. Claude Code works on the wiki through the
-**westernis-forge** MCP server (`.mcp.json`), which logs in with a bot password from `.env`.
+A private MediaWiki (1.46, Citizen skin) for the owner's Middle-earth-derived "Westernis"
+universe. It runs on Cloudflare (Worker + one Container + SQLite/Litestream on R2, see
+`docs/cloudflare-design.md` and `cloud/`); the Docker Compose stack is the local/legacy variant.
+Claude Code works on the wiki through the **westernis-forge** MCP server (`.mcp.json`), which logs
+in with a bot password from `.env` and passes the Worker gate with `WESTERNIS_API_TOKEN`
+(`WIKI_API` in `.env` selects the target).
+
+## Working on the Cloudflare deployment
+- Per-install values: untracked `.env.cloud`; `cloud/scripts/Init-Cloud.ps1` renders the untracked
+  `cloud/wrangler.jsonc`. Deploy with `cd cloud && npx wrangler deploy` (add
+  `--containers-rollout=none` for Worker-only changes). Never print or commit secrets.
+- Cloudflare Containers start with an empty `/run` (tmpfs): runtime directories must be created at
+  start (the Worker's entrypoint and `wst-start.sh` do this). Container stdout is not in Worker
+  logs: set var `WST_DEBUG_BOOTLOG=1` and read `debug/boot.log` from the DB bucket
+  (`npx wrangler r2 object get westernis-db/debug/boot.log --jurisdiction eu --remote --pipe`).
+- The zone's bot protection can challenge API calls ("Just a moment…"); Forge retries those.
 
 ## Working on lore (the wiki content)
 - Skills: `/wiki-article` (create or extend one article), `/lore-sweep` (groom the red-link

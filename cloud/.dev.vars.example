@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-FileCopyrightText: Fabian Zimber / shiftbloom studio
+#
+# Local `npx wrangler dev` only (design 4.2 step 3). Copy to cloud/.dev.vars (untracked) and adjust.
+# These values override the "vars" of the rendered wrangler.jsonc and stand in for the Worker secrets.
+# wrangler reads this file literally (no $-expansion); the single quotes only keep editors calm.
+#
+# Start with `npm run dev` (= wrangler dev --local-upstream localhost): without --local-upstream the Worker
+# sees the first route's hostname instead of localhost and answers 404 (host allowlist).
+# Gate: open http://localhost:8787/ and sign in with the DEV-ONLY password  westernis-dev
+# (GATE_PASSWORD_HASH below is its PBKDF2 hash with a fixed, public salt: never use it outside this file).
+# Scripts send  X-Westernis-Token: <API_TOKEN>  instead. The LOGIN_LIMIT rate limiter is simulated locally.
+# An empty GATE_PASSWORD_HASH or SESSION_SECRET reproduces the fail-closed 503.
+#
+# Note: the container started by `wrangler dev` uses these values too. With the dummy R2 keys below its
+# Litestream restore fails, so you see the "Westernis konnte nicht starten" page: enough to exercise the
+# Worker, the gate, the waking page and /images against the local R2 simulation. Real keys would reach
+# the real EU buckets, so never use them here.
+
+WIKI_HOSTS=localhost,127.0.0.1
+WIKI_EDIT_HOST=localhost
+WIKI_SERVER=http://localhost:8787
+PUBLIC_READ_HOSTS=
+MEDIA_CACHE_CONTROL=no-store
+WIKI_DEBUG=1
+GATE_WIKI_USER=Admin
+SESSION_DAYS=30
+
+# Gate secrets (dev dummies; production values come from Push-Secrets.ps1)
+GATE_PASSWORD_HASH='pbkdf2-sha256$100000$ZGV2LW9ubHktc2FsdC0wMA==$SWSkN68EDwE6Le5FmUJ8duaumHv6inCqcdmElMxFSeE='
+SESSION_SECRET=dev-only-session-secret-0000000000000000
+API_TOKEN=dev-only-api-token-00000000000000000000000
+
+# Container environment (dummy values; see the note above)
+R2_ACCOUNT_ID=0000000000000000000000000000dev0
+R2_DB_BUCKET=westernis-db-dev
+R2_MEDIA_BUCKET=westernis-media-dev
+WST_DB_GENERATION=dev
+WST_BOOTSTRAP=
+WST_RESTORE_FROM=
+
+# Container secrets in production (Push-Secrets.ps1); dummies for local runs
+WIKI_SECRET_KEY=dev-only-not-a-secret-0000000000000000000000000000000000000000
+R2_DB_ACCESS_KEY_ID=dev-only
+R2_DB_SECRET_ACCESS_KEY=dev-only
+R2_MEDIA_ACCESS_KEY_ID=dev-only
+R2_MEDIA_SECRET_ACCESS_KEY=dev-only

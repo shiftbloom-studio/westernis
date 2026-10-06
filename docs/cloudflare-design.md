@@ -14,7 +14,7 @@ afterwards (no tunnel); the PC is only used once for the migration and, in v1, t
 | Topic | Decision |
 |---|---|
 | Hostnames | Two hosts: a reading host and an always-private edit host (D10 as proposed). |
-| Access login | One-time PIN by e-mail; two allowed addresses (kept in the Access policy, not in the repo). |
+| Login | **No Cloudflare Access / Zero Trust** (2026-10-06, replaces the earlier one-time-PIN choice): a password gate in the Worker. One password, no user name, no 2FA; a signed session cookie for 30 days; single sign-on into MediaWiki as the owner's account; scripts use an API token header (section 1.6, D18). |
 | Instance size | Custom **2 vCPU / 6144 MiB / 12000 MB** ("one step up"; budget about $10–15/month). |
 | Data location | **EU jurisdiction** for both R2 buckets (`--jurisdiction eu`, S3 endpoint `https://<account>.eu.r2.cloudflarestorage.com`, Worker binding `"jurisdiction": "eu"`, bucket-scoped tokens for the EU buckets); container placement `WEUR`. |
 | Everything else in section 8 | The proposed defaults (95 MB uploads, `sleepAfter` 20 min, 30 days point-in-time restore, weekly dumps for 180 days, SQLite trade-offs accepted, trial period 7–14 days). |
@@ -25,7 +25,8 @@ afterwards (no tunnel); the PC is only used once for the migration and, in v1, t
 
 **Architecture in one paragraph.** One Worker owns both custom domains
 (`wiki.example.org` for reading, `edit.wiki.example.org` for editing and the
-Forge MCP). Cloudflare Access (Worker-level app) protects all of it now. The Worker serves
+Forge MCP). A password gate in the Worker protects all of it now: one password, a signed session
+cookie, single sign-on into MediaWiki, an API token for scripts (section 1.6). The Worker serves
 `/images/*` directly from an R2 bucket, so images never wake the wiki. Every other request goes to
 **one** Durable Object (`WikiContainer`, fixed name `westernis`), which starts and proxies **one**
 Cloudflare Container (`max_instances: 1`) running the existing MediaWiki 1.46 image plus Litestream,
@@ -46,14 +47,15 @@ live in R2 through Extension:AWS (S3 API). The container sleeps 20 minutes after
 | D7 | Apache user and port | Port 80 as root (containers) vs. 8080 as www-data (sqlite) | **Everything as www-data, Apache on 8080** | No root-owned `-wal`/`-shm` files can appear. The php image documents unprivileged ports for non-root Apache [S42]. Run, lock and log dirs are www-data 1777 in the image (checked). |
 | D8 | Container API | Container class (containers) vs. `ctx.container`, which the docs recommend for new apps [S3] | **Container class 0.3.7** on the GA `default` policy | The class sends **SIGTERM only** on `sleepAfter` ("won't get a SIGKILL"), stops only with zero in-flight requests, and deduplicates starts (read in source) [S2]. The direct API stops "shortly after" SIGTERM, which is unsafe for Litestream's final sync (containers report). A migration guide to the direct API exists [S3]. |
 | D9 | Flush before stop | `exec litestream sync` from the DO (containers) vs. signal chain (sqlite) | **Signal chain only**; the DO waits for the process to exit before it allows a restart | The signal path is verified in Litestream's source [S30]. `exec` on the default policy is UNVERIFIED. |
-| D10 | Hostnames | One host (migration) vs. read host + edit host (access) | **Two hosts from day one** | D2 makes both hosts work. Going public later then exposes only anonymous GET on the read host, while logins, the API for writes and the MCP stay behind Access on the edit host. |
-| D11 | `*` read in MediaWiki | `WIKI_ANON_READ=0` (migration) vs. keep `true` (r2-uploads) | **Keep `true`** | The Worker plus Access are the gate (fail-closed). With D2 it no longer affects image URLs, and the public switch stays a Worker-only change. |
+| D10 | Hostnames | One host (migration) vs. read host + edit host (access) | **Two hosts from day one** | D2 makes both hosts work. Going public later then exposes only anonymous GET on the read host, while logins, the API for writes and the MCP stay behind the gate on the edit host. |
+| D11 | `*` read in MediaWiki | `WIKI_ANON_READ=0` (migration) vs. keep `true` (r2-uploads) | **Keep `true`** | The Worker's password gate is the gate (fail-closed). With D2 it no longer affects image URLs, and the public switch stays a Worker-only change. |
 | D12 | Instance size | `basic` (migration, sqlite) vs. custom 1 vCPU / 3 GiB / 8 GB (containers) | **Custom 1 vCPU / 3072 MiB / 8000 MB** | 1/4 vCPU is slow for cold starts, Scribunto and Cargo pages. Custom needs at least 1 vCPU and 3 GiB per vCPU [S7]. Cost: section 7. |
 | D13 | Seeding the replica | Litestream `-once` from the PC (migration) vs. bundle in R2 + first-boot import | **Bundle in R2, imported on first boot** | No S3 keys on the PC (upload with `wrangler r2 object put` over OAuth [S23]). The production code path is exercised on day one. |
 | D14 | Buckets | 3 buckets (r2-uploads) vs. 2 (migration) | **2 buckets**: `westernis-db` (replica, state, import bundle, dumps) and `westernis-media` | R2 tokens scope per bucket, not per prefix [S25]. The import bundle is read with the DB token the container already has. |
 | D15 | When `update.php` runs | Build ID (sqlite) vs. image version (migration) | **Content hash** of all `extension.json`/`skin.json`, `Defines.php` and the LocalSettings files, recorded in `updatelog` | Runs exactly when the schema-relevant code changed, with no manual bumping. |
 | D16 | LocalSettings integration | Use `LocalSettings.local.php` (several reports) | **New `LocalSettings.cloud.php`**, plus a 3-line guarded include in `LocalSettings.php` before the `.local.php` include | During this research `LocalSettings.local.php` became the documented per-install override slot (untracked) [S45]; the cloud layer must not occupy it. |
 | D17 | Deploy path | Workers Builds from Git (migration) vs. `wrangler deploy` with Docker Desktop (containers) | **v1: `wrangler deploy` from the PC**; Workers Builds later (open question Q5) | Docker is needed for the migration anyway. The per-install config is untracked (section 2.2), which a public Git build cannot see. |
+| D18 | Login gate | Cloudflare Access (Worker-level app, one-time PIN, service token) vs. a password gate in the Worker | **Password gate in the Worker** (owner decision 2026-10-06) | No Zero Trust organisation, Access application or service token to set up and renew. The Worker is already the only path to the container [S11], so it can authenticate and pass the owner's identity on (SSO header). PBKDF2 hash and HMAC secret as Worker secrets, Workers Rate Limiting as the brute-force brake [S53][S54]. |
 
 ---
 
@@ -64,12 +66,14 @@ live in R2 through Extension:AWS (S3 API). The container sleeps 20 minutes after
 ```
 Browser / Forge MCP (Node)
    │  https://wiki.example.org        (reading; public later)
-   │  https://edit.wiki.example.org   (always behind Access: login, editing, API, MCP)
+   │  https://edit.wiki.example.org   (always behind the gate: editing, API, MCP)
    ▼
-Cloudflare edge ── Access: Worker-level app "Westernis" (owner e-mail + service token "westernis-forge")
+Cloudflare edge (custom domains, TLS; no Access / Zero Trust)
    ▼
 Worker "westernis" (cloud/src/index.js)
-   ├─ fail-closed check: Access JWT / ctx.access with our AUD, else 403 (or anon GET on PUBLIC_READ_HOSTS)
+   ├─ password gate (gate.js), fail-closed: cookie "__Secure-wst" or header X-Westernis-Token, else
+   │    302 to /__wst/login (browser) or 401 (anything else); anonymous GET only on PUBLIC_READ_HOSTS
+   ├─ /__wst/login, /__wst/logout   ──► gate pages (login.js); never reach the container
    ├─ GET/HEAD /images/*  ──► R2 binding MEDIA (bucket westernis-media); a missing thumb/* goes to the container
    └─ everything else     ──► Durable Object WikiContainer("westernis")    (Container class, default policy)
                                   └─ Container (2 vCPU / 6 GiB / 12 GB, max_instances 1, WEUR)
@@ -88,16 +92,17 @@ Worker "westernis" (cloud/src/index.js)
 
 | Request | Path |
 |---|---|
-| Page view, `load.php`, `api.php`, `/assets/*` | Edge → Access → Worker check → DO `fetch` → container `:8080` Apache → MediaWiki. Worker sets `X-Forwarded-Proto` and `X-Forwarded-For` (= `CF-Connecting-IP`; client copies are stripped). MediaWiki detects https from `X-Forwarded-Proto` natively (`WebRequest::detectProtocol`) [S38]. |
+| Page view, `load.php`, `api.php`, `/assets/*` | Edge → Worker gate (session cookie or API token) → DO `fetch` → container `:8080` Apache → MediaWiki. Worker sets `X-Forwarded-Proto` and `X-Forwarded-For` (= `CF-Connecting-IP`; client copies are stripped). For a gate session it also sets `X-Westernis-User: <GATE_WIKI_USER>` (single sign-on); every client-supplied `X-Westernis-*` header and the `__Secure-wst` cookie are removed first. MediaWiki detects https from `X-Forwarded-Proto` natively (`WebRequest::detectProtocol`) [S38]. |
+| `GET`/`POST /__wst/login`, `GET`/`POST /__wst/logout` | Worker only (`gate.js`, `login.js`): German login page, password check against `GATE_PASSWORD_HASH`, rate limit `LOGIN_LIMIT`, cookie `__Secure-wst`, 303 to a validated relative `next`. Logout is a POST (the GET shows a button). Never reaches the container. |
 | `/images/<a>/<ab>/File.png`, `/images/archive/...`, `/images/thumb/...` | Worker → `env.MEDIA.get(key, {onlyIf, range})` [S27]. ETag, Range, 304, MediaWiki's upload CSP and `nosniff` headers. Private prefixes `deleted/`, `temp/` → 404. **Does not wake the container.** |
 | Missing thumbnail (new size, purged) | Worker finds no R2 object under `thumb/` → forwards to the container → Apache rewrites to `thumb_handler.php` → MediaWiki renders, stores in R2, streams the result (r2-uploads report; `Thumbnail404EntryPoint`). UNVERIFIED end to end. |
 | Upload (form, VisualEditor, MsUpload, Forge `wiki_upload_file`) | → container → PHP → Extension:AWS `PutObject` to R2 (ACL `private`), synchronous. A sleeping container cannot lose an upload. Body cap 100 MB on Free/Pro zones [S21] → `$wgMaxUploadSize` 95 MB. |
-| `POST /__wst/restart` (Access-authenticated) | Worker → DO RPC `restart()` → graceful stop. Used for the restart drill and after env changes. |
-| Anything when not Access-authenticated | 403, except GET/HEAD on a host listed in `PUBLIC_READ_HOSTS` (empty until the public switch, section 5.2). |
+| `POST /__wst/restart` (API token only; a browser session gets 403, so no cross-site form can trigger it) | Worker → DO RPC `restart()` → graceful stop, one SIGTERM per container run. `?force=1` additionally kills (SIGKILL) a run that is already past its 12-minute drain deadline. Used for the restart drill and after env changes. |
+| Anything without a valid session or token | Browser navigation (`GET`, `Sec-Fetch-Mode: navigate`): 302 to `/__wst/login?next=…`. Everything else: 401. Neither reaches the container (cost, privacy). Exception: anonymous GET/HEAD on a host listed in `PUBLIC_READ_HOSTS` (empty until the public switch, section 5.2), with all cookies stripped; never on the edit host. |
 
 `/assets/*` (fonts, theme JS) stays in the image for v1, as today. Serving it as Workers Static Assets
-would cut a few container requests, but `ctx.access` is not passed to the user Worker when Static
-Assets are used [S16]. It is therefore a later, optional step (the JWT check still works).
+would cut a few container requests; it is a later, optional step and needs `run_worker_first`, so that
+the gate still sees every request (UNVERIFIED in this setup).
 
 ### 1.3 Container lifecycle
 
@@ -140,7 +145,7 @@ sends SIGTERM only once per stop. This matters because a **second** signal abort
   The l10n cache is prebuilt in the image: `rebuildLocalisationCache --no-database --lang=de,en` works offline (tested 2026-10-06 in a throwaway container with `--network none`) [S44].
   Expected total **≈ 5–20 s** (**UNVERIFIED**, to be measured in the restart drill). The first page after a cold start is reparsed (parser cache is in memcached) and takes about 1–3 s more.
 - **What a reader sees:**
-  1. If the Access session has expired: the Cloudflare Access login (Cloudflare account or one-time PIN by e-mail), then back.
+  1. If the gate session has expired (after `SESSION_DAYS`, default 30, or after a password change): the Westernis login page, then back to the requested page.
   2. Browser navigations (`GET`, `Sec-Fetch-Mode: navigate`) wait up to **6 s**. If the wiki is not ready by then, the Worker returns a small German page "Westernis erwacht …" (HTTP 503, `Retry-After: 5`, `<meta http-equiv="refresh" content="4">`, no external assets, brand colours). Start-up continues in the DO; the page reloads by itself until the wiki answers.
   3. Images already linked (bookmarks, other tabs) load immediately from R2.
   4. If start-up fails (for example a FATAL guard), a 503 page "Westernis konnte nicht starten" appears instead of an endless refresh. The cause is in the container logs.
@@ -162,12 +167,17 @@ sends SIGTERM only once per stop. This matters because a **second** signal abort
 
 Object-scoped R2 tokens work only through the S3 API [S25]; region `auto` [S24]. Litestream sets
 `sign-payload` and `concurrency=2` for R2 on its own (v0.5.8+) [S33]. Leave r2.dev and bucket custom
-domains **off**, otherwise files bypass Access (r2-uploads report).
+domains **off**, otherwise files bypass the gate (r2-uploads report).
 
 ### 1.6 Schutzschichten
 
-1. **Access at the edge** (Worker-level app) covers every route, custom domain, workers.dev and preview [S16].
-2. **Worker check, fail-closed:** a request passes only if `ctx.access.aud` [S16] or a verified `Cf-Access-Jwt-Assertion` (jose, RS256, issuer = team domain) [S17][S19] matches `ACCESS_AUD`. An empty `ACCESS_AUD` means 403 for everyone.
+1. **Password gate in the Worker, fail-closed** (`cloud/src/gate.js`). Every request on both hosts needs the session cookie `__Secure-wst` or the header `X-Westernis-Token`. Without a well-formed `GATE_PASSWORD_HASH` and `SESSION_SECRET` the Worker answers 503 "Westernis ist noch nicht eingerichtet." to everything, public reads included: never open.
+   - **Login** at `/__wst/login`, password only (no user name, no 2FA). `GATE_PASSWORD_HASH` = `pbkdf2-sha256$100000$<salt_b64>$<hash_b64>`: PBKDF2-HMAC-SHA256 through WebCrypto, exactly 100000 iterations (the Workers runtime refuses more [S54]), salt ≥ 16 bytes, 32-byte hash, compared in constant time.
+   - **Brute-force brake:** Workers Rate Limiting binding `LOGIN_LIMIT`, 5 attempts per 60 s per `CF-Connecting-IP` (counted per Cloudflare location and eventually consistent [S53]), checked before any PBKDF2 work, plus a fixed 750 ms delay on every failure. Over the limit: 429 page. A failing limiter refuses; a missing binding disables the login form (503). Cross-site login and logout POSTs (`Sec-Fetch-Site: cross-site` or a foreign `Origin`) get 403.
+   - **Session cookie** `__Secure-wst` = base64url(`{v:1, iat, exp, pv}`) `.` base64url(HMAC-SHA256 with `SESSION_SECRET`). `pv` is the first 12 hex characters of SHA-256(`GATE_PASSWORD_HASH`), so a new password ends every session. Attributes `Secure; HttpOnly; SameSite=Lax; Path=/; Domain=<reading host>` (the edit host is a subdomain of it, so one sign-in covers both; otherwise host-only), `Max-Age` = `SESSION_DAYS` days (default 30). After the login: 303 to a validated same-site relative `next` (no `//`, `/\`, control characters, absolute URLs or `/__wst/` paths). `POST /__wst/logout` clears it.
+   - **Scripts** (Forge MCP, `wst.ps1 restart`) send `X-Westernis-Token`, compared in constant time with the secret `API_TOKEN` (≥ 32 characters; unset → 503 for token requests). Token requests never get the SSO header: Forge logs into MediaWiki with its bot password as before. `/__wst/restart` accepts only the token.
+   - **Unauthenticated** requests: browser navigations get a 302 to `/__wst/login?next=…`, everything else 401. They never reach the container.
+2. **Single sign-on:** for a gate session the Worker sets `X-Westernis-User: <GATE_WIKI_USER>` (a Worker var: the owner's MediaWiki user name, rendered from `.env` `WIKI_ADMIN_USER`; only printable ASCII is sent). The container gets the same name as `WIKI_SSO_USER` and treats a request whose header equals it as that user. The Worker removes every client-supplied `X-Westernis-*` header and the `__Secure-wst` cookie before forwarding, and the container is reachable only through the Worker [S11], so the header cannot be forged from outside.
 3. `workers_dev: false`, `preview_urls: false`, and an exact host allowlist in the Worker.
 4. The container is reachable only through the Worker [S11]. SSH works only through `wrangler containers ssh` with an ed25519 key from `authorized_keys` [S14].
 5. Least privilege: two bucket-scoped tokens. The DB token is removed from the environment before PHP and Apache start; the media token is limited to `westernis-media`.
@@ -188,15 +198,18 @@ domains **off**, otherwise files bypass Access (r2-uploads report).
 ```
 cloud/
   wrangler.example.jsonc        tracked template (placeholders)
-  wrangler.jsonc                UNTRACKED, rendered from the template + .env.cloud (account ID, hosts, AUD)
-  package.json                  "@cloudflare/containers": "0.3.7", "jose": "^6", devDep "wrangler": "^4.147.0"
-  .dev.vars.example             local `wrangler dev` values (ACCESS_AUD=dev-local, WIKI_HOSTS=localhost …)
+  wrangler.jsonc                UNTRACKED, rendered from the template + .env.cloud (account ID, hosts, buckets) + .env (wiki user)
+  package.json                  "@cloudflare/containers": "0.3.7", devDep "wrangler": "^4.147.0"; `npm test`, `npm run dev`
+  .dev.vars.example             local `wrangler dev` values (dev-only gate password and secrets, WIKI_HOSTS=localhost …)
   src/
-    index.js                    Worker: host allowlist, Access gate, routing, /__wst/restart
-    access.js                   ctx.access / JWT verification (fail-closed)
+    index.js                    Worker: host allowlist, password gate, SSO header, routing, /__wst/restart
+    gate.js                     gate: PBKDF2 check, session cookie, API token, rate limit, next validation
+    login.js                    the gate's German pages (login, logout, 429 / 503 / 401)
+    http.js                     small shared helpers
     media.js                    /images/* from the R2 binding (+ missing thumbnails → container)
-    wiki-container.js           WikiContainer extends Container (readiness, waking page, graceful stop)
-    waking.js                   German 503 "Westernis erwacht" page
+    wiki-container.js           WikiContainer extends Container (readiness, waking page, one-SIGTERM drain)
+    waking.js                   German 503 pages ("erwacht", "konnte nicht starten", "lässt sich nicht beenden")
+  test/                         node --test: gate, Worker, media, WikiContainer against the real Container class
   image/
     Dockerfile                  the cloud image (build context = repo root)
     LocalSettings.cloud.php     cloud overrides (SQLite, Cargo file, caches, R2 media, hosts)
@@ -243,7 +256,7 @@ cloud/
   "account_id": "${CF_ACCOUNT_ID}",
   "main": "src/index.js",
   "compatibility_date": "2026-10-06",
-  "workers_dev": false,                       // never a *.workers.dev bypass (redeploys keep it off) [S16]
+  "workers_dev": false,                       // never a *.workers.dev bypass (redeploys keep it off)
   "preview_urls": false,
   "routes": [
     { "pattern": "${WIKI_PUBLIC_HOST}", "custom_domain": true },   // wiki.example.org
@@ -254,22 +267,25 @@ cloud/
     "class_name": "WikiContainer",
     "scheduling_policy": "default",           // GA; immutable once created [S4]
     "image": "./image/Dockerfile",            // a Dockerfile path: wrangler builds with local Docker and pushes [S13]
-    "image_build_context": "..",              // repo root, as in docker-compose [S5] (relative-path resolution: UNVERIFIED, check with `wrangler dev`)
+    "image_build_context": "..",              // repo root, as in docker-compose [S5]
     "instance_type": { "vcpu": 2, "memory_mib": 6144, "disk_mb": 12000 },  // custom type, owner decision [S7][S8]
     "max_instances": 1,                       // single SQLite writer [S5]
-    "constraints": { "regions": ["WEUR"] },   // near the owner and the R2 location hint [S15]
-    "authorized_keys": [{ "name": "owner", "public_key": "${SSH_PUBLIC_KEY}" }]   // ssh is on by default [S14]
+    "constraints": { "regions": ["WEUR"] },   // near the owner and the EU buckets [S15]
+    "authorized_keys": [{ "name": "owner", "public_key": "${SSH_PUBLIC_KEY}" }]   // dropped while empty [S14]
   }],
   "durable_objects": { "bindings": [{ "name": "WIKI", "class_name": "WikiContainer" }] },
   "exports": { "WikiContainer": { "type": "durable-object", "storage": "sqlite" } },   // not `migrations` [S6][S28]
   "r2_buckets": [{ "binding": "MEDIA", "bucket_name": "${R2_MEDIA_BUCKET}", "jurisdiction": "eu" }],
+  "ratelimits": [                             // brute-force brake for POST /__wst/login [S53]
+    { "name": "LOGIN_LIMIT", "namespace_id": "73519", "simple": { "limit": 5, "period": 60 } }
+  ],
   "vars": {
     "WIKI_SERVER": "https://${WIKI_PUBLIC_HOST}",
     "WIKI_HOSTS": "${WIKI_PUBLIC_HOST},${WIKI_EDIT_HOST}",
     "WIKI_EDIT_HOST": "${WIKI_EDIT_HOST}",
     "PUBLIC_READ_HOSTS": "",                  // section 5.2
-    "ACCESS_TEAM_DOMAIN": "https://${ACCESS_TEAM}.cloudflareaccess.com",
-    "ACCESS_AUD": "${ACCESS_AUD}",            // empty ⇒ Worker answers 403 to everything (fail-closed)
+    "GATE_WIKI_USER": "${WIKI_ADMIN_USER}",   // MediaWiki user of a gate session (SSO); "" = no SSO
+    "SESSION_DAYS": "30",                     // gate cookie lifetime (1..365)
     "R2_ACCOUNT_ID": "${CF_ACCOUNT_ID}",
     "R2_DB_BUCKET": "${R2_DB_BUCKET}",
     "R2_MEDIA_BUCKET": "${R2_MEDIA_BUCKET}",
@@ -278,212 +294,78 @@ cloud/
     "WST_RESTORE_FROM": "",                   // "<gen>[@<RFC3339>]" for point-in-time restores
     "WIKI_DEBUG": "1",                        // honoured only on the edit host (LocalSettings.cloud.php)
     "MEDIA_CACHE_CONTROL": "private, max-age=3600"
-  },
-  "access": { "dev": { "aud": "dev-local", "identity": { "email": "dev@example.invalid" } } }   // wrangler dev only [S16]
+  }
 }
-// Secrets (Push-Secrets.ps1): WIKI_SECRET_KEY, R2_DB_ACCESS_KEY_ID, R2_DB_SECRET_ACCESS_KEY,
-//                             R2_MEDIA_ACCESS_KEY_ID, R2_MEDIA_SECRET_ACCESS_KEY
 ```
 
+Placeholders: `CF_ACCOUNT_ID`, `WIKI_PUBLIC_HOST`, `WIKI_EDIT_HOST`, `R2_DB_BUCKET`, `R2_MEDIA_BUCKET`, `SSH_PUBLIC_KEY`
+from `.env.cloud`, and `WIKI_ADMIN_USER` from `.env`. `namespace_id` only has to be a positive integer that no
+other rate limiter of the account uses [S53].
+
+Worker secrets (never in the file; set with `wrangler secret bulk`, section 2.10):
+
+| Secret | Used by | Content |
+|---|---|---|
+| `GATE_PASSWORD_HASH` | Worker (gate) | `pbkdf2-sha256$100000$<salt_b64>$<hash_b64>` of the gate password (1.6, 5.1) |
+| `SESSION_SECRET` | Worker (gate) | ≥ 32 random characters; HMAC key of the cookie `__Secure-wst` |
+| `API_TOKEN` | Worker (gate) | ≥ 32 random characters; scripts send it as `X-Westernis-Token` (also in the untracked `.env`) |
+| `WIKI_SECRET_KEY` | container | MediaWiki `$wgSecretKey` (from `.env`) |
+| `R2_DB_ACCESS_KEY_ID`, `R2_DB_SECRET_ACCESS_KEY` | container (Litestream, boot scripts) | bucket-scoped token for `westernis-db` |
+| `R2_MEDIA_ACCESS_KEY_ID`, `R2_MEDIA_SECRET_ACCESS_KEY` | container (Extension:AWS) | bucket-scoped token for `westernis-media` |
+
+The three gate secrets never reach the container. Without a well-formed `GATE_PASSWORD_HASH` and
+`SESSION_SECRET` the Worker answers 503 to everything, which is what a "dark" first deploy relies on.
 A Worker deploy that changes only vars starts **no** container rollout [S10]. A running container
 keeps its old environment until its next start (sleep or `/__wst/restart`).
 
 ### 2.3 `cloud/src/` (Worker)
 
-```js
-// src/index.js
-import { getContainer } from "@cloudflare/containers";
-import { accessAuthenticated } from "./access.js";
-import { serveMedia } from "./media.js";
-export { WikiContainer } from "./wiki-container.js";
+The code in `cloud/src/` is the reference, with unit tests in `cloud/test/` (`npm test`; the
+WikiContainer tests run the real `@cloudflare/containers` 0.3.7 class against a fake container).
+This section summarises it.
 
-const INSTANCE = "westernis";                       // exactly one container = exactly one SQLite writer
-const list = (s) => (s ?? "").split(",").map((x) => x.trim().toLowerCase()).filter(Boolean);
-const STRIP = ["cf-access-client-id", "cf-access-client-secret", "cf-access-jwt-assertion",
-               "x-forwarded-for", "x-forwarded-proto", "x-forwarded-host", "x-real-ip"];
+| File | Role |
+|---|---|
+| `index.js` | The fetch handler (order below). Exports only `default`, `WikiContainer` and `ContainerProxy`: the class needs `ctx.exports.ContainerProxy` when a Durable Object is constructed while its container runs (after a Worker deploy), although no outbound interception is configured. |
+| `gate.js` | Configuration check (fail-closed), PBKDF2 verification, constant-time compare (`crypto.subtle.timingSafeEqual` in Workers, an XOR loop elsewhere), session cookie, API token, rate limit, `next` validation, `/__wst/login` and `/__wst/logout`. Runs unchanged in Node ≥ 22; `hashPassword(password)` produces the `GATE_PASSWORD_HASH` value. |
+| `login.js` | The gate's pages: login form (password only), logout button, 429 / 503 / 401 messages. German, inline CSS in the theme colours `#0b0a12` / `#e3c16f`, serif font names only, no external assets, `noindex`, `X-Frame-Options: DENY`, CSP `default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'`. |
+| `http.js` | Small shared helpers (`isNavigation`, plain-text responses, HTML escaping). |
+| `media.js` | `/images/*` straight from the R2 binding: ETag, conditional requests (304/412), single byte ranges (206), MediaWiki's upload CSP and `nosniff`; private zones (`deleted/`, `temp/`, `transcoded/`, `lockdir/`), dot files and traversal → 404; a missing `thumb/…` goes to the container. |
+| `wiki-container.js` | `WikiContainer extends Container`: readiness via `/__ready` on 8080 (30 s / 180 s), the waking page for navigations after 6 s, held API requests, failure cooldown, the graceful stop (below), and the container environment (`containerEnv()`, including `WIKI_SSO_USER`). |
+| `waking.js` | The 503 pages "Westernis erwacht …" (refresh 4 s), "Westernis konnte nicht starten" and "Westernis lässt sich nicht beenden" (no refresh), plus the shared page layout. |
 
-export default {
-  async fetch(request, env, ctx) {
-    const url = new URL(request.url);
-    const host = url.hostname.toLowerCase();
-    if (!list(env.WIKI_HOSTS).includes(host)) return new Response("Not found", { status: 404 });
+**Request order in `index.js`:**
 
-    const authed = await accessAuthenticated(request, env, ctx);
-    if (!authed) {
-      const anonRead = list(env.PUBLIC_READ_HOSTS).includes(host) && ["GET", "HEAD"].includes(request.method);
-      if (!anonRead) return new Response("Zugriff verweigert.\n", { status: 403 });
-      if (wantsLoginOrEdit(url)) return Response.redirect(`https://${env.WIKI_EDIT_HOST}${url.pathname}${url.search}`, 302);
-    }
+1. Host not in `WIKI_HOSTS` → 404.
+2. Gate not configured (`GATE_PASSWORD_HASH` or `SESSION_SECRET` missing or malformed) → 503 for everything.
+3. `/__wst/login`, `/__wst/logout` → the gate's pages (never the container).
+4. Authenticate: a `X-Westernis-Token` header decides alone (valid → token; wrong → 401 after 750 ms; `API_TOKEN` unset or shorter than 32 characters → 503). Otherwise a valid `__Secure-wst` cookie → session. Otherwise anonymous.
+5. Anonymous: GET/HEAD on a `PUBLIC_READ_HOSTS` host that is not the edit host passes (login and edit URLs → 302 to the edit host); otherwise a browser navigation → 302 to `/__wst/login?next=…`, anything else → 401.
+6. `/__wst/restart`: API token and POST only (a session → 403, other methods → 405). `?force=1` passes `{ force: true }`.
+7. Any other `/__wst/*` and `/__ready` → 404.
+8. Forward: remove client `X-Forwarded-*`, `X-Real-IP` and every `X-Westernis-*` header; remove the `__Secure-wst` cookie (all cookies for anonymous readers); set `X-Forwarded-Proto`, `X-Forwarded-For` (= `CF-Connecting-IP`) and, for a session only, `X-Westernis-User: <GATE_WIKI_USER>`.
+9. `/images/*` → `media.js`; everything else → the DO `westernis`.
 
-    const fwd = new Request(request);
-    for (const h of STRIP) fwd.headers.delete(h);
-    fwd.headers.set("X-Forwarded-Proto", url.protocol.replace(":", ""));
-    fwd.headers.set("X-Forwarded-For", request.headers.get("cf-connecting-ip") ?? "");
-    const wiki = getContainer(env.WIKI, INSTANCE);
+**Graceful stop (`wiki-container.js`, review fixes of 2026-10-06):**
 
-    if (url.pathname.startsWith("/images/")) return serveMedia(fwd, env, wiki);
-    if (url.pathname === "/__wst/restart" && authed && request.method === "POST") {
-      await wiki.restart();                           // DO RPC
-      return new Response("Gestoppt. Die nächste Anfrage startet Westernis neu.\n");
-    }
-    if (url.pathname.startsWith("/__wst/") || url.pathname === "/__ready") return new Response("Not found", { status: 404 });
-    return wiki.fetch(fwd);
-  },
-};
+- One SIGTERM per container **run**, not per call: the drain record `wst:drain` (`{at, reason}`) is written to DO storage *before* the signal and survives a Durable Object restart. While it exists and the container runs, nothing signals again, `ready()` is false and no new container may start (single writer); requests wait for the exit.
+- After `MAX_STOP_WAIT_MS` (12 min) the run counts as stuck: requests get the 503 page "Westernis lässt sich nicht beenden", idle expiry and further restarts send nothing. Only `POST /__wst/restart?force=1` (an explicit admin action) escalates, and only for a run past that deadline: `destroy()` (SIGKILL), then the next request starts fresh. On a healthy container `force` is an ordinary graceful restart.
+- A non-zero exit code after the SIGTERM means Litestream's final sync most likely failed: `restart()` reports `failed` and the Worker answers 500 with the code.
+- Idle expiry signals only a container that still answers `/__ready`. One that does not is most likely already draining after the platform's own SIGTERM (rollout, host maintenance), and a second signal would cut the final sync short; it is signalled only after staying silent for 16 minutes (longer than the platform's 15-minute SIGKILL window [S10]).
+- The container side of the same review finding (signal handling in `wst-start.sh` and `wst-run.sh`) belongs to the image, section 2.6.
 
-// Optional nicety for the public phase: send login/edit attempts on the reading host to the edit host.
-function wantsLoginOrEdit(url) {
-  const a = url.searchParams.get("action") ?? "";
-  const t = decodeURIComponent(url.pathname + "|" + (url.searchParams.get("title") ?? ""));
-  return ["edit", "submit", "formedit", "visualedit"].includes(a) || /(Special|Spezial):(UserLogin|Anmelden)/i.test(t);
-}
-```
+`/__wst/restart` answers:
 
-```js
-// src/access.js — Access must have authenticated THIS app (our AUD); otherwise false. Fail-closed.
-import { createRemoteJWKSet, jwtVerify } from "jose";       // jose v6 supports Workers [S52]
-let jwks, jwksFor;
-export async function accessAuthenticated(request, env, ctx) {
-  const auds = (env.ACCESS_AUD ?? "").split(",").map((s) => s.trim()).filter(Boolean);
-  if (auds.length === 0) return false;
-  const a = ctx.access;                                        // Worker-level Access sets this [S16]
-  if (a && [].concat(a.aud ?? []).some((x) => auds.includes(x))) return true;
-  const token = request.headers.get("cf-access-jwt-assertion");
-  if (!token || !env.ACCESS_TEAM_DOMAIN) return false;
-  if (!jwks || jwksFor !== env.ACCESS_TEAM_DOMAIN) {
-    jwks = createRemoteJWKSet(new URL(`${env.ACCESS_TEAM_DOMAIN}/cdn-cgi/access/certs`));   // keys rotate; never hard-code [S17]
-    jwksFor = env.ACCESS_TEAM_DOMAIN;
-  }
-  try {
-    await jwtVerify(token, jwks, { issuer: env.ACCESS_TEAM_DOMAIN, audience: auds, algorithms: ["RS256"] });
-    return true;
-  } catch { return false; }
-}
-```
+| DO result | HTTP | Meaning |
+|---|---|---|
+| `stopped` | 200 | exited with code 0; the next request starts Westernis |
+| `not-running` | 200 | nothing was running |
+| `stopping` | 202 | still draining after 50 s; the next request waits for the exit |
+| `failed` | 500 | exited with a non-zero code: check the container log before working on |
+| `timeout` | 500 | past the 12-minute deadline; `?force=1` kills the run |
+| `killed` | 200 | SIGKILL after `?force=1`; the last seconds before the hang may be missing |
 
-Authorisation of *who* (owner e-mail, Forge service token) is the Access policy's job. The Worker only
-proves that Access ran for our application, the documented `POLICY_AUD` pattern [S17]. Whether a
-Worker-level app also sends `Cf-Access-Jwt-Assertion` is UNVERIFIED, which is why `ctx.access` is
-checked first.
-
-```js
-// src/media.js — /images/* straight from R2 (adapted from the r2-uploads report; UNVERIFIED as code)
-const PRIVATE = /^(deleted|temp|transcoded|lockdir)\//;
-const CSP = "default-src 'none'; style-src 'unsafe-inline' data:; font-src data:; img-src data: 'self'; media-src data: 'self'; sandbox";
-const CSP_PDF = CSP.replace("; sandbox", "; object-src 'self'");     // MediaWiki's upload CSP (images/.htaccess)
-
-export async function serveMedia(request, env, wiki) {
-  if (!["GET", "HEAD"].includes(request.method)) return new Response(null, { status: 405, headers: { Allow: "GET, HEAD" } });
-  let key;
-  try { key = decodeURIComponent(new URL(request.url).pathname.slice("/images/".length)); }
-  catch { return new Response("Bad Request", { status: 400 }); }
-  if (!key || PRIVATE.test(key) || key.split("/").some((s) => !s || s === ".." || s.startsWith(".")))
-    return new Response("Not found", { status: 404 });
-  const obj = request.method === "HEAD" ? await env.MEDIA.head(key)
-            : await env.MEDIA.get(key, { onlyIf: request.headers, range: request.headers });   // [S27]
-  if (obj === null) return key.startsWith("thumb/") ? wiki.fetch(request) : new Response("Not found", { status: 404 });
-  const h = new Headers();
-  obj.writeHttpMetadata(h);
-  h.set("etag", obj.httpEtag);
-  h.set("last-modified", obj.uploaded.toUTCString());
-  h.set("cache-control", env.MEDIA_CACHE_CONTROL ?? "private, max-age=3600");
-  h.set("x-content-type-options", "nosniff");
-  h.set("content-security-policy", key.toLowerCase().endsWith(".pdf") ? CSP_PDF : CSP);
-  h.set("accept-ranges", "bytes");
-  if (request.method === "HEAD") { h.set("content-length", String(obj.size)); return new Response(null, { headers: h }); }
-  if (!("body" in obj)) return new Response(null, { status: request.headers.has("if-none-match") || request.headers.has("if-modified-since") ? 304 : 412, headers: h });
-  let status = 200;
-  if (obj.range && request.headers.has("range")) {
-    const r = obj.range, off = "suffix" in r ? obj.size - r.suffix : (r.offset ?? 0), len = "suffix" in r ? r.suffix : (r.length ?? obj.size - off);
-    h.set("content-range", `bytes ${off}-${off + len - 1}/${obj.size}`); status = 206;
-  }
-  return new Response(obj.body, { status, headers: h });
-}
-```
-
-```js
-// src/wiki-container.js
-import { Container } from "@cloudflare/containers";
-import { wakingPage, failedPage } from "./waking.js";
-
-export const PORT = 8080;
-const START = { instanceGetTimeoutMS: 30_000, portReadyTimeoutMS: 180_000, waitInterval: 500 };  // defaults 8 s/20 s [S1]
-const NAV_WAIT_MS = 6_000;
-const MAX_STOP_WAIT_MS = 12 * 60_000;                 // < alarm wall time (15 min) and < platform SIGKILL
-
-export function containerEnv(env) {                   // passed on every start (class `envVars`) [S1][S2]
-  return {
-    WIKI_SERVER: env.WIKI_SERVER, WIKI_HOSTS: env.WIKI_HOSTS, WIKI_EDIT_HOST: env.WIKI_EDIT_HOST, WIKI_DEBUG: env.WIKI_DEBUG ?? "0",
-    R2_ACCOUNT_ID: env.R2_ACCOUNT_ID, R2_DB_BUCKET: env.R2_DB_BUCKET, R2_MEDIA_BUCKET: env.R2_MEDIA_BUCKET,
-    LITESTREAM_ACCESS_KEY_ID: env.R2_DB_ACCESS_KEY_ID, LITESTREAM_SECRET_ACCESS_KEY: env.R2_DB_SECRET_ACCESS_KEY,
-    R2_MEDIA_ACCESS_KEY_ID: env.R2_MEDIA_ACCESS_KEY_ID, R2_MEDIA_SECRET_ACCESS_KEY: env.R2_MEDIA_SECRET_ACCESS_KEY,
-    WIKI_SECRET_KEY: env.WIKI_SECRET_KEY,
-    WST_DB_GENERATION: env.WST_DB_GENERATION, WST_BOOTSTRAP: env.WST_BOOTSTRAP ?? "", WST_RESTORE_FROM: env.WST_RESTORE_FROM ?? "",
-  };
-}
-
-export class WikiContainer extends Container {
-  defaultPort = PORT;
-  sleepAfter = "20m";                  // billed idle tail; SIGTERM only, never SIGKILL from the class [S2]
-  enableInternet = true;               // R2 S3 endpoint for Litestream + Extension:AWS [S1][S49]
-  pingEndpoint = "localhost/__ready";  // static file; the default "ping" would render the Main Page [S2]
-  starting; stopping;
-
-  constructor(ctx, env) { super(ctx, env); this.envVars = containerEnv(env); }
-
-  async fetch(request) {
-    if (!(await this.ready())) {
-      const wake = this.wake();
-      if (isNavigation(request)) {
-        const r = await Promise.race([wake.then(() => "ok", () => "failed"), scheduler.wait(NAV_WAIT_MS).then(() => "wait")]);
-        if (r === "wait") return wakingPage();
-        if (r === "failed") return failedPage();
-      } else {
-        try { await wake; } catch (e) { console.error("start failed", e); return failedPage(); }
-      }
-    }
-    return this.containerFetch(request, PORT);       // renews the activity timer, counts in-flight [S2]
-  }
-
-  async ready() {
-    if (this.stopping || !this.ctx.container.running) return false;
-    return (await this.getState()).status === "healthy";
-  }
-
-  wake() {
-    this.starting ??= (async () => {
-      if (this.stopping) await this.stopping;         // never two writers: wait for the old process to exit
-      await this.startAndWaitForPorts({ ports: [PORT], cancellationOptions: START });
-    })().finally(() => { this.starting = undefined; });
-    return this.starting;
-  }
-
-  async onActivityExpired() { await this.drainAndStop("idle"); }   // called by the class alarm loop [S2]
-  async restart() { await this.drainAndStop("admin"); }             // RPC from the Worker
-
-  drainAndStop(reason) {
-    if (!this.ctx.container.running) return Promise.resolve();
-    this.stopping ??= (async () => {
-      console.log(JSON.stringify({ evt: "wiki-stop", reason }));
-      await this.stop("SIGTERM");                                    // once; a 2nd signal aborts Litestream's final sync [S30]
-      const deadline = Date.now() + MAX_STOP_WAIT_MS;
-      while (this.ctx.container.running && Date.now() < deadline) await scheduler.wait(1000);
-    })().finally(() => { this.stopping = undefined; });
-    return this.stopping;
-  }
-
-  onStop({ exitCode, reason }) { console.log(JSON.stringify({ evt: "wiki-stopped", exitCode, reason })); }
-}
-
-function isNavigation(req) {
-  return req.method === "GET" && (req.headers.get("sec-fetch-mode") === "navigate" || (req.headers.get("accept") ?? "").includes("text/html"));
-}
-```
-
-`src/waking.js` exports `wakingPage()` (503, `Retry-After: 5`, `Cache-Control: no-store`, inline
-CSS in the theme colours `#0b0a12`/`#e3c16f`, meta refresh 4 s, text "Westernis erwacht … einen
-Augenblick.") and `failedPage()` (503, no refresh, "Westernis konnte nicht starten. Details stehen
-im Container-Log."). Do not override the class's `alarm()`: the class uses it for `sleepAfter` [S2].
+Do not override the class's `alarm()`: the class uses it for `sleepAfter` [S2].
 
 ### 2.4 `cloud/image/Dockerfile`
 
@@ -958,8 +840,8 @@ LiquidThreads as incompatible [S40]. None of them is used.
 | **Extension:AWS** (master b794321) — new | none | expected to work, UNVERIFIED end to end | Pinned SHA; ACL `private`; checksum env vars; smoke test (4.6). Fallback if R2 ever rejects `x-amz-acl: private`: a Dockerfile `sed` that drops the `ACL` keys in `AmazonS3FileBackend.php` [S35][S37]. |
 | TemplateData, Math, Nuke | page_props / schema hooks | works | Math's schema hook names `sqlite` explicitly; TemplateData stores uncompressed JSON. |
 | MsUpload, SimpleBatchUpload | none | works | Upload size 95 MB (2.5). |
-| VisualEditor (Parsoid in core) | none | works | In-process `DirectParsoidClient`: no HTTP loopback that Access could block (containers report). Its stash lives in MainStash → `wikicache` (D6). |
-| Citizen 3.24.0, Vector, CategoryTree, Cite, CodeEditor, Gadgets, ImageMap, InputBox, MultimediaViewer, PageImages, ParserFunctions, PdfHandler, Poem, Scribunto (luasandbox), SyntaxHighlight, TemplateStyles, TextExtracts, WikiEditor, PortableInfobox, DisplayTitle, LabeledSectionTransclusion, TabberNeue, ShortDescription, Popups, RelatedArticles, Lingo, DataMaps, Mermaid, Network, CodeMirror, CharInsert | none or core tables via QueryBuilder | works | No change. `$wgRunJobsAsync` stays false: async jobs would call back through the public hostname, which Access blocks. |
+| VisualEditor (Parsoid in core) | none | works | In-process `DirectParsoidClient`: no HTTP loopback that the gate could block (containers report). Its stash lives in MainStash → `wikicache` (D6). |
+| Citizen 3.24.0, Vector, CategoryTree, Cite, CodeEditor, Gadgets, ImageMap, InputBox, MultimediaViewer, PageImages, ParserFunctions, PdfHandler, Poem, Scribunto (luasandbox), SyntaxHighlight, TemplateStyles, TextExtracts, WikiEditor, PortableInfobox, DisplayTitle, LabeledSectionTransclusion, TabberNeue, ShortDescription, Popups, RelatedArticles, Lingo, DataMaps, Mermaid, Network, CodeMirror, CharInsert | none or core tables via QueryBuilder | works | No change. `$wgRunJobsAsync` stays false: async jobs would call back through the public hostname, which the gate blocks (401). |
 
 ---
 
@@ -996,7 +878,7 @@ Section 6, steps O1–O6 done: plan, `wrangler login`, buckets, tokens, `.env.cl
    - `docker stop` (SIGTERM) → the log must show `stopped cleanly` and then Litestream's `litestream shut down`. Restart → data intact.
    - `docker kill -s KILL` during an edit → restart → compare `MAX(rev_id)`; loss ≤ the last ~1–2 s.
    - Measure the cold-start time (container start → `/__ready`).
-3. Optional: `npx wrangler dev` with `.dev.vars` (`ACCESS_AUD=dev-local`, `WIKI_HOSTS=localhost`) to exercise the Worker, waking page and `/images` against the local R2 simulation [S16][S13].
+3. Optional: `npm run dev` in `cloud/` (`wrangler dev --local-upstream localhost`) with `.dev.vars` (dev-only gate password, `WIKI_HOSTS=localhost`) to exercise the gate, the waking page and `/images` against the local R2 and rate-limit simulations [S13].
 4. **Go/no-go:** a Cargo failure that is not fixable by config stops the migration. MariaDB is not available in-platform, and an external DB would break the "fully Cloudflare" goal.
 
 ### 4.3 Phase B — Freeze and export (owner approves the freeze, agent runs it)
@@ -1008,13 +890,13 @@ bundle. Any count or diff mismatch aborts before anything is uploaded. Expected 
 The bucket is private, and its `import/` prefix expires after 30 days. Delete the prefix earlier once the import is verified: the DB holds password hashes.
 
 ### 4.5 Phase D — Deploy and first boot
-1. **Deploy 1, "dark"**: `ACCESS_AUD=""`, `WST_BOOTSTRAP=""` → `npx wrangler deploy`.
+1. **Deploy 1, "dark"**: no gate secrets yet, `WST_BOOTSTRAP=""` → `npx wrangler deploy`.
    - Both custom domains, their DNS records and certificates are created [S20].
    - The image is pushed and the container application is created. The first deploy can take minutes [S13].
-   - The Worker answers 403 to everything, so no container is started yet.
-2. Owner: `Push-Secrets.ps1`; Access app + service token (5.1); hands the AUD tag and team name to the agent (not secrets).
-3. **Deploy 2**: set `ACCESS_AUD`, `ACCESS_TEAM_DOMAIN`, `WST_BOOTSTRAP=import:<stamp>` → `npx wrangler deploy --containers-rollout=none`.
-4. First request (the owner in the browser, or the agent with `smoke.js` through the service token). In the container:
+   - Without gate secrets the Worker answers 503 to everything (fail-closed), so no container is started yet.
+2. Owner: the secret script (2.10) sets the gate secrets together with the others (5.1). From now on the gate is active.
+3. **Deploy 2**: set `WST_BOOTSTRAP=import:<stamp>` → `npx wrangler deploy --containers-rollout=none`.
+4. First request (the owner in the browser after the gate password, or the agent with `smoke.js` and the API token). In the container:
    - `wst-start.sh` finds no replica and no marker, imports the bundle, writes `state/g1.json`;
    - Litestream seeds `litestream/g1/…` with fresh snapshots;
    - `wst-run.sh` sees an unchanged schema hash (the bundle was built with the same image, so `update.php` is skipped), copies the media with `copyFileBackend` (about 45 objects), then starts Apache.
@@ -1039,7 +921,7 @@ The bucket is private, and its `import/` prefix expires after 30 days. Delete th
 | Upload smoke | Upload a PNG and an SVG (the object has `x-amz-meta-sha1base36`, the thumb appears under `thumb/`). Re-upload (→ `archive/`). Delete (→ `deleted/`, URL 404 through the Worker). Range request on the WebP. |
 | `smoke.js` | Edit round trip on `Notes:Forge smoke test` |
 | **Restart drill** | `POST /__wst/restart` → logs show `stopped cleanly` + Litestream shut down → next request cold-starts **from R2** → the smoke edit is still there; record the cold-start time. |
-| Public exposure | Without Access: 403 on both hosts; `*.workers.dev` unreachable; `/images/deleted/...` 404. |
+| Public exposure | Without session or token: 302 to `/__wst/login` (navigations) or 401 on both hosts; a wrong token 401; `*.workers.dev` unreachable; `/images/deleted/...` 404. |
 
 ### 4.7 Cut-over
 1. Owner: `.env` → `WIKI_API=https://edit.wiki.example.org/api.php`, `CF_ACCESS_CLIENT_ID`, `CF_ACCESS_CLIENT_SECRET`; restart Claude Code (the MCP server reloads `.env`).
@@ -1050,7 +932,7 @@ The bucket is private, and its `import/` prefix expires after 30 days. Delete th
 - **Before confirmation (cloud unusable):**
   1. Remove `images/lock_yBgMBwiR` in the local wiki, run `docker compose start`, and drop `WIKI_API` from `.env`.
   2. Edits made in the cloud meanwhile: export them via the API (`list=recentchanges` since the cut-over → `action=query&export`), then `importDump` locally.
-  3. The cloud Worker can stay dark (`ACCESS_AUD=""`) or be deleted by the owner.
+  3. The cloud Worker can stay dark (without `GATE_PASSWORD_HASH` it answers 503 to everything) or be deleted by the owner.
 - **In the cloud (bad edit, failed `update.php`, corruption):** point-in-time restore into a **new generation**, which leaves the old replica untouched:
   1. Set `WST_DB_GENERATION=g2` and `WST_RESTORE_FROM=g1@2026-11-02T10:00:00Z` (any time inside the 30-day retention; the boot log prints the pre-`update.php` timestamp).
   2. `deploy --containers-rollout=none`, then `POST /__wst/restart`.
@@ -1061,43 +943,54 @@ The bucket is private, and its `import/` prefix expires after 30 days. Delete th
 
 ---
 
-## 5. Access: jetzt und später öffentlich
+## 5. Zugang: jetzt und später öffentlich
 
-### 5.1 Jetzt (privat) — owner, about 15 minutes in the dashboard
-1. **Zero Trust org** (if none exists):
-   - Pick a team name, which gives `https://<team>.cloudflareaccess.com`.
-   - Choose the Free plan (up to 50 users, $0; payment details are still requested) [S47].
-   - Note the creation date: orgs created on or after **2026-10-05** always use *strict service token authentication* [S18].
-2. **Login methods:** the Cloudflare identity provider (default for new orgs) and/or One-time PIN as a fallback (access report).
-3. **Service token** `westernis-forge` (Zero Trust → Access controls → Service credentials):
-   - The secret is shown once (format `cfast_…`); put the Client ID and secret straight into `.env` as `CF_ACCESS_CLIENT_ID`/`CF_ACCESS_CLIENT_SECRET`.
-   - Duration 1 year; turn on the "Expiring Access Service Token" notification [S18].
-4. **Strict service token authentication** on (Access settings → Manage service tokens). It is forced for new orgs. Failures then return 401/403 instead of a 302, and no cookie is set [S18].
-5. After deploy 1: **Workers & Pages → westernis → Access → "Protect this Worker behind Access" → All traffic**, with an Allow policy for `<owner e-mail>` [S16]. This covers both custom domains, workers.dev and previews. Then edit the app in Zero Trust:
-   - add a **Service Auth** policy (Include: service token `westernis-forge`);
-   - session duration 7 days to 1 month (AJAX saves break after expiry);
-   - turn on **"401 Response for Service Auth"**;
-   - copy the **AUD tag** → `ACCESS_AUD` in `.env.cloud` → `Init-Cloud.ps1` → deploy 2.
-6. Check **Bot Fight Mode** (Security → Bots) on `example.org`. If the Forge client gets challenged, turn it off; on Free it cannot be skipped by rules (access report; UNVERIFIED whether it runs before Access).
-7. Test: a private browser window shows the Access login on both hosts; the Forge `smoke.js` works; `curl` without headers gets 401/403.
+No Cloudflare Access and no Zero Trust organisation (D18): the Worker's password gate (1.6) is the
+only login. There is nothing to set up for it in the Cloudflare dashboard.
 
-Lock-out risk: deleting and recreating the Access app changes the AUD. The fail-closed Worker then
-answers 403 to everyone until `ACCESS_AUD` is updated. Deliberately an outage, not a leak.
+### 5.1 Jetzt (privat) — owner: one password
+
+1. **Choose the gate password**: a long passphrase (there is no user name and no second factor). It is
+   typed only into the local secret script (2.10), never into chat or a file; the Worker stores only its hash.
+2. **Secrets** (secret script, together with the others in 2.2):
+   - `GATE_PASSWORD_HASH` = `pbkdf2-sha256$100000$<salt_b64>$<hash_b64>`: PBKDF2-HMAC-SHA256 over the UTF-8
+     bytes of the password exactly as typed (no trimming, no Unicode normalisation), 100000 iterations,
+     16 random salt bytes, 32-byte result, standard base64. `cloud/src/gate.js` exports `hashPassword()`
+     for Node ≥ 22.
+   - `SESSION_SECRET` and `API_TOKEN`: at least 32 random characters each (for example 32 random bytes as base64url).
+   - `API_TOKEN` also goes into the untracked `.env`, for the Forge MCP and `wst.ps1`.
+3. **Single sign-on:** the var `GATE_WIKI_USER` is rendered from `WIKI_ADMIN_USER` in `.env`. After the gate
+   password the wiki opens already signed in as that MediaWiki account; the container learns the same
+   name as `WIKI_SSO_USER`. An empty value turns SSO off (sign in to MediaWiki separately).
+4. **Test:** a private browser window gets the Westernis login page on both hosts; after the password the
+   wiki opens signed in; `curl` without headers gets 401; Forge `smoke.js` works with the token; six wrong
+   passwords within a minute give 429.
+5. Check **Bot Fight Mode** (Security → Bots) on the zone. If Forge requests get challenged, turn it off
+   (UNVERIFIED whether it affects requests with `X-Westernis-Token`).
+
+**Changing the password:** run the secret script again. The new hash changes `pv`, so every session on
+every device ends. A new `SESSION_SECRET` has the same effect. A new `API_TOKEN` must go into `.env` too.
+
+**Failure modes:** a missing or malformed `GATE_PASSWORD_HASH` or `SESSION_SECRET` means 503 "Westernis ist
+noch nicht eingerichtet." for everyone: an outage, never a leak. A missing `LOGIN_LIMIT` binding
+disables only the login form (503); sessions and the token keep working. A forgotten password: set a new
+one with the script.
 
 ### 5.2 Später: öffentliches Lesen (no rebuild, no container rollout)
-1. Zero Trust → Applications → **Add self-hosted app** for host `wiki.example.org`, policy **Bypass / Include Everyone**. A hostname app takes precedence over the Worker-level app for that host only [S16]. The edit host, workers.dev and previews stay protected.
-2. Var `PUBLIC_READ_HOSTS=wiki.example.org` (optionally `MEDIA_CACHE_CONTROL=public, max-age=3600`) → `wst.ps1 deploy-worker`. Effect on the reading host:
-   - the Worker passes only anonymous GET/HEAD;
-   - login and edit URLs redirect to the edit host;
+1. Var `PUBLIC_READ_HOSTS=wiki.example.org` (optionally `MEDIA_CACHE_CONTROL=public, max-age=3600`) → `wst.ps1 deploy-worker`. Effect on the reading host:
+   - anonymous GET/HEAD reaches MediaWiki without any cookie and without the SSO header;
+   - every other anonymous method gets 401; login and edit URLs redirect to the edit host, where the gate asks for the password;
    - MediaWiki already shows no exception details and applies its default anonymous rate limits there (2.5);
-   - nobody can log in on that host.
-3. Recommended:
+   - the owner, signed in through the gate, keeps single sign-on on the reading host.
+
+   The edit host never serves anonymous requests, even if it is listed by mistake.
+2. Recommended:
    - one WAF rate-limiting rule on the reading host;
    - edge caching of anonymous HTML in the Worker (Cache API, short TTL), so crawlers do not keep the container awake (cost, section 7).
-4. **Revert:** delete the Bypass app and clear `PUBLIC_READ_HOSTS`.
+3. **Revert:** clear `PUBLIC_READ_HOSTS` and deploy the Worker again.
 
-Access paths cannot separate reading from writing for MediaWiki, because Access ignores query strings
-(`index.php?action=edit`) (access report, app-paths doc). That is why the Worker does the read/write split.
+The read/write split lives in the Worker because MediaWiki reads and writes share URLs
+(`index.php?action=edit`, `api.php`); only the Worker sees method, query string and session together.
 
 ---
 
@@ -1115,9 +1008,9 @@ Access paths cannot separate reading from writing for MediaWiki, because Access 
 | O6 | Optional: `ssh-keygen -t ed25519`; put the **public** key into `.env.cloud` (`SSH_PUBLIC_KEY`). |
 | O7 | Approve the staging result (go/no-go, 4.2) and the freeze window (4.3). |
 | O8 | Run `cloud/scripts/Push-Secrets.ps1` after deploy 1. |
-| O9 | Zero Trust and Access setup (5.1 steps 1–6); give the agent the AUD tag and team name; put the Forge token into `.env`. |
+| O9 | Choose the gate password and type it once into the local secret script (5.1). Nothing to set up in the Cloudflare dashboard for logins. |
 | O10 | Cut-over in `.env` (4.7), trial period, then confirm → `docker compose down`; after 30 days delete the volumes. |
-| O11 | Later: public switch (5.2), service-token renewal (yearly). |
+| O11 | Later: public switch (5.2). Optional: change the gate password now and then (ends all sessions). |
 
 **Agent** (after the owner's go for each side-effecting step):
 
@@ -1142,7 +1035,7 @@ Access paths cannot separate reading from writing for MediaWiki, because Access 
 | Container memory: 3 GiB × $0.0000025/GiB-s, 25 GiB-h included | $1.40 | $3.02 | $6.26 |
 | Container disk: 8 GB × $0.00000007/GB-s, 200 GB-h included | $0.07 | $0.19 | $0.43 |
 | Container CPU: active only, assumed 10 % of 1 vCPU; 375 vCPU-min included (UNVERIFIED utilisation) | $0.00 | $0.41 | $1.28 |
-| DO, Worker requests, container egress (1 TB included NA/EU), R2 (< 1 GB, ops in the free tier), Access Free | ≈ $0 | ≈ $0 | ≈ $0 |
+| DO, Worker requests, container egress (1 TB included NA/EU), R2 (< 1 GB, ops in the free tier), login rate limiting | ≈ $0 | ≈ $0 | ≈ $0 |
 | **Total** | **≈ $6.5** | **≈ $8.6** | **≈ $13** |
 
 - The `sleepAfter` tail (20 min) is billed after every session. Shorter means cheaper but more cold starts (Q2).
@@ -1164,8 +1057,9 @@ Access paths cannot separate reading from writing for MediaWiki, because Access 
 | **Extension:AWS** only on untagged master; hand-built repo config (D2) | uploads fail | Pinned SHA; upload smoke (4.6); fallback to `$wgAWSBucketDomain`; ACL `sed` patch if R2 ever rejects `private` (UNVERIFIED today [S37]) |
 | **Container class** documented "for existing applications" [S3] | future deprecation | Pinned 0.3.7; documented migration path to `ctx.container` (then own idle timer + flush) |
 | **`update.php` breaks the DB on an image upgrade** | outage | Runs once per schema hash, logs a restore timestamp; generation-based point-in-time restore (4.8) |
-| **Access misconfiguration** | leak or lock-out | Fail-closed Worker, both hosts covered by a Worker-level app, `workers_dev`/`preview_urls` off; a changed AUD means an outage, never a leak |
-| **Service token expires** | MCP stops | 1-year token, expiry notification |
+| **Gate misconfiguration or a guessable password** | leak or lock-out | Fail-closed Worker (503 without well-formed secrets), exact host allowlist, `workers_dev`/`preview_urls` off; PBKDF2 with 100000 iterations, 5 attempts per minute and IP, 750 ms delay per failure; use a long passphrase; a new password ends every session. A broken configuration means an outage, never a leak |
+| **API token leaks** (it sits in `.env`) | read access to the wiki | Untracked `.env` and a Worker secret only; never the SSO identity: without the bot password a token request is anonymous in MediaWiki. Rotate it with the secret script (and `.env`) |
+| **Forged single sign-on** | impersonation | Only the Worker sets `X-Westernis-User`, after removing every client `X-Westernis-*` header; token requests never carry it; the container is reachable only through the Worker [S11] |
 | **Secrets in the container env** | PHP RCE could read the media token | Bucket-scoped tokens; DB token unset before PHP; no AWS_* vars |
 | **Worker deploy restarts the DO** and cuts in-flight requests (containers report) | an edit request fails | Deploy in quiet times; `--containers-rollout=none` for Worker-only changes |
 | **Rollout**: new Worker live before the new image [S10] | brief mixed versions | Keep Worker ↔ container contract stable (ports, env names) |
@@ -1186,9 +1080,9 @@ Access paths cannot separate reading from writing for MediaWiki, because Access 
 5. **Build path:** v1 deploys from the PC with Docker Desktop. Later: Workers Builds from a **private** repo (GitHub or Cloudflare Artifacts)? Does the planned public repo get a separate private deploy config?
 6. **Zone plan** of `example.org`: is a 95 MB upload limit acceptable?
 7. **SQLite trade-offs:** accept byte-order sorting and case/accent-sensitive Cargo matching, or approve an ASCII `sortkey` field in `entities.js`? Accept ReplaceText without regex?
-8. **Login method:** Cloudflare account login (with your MFA) and/or one-time PIN by e-mail?
+8. ~~**Login method**~~ — decided 2026-10-06: no Cloudflare Access; a password gate in the Worker with single sign-on (D18, 1.6).
 9. **Retention:** 30 days of point-in-time restore, weekly XML dumps kept 180 days. OK?
-10. **Zero Trust:** does an org already exist (creation date → strict mode)?
+10. ~~**Zero Trust**~~ — not needed any more (D18).
 11. **Trial period** before `docker compose down`: 7–14 days? Volume deletion after 30 more days?
 
 ---
@@ -1267,6 +1161,10 @@ Access paths cannot separate reading from writing for MediaWiki, because Access 
 - [S50] R2 FUSE example — https://developers.cloudflare.com/containers/examples/r2-fuse-mount/ (2026-10-02): FUSE "does not provide local-disk performance or full POSIX filesystem semantics".
 - [S51] Snapshots — https://developers.cloudflare.com/containers/guides/snapshots/ (durable_object policy only, 30-day TTL). Rejected as the persistence layer.
 - [S52] jose v6 — https://github.com/panva/jose (Workers supported).
+- [S53] Workers Rate Limiting — https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/ (2026-04-23): config `ratelimits: [{ name, namespace_id, simple: { limit, period: 10 | 60 } }]`; `namespace_id` is a positive integer string, unique in the account (bindings that share it share counters); `limit({ key })` → `{ success }`; counters per Cloudflare location, "permissive, eventually consistent". Schema checked in wrangler 4.147.0 (`config-schema.json`).
+- [S54] workerd 4.147 (local check, 2026-10-06): the runtime contains "Pbkdf2 failed: iteration counts above <max> are not supported"; PBKDF2-SHA256 with 100000 iterations ran in `wrangler dev` (about 35 ms per check).
+
+[S16]–[S19], [S46], [S47] and [S52] describe Cloudflare Access and jose; they are kept for the record, but Access was dropped on 2026-10-06 (D18).
 
 Research reports used: containers, sqlite-litestream, extensions-sqlite, r2-uploads, access, migration
 (2026-10-06). Their findings are adopted where cited "(… report)". Load-bearing claims were rechecked
@@ -1276,7 +1174,7 @@ against [S1]–[S45].
 
 1. MediaWiki 1.46 with this extension set **running on SQLite end to end**: Cargo table creation, `cargoRecreateData`, Drilldown, update.php skipping Cargo's MySQL-only patches → staging (4.2).
 2. The hand-built `$wgLocalFileRepo` with Extension:AWS (D2): uploads, thumbs, archive, delete, `copyFileBackend` into `AmazonS3`; R2 still accepting `x-amz-acl: private`; the dual autoloader (extension `vendor/` beside core `vendor/`).
-3. Worker-level Access sending `Cf-Access-Jwt-Assertion` and the exact shape of `ctx.access.aud` (string or array).
+3. ~~Worker-level Access sending `Cf-Access-Jwt-Assertion`~~ — obsolete (no Access, D18). New: the rate limiter's per-location counting in practice (5 per minute and IP is a brake, not an exact count) [S53].
 4. Whether a draining container (host maintenance) counts toward `max_instances`, and whether a replacement can start meanwhile.
 5. `image`/`image_build_context` path resolution relative to `cloud/wrangler.jsonc` for the default policy.
 6. Cold-start duration for the ≈ 2 GB image + restore + Apache; whether the Worker → DO → container request may be held for 180 s without an edge timeout.
@@ -1285,5 +1183,5 @@ against [S1]–[S45].
 9. `ctx.container.running` updating promptly when the process exits (used by `drainAndStop`).
 10. Apache as non-root in this image, beyond the documented port rule (prefork `User`/`Group` directives ignored with a warning).
 11. CPU utilisation behind the cost table (assumed 10 %).
-12. Bot Fight Mode's interaction with service-token requests.
-13. The Node fetch `redirect: 'manual'` behaviour with Access in strict mode (should be 401/403 anyway).
+12. Bot Fight Mode's interaction with script requests (`X-Westernis-Token`).
+13. ~~The Node fetch `redirect: 'manual'` behaviour with Access~~ — obsolete (no Access); the gate answers scripts with 401, never with a redirect.

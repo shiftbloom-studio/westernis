@@ -1,0 +1,42 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-FileCopyrightText: Fabian Zimber / shiftbloom studio
+#
+# Local staging only (docs/cloudflare-design.md sections 2.7 and 4.2): same as litestream.yml, but the
+# replicas are plain directories under /var/lib/westernis/replica, so no R2 bucket or key is needed.
+# Use with WST_LITESTREAM_CONFIG=/etc/litestream.file.yml and WST_R2_LOCAL_DIR=/var/lib/westernis/r2local
+# (state markers, the import bundle and dumps, see wst-r2.php).
+#
+# Volumes: mount one named volume on /var/lib/westernis/replica and one on /var/lib/westernis/r2local.
+# Never a volume on /var/lib/westernis/db or on /var/lib/westernis as a whole: the replica and the database
+# must not share storage. Every start moves leftover local database files aside to /var/lib/westernis/db.prev
+# (WST_KEEP_LOCAL_DB=1 turns that off), so each start restores from the replica, exactly as on Cloudflare
+# where the disk is always empty; a kill drill therefore really tests the restore.
+# Never add comments with a dollar sign here: the expansion also runs over comments.
+
+shutdown-sync-timeout: 5m
+shutdown-sync-interval: 1s
+
+socket:
+  enabled: true
+  path: /run/wst-sync/litestream.sock
+
+snapshot:
+  interval: 24h
+  retention: 720h
+
+logging:
+  level: info
+
+dbs:
+  - path: /var/lib/westernis/db/westernis.sqlite
+    replica:
+      type: file
+      path: /var/lib/westernis/replica/${WST_DB_GENERATION}/westernis
+  - path: /var/lib/westernis/db/westernis_cargo.sqlite
+    replica:
+      type: file
+      path: /var/lib/westernis/replica/${WST_DB_GENERATION}/westernis_cargo
+  - path: /var/lib/westernis/db/wikicache.sqlite
+    replica:
+      type: file
+      path: /var/lib/westernis/replica/${WST_DB_GENERATION}/wikicache

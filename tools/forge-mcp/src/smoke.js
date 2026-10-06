@@ -6,7 +6,7 @@ import { WikiClient, loadProjectEnv, connectionFromEnv } from './wiki.js';
 
 const envFile = loadProjectEnv();
 const wiki = new WikiClient(connectionFromEnv());
-console.log('env file:', envFile, '| api:', wiki.api, '| user:', wiki.user);
+console.log('env file:', envFile, '| api:', wiki.api, '| user:', wiki.user, '| gate token:', wiki.apiToken ? 'set' : 'not set');
 const info = await wiki.siteInfo();
 console.log('site:', info.general.sitename, info.general.generator, '| pages:', info.statistics.pages, 'articles:', info.statistics.articles);
 console.log('login:', JSON.stringify(await wiki.login()));

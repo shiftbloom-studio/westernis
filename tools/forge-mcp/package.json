@@ -8,9 +8,11 @@
   "bin": { "westernis-forge": "src/index.js" },
   "scripts": {
     "start": "node src/index.js",
-    "test": "node --test test/offline.test.js",
+    "test": "node --test \"test/*.test.js\"",
     "test:live": "node src/test-tools.js",
-    "smoke": "node src/smoke.js"
+    "smoke": "node src/smoke.js",
+    "seed": "node src/seed.js",
+    "status": "node src/status.js"
   },
   "engines": { "node": ">=22" },
   "dependencies": {

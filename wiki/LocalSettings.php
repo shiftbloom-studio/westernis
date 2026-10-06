@@ -450,6 +450,11 @@ $wgHooks['BeforePageDisplay'][] = static function ( $out, $skin ) {
 	$out->addHeadItem( 'wst-js', \MediaWiki\Html\Html::element( 'script', [ 'src' => '/assets/js/westernis.js?v=' . WST_ASSET_VERSION, 'defer' => true ] ) );
 };
 
+// Cloudflare layer: present only in the cloud image (cloud/image/Dockerfile), loaded before the local overrides
+if ( is_readable( "$IP/LocalSettings.cloud.php" ) ) {
+	require_once "$IP/LocalSettings.cloud.php";
+}
+
 // ---------------------------------------------------------------------------
 // Optional per-install overrides (untracked, not shipped): put them in wiki/LocalSettings.local.php;
 // the Dockerfile and `wiki.ps1 sync` copy it next to this file when it exists.

@@ -2,8 +2,8 @@
 // SPDX-FileCopyrightText: Fabian Zimber / shiftbloom studio
 // Offline test of the Forge MCP server: starts it over stdio like Claude Code does and checks the
 // tool list and the entity schemas. Needs no running wiki, no .env, and writes nothing.
-//   cd tools/forge-mcp && node --test test/offline.test.js
-// Always pass the file explicitly: a bare `node --test` would also pick up src/test-tools.js,
+//   cd tools/forge-mcp && npm test   (= node --test "test/*.test.js": every offline test)
+// Always pass the files explicitly: a bare `node --test` would also pick up src/test-tools.js,
 // the live test that writes to your wiki.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';

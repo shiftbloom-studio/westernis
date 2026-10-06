@@ -248,11 +248,29 @@ third_party/                original files of bundled third-party fonts (corresp
 * **Fonts** are served from `/assets/fonts/` as WOFF2 (Cinzel, EB Garamond and Cormorant Garamond
   are variable and keep all weights); `MediaWiki:Common.css` declares the `@font-face` rules.
 
-## Cloudflare deployment (in progress)
+## Cloudflare deployment
 
-A hosted variant on Cloudflare (Containers) is being designed. The plan and its current state
-are in [`docs/cloudflare-design.md`](docs/cloudflare-design.md). Until it lands, the Docker
-Compose setup above is the supported way to run Westernis.
+Westernis also runs fully on Cloudflare, with nothing on your own machine: a Worker
+([`cloud/src`](cloud/src)) with a password gate and single sign-on into MediaWiki, one Cloudflare
+Container with the wiki image ([`cloud/image`](cloud/image)), SQLite streamed to R2 by Litestream
+(restored on every start), and uploads in R2. The container sleeps after 20 idle minutes; a cold
+start takes about 10–40 s (browsers see a "Westernis erwacht" page meanwhile). Design and
+decisions: [`docs/cloudflare-design.md`](docs/cloudflare-design.md).
+
+Per-install values live in the untracked `.env.cloud` (template: [`.env.cloud.example`](.env.cloud.example)):
+
+```bash
+pwsh -File ./cloud/scripts/Init-Cloud.ps1      # renders the untracked cloud/wrangler.jsonc
+pwsh -File ./cloud/scripts/Set-R2Keys.ps1      # bucket-scoped R2 keys (hidden input, tested)
+pwsh -File ./cloud/scripts/Set-Secrets.ps1     # gate password + all Worker secrets
+cd cloud && npx wrangler deploy                # Worker + container application
+```
+
+`wrangler deploy` builds the image with Docker when `image` points at `cloud/image/Dockerfile`;
+to deploy without Docker, point `image` at an image already in the Cloudflare registry
+(`npx wrangler containers images list`). Moving an existing wiki: [`cloud/migrate`](cloud/migrate)
+(export, upload, verify). Container output is not in the Worker logs; set the var
+`WST_DEBUG_BOOTLOG=1` to have the boot log copied to `debug/boot.log` in the DB bucket.
 
 ## Troubleshooting
 

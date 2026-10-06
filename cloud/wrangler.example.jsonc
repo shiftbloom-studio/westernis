@@ -1,0 +1,72 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-FileCopyrightText: Fabian Zimber / shiftbloom studio
+//
+// Westernis on Cloudflare: Worker + WikiContainer (design docs/cloudflare-design.md, 2.2).
+// TEMPLATE. cloud/scripts/Init-Cloud.ps1 renders it to the untracked cloud/wrangler.jsonc by replacing the
+// dollar-brace placeholders with values from the untracked .env.cloud (and WIKI_ADMIN_USER from .env).
+// Never put real hostnames, IDs or keys here.
+// Relative paths ("main", "image", "image_build_context") resolve against this file's folder (cloud/).
+//
+// Worker secrets (never in this file; cloud/scripts/Push-Secrets.ps1 pipes them to `wrangler secret bulk`):
+//   GATE_PASSWORD_HASH          "pbkdf2-sha256$100000$<salt_b64>$<hash_b64>" of the one gate password (design 1.6)
+//   SESSION_SECRET              >= 32 random characters; HMAC key of the session cookie "__Secure-wst"
+//   API_TOKEN                   >= 32 random characters; scripts send it as "X-Westernis-Token" (Forge MCP, wst.ps1)
+//   WIKI_SECRET_KEY             MediaWiki $wgSecretKey (from .env)
+//   R2_DB_ACCESS_KEY_ID, R2_DB_SECRET_ACCESS_KEY        bucket-scoped token for the DB bucket (container only)
+//   R2_MEDIA_ACCESS_KEY_ID, R2_MEDIA_SECRET_ACCESS_KEY  bucket-scoped token for the media bucket (container only)
+// Without a well-formed GATE_PASSWORD_HASH and SESSION_SECRET the Worker answers 503 to everything (fail-closed).
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "westernis",
+  "account_id": "${CF_ACCOUNT_ID}",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-06",
+  "workers_dev": false,                       // never a *.workers.dev bypass (redeploys keep it off)
+  "preview_urls": false,
+  "routes": [
+    { "pattern": "${WIKI_PUBLIC_HOST}", "custom_domain": true },   // reading host (public later, design 5.2)
+    { "pattern": "${WIKI_EDIT_HOST}", "custom_domain": true }      // edit host: always behind the gate (editing, API, MCP)
+  ],
+  "observability": { "enabled": true },
+  "containers": [
+    {
+      "class_name": "WikiContainer",
+      "scheduling_policy": "default",         // GA; immutable once the application exists
+      "image": "./image/Dockerfile",          // a Dockerfile path: wrangler builds it with local Docker and pushes it
+      "image_build_context": "..",            // repo root, as for docker-compose
+      "instance_type": { "vcpu": 2, "memory_mib": 6144, "disk_mb": 12000 },   // custom type (owner decision)
+      "max_instances": 1,                     // single SQLite writer
+      "constraints": { "regions": ["WEUR"] }, // near the owner and the EU-jurisdiction buckets
+      // Init-Cloud.ps1 drops the next line while SSH_PUBLIC_KEY is empty: wrangler rejects any key that is not ssh-ed25519.
+      "authorized_keys": [{ "name": "owner", "public_key": "${SSH_PUBLIC_KEY}" }]
+    }
+  ],
+  "durable_objects": { "bindings": [{ "name": "WIKI", "class_name": "WikiContainer" }] },
+  "exports": { "WikiContainer": { "type": "durable-object", "storage": "sqlite" } },   // declarative; not `migrations`
+  "r2_buckets": [
+    // read-only use by the Worker (/images/*); writes go through the container's bucket-scoped S3 token
+    { "binding": "MEDIA", "bucket_name": "${R2_MEDIA_BUCKET}", "jurisdiction": "eu" }
+  ],
+  // Brute-force brake for POST /__wst/login: 5 attempts per minute and client IP (per Cloudflare location,
+  // eventually consistent). namespace_id is any positive integer that no other rate limiter of the account uses.
+  // Without this binding the login form answers 503 (fail-closed).
+  "ratelimits": [
+    { "name": "LOGIN_LIMIT", "namespace_id": "73519", "simple": { "limit": 5, "period": 60 } }
+  ],
+  "vars": {
+    "WIKI_SERVER": "https://${WIKI_PUBLIC_HOST}",
+    "WIKI_HOSTS": "${WIKI_PUBLIC_HOST},${WIKI_EDIT_HOST}",
+    "WIKI_EDIT_HOST": "${WIKI_EDIT_HOST}",
+    "PUBLIC_READ_HOSTS": "",                  // anonymous GET/HEAD hosts; empty until the public switch (design 5.2)
+    "GATE_WIKI_USER": "${WIKI_ADMIN_USER}",   // MediaWiki user a gate session is signed in as (X-Westernis-User); "" = no SSO
+    "SESSION_DAYS": "30",                     // lifetime of the gate cookie (1..365)
+    "R2_ACCOUNT_ID": "${CF_ACCOUNT_ID}",
+    "R2_DB_BUCKET": "${R2_DB_BUCKET}",
+    "R2_MEDIA_BUCKET": "${R2_MEDIA_BUCKET}",
+    "WST_DB_GENERATION": "g1",
+    "WST_BOOTSTRAP": "",                      // "import:<stamp>" for the first boot only (design 4.5)
+    "WST_RESTORE_FROM": "",                   // "<gen>[@<RFC3339>]" for point-in-time restores (design 4.8)
+    "WIKI_DEBUG": "1",                        // honoured only on the edit host (LocalSettings.cloud.php)
+    "MEDIA_CACHE_CONTROL": "private, max-age=3600"
+  }
+}

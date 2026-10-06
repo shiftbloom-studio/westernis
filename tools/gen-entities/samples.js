@@ -73,7 +73,7 @@ Jahreszahlen dieses Zeitalters tragen das Kürzel '''D.Z.''' – die Infobox-Vor
 {{Timeline|era=Third Age}}
 
 == Völker und Reiche ==
-<div class="wst-relations">{{#cargo_query:tables=Locations|fields=_pageName=Target,_pageTitle=Label,type=Kind|where=type="Realm"|order by=_pageName|format=template|template=Relationships/row|named args=yes|intro=<div class="wst-relations-group">|outro=</div>|default=''Noch keine Reiche verzeichnet.''}}</div>
+<div class="wst-relations">{{#cargo_query:tables=Locations|fields=_pageName=Target,_pageTitle=Label,type=Kind|where=type='Realm'|order by=_pageName|format=template|template=Relationships/row|named args=yes|intro=<div class="wst-relations-group">|outro=</div>|default=''Noch keine Reiche verzeichnet.''}}</div>
 `);
 
 P('Main', 'Fourth Age', `

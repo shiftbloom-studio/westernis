@@ -1,0 +1,58 @@
+#!/bin/bash
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-FileCopyrightText: Fabian Zimber / shiftbloom studio
+#
+# wst-as sync|wiki COMMAND [ARGS...] — run COMMAND as one of the two unprivileged sides of the cloud image
+# (docs/cloudflare-design.md, sections 1.3 and 1.6). Only root (the supervisor wst-start.sh and wst-dump.sh)
+# calls this. The command gets a fresh environment built from an allowlist, never the parent's:
+#
+#   sync  user wstsync (group wstsync, member of www-data): Litestream, wst-r2.php, wst-import.sh, wst-sync.sh.
+#         Gets the DB-bucket token (LITESTREAM_*), R2_ACCOUNT_ID, R2_DB_BUCKET and WST_*. Never the media token,
+#         never WIKI_SECRET_KEY.
+#   wiki  user www-data: memcached, PHP (update.php, jobs, maintenance), Apache. Gets WIKI_*, WST_*, APACHE_*,
+#         R2_ACCOUNT_ID and the media token (R2_MEDIA_*). NEVER the DB-bucket token.
+#
+# A process of another uid cannot read /proc/<pid>/environ of these processes (or of the root supervisor),
+# so PHP has no way to reach the DB-bucket token. Both sides run with umask 0007: the shared directories
+# (/var/lib/westernis/db and /import, setgid group www-data) keep every file group-readable and -writable,
+# including SQLite's -wal and -shm files. no_new_privs: no setuid binary or file capability can raise them.
+set -eu
+
+die() { echo "[wst-as] $*" >&2; exit 64; }
+[ "$(id -u)" = 0 ] || die "must run as root"
+[ $# -ge 2 ] || die "usage: wst-as sync|wiki COMMAND [ARGS...]"
+role="$1"
+shift
+
+case "$role" in
+  sync)
+    user=wstsync
+    workdir=/var/lib/westernis/sync
+    keep='^(R2_ACCOUNT_ID|R2_DB_BUCKET|LITESTREAM_ACCESS_KEY_ID|LITESTREAM_SECRET_ACCESS_KEY|LOG_LEVEL|TZ|WST_[A-Z0-9_]+)$'
+    ;;
+  wiki)
+    user=www-data
+    workdir=/var/www/html
+    keep='^(R2_ACCOUNT_ID|R2_MEDIA_BUCKET|R2_MEDIA_ACCESS_KEY_ID|R2_MEDIA_SECRET_ACCESS_KEY|TZ|WIKI_[A-Z0-9_]+|WST_[A-Z0-9_]+|APACHE_[A-Z0-9_]+)$'
+    ;;
+  *) die "unknown side '$role' (sync or wiki)" ;;
+esac
+
+home="$(getent passwd "$user" | cut -d: -f6)"
+[ -n "$home" ] || die "user $user does not exist"
+
+vars=("PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" "HOME=$home" "USER=$user" "LOGNAME=$user" "LANG=C.UTF-8")
+while IFS= read -r name; do
+  [[ $name =~ $keep ]] || continue
+  # Belt and braces: whatever matches a prefix above, these names never cross over.
+  case "$name" in
+    LITESTREAM_* | R2_DB_*) [ "$role" = sync ] || continue ;;
+    R2_MEDIA_*) [ "$role" = wiki ] || continue ;;
+    WST_*KEY* | WST_*SECRET* | WST_*TOKEN* | WST_*PASSWORD*) continue ;;
+  esac
+  vars+=("$name=${!name}")
+done < <(compgen -e)
+
+umask 0007
+cd "$workdir" 2>/dev/null || cd /
+exec setpriv --reuid="$user" --regid="$user" --init-groups --no-new-privs -- /usr/bin/env -i "${vars[@]}" "$@"
