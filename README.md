@@ -266,6 +266,19 @@ pwsh -File ./cloud/scripts/Set-Secrets.ps1     # gate password + all Worker secr
 cd cloud && npx wrangler deploy                # Worker + container application
 ```
 
+**Deploy on every push, without your machine (Workers Builds):** in the Cloudflare dashboard open
+*Workers & Pages → (your Worker) → Settings → Builds → Connect* and pick this repository, then set
+
+| Setting | Value |
+|---|---|
+| Root directory | `cloud` |
+| Build command | `npm ci && npm run build:config` |
+| Deploy command | `npx wrangler deploy` |
+| Build variables | `CF_ACCOUNT_ID`, `WIKI_PUBLIC_HOST`, `WIKI_EDIT_HOST`, `R2_DB_BUCKET`, `R2_MEDIA_BUCKET`, `R2_JURISDICTION`, `GATE_WIKI_USER` (the same non-secret values as in `.env.cloud`) |
+
+Cloudflare then builds the image from `cloud/image/Dockerfile` and rolls the container out on each
+push to `main`; the Worker secrets stay as they are.
+
 `wrangler deploy` builds the image with Docker when `image` points at `cloud/image/Dockerfile`;
 to deploy without Docker, point `image` at an image already in the Cloudflare registry
 (`npx wrangler containers images list`). Moving an existing wiki: [`cloud/migrate`](cloud/migrate)

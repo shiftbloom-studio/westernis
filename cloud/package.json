@@ -8,7 +8,8 @@
   "scripts": {
     "test": "node --test \"test/*.test.js\"",
     "dev": "wrangler dev --local-upstream localhost",
-    "check": "wrangler deploy --dry-run --containers-rollout=none --outdir .wrangler/dry-run"
+    "check": "wrangler deploy --dry-run --containers-rollout=none --outdir .wrangler/dry-run",
+    "build:config": "node scripts/render-config.mjs"
   },
   "engines": {
     "node": ">=22"
